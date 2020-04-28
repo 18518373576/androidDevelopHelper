@@ -4,14 +4,19 @@
 ###### - 项目环境：
 
 ```
-compileSdkVersion = 29
-buildToolsVersion = "29.0.2"
-minSdkVersion = 21
-targetSdkVersion = 29
+ext {
+        compileSdkVersion = 29
+        buildToolsVersion = "29.0.2"
+        minSdkVersion = 21
+        targetSdkVersion = 29
+    }
 ```
 - jdk:
 
 ```
-targetCompatibility = 1.8 
-sourceCompatibility = 1.8
+compileOptions 
+    {
+        targetCompatibility = 1.8
+        sourceCompatibility = 1.8
+    }
 ```
