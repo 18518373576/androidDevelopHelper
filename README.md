@@ -1,7 +1,7 @@
 # androidDevelopHelper
 ###### 开发笔记
 以项目形式记录安卓开发的一些知识点的笔记
-###### - 项目环境：
+###### 项目环境：
 
 ```
 ext {
@@ -11,7 +11,7 @@ ext {
         targetSdkVersion = 29
     }
 ```
-- jdk:
+###### jdk:
 
 ```
 compileOptions 
