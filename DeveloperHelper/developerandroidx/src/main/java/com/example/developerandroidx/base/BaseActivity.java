@@ -34,5 +34,8 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract void initView();
 
-
+    /**
+     * 处理回调数据的操作
+     */
+    protected abstract void initData();
 }

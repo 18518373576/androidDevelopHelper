@@ -2,8 +2,6 @@ package com.example.developerandroidx.ui.widget;
 
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
@@ -25,12 +23,12 @@ public class WidgetFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
         viewModel = ViewModelProviders.of(this).get(WidgetViewModel.class);
-        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                text_notifications.setText(s);
-            }
-        });
+        viewModel.getText().observe(getViewLifecycleOwner(), s -> text_notifications.setText(s));
     }
 }

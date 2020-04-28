@@ -26,6 +26,7 @@ public abstract class BaseFragment extends Fragment {
         context = getActivity();
         unbinder = ButterKnife.bind(this, view);
         initView();
+        initData();
         return view;
     }
 
@@ -40,6 +41,11 @@ public abstract class BaseFragment extends Fragment {
      * view的一些操作
      */
     protected abstract void initView();
+
+    /**
+     * 数据回调的一些操作
+     */
+    protected abstract void initData();
 
     @Override
     public void onDestroy() {

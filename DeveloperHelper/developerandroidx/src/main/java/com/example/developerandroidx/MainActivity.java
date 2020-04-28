@@ -30,12 +30,14 @@ public class MainActivity extends BaseActivity {
      */
     @Override
     protected void initView() {
-
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_android, R.id.navigation_java, R.id.navigation_widget)
-                .build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.navigation_android, R.id.navigation_java, R.id.navigation_widget).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    @Override
+    protected void initData() {
+
     }
 }
