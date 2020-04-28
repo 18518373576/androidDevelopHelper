@@ -1,35 +1,36 @@
 package com.example.developerandroidx.ui.widget;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseFragment;
 
-public class WidgetFragment extends Fragment {
+import butterknife.BindView;
 
-    private WidgetViewModel widgetViewModel;
+public class WidgetFragment extends BaseFragment {
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        widgetViewModel =
-                ViewModelProviders.of(this).get(WidgetViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_widget, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        widgetViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+    @BindView(R.id.text_notifications)
+    TextView text_notifications;
+
+    private WidgetViewModel viewModel;
+
+    @Override
+    protected int bindLayout() {
+        return R.layout.fragment_widget;
+    }
+
+    @Override
+    protected void initView() {
+        viewModel = ViewModelProviders.of(this).get(WidgetViewModel.class);
+        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                text_notifications.setText(s);
             }
         });
-        return root;
     }
 }

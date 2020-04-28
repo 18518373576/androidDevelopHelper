@@ -1,35 +1,39 @@
 package com.example.developerandroidx.ui.android;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseFragment;
 
-public class AndroidFragment extends Fragment {
+import butterknife.BindView;
 
-    private AndroidViewModel androidViewModel;
+public class AndroidFragment extends BaseFragment {
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        androidViewModel =
-                ViewModelProviders.of(this).get(AndroidViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_android, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        androidViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+    @BindView(R.id.text_home)
+    TextView text_home;
+
+    private AndroidViewModel viewModel;
+
+    @Override
+    protected int bindLayout() {
+        return R.layout.fragment_android;
+    }
+
+    @Override
+    protected void initView() {
+        //把viewModel绑定到fragment
+        viewModel = ViewModelProviders.of(this).get(AndroidViewModel.class);
+
+        //观察数据的变化
+        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                text_home.setText(s);
             }
         });
-        return root;
     }
 }

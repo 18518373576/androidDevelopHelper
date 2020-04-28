@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import butterknife.ButterKnife;
+
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected Context context;
@@ -14,10 +16,23 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-        setContentView(initLayout());
+        setContentView(bindLayout());
+
+        ButterKnife.bind(this);
+
+        initView();
     }
 
-    abstract void initView();
+    /**
+     * 绑定layout
+     * @return layout文件id
+     */
+    protected abstract int bindLayout();
 
-    abstract int initLayout();
+    /**
+     * view的一些操作
+     */
+    protected abstract void initView();
+
+
 }

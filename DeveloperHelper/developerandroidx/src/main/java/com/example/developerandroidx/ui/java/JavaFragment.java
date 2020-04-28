@@ -13,23 +13,31 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseFragment;
 
-public class JavaFragment extends Fragment {
+import butterknife.BindView;
 
-    private JavaViewModel javaViewModel;
+public class JavaFragment extends BaseFragment {
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        javaViewModel =
-                ViewModelProviders.of(this).get(JavaViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_java, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        javaViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+    @BindView(R.id.text_dashboard)
+    TextView text_dashboard;
+
+    private JavaViewModel viewModel;
+
+
+    @Override
+    protected int bindLayout() {
+        return R.layout.fragment_java;
+    }
+
+    @Override
+    protected void initView() {
+        viewModel = ViewModelProviders.of(this).get(JavaViewModel.class);
+        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                text_dashboard.setText(s);
             }
         });
-        return root;
     }
 }

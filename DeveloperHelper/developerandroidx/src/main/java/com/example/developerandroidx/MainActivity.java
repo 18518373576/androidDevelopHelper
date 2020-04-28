@@ -1,24 +1,36 @@
 package com.example.developerandroidx;
 
-import android.os.Bundle;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.developerandroidx.base.BaseActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import butterknife.BindView;
+
+public class MainActivity extends BaseActivity {
+
+    @BindView(R.id.nav_view)
+    BottomNavigationView navView;
+
+    /**
+     * 绑定layout
+     *
+     * @return
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+    protected int bindLayout() {
+        return R.layout.activity_main;
+    }
+
+    /**
+     * view的一些操作
+     */
+    @Override
+    protected void initView() {
+
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_android, R.id.navigation_java, R.id.navigation_widget)
                 .build();
@@ -26,5 +38,4 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
-
 }
