@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_android"
+        android:icon="@mipmap/android"
+        android:title="@string/android" />
+
+    <item
+        android:id="@+id/navigation_java"
+        android:icon="@mipmap/java"
+        android:title="@string/java" />
+
+    <item
+        android:id="@+id/navigation_widget"
+        android:icon="@mipmap/widget"
+        android:title="@string/widget" />
+
+</menu>
