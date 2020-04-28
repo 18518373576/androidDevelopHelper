@@ -1,4 +1,4 @@
 package com.example.developerandroidx.bean;
 
-public class FunctionAdapterItem {
+public class FunctionItemBean {
 }
