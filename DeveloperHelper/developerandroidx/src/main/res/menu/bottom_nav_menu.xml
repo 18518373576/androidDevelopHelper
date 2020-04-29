@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/navigation_android"
-        android:icon="@mipmap/android"
+        android:icon="@mipmap/navigation_android"
         android:title="@string/android" />
 
     <item
         android:id="@+id/navigation_java"
-        android:icon="@mipmap/java"
+        android:icon="@mipmap/navigation_java"
         android:title="@string/java" />
 
     <item
         android:id="@+id/navigation_widget"
-        android:icon="@mipmap/widget"
+        android:icon="@mipmap/navigation_widget"
         android:title="@string/widget" />
 
 </menu>

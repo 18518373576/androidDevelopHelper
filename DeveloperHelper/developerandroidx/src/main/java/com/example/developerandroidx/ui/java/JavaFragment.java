@@ -1,18 +1,19 @@
 package com.example.developerandroidx.ui.java;
 
-import android.widget.TextView;
-
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.adapter.FunctionRcvAdapter;
 import com.example.developerandroidx.base.BaseFragment;
 
 import butterknife.BindView;
 
 public class JavaFragment extends BaseFragment {
 
-    @BindView(R.id.text_dashboard)
-    TextView text_dashboard;
+    @BindView(R.id.rcv_java)
+    RecyclerView rcv_java;
 
     private JavaViewModel viewModel;
 
@@ -24,12 +25,13 @@ public class JavaFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-
+        rcv_java.setLayoutManager(new GridLayoutManager(context, 2));
     }
 
     @Override
     protected void initData() {
         viewModel = ViewModelProviders.of(this).get(JavaViewModel.class);
-        viewModel.getText().observe(getViewLifecycleOwner(), s -> text_dashboard.setText(s));
+        viewModel.getText().observe(getViewLifecycleOwner(), functionList ->
+                rcv_java.setAdapter(new FunctionRcvAdapter(context, functionList)));
     }
 }

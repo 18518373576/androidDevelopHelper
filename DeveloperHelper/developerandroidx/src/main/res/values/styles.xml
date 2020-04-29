@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="HomeRcvStyle">
+        <item name="android:paddingLeft">@dimen/dp5</item>
+        <item name="android:paddingRight">@dimen/dp5</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:overScrollMode">never</item>
+    </style>
 </resources>

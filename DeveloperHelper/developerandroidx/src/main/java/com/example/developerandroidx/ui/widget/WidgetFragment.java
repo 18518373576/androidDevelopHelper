@@ -1,18 +1,19 @@
 package com.example.developerandroidx.ui.widget;
 
-import android.widget.TextView;
-
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.adapter.FunctionRcvAdapter;
 import com.example.developerandroidx.base.BaseFragment;
 
 import butterknife.BindView;
 
 public class WidgetFragment extends BaseFragment {
 
-    @BindView(R.id.text_notifications)
-    TextView text_notifications;
+    @BindView(R.id.rcv_widget)
+    RecyclerView rcv_widget;
 
     private WidgetViewModel viewModel;
 
@@ -23,12 +24,13 @@ public class WidgetFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-
+        rcv_widget.setLayoutManager(new GridLayoutManager(context, 2));
     }
 
     @Override
     protected void initData() {
         viewModel = ViewModelProviders.of(this).get(WidgetViewModel.class);
-        viewModel.getText().observe(getViewLifecycleOwner(), s -> text_notifications.setText(s));
+        viewModel.getText().observe(getViewLifecycleOwner(), functionList ->
+                rcv_widget.setAdapter(new FunctionRcvAdapter(context, functionList)));
     }
 }

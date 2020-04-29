@@ -4,16 +4,31 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.developerandroidx.R;
+import com.example.developerandroidx.bean.FunctionItemBean;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class WidgetViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<List<FunctionItemBean>> mList;
+    private List<FunctionItemBean> functionList;
 
     public WidgetViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mList = new MutableLiveData<>();
+        initData();
+        mList.setValue(functionList);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    private void initData()
+    {
+        functionList = new ArrayList<>();
+        functionList.add(new FunctionItemBean("ActionBar", R.mipmap.icon_activity,""));
+        functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.icon_activity,""));
+        functionList.add(new FunctionItemBean("CardView", R.mipmap.icon_activity,""));
+    }
+    public LiveData<List<FunctionItemBean>> getText() {
+        return mList;
     }
 }

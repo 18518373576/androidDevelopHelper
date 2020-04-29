@@ -8,12 +8,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_android"
+        style="@style/HomeRcvStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/dp5"
-        android:paddingRight="@dimen/dp5"
-        android:scrollbars="none"
-        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

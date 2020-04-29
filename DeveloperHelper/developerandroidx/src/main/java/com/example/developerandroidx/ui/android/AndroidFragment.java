@@ -30,6 +30,7 @@ public class AndroidFragment extends BaseFragment {
     @Override
     protected void initView() {
 
+        //设置布局管理器
         rcv_android.setLayoutManager(new GridLayoutManager(context,2));
     }
 

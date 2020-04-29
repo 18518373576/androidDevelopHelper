@@ -28,7 +28,7 @@
                 android:id="@+id/iv_item_icon"
                 android:layout_width="@dimen/dp40"
                 android:layout_height="@dimen/dp40"
-                android:src="@mipmap/activity_icon"/>
+                android:src="@mipmap/icon_activity"/>
             <TextView
                 android:id="@+id/tv_item_name"
                 android:layout_width="wrap_content"
