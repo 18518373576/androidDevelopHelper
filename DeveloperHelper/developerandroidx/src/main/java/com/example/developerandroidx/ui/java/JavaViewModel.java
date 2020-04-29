@@ -29,7 +29,7 @@ public class JavaViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("泛型", R.mipmap.icon_bluetooth,""));
     }
 
-    public LiveData<List<FunctionItemBean>> getText() {
+    public LiveData<List<FunctionItemBean>> getAdapterList() {
         return mList;
     }
 }

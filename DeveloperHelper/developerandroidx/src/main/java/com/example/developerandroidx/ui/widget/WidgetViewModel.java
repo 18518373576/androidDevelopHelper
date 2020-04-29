@@ -28,7 +28,7 @@ public class WidgetViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.icon_activity,""));
         functionList.add(new FunctionItemBean("CardView", R.mipmap.icon_activity,""));
     }
-    public LiveData<List<FunctionItemBean>> getText() {
+    public LiveData<List<FunctionItemBean>> getAdapterList() {
         return mList;
     }
 }

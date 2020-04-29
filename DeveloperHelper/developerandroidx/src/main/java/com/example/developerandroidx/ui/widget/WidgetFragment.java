@@ -30,7 +30,7 @@ public class WidgetFragment extends BaseFragment {
     @Override
     protected void initData() {
         viewModel = ViewModelProviders.of(this).get(WidgetViewModel.class);
-        viewModel.getText().observe(getViewLifecycleOwner(), functionList ->
+        viewModel.getAdapterList().observe(getViewLifecycleOwner(), functionList ->
                 rcv_widget.setAdapter(new FunctionRcvAdapter(context, functionList)));
     }
 }

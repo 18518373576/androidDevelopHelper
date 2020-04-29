@@ -31,7 +31,7 @@ public class JavaFragment extends BaseFragment {
     @Override
     protected void initData() {
         viewModel = ViewModelProviders.of(this).get(JavaViewModel.class);
-        viewModel.getText().observe(getViewLifecycleOwner(), functionList ->
+        viewModel.getAdapterList().observe(getViewLifecycleOwner(), functionList ->
                 rcv_java.setAdapter(new FunctionRcvAdapter(context, functionList)));
     }
 }
