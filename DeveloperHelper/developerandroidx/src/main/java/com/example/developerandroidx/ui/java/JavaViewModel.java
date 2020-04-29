@@ -27,6 +27,9 @@ public class JavaViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("工厂模式", R.mipmap.icon_bluetooth,""));
         functionList.add(new FunctionItemBean("注解", R.mipmap.icon_bluetooth,""));
         functionList.add(new FunctionItemBean("泛型", R.mipmap.icon_bluetooth,""));
+        functionList.add(new FunctionItemBean("倒计时", R.mipmap.icon_bluetooth,""));
+        functionList.add(new FunctionItemBean("排序", R.mipmap.icon_bluetooth,""));
+        functionList.add(new FunctionItemBean("集合", R.mipmap.icon_bluetooth,""));
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {
