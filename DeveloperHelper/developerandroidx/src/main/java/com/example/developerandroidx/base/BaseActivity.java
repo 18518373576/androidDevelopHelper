@@ -2,6 +2,7 @@ package com.example.developerandroidx.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initView();
+    }
+
+    /**
+     * 弹出吐司
+     * @param showMsg
+     */
+    protected void showToast(String showMsg)
+    {
+        Toast.makeText(context,showMsg,Toast.LENGTH_LONG).show();
     }
 
     /**

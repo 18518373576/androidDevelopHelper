@@ -10,5 +10,7 @@
         android:id="@+id/rcv_android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp5"
+        android:paddingRight="@dimen/dp5"
         android:scrollbars="none"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
