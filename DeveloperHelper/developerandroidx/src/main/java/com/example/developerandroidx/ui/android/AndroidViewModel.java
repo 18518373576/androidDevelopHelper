@@ -27,20 +27,20 @@ public class AndroidViewModel extends ViewModel {
     private void initData()
     {
         functionList = new ArrayList<>();
-        functionList.add(new FunctionItemBean("Activity", R.mipmap.activity_icon));
-        functionList.add(new FunctionItemBean("Service", R.mipmap.android));
-        functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.android));
-        functionList.add(new FunctionItemBean("Content Provider", R.mipmap.android));
-        functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.android));
-        functionList.add(new FunctionItemBean("NFC", R.mipmap.android));
-        functionList.add(new FunctionItemBean("Camera", R.mipmap.android));
-        functionList.add(new FunctionItemBean("ActionBar", R.mipmap.android));
-        functionList.add(new FunctionItemBean("ConstraintLayout", R.mipmap.android));
-        functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.android));
-        functionList.add(new FunctionItemBean("Sqlite", R.mipmap.android));
-        functionList.add(new FunctionItemBean("Animation", R.mipmap.android));
-        functionList.add(new FunctionItemBean("JNI", R.mipmap.android));
-        functionList.add(new FunctionItemBean("CardView", R.mipmap.android));
+        functionList.add(new FunctionItemBean("Activity", R.mipmap.activity_icon,""));
+        functionList.add(new FunctionItemBean("Service", R.mipmap.service_icon,""));
+        functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.broadcast_receiver_icon,""));
+        functionList.add(new FunctionItemBean("Content Provider", R.mipmap.content_provider_icon,""));
+        functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.bluetooth_icon,""));
+        functionList.add(new FunctionItemBean("NFC", R.mipmap.android,""));
+        functionList.add(new FunctionItemBean("Camera", R.mipmap.android,""));
+        functionList.add(new FunctionItemBean("ActionBar", R.mipmap.android,""));
+        functionList.add(new FunctionItemBean("ConstraintLayout", R.mipmap.android,""));
+        functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.android,""));
+        functionList.add(new FunctionItemBean("Sqlite", R.mipmap.android,""));
+        functionList.add(new FunctionItemBean("Animation", R.mipmap.android,""));
+        functionList.add(new FunctionItemBean("JNI", R.mipmap.android,""));
+        functionList.add(new FunctionItemBean("CardView", R.mipmap.android,""));
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {
