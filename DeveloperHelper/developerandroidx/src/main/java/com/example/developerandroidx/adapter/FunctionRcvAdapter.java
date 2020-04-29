@@ -1,6 +1,8 @@
 package com.example.developerandroidx.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,20 @@ public class FunctionRcvAdapter extends RecyclerView.Adapter<FunctionRcvAdapter.
 
         holder.tv_item_name.setText(list.get(position).itemName);
         holder.iv_item_icon.setImageResource(list.get(position).itemIconId);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String activityClassName = list.get(position).goTo;
+                    if (!TextUtils.isEmpty(activityClassName)) {
+                        context.startActivity(new Intent(context, Class.forName(activityClassName)));
+                    }
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
