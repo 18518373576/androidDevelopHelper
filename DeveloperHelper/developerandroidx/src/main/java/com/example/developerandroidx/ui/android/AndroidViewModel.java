@@ -36,9 +36,9 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Camera", R.mipmap.icon_camera,""));
         functionList.add(new FunctionItemBean("ConstraintLayout", R.mipmap.icon_constrain_layout,""));
         functionList.add(new FunctionItemBean("Sqlite", R.mipmap.icon_sqlite,""));
-        functionList.add(new FunctionItemBean("Animation", R.mipmap.icon_camera,""));
-        functionList.add(new FunctionItemBean("JNI", R.mipmap.icon_camera,""));
-        functionList.add(new FunctionItemBean("扫二维码", R.mipmap.icon_camera,""));
+        functionList.add(new FunctionItemBean("Animation", R.mipmap.icon_animation,""));
+        functionList.add(new FunctionItemBean("JNI", R.mipmap.icon_jni,""));
+        functionList.add(new FunctionItemBean("扫二维码", R.mipmap.icon_scan,""));
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {
