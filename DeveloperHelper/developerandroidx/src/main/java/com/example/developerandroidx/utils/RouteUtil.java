@@ -2,9 +2,6 @@ package com.example.developerandroidx.utils;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
-
-import com.example.developerandroidx.base.BaseActivity;
 
 public class RouteUtil {
     /**

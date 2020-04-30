@@ -41,6 +41,7 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("扫二维码", R.mipmap.icon_scan, ""));
         functionList.add(new FunctionItemBean("MVP架构", R.mipmap.icon_animation, ""));
         functionList.add(new FunctionItemBean("DataBinding", R.mipmap.icon_animation, ""));
+        functionList.add(new FunctionItemBean("Butter Knife", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("地图", R.mipmap.icon_animation, ""));
     }
 

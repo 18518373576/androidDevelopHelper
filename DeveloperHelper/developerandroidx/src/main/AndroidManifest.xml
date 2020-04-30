@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.webView.WebViewActivity"></activity>
+        <activity android:name=".ui.widget.webView.WebViewActivity"></activity>
         <activity android:name=".ui.widget.actionBar.ActionBarActivity" />
         <activity android:name=".ui.android.activity.ActivityAnalysisActivity" />
         <activity

@@ -23,13 +23,14 @@ public class WidgetViewModel extends ViewModel {
         mList.setValue(functionList);
     }
 
-    private void initData()
-    {
+    private void initData() {
         functionList = new ArrayList<>();
         functionList.add(new FunctionItemBean("ActionBar", R.mipmap.icon_action, RouteUtil.getDestination(ActionBarActivity.class)));
-        functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.icon_activity,""));
-        functionList.add(new FunctionItemBean("CardView", R.mipmap.icon_activity,""));
+        functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.icon_recycler, ""));
+        functionList.add(new FunctionItemBean("CardView", R.mipmap.icon_card_view, ""));
+        functionList.add(new FunctionItemBean("WebView", R.mipmap.icon_web_view, ""));
     }
+
     public LiveData<List<FunctionItemBean>> getAdapterList() {
         return mList;
     }

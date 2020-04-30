@@ -10,7 +10,7 @@ import com.example.developerandroidx.base.BaseActivity;
 import butterknife.OnClick;
 
 /**
- * @参考： https://www.jianshu.com/p/81d0bcb282cb
+ * 参考：https://www.jianshu.com/p/81d0bcb282cb
  */
 public class ActionBarActivity extends BaseActivity {
 

@@ -1,4 +1,4 @@
-package com.example.developerandroidx.ui.webView;
+package com.example.developerandroidx.ui.widget.webView;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
