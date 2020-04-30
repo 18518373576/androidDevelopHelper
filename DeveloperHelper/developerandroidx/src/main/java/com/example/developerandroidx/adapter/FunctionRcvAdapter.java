@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.bean.FunctionItemBean;
+import com.example.developerandroidx.utils.RouteUtil;
 
 import java.util.List;
 
@@ -57,10 +58,7 @@ public class FunctionRcvAdapter extends RecyclerView.Adapter<FunctionRcvAdapter.
             @Override
             public void onClick(View v) {
                 try {
-                    String activityClassName = list.get(position).goTo;
-                    if (!TextUtils.isEmpty(activityClassName)) {
-                        context.startActivity(new Intent(context, Class.forName(activityClassName)));
-                    }
+                    RouteUtil.goTo(context, list.get(position).goTo);//路由到指定界面
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
