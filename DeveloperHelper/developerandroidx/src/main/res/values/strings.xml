@@ -3,7 +3,7 @@
     <!--    <string name="title_home">Home</string>-->
     <!--    <string name="title_dashboard">Dashboard</string>-->
     <!--    <string name="title_notifications">Notifications</string>-->
-    <string name="android">安卓</string>
-    <string name="java">java</string>
-    <string name="widget">控件</string>
+    <string name="android">Android</string>
+    <string name="java">Java</string>
+    <string name="widget">Widget</string>
 </resources>

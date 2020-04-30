@@ -31,6 +31,8 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Service", R.mipmap.icon_service, ""));
         functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, ""));
         functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
+        functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_content_provider, ""));
+        functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_content_provider, ""));
         functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("NFC", R.mipmap.icon_nfc, ""));
         functionList.add(new FunctionItemBean("Camera", R.mipmap.icon_camera, ""));
