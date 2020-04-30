@@ -33,11 +33,11 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * 弹出吐司
+     *
      * @param showMsg
      */
-    protected void showToast(String showMsg)
-    {
-        Toast.makeText(context,showMsg,Toast.LENGTH_LONG).show();
+    protected void showToast(String showMsg) {
+        Toast.makeText(context, showMsg, Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -60,6 +60,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unbinder.unbind();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
     }
 }

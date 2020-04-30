@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorMain</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:screenOrientation">portrait</item>
@@ -14,5 +14,13 @@
         <item name="android:paddingRight">@dimen/dp5</item>
         <item name="android:scrollbars">none</item>
         <item name="android:overScrollMode">never</item>
+    </style>
+
+    <style name="ComonButtonStyle">
+        <item name="android:layout_width">@dimen/dp80</item>
+        <item name="android:layout_height">@dimen/dp40</item>
+        <item name="android:background">@drawable/btn_selector</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp14</item>
     </style>
 </resources>

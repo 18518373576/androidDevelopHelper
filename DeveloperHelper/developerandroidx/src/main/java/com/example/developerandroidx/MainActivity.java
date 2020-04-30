@@ -10,6 +10,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.BindView;
 
+/**
+ * 关于对lifecircle的理解
+ * 参考：https://www.jianshu.com/p/b1208012b268
+ */
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.nav_view)

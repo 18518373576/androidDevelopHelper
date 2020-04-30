@@ -26,7 +26,7 @@ public class WidgetViewModel extends ViewModel {
     private void initData()
     {
         functionList = new ArrayList<>();
-        functionList.add(new FunctionItemBean("ActionBar", R.mipmap.icon_activity, RouteUtil.getDestination(ActionBarActivity.class)));
+        functionList.add(new FunctionItemBean("ActionBar", R.mipmap.icon_action, RouteUtil.getDestination(ActionBarActivity.class)));
         functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.icon_activity,""));
         functionList.add(new FunctionItemBean("CardView", R.mipmap.icon_activity,""));
     }

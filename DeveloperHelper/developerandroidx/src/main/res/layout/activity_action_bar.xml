@@ -6,4 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.widget.actionBar.ActionBarActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <Button
+            android:id="@+id/btn_change_title"
+            style="@style/ComonButtonStyle"
+            android:layout_weight="1"
+            android:text="修改标题"
+            android:layout_margin="@dimen/dp5" />
+        <Button
+            android:id="@+id/btn_set_subhead_title"
+            style="@style/ComonButtonStyle"
+            android:layout_weight="1"
+            android:text="副标题"
+            android:layout_margin="@dimen/dp5" />
+        <Button
+            android:id="@+id/btn_navigation"
+            style="@style/ComonButtonStyle"
+            android:layout_weight="1"
+            android:text="导引按钮"
+            android:layout_margin="@dimen/dp5" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

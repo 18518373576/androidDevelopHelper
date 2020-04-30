@@ -31,6 +31,7 @@ public class JavaViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Ordering", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("Collection", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("Exception", R.mipmap.icon_bluetooth, ""));
+        functionList.add(new FunctionItemBean("Butter Knife", R.mipmap.icon_bluetooth, ""));
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {
