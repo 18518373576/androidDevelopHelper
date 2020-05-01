@@ -55,7 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @param code
      */
-    protected void showCode(String code) {
+    protected void goToCodeViewActivity(String code) {
         RouteUtil.goToCodeView(context, code);
     }
 

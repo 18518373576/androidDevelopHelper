@@ -33,7 +33,7 @@ public class CodeViewActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        code = getIntent().getStringExtra(Constant.IntentParams.CODE);
+        code = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
         cv_code_view.showCode(code);
     }
 }

@@ -12,5 +12,6 @@ public class Constant {
      */
     public static class IntentParams {
         public static final String CODE = "CODE";
+        public static final String INTENT_PARAM = "INTENT_PARAM";
     }
 }

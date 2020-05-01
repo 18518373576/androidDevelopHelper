@@ -1,6 +1,5 @@
 package com.example.developerandroidx.ui.widget.actionBar;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -80,7 +79,7 @@ public class ActionBarActivity extends BaseActivity {
                 }
                 break;
             case R.id.iv_codes:
-                showCode(CodeConstant.code_1);
+                goToCodeViewActivity(CodeConstant.code_1);
                 break;
         }
     }
