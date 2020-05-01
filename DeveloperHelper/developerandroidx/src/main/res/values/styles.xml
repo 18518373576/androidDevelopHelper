@@ -1,6 +1,6 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!--    通用主题-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorMain</item>
@@ -9,6 +9,7 @@
         <item name="android:screenOrientation">portrait</item>
     </style>
 
+    <!--    展示代码界面主题-->
     <style name="CodeViewAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/codeViewBackground</item>
@@ -17,6 +18,7 @@
         <item name="android:screenOrientation">portrait</item>
     </style>
 
+    <!--    首页recyclerView样式-->
     <style name="HomeRcvStyle">
         <item name="android:paddingLeft">@dimen/dp5</item>
         <item name="android:paddingRight">@dimen/dp5</item>
@@ -24,11 +26,22 @@
         <item name="android:overScrollMode">never</item>
     </style>
 
+    <!--    通用button样式-->
     <style name="ComonButtonStyle">
         <item name="android:layout_width">@dimen/dp80</item>
         <item name="android:layout_height">@dimen/dp40</item>
         <item name="android:background">@drawable/btn_selector</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/sp14</item>
+    </style>
+
+    <!--    页面的跳转codeview按钮-->
+    <style name="codeImageViewStyle">
+        <item name="android:padding">@dimen/dp10</item>
+        <item name="android:layout_margin">@dimen/dp20</item>
+        <item name="android:layout_width">@dimen/dp45</item>
+        <item name="android:layout_height">@dimen/dp45</item>
+        <item name="android:background">@drawable/bg_circle_main_color</item>
+        <item name="android:src">@mipmap/icon_code</item>
     </style>
 </resources>

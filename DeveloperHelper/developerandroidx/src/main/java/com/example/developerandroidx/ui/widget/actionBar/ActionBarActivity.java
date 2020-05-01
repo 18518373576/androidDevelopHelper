@@ -1,16 +1,19 @@
 package com.example.developerandroidx.ui.widget.actionBar;
 
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.CodeConstant;
-import com.example.developerandroidx.utils.RouteUtil;
 
 import butterknife.OnClick;
 
@@ -26,7 +29,8 @@ public class ActionBarActivity extends BaseActivity {
         return R.layout.activity_action_bar;
     }
 
-    @OnClick({R.id.btn_change_title, R.id.btn_set_subhead_title, R.id.btn_navigation})
+    @OnClick({R.id.btn_change_title, R.id.btn_set_subhead_title, R.id.btn_navigation,
+            R.id.btn_set_tab, R.id.btn_show_custom_view, R.id.btn_hide_show, R.id.iv_codes})
     public void click(View view) {
         switch (view.getId()) {
             case R.id.btn_change_title:
@@ -41,11 +45,65 @@ public class ActionBarActivity extends BaseActivity {
                 //设置导航按钮 可见、可点击
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setHomeButtonEnabled(true);
-
-                RouteUtil.goToCodeView(context, CodeConstant.code_1);
-//                actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.textColor));//设置actionBar背景
-//                actionBar.setHomeAsUpIndicator(R.mipmap.ic_launcher);//设置左侧按钮图标
+                //设置actionBar背景
+                actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.textColor));
+                //设置左侧按钮图标
+                actionBar.setHomeAsUpIndicator(R.mipmap.ic_launcher);
                 break;
+            case R.id.btn_set_tab:
+                actionBar.removeAllTabs();
+                //@Deprecated 添加tab选项
+                actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+                actionBar.addTab(actionBar.newTab().setText("TAB_1").setTabListener(new OnTabListeer()));
+                actionBar.addTab(actionBar.newTab().setText("TAB_2").setTabListener(new OnTabListeer()));
+                actionBar.addTab(actionBar.newTab().setText("TAB_3").setTabListener(new OnTabListeer()));
+                actionBar.addTab(actionBar.newTab().setText("TAB_4").setTabListener(new OnTabListeer()));
+                actionBar.addTab(actionBar.newTab().setText("TAB_5").setTabListener(new OnTabListeer()));
+                actionBar.addTab(actionBar.newTab().setText("TAB_6").setTabListener(new OnTabListeer()));
+                break;
+            case R.id.btn_show_custom_view:
+                //设置自定义ActionBar
+                //只有这样而且没有设置菜单选项设置才能让width填充屏幕
+                actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                View view_custom_action_bar = LayoutInflater.from(this).inflate(R.layout.view_custom_action_bar, null);
+                ActionBar.LayoutParams layoutParams =
+                        new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
+                actionBar.setCustomView(view_custom_action_bar, layoutParams);
+                Toolbar parent = (Toolbar) view_custom_action_bar.getParent();
+                parent.setContentInsetsAbsolute(0, 0);
+                break;
+            case R.id.btn_hide_show:
+                if (actionBar.isShowing()) {
+                    actionBar.hide();
+                } else {
+                    actionBar.show();
+                }
+                break;
+            case R.id.iv_codes:
+                showCode(CodeConstant.code_1);
+                break;
+        }
+    }
+
+    /**
+     * tab监听
+     */
+    private class OnTabListeer implements ActionBar.TabListener {
+
+        @Override
+        public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+            showToast(tab.getText().toString());
+        }
+
+        @Override
+        public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+        }
+
+        @Override
+        public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
         }
     }
 

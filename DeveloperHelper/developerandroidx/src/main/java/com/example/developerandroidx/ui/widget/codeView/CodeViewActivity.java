@@ -8,6 +8,10 @@ import butterknife.BindView;
 import thereisnospon.codeview.CodeView;
 import thereisnospon.codeview.CodeViewTheme;
 
+/**
+ * 描述：代码展示界面
+ * 引用：https://github.com/Thereisnospon/CodeView
+ */
 public class CodeViewActivity extends BaseActivity {
 
     private String code;

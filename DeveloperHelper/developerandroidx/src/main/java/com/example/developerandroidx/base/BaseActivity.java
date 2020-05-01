@@ -8,6 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.developerandroidx.utils.CodeConstant;
+import com.example.developerandroidx.utils.RouteUtil;
+
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -45,6 +48,15 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected void showToast(String showMsg) {
         Toast.makeText(context, showMsg, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * 跳转到代码展示界面
+     *
+     * @param code
+     */
+    protected void showCode(String code) {
+        RouteUtil.goToCodeView(context, code);
     }
 
     /**
