@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.jsoup:jsoup:1.9.2'
+}
+
+apply from: rootProject.file("uplib.gradle")
+
+
+project.group = "thereisnospon.codeview"
+project.version = "0.3.2"
+
+publishAar {
+
+    up_projectName = "common-base"
+    up_group = project.group
+    up_version = project.version
+    pkg_name ="nCodeView"
+}
+
+
+
+

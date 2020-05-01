@@ -9,6 +9,8 @@ import androidx.appcompat.app.ActionBar;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.utils.CodeConstant;
+import com.example.developerandroidx.utils.RouteUtil;
 
 import butterknife.OnClick;
 
@@ -39,6 +41,8 @@ public class ActionBarActivity extends BaseActivity {
                 //设置导航按钮 可见、可点击
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setHomeButtonEnabled(true);
+
+                RouteUtil.goToCodeView(context, CodeConstant.code_1);
 //                actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.textColor));//设置actionBar背景
 //                actionBar.setHomeAsUpIndicator(R.mipmap.ic_launcher);//设置左侧按钮图标
                 break;
@@ -100,6 +104,7 @@ public class ActionBarActivity extends BaseActivity {
     protected void initView() {
 
         actionBar = getSupportActionBar();
+
     }
 
     @Override

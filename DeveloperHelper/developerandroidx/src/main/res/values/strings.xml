@@ -6,4 +6,5 @@
     <string name="android">Android</string>
     <string name="java">Java</string>
     <string name="widget">Widget</string>
+    <string name="code">code</string>
 </resources>

@@ -41,6 +41,8 @@ public class JavaViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("I/O", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("java常用类", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("Annotatio注解", R.mipmap.icon_bluetooth, ""));
+        functionList.add(new FunctionItemBean("代理", R.mipmap.icon_bluetooth, ""));
+        functionList.add(new FunctionItemBean("反射", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("设计模式", R.mipmap.icon_bluetooth, ""));
     }
 

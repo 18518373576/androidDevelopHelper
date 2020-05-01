@@ -1,2 +1,2 @@
-include ':developerandroidx'
+include ':developerandroidx', ':codeview'
 rootProject.name='DeveloperHelper'
