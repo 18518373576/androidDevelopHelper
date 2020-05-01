@@ -23,17 +23,17 @@ public class JavaViewModel extends ViewModel {
 
     private void initData() {
         functionList = new ArrayList<>();
-        functionList.add(new FunctionItemBean("数据类型", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("操作符", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("流程控制", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("继承", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("修饰符", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("接口", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("异常处理", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("类的生命周期", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("对象的生命周期", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("内部类", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("多线程", R.mipmap.icon_bluetooth, ""));
+        functionList.add(new FunctionItemBean("数据类型", R.mipmap.icon_data_type, ""));
+        functionList.add(new FunctionItemBean("操作符", R.mipmap.icon_operator, ""));
+        functionList.add(new FunctionItemBean("流程控制", R.mipmap.icon_process_control, ""));
+        functionList.add(new FunctionItemBean("继承", R.mipmap.icon_extend, ""));
+        functionList.add(new FunctionItemBean("修饰符", R.mipmap.icon_modifier, ""));
+        functionList.add(new FunctionItemBean("接口", R.mipmap.icon_interface, ""));
+        functionList.add(new FunctionItemBean("异常处理", R.mipmap.icon_exception, ""));
+        functionList.add(new FunctionItemBean("类的生命周期", R.mipmap.icon_class, ""));
+        functionList.add(new FunctionItemBean("对象的生命周期", R.mipmap.icon_object, ""));
+        functionList.add(new FunctionItemBean("内部类", R.mipmap.icon_inner_class, ""));
+        functionList.add(new FunctionItemBean("多线程", R.mipmap.icon_thread, ""));
         functionList.add(new FunctionItemBean("数组", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("集合", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("泛型", R.mipmap.icon_bluetooth, ""));
