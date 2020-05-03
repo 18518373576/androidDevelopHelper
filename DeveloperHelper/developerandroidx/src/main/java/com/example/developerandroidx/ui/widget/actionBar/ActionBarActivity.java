@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
-import com.example.developerandroidx.utils.CodeConstant;
+import com.example.developerandroidx.utils.CodeVariate;
 
 import butterknife.OnClick;
 
@@ -79,7 +79,7 @@ public class ActionBarActivity extends BaseActivity {
                 }
                 break;
             case R.id.iv_codes:
-                goToCodeViewActivity(CodeConstant.code_1);
+                goToCodeViewActivity(CodeVariate.getInstance().getCode_1());
                 break;
         }
     }

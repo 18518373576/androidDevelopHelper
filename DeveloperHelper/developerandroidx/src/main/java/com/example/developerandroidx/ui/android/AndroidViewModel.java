@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModel;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.bean.FunctionItemBean;
 import com.example.developerandroidx.ui.android.activity.ActivityAnalysisActivity;
+import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
+import com.example.developerandroidx.utils.CodeVariate;
+import com.example.developerandroidx.utils.RouteUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,8 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("DataBinding", R.mipmap.icon_animation, ""));
         functionList.add(new FunctionItemBean("Butter Knife", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("地图", R.mipmap.icon_animation, ""));
+        functionList.add(new FunctionItemBean("性能优化", R.mipmap.icon_animation,
+                RouteUtil.getDestination(CodeViewActivity.class), CodeVariate.getInstance().getCode_3()));
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {

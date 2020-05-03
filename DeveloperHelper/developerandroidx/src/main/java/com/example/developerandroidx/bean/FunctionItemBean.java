@@ -12,9 +12,9 @@ public class FunctionItemBean {
     /**
      * 不传递参数
      *
-     * @param itemName
-     * @param itemIconId
-     * @param goTo
+     * @param itemName   item名称
+     * @param itemIconId 展示的图标id
+     * @param goTo       要跳转的activity,例：MainActivity.class.getName()
      */
     public FunctionItemBean(String itemName, int itemIconId, String goTo) {
         this.itemName = itemName;
@@ -27,10 +27,10 @@ public class FunctionItemBean {
     /**
      * 传递参数
      *
-     * @param itemIconId
-     * @param itemName
-     * @param goTo
-     * @param paramsMap
+     * @param itemName   item名称
+     * @param itemIconId 展示的图标id
+     * @param goTo       要跳转的activity,例：MainActivity.class.getName()
+     * @param paramsMap  携带的参数，多参数定义为map
      */
     public FunctionItemBean(String itemName, int itemIconId, String goTo, Map<String, String> paramsMap) {
         this.itemIconId = itemIconId;
@@ -43,10 +43,10 @@ public class FunctionItemBean {
     /**
      * 传递一个字符串参数
      *
-     * @param itemIconId
-     * @param itemName
-     * @param goTo
-     * @param paramStr
+     * @param itemName   item名称
+     * @param itemIconId 展示的图标id
+     * @param goTo       要跳转的activity,例：MainActivity.class.getName()
+     * @param paramStr   携带的参数，单个参数，定义为String
      */
     public FunctionItemBean(String itemName, int itemIconId, String goTo, String paramStr) {
         this.itemIconId = itemIconId;

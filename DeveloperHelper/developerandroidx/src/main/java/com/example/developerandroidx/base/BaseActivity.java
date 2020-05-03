@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.developerandroidx.utils.CodeConstant;
+import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.RouteUtil;
 
 import butterknife.ButterKnife;
@@ -56,7 +56,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param code
      */
     protected void goToCodeViewActivity(String code) {
-        RouteUtil.goToCodeView(context, code);
+        try {
+            RouteUtil.goTo(context, RouteUtil.getDestination(CodeViewActivity.class), null, code);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
