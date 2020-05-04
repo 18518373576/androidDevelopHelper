@@ -34,8 +34,8 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Service", R.mipmap.icon_service, ""));
         functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, ""));
         functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
-        functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_content_provider, ""));
-        functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_content_provider, ""));
+        functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, ""));
+        functionList.add(new FunctionItemBean("Dialog", R.mipmap.icaon_dialog, ""));
         functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("NFC", R.mipmap.icon_nfc, ""));
         functionList.add(new FunctionItemBean("Camera", R.mipmap.icon_camera, ""));
@@ -44,11 +44,11 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Animation", R.mipmap.icon_animation, ""));
         functionList.add(new FunctionItemBean("JNI", R.mipmap.icon_jni, ""));
         functionList.add(new FunctionItemBean("扫码", R.mipmap.icon_scan, ""));
-        functionList.add(new FunctionItemBean("MVP架构", R.mipmap.icon_animation, ""));
-        functionList.add(new FunctionItemBean("DataBinding", R.mipmap.icon_animation, ""));
-        functionList.add(new FunctionItemBean("Butter Knife", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("地图", R.mipmap.icon_animation, ""));
-        functionList.add(new FunctionItemBean("性能优化", R.mipmap.icon_animation,
+        functionList.add(new FunctionItemBean("MVP架构", R.mipmap.icon_mvp, ""));
+        functionList.add(new FunctionItemBean("DataBinding", R.mipmap.icon_data_binding, ""));
+        functionList.add(new FunctionItemBean("Butter Knife", R.mipmap.icon_butter_knife, ""));
+        functionList.add(new FunctionItemBean("地图", R.mipmap.icon_map, ""));
+        functionList.add(new FunctionItemBean("性能优化", R.mipmap.icon_performance_optimization,
                 RouteUtil.getDestination(CodeViewActivity.class), CodeVariate.getInstance().getCode_3()));
     }
 

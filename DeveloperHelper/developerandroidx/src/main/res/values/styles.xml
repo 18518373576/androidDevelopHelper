@@ -39,8 +39,8 @@
     <style name="codeImageViewStyle">
         <item name="android:padding">@dimen/dp10</item>
         <item name="android:layout_margin">@dimen/dp20</item>
-        <item name="android:layout_width">@dimen/dp45</item>
-        <item name="android:layout_height">@dimen/dp45</item>
+        <item name="android:layout_width">@dimen/dp50</item>
+        <item name="android:layout_height">@dimen/dp50</item>
         <item name="android:background">@drawable/bg_circle_main_color</item>
         <item name="android:src">@mipmap/icon_code</item>
     </style>

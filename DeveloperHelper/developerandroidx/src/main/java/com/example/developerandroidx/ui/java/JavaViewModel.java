@@ -26,7 +26,7 @@ public class JavaViewModel extends ViewModel {
 
     private void initData() {
         functionList = new ArrayList<>();
-        functionList.add(new FunctionItemBean("数据类型", R.mipmap.icon_data_type,
+        functionList.add(new FunctionItemBean("数据类型和变量", R.mipmap.icon_data_type,
                 RouteUtil.getDestination(CodeViewActivity.class), CodeVariate.getInstance().getCode_2()));
         functionList.add(new FunctionItemBean("操作符", R.mipmap.icon_operator, ""));
         functionList.add(new FunctionItemBean("流程控制", R.mipmap.icon_process_control, ""));
@@ -41,13 +41,12 @@ public class JavaViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("数组", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("集合", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("泛型", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("Lmabda表达式", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("I/O", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("java常用类", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("Annotatio注解", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("代理", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("反射", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("设计模式", R.mipmap.icon_bluetooth, ""));
+        functionList.add(new FunctionItemBean("数据结构", R.mipmap.icon_bluetooth, ""));
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {
