@@ -12,7 +12,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
+import com.example.developerandroidx.utils.RouteUtil;
 
 import butterknife.OnClick;
 
@@ -20,8 +22,6 @@ import butterknife.OnClick;
  * 参考：https://www.jianshu.com/p/81d0bcb282cb
  */
 public class ActionBarActivity extends BaseActivity {
-
-    private ActionBar actionBar;
 
     @Override
     protected int bindLayout() {
@@ -79,7 +79,8 @@ public class ActionBarActivity extends BaseActivity {
                 }
                 break;
             case R.id.iv_codes:
-                goToCodeViewActivity(CodeVariate.getInstance().getCode_1());
+                RouteUtil.goTo(context, RouteUtil.getDestination(CodeViewActivity.class),
+                        null, CodeVariate.getInstance().getCode_1());
                 break;
         }
     }
@@ -159,13 +160,7 @@ public class ActionBarActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
-        actionBar = getSupportActionBar();
-
-    }
-
-    @Override
-    protected void initData() {
-
+        super.initView();
+        actionBar.setTitle("actionBar");
     }
 }

@@ -25,9 +25,13 @@ public class RouteUtil {
      * @param context
      * @param activityClassName
      */
-    public static void goTo(Context context, String activityClassName) throws ClassNotFoundException {
-        intent = new Intent(context, Class.forName(activityClassName));
-        context.startActivity(intent);
+    public static void goTo(Context context, String activityClassName) {
+        try {
+            intent = new Intent(context, Class.forName(activityClassName));
+            context.startActivity(intent);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -37,10 +41,14 @@ public class RouteUtil {
      * @param activityClassName
      * @param paramStr
      */
-    public static void goTo(Context context, String activityClassName, String paramStr) throws ClassNotFoundException {
-        intent = new Intent(context, Class.forName(activityClassName));
-        intent.putExtra(Constant.IntentParams.INTENT_PARAM, paramStr);
-        context.startActivity(intent);
+    public static void goTo(Context context, String activityClassName, String paramStr) {
+        try {
+            intent = new Intent(context, Class.forName(activityClassName));
+            intent.putExtra(Constant.IntentParams.INTENT_PARAM, paramStr);
+            context.startActivity(intent);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -52,7 +60,7 @@ public class RouteUtil {
      * @param paramStr
      * @throws ClassNotFoundException
      */
-    public static void goTo(Context context, String activityClassName, Map<String, String> paramsMap, String paramStr) throws ClassNotFoundException {
+    public static void goTo(Context context, String activityClassName, Map<String, String> paramsMap, String paramStr) {
 
         if (paramsMap == null && TextUtils.isEmpty(paramStr)) {
             goTo(context, activityClassName);

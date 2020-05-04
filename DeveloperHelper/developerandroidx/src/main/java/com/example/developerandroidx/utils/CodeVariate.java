@@ -23,6 +23,7 @@ public class CodeVariate {
     public String getCode_1() {
         return "@Override\n" +
                 "protected void initView() {\n" +
+                "   //获取actionBar\n" +
                 "   actionBar = getSupportActionBar();\n" +
                 "   //设置标题\n" +
                 "   actionBar.setTitle(\"标题\");\n" +
@@ -90,8 +91,7 @@ public class CodeVariate {
 
     //java/数据类型
     public String getCode_2() {
-        return "参考书籍：《java面向对象编程(第二版)》\n" +
-                "参考链接：https://blog.csdn.net/xushiyu1996818/java/article/details/83269526\n" +
+        return "参考资料：《java面向对象编程(第二版)》\n" +
                 "基本类型：\n" +
                 "数据类型       关键字         内存字节数       取值范围              默认值\n" +
                 "布尔型         boolean      1Byte(8bit)     true/false           false\n" +
@@ -170,12 +170,20 @@ public class CodeVariate {
                 "结束调用一个方法时，会结束这个方法中局部变量的生命周期";
     }
 
+    //java/操作符
+    public String getCode_4() {
+        return "";
+    }
+
     //android/性能优化
     public String getCode_3() {
         return "性能优化：\n" +
+                "java：\n" +
                 "   1.在定义变量时，选用那种数据类型，要考录到实际和性能需求。例如月份的取值是1~12的整数，\n" +
                 "因此可以把月份定义为：byte month，此时java虚拟机只需要为month分配一个字节的内存，如果\n" +
                 "定义为long，尽管是可行的，但是会占用更多的内存。\n" +
-                "   2.根据变量的作用域和生命周期，合理的声明变量，尽量使变量的作用域最小化。";
+                "   2.根据变量的作用域和生命周期，合理的声明变量，尽量使变量的作用域最小化。\n" +
+                "android：\n" +
+                "   1.定义布局文件，尽量减少控件的嵌套。";
     }
 }

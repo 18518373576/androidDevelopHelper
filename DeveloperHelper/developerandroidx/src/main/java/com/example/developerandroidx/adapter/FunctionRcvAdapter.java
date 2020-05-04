@@ -55,12 +55,8 @@ public class FunctionRcvAdapter extends RecyclerView.Adapter<FunctionRcvAdapter.
         holder.iv_item_icon.setImageResource(list.get(position).itemIconId);
 
         holder.itemView.setOnClickListener(v -> {
-            try {
-                FunctionItemBean itemBean = list.get(position);
-                RouteUtil.goTo(context, itemBean.goTo, itemBean.paramsMap, itemBean.paramStr);//路由到指定界面
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            FunctionItemBean itemBean = list.get(position);
+            RouteUtil.goTo(context, itemBean.goTo, itemBean.paramsMap, itemBean.paramStr);//路由到指定界面
         });
     }
 

@@ -35,6 +35,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
     }
 
+    /**
+     * actionBar左侧按钮点击
+     *
+     * @return
+     */
     @Override
     public boolean onSupportNavigateUp() {
         finish();
@@ -51,19 +56,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 跳转到代码展示界面
-     *
-     * @param code
-     */
-    protected void goToCodeViewActivity(String code) {
-        try {
-            RouteUtil.goTo(context, RouteUtil.getDestination(CodeViewActivity.class), null, code);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * 绑定layout
      *
      * @return layout文件id
@@ -71,12 +63,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract int bindLayout();
 
     /**
-     * view的一些操作
+     * view的一些操作,有些activity可能用不到,不作抽象处理,根据需要实现
      */
-    protected abstract void initView();
+    protected void initView() {
+    }
 
     /**
-     * 处理回调数据的操作
+     * 处理回调数据的操作,有些activity可能用不到,不作抽象处理,根据需要实现
      */
-    protected abstract void initData();
+    protected void initData() {
+    }
 }

@@ -7,4 +7,5 @@
     <string name="java">Java</string>
     <string name="widget">Widget</string>
     <string name="code">code</string>
+    <string name="operator">操作符</string>
 </resources>

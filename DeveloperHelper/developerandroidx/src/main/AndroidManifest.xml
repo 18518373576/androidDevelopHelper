@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.java.operator.OperatorActivity"></activity>
         <activity
             android:name=".ui.widget.codeView.CodeViewActivity"
             android:theme="@style/CodeViewAppTheme" />

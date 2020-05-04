@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.bean.FunctionItemBean;
+import com.example.developerandroidx.ui.java.operator.OperatorActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
@@ -28,7 +29,7 @@ public class JavaViewModel extends ViewModel {
         functionList = new ArrayList<>();
         functionList.add(new FunctionItemBean("数据类型和变量", R.mipmap.icon_data_type,
                 RouteUtil.getDestination(CodeViewActivity.class), CodeVariate.getInstance().getCode_2()));
-        functionList.add(new FunctionItemBean("操作符", R.mipmap.icon_operator, ""));
+        functionList.add(new FunctionItemBean("操作符", R.mipmap.icon_operator, RouteUtil.getDestination(OperatorActivity.class)));
         functionList.add(new FunctionItemBean("流程控制", R.mipmap.icon_process_control, ""));
         functionList.add(new FunctionItemBean("继承", R.mipmap.icon_extend, ""));
         functionList.add(new FunctionItemBean("修饰符", R.mipmap.icon_modifier, ""));
