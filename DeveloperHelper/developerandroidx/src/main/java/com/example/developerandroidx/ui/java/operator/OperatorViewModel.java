@@ -1,5 +1,9 @@
 package com.example.developerandroidx.ui.java.operator;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleEventObserver;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
@@ -19,10 +23,30 @@ public class OperatorViewModel extends ViewModel {
     private MediatorLiveData<List<OperatorItemBean>> mList;
     private List<OperatorItemBean> operatorItemBeans;
 
+    private LifecycleOwner lifecycleOwner;
+
     public OperatorViewModel() {
         mList = new MediatorLiveData<>();
-        initData();
-        mList.setValue(operatorItemBeans);
+    }
+
+    /**
+     * 绑定activity生命周期
+     *
+     * @param lifecycleOwner
+     */
+    public void bindLifeCircle(LifecycleOwner lifecycleOwner) {
+        this.lifecycleOwner = lifecycleOwner;
+        this.lifecycleOwner.getLifecycle().addObserver(new LifecycleEventObserver() {
+            @Override
+            public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
+                switch (event) {
+                    case ON_START:
+                        initData();
+                        mList.setValue(operatorItemBeans);
+                        break;
+                }
+            }
+        });
     }
 
     private void initData() {

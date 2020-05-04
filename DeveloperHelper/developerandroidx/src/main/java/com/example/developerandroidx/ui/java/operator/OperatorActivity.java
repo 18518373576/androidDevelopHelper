@@ -43,6 +43,7 @@ public class OperatorActivity extends BaseActivity {
     protected void initData() {
 
         OperatorViewModel viewModel = ViewModelProviders.of(this).get(OperatorViewModel.class);
+        viewModel.bindLifeCircle(this);
         viewModel.getAdapterList().observe(this, new Observer<List<OperatorItemBean>>() {
             @Override
             public void onChanged(List<OperatorItemBean> operatorItemBeans) {
