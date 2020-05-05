@@ -57,11 +57,15 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void initData();
 
+    /**
+     * 释放资源
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (unbinder != null) {
             unbinder.unbind();
         }
+        unbinder = null;
     }
 }

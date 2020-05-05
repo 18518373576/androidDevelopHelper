@@ -8,15 +8,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
-import com.example.developerandroidx.utils.RouteUtil;
-
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected Context context;
     protected ActionBar actionBar;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,7 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         context = this;
         setContentView(bindLayout());
 
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -72,5 +71,17 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 处理回调数据的操作,有些activity可能用不到,不作抽象处理,根据需要实现
      */
     protected void initData() {
+    }
+
+    /**
+     * 释放资源
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
+        unbinder = null;
     }
 }

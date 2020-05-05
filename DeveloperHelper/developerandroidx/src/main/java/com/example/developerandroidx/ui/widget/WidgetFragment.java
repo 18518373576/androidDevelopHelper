@@ -31,6 +31,6 @@ public class WidgetFragment extends BaseFragment {
     protected void initData() {
         viewModel = ViewModelProviders.of(this).get(WidgetViewModel.class);
         viewModel.getAdapterList().observe(getViewLifecycleOwner(), functionList ->
-                rcv_widget.setAdapter(new FunctionRcvAdapter(context, functionList)));
+                rcv_widget.setAdapter(new FunctionRcvAdapter(functionList)));
     }
 }

@@ -183,7 +183,9 @@ public class CodeVariate {
                 "因此可以把月份定义为：byte month，此时java虚拟机只需要为month分配一个字节的内存，如果\n" +
                 "定义为long，尽管是可行的，但是会占用更多的内存。\n" +
                 "   2.根据变量的作用域和生命周期，合理的声明变量，尽量使变量的作用域最小化。\n" +
-                "android：\n" +
-                "   1.定义布局文件，尽量减少控件的嵌套。";
+                "\nandroid：\n" +
+                "   1.定义布局文件，尽量减少控件的嵌套。\n" +
+                "   2.在activity或fragment执行的线程操作，或绑定例如：eventBus，butterknife，在onDestory\n" +
+                "要终止线程和解绑。";
     }
 }

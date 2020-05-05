@@ -1,67 +1,57 @@
 package com.example.developerandroidx.adapter;
 
-import android.content.Context;
-import android.content.Intent;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseRcvHolder;
+import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.bean.FunctionItemBean;
 import com.example.developerandroidx.utils.RouteUtil;
 
 import java.util.List;
 
-public class FunctionRcvAdapter extends RecyclerView.Adapter<FunctionRcvAdapter.Holder> {
+public class FunctionRcvAdapter extends BaseRcvAdapter<FunctionItemBean> {
+    /**
+     * 构造方法，初始化数据
+     *
+     * @param mList
+     */
+    public FunctionRcvAdapter(List<FunctionItemBean> mList) {
+        super(mList);
 
-    Context context;
-    List<FunctionItemBean> list;
-
-    public FunctionRcvAdapter(Context context, List<FunctionItemBean> list) {
-        this.context = context;
-        this.list = list;
-    }
-
-    public class Holder extends RecyclerView.ViewHolder {
-
-        TextView tv_item_name;
-        ImageView iv_item_icon;
-
-        public Holder(@NonNull View itemView) {
-            super(itemView);
-            tv_item_name = itemView.findViewById(R.id.tv_item_name);
-            iv_item_icon = itemView.findViewById(R.id.iv_item_icon);
-
-        }
-    }
-
-    @NonNull
-    @Override
-    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_function, parent, false);
-        return new Holder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull Holder holder, int position) {
-
-        holder.tv_item_name.setText(list.get(position).itemName);
-        holder.iv_item_icon.setImageResource(list.get(position).itemIconId);
-
-        holder.itemView.setOnClickListener(v -> {
-            FunctionItemBean itemBean = list.get(position);
-            RouteUtil.goTo(context, itemBean.goTo, itemBean.paramsMap, itemBean.paramStr);//路由到指定界面
+        //设置点击事件，三个界面比较统一，所以在这里进行了一次性设置
+        setOnItemClickListener(new OnRecyclerViewItemClickListner() {
+            @Override
+            public void onItemClick(@NonNull View v, int viewType, @NonNull Object data, int position) {
+                FunctionItemBean itemBean = (FunctionItemBean) data;
+                RouteUtil.goTo(v.getContext(), itemBean.goTo, itemBean.paramsMap, itemBean.paramStr);//路由到指定界面
+            }
         });
     }
 
+    /**
+     * 绑定item布局
+     *
+     * @param viewType
+     * @return
+     */
     @Override
-    public int getItemCount() {
-        return list.size();
+    protected int bindItemLayout(int viewType) {
+        return R.layout.item_function;
+    }
+
+    /**
+     * 绑定ViewHolder
+     *
+     * @param v        用于展示的 {@link View}
+     * @param viewType 布局类型
+     * @return
+     */
+    @NonNull
+    @Override
+    protected BaseRcvHolder<FunctionItemBean> bindHolder(@NonNull View v, int viewType) {
+        return new FunctionRcvHolder(v);
     }
 }
