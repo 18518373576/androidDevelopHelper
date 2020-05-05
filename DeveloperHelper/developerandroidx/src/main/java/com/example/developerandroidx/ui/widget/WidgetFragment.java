@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.adapter.FunctionRcvAdapter;
 import com.example.developerandroidx.base.BaseFragment;
+import com.example.developerandroidx.base.BaseRcvAdapter;
 
 import butterknife.BindView;
 
@@ -32,5 +33,11 @@ public class WidgetFragment extends BaseFragment {
         viewModel = ViewModelProviders.of(this).get(WidgetViewModel.class);
         viewModel.getAdapterList().observe(getViewLifecycleOwner(), functionList ->
                 rcv_widget.setAdapter(new FunctionRcvAdapter(functionList)));
+    }
+
+    @Override
+    public void onDestroy() {
+        BaseRcvAdapter.releaseAllHolder(rcv_widget);
+        super.onDestroy();
     }
 }

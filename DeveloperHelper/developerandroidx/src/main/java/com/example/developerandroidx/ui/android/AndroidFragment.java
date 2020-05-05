@@ -1,10 +1,5 @@
 package com.example.developerandroidx.ui.android;
 
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,9 +8,6 @@ import com.example.developerandroidx.R;
 import com.example.developerandroidx.adapter.FunctionRcvAdapter;
 import com.example.developerandroidx.base.BaseFragment;
 import com.example.developerandroidx.base.BaseRcvAdapter;
-import com.example.developerandroidx.bean.FunctionItemBean;
-
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -61,5 +53,12 @@ public class AndroidFragment extends BaseFragment {
 //        });
         viewModel.getAdapterList().observe(getViewLifecycleOwner(), functionList ->
                 rcv_android.setAdapter(new FunctionRcvAdapter(functionList)));
+    }
+
+    @Override
+    public void onDestroy() {
+        //释放ViewHolder使用的资源
+        BaseRcvAdapter.releaseAllHolder(rcv_android);
+        super.onDestroy();
     }
 }
