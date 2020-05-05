@@ -21,12 +21,13 @@ import java.util.List;
 public class OperatorViewModel extends ViewModel {
 
     private MediatorLiveData<List<OperatorItemBean>> mList;
-    private List<OperatorItemBean> operatorItemBeans;
 
     private LifecycleOwner lifecycleOwner;
 
     public OperatorViewModel() {
         mList = new MediatorLiveData<>();
+
+        mList.setValue(initData());
     }
 
     /**
@@ -41,17 +42,25 @@ public class OperatorViewModel extends ViewModel {
             public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
                 switch (event) {
                     case ON_START:
-                        initData();
-                        mList.setValue(operatorItemBeans);
                         break;
                 }
             }
         });
     }
 
-    private void initData() {
-        operatorItemBeans = new ArrayList<>();
-        operatorItemBeans.add(new OperatorItemBean("算数操作符", "+", "(加法)将两个数相加"));
+    private List<OperatorItemBean> initData() {
+        List<OperatorItemBean> operatorItemBeans = new ArrayList<>();
+        operatorItemBeans.add(new OperatorItemBean("+", "(加法)将两个数相加", "算数操作符", true, false));
+        operatorItemBeans.add(new OperatorItemBean("++", "(自增)将表示数值的变量加1", null, false, false));
+        operatorItemBeans.add(new OperatorItemBean("-", "(求相反数或者减法)作为一元操作符时，返回操作元的相反数。" +
+                "作为两元操作符时，将两个数相减", null, false, false));
+        operatorItemBeans.add(new OperatorItemBean("--", "(自减)将表示数值的变量减1", null, false, false));
+        operatorItemBeans.add(new OperatorItemBean("*", "(乘法)将两个数相乘", null, false, false));
+        operatorItemBeans.add(new OperatorItemBean("/", "(除法)将两个数相除", null, false, false));
+        operatorItemBeans.add(new OperatorItemBean("%", "(求余)获得两个数相除的余数", null, false, true));
+        operatorItemBeans.add(new OperatorItemBean("+", "(字符串加法)连接两个字符串", "字符串操作符", true, false));
+        operatorItemBeans.add(new OperatorItemBean("+=", "连接两个字符串,并将结果赋给第一个字符串变量", null, false, true));
+        return operatorItemBeans;
     }
 
     public LiveData<List<OperatorItemBean>> getAdapterList() {

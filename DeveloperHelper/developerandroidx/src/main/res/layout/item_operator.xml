@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp10"
+    android:layout_marginRight="@dimen/dp10"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_operator_type"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/shape_operator_title"
+        android:gravity="center"
+        android:text="算术操作符"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/sp14"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_operator"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-2px"
+            android:background="@drawable/shape_operator_border"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/tv_operator_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-2px"
+            android:layout_marginTop="-2px"
+            android:background="@drawable/shape_operator_border"
+            android:padding="@dimen/dp10"
+            android:text="(加法)将两个数相加"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
+</LinearLayout>

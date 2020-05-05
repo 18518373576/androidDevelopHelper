@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#17abe3</color>
     <color name="colorAccent">#17abe3</color>
     <color name="textColor">#6E6E6E</color>
+    <color name="bg_dark_white">#F5F5F5</color>
     <color name="white">#FFFFFF</color>
     <color name="codeViewBackground">#282b2e</color>
 </resources>

@@ -19,17 +19,13 @@ public class AndroidViewModel extends ViewModel {
     private MutableLiveData<List<FunctionItemBean>> mList;
     private final String TAG = "AndroidViewModel";
 
-    private List<FunctionItemBean> functionList;
-
     public AndroidViewModel() {
         mList = new MutableLiveData<>();
-        initData();
-
-        mList.setValue(functionList);
+        mList.setValue(initData());
     }
 
-    private void initData() {
-        functionList = new ArrayList<>();
+    private List<FunctionItemBean> initData() {
+        List<FunctionItemBean> functionList = new ArrayList<>();
         functionList.add(new FunctionItemBean("Activity", R.mipmap.icon_activity, ActivityAnalysisActivity.class.getName()));
         functionList.add(new FunctionItemBean("Service", R.mipmap.icon_service, ""));
         functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, ""));
@@ -50,6 +46,8 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("地图", R.mipmap.icon_map, ""));
         functionList.add(new FunctionItemBean("性能优化", R.mipmap.icon_performance_optimization,
                 RouteUtil.getDestination(CodeViewActivity.class), CodeVariate.getInstance().getCode_3()));
+
+        return functionList;
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {

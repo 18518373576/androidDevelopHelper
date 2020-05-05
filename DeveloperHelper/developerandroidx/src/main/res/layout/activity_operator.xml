@@ -6,15 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.java.operator.OperatorActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_operator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/dp10" />
+
     <ImageView
         android:id="@+id/iv_codes"
         style="@style/codeImageViewStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_operator"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,16 +17,14 @@ import java.util.List;
 public class JavaViewModel extends ViewModel {
 
     private MutableLiveData<List<FunctionItemBean>> mList;
-    private List<FunctionItemBean> functionList;
 
     public JavaViewModel() {
         mList = new MutableLiveData<>();
-        initData();
-        mList.setValue(functionList);
+        mList.setValue(initData());
     }
 
-    private void initData() {
-        functionList = new ArrayList<>();
+    private List<FunctionItemBean> initData() {
+        List<FunctionItemBean> functionList = new ArrayList<>();
         functionList.add(new FunctionItemBean("数据类型和变量", R.mipmap.icon_data_type,
                 RouteUtil.getDestination(CodeViewActivity.class), CodeVariate.getInstance().getCode_2()));
         functionList.add(new FunctionItemBean("操作符", R.mipmap.icon_operator, RouteUtil.getDestination(OperatorActivity.class)));
@@ -48,6 +46,8 @@ public class JavaViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("反射", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("设计模式", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("数据结构", R.mipmap.icon_bluetooth, ""));
+
+        return functionList;
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {
