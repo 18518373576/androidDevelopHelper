@@ -20,5 +20,5 @@ compileOptions
         sourceCompatibility = 1.8
     }
 ```
-###### 项目所使用图标来自：
+###### 图标库：
 https://www.iconfont.cn/
