@@ -1,21 +1,18 @@
 package com.example.developerandroidx.ui.android.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
 import com.example.developerandroidx.R;
-import com.example.developerandroidx.ui.android.activity.fragment.ActivityAnalysisFragment;
+import com.example.developerandroidx.base.BaseActivity;
 
-public class ActivityAnalysisActivity extends AppCompatActivity {
+public class ActivityAnalysisActivity extends BaseActivity {
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_analysis_activity);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, ActivityAnalysisFragment.newInstance())
-                    .commitNow();
-        }
+    protected int bindLayout() {
+        return R.layout.activity_analysis_activity;
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+        actionBar.setTitle("Activity");
     }
 }
