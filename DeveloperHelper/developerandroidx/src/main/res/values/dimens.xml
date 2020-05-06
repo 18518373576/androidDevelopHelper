@@ -37,6 +37,10 @@
     <dimen name="dp100">100dp</dimen>
     <dimen name="dp110">110dp</dimen>
     <dimen name="dp120">120dp</dimen>
+    <dimen name="dp150">150dp</dimen>
+    <dimen name="dp200">200dp</dimen>
+    <dimen name="dp250">250dp</dimen>
+    <dimen name="dp300">300dp</dimen>
 
 
     <dimen name="sp1">1sp</dimen>

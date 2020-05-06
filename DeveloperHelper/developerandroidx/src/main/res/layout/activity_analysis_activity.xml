@@ -10,6 +10,55 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp300"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/bg_dark_white"
+            android:padding="@dimen/dp10">
+
+            <TextView
+                android:id="@+id/tv_print"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorMain"
+                android:textSize="@dimen/sp14" />
+        </ScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_lifecyle"
+                    style="@style/ComonButtonStyle"
+                    android:layout_margin="@dimen/dp5"
+                    android:layout_weight="1"
+                    android:text="生命周期" />
+
+                <Button
+                    android:id="@+id/btn_start_up_mode"
+                    style="@style/ComonButtonStyle"
+                    android:layout_margin="@dimen/dp5"
+                    android:layout_weight="1"
+                    android:text="启动模式" />
+
+                <Button
+                    android:id="@+id/btn_orientation_change"
+                    style="@style/ComonButtonStyle"
+                    android:layout_margin="@dimen/dp5"
+                    android:layout_weight="1"
+                    android:text="方向切换" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <ImageView

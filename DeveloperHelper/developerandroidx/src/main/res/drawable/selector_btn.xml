@@ -4,4 +4,5 @@
     <!--通用按钮背景-->
     <item android:drawable="@drawable/bg_round_corner_pressed" android:state_pressed="true" />
     <item android:drawable="@drawable/bg_round_corner_unpressed" android:state_pressed="false" />
+    <item android:drawable="@drawable/bg_round_corner_unpressed" android:state_enabled="true" />
 </selector>
