@@ -12,5 +12,6 @@ public class DialogTestctivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog_testctivity);
+        setTitle("DialogActivity");
     }
 }
