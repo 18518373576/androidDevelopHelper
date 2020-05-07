@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.android.dialog.KongZueDialogActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btn_bottom_menu"
+            style="@style/ComonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:text="Bottom Menu" />
+
+        <Button
+            android:id="@+id/btn_custom_dialog"
+            style="@style/ComonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="Custom dialog" />
+
+        <Button
+            android:id="@+id/btn_full_screen_dialog"
+            style="@style/ComonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="Full screen dialog" />
+
+        <Button
+            android:id="@+id/btn_input_dialog"
+            style="@style/ComonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="Input dialog" />
+
+        <Button
+            android:id="@+id/btn_message_dialog"
+            style="@style/ComonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="Message dialog" />
+
+        <Button
+            android:id="@+id/btn_Notifiction"
+            style="@style/ComonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="Notifiction" />
+
+        <Button
+            android:id="@+id/btn_share_dialog"
+            style="@style/ComonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="Share dialog" />
+
+        <Button
+            android:id="@+id/btn_tip_dialog"
+            style="@style/ComonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="Tip dialog" />
+
+        <Button
+            android:id="@+id/btn_wait_dialog"
+            style="@style/ComonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="Wait dialog" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

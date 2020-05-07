@@ -11,9 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.android.dialog.KongZueDialogActivity"></activity>
+        <activity android:name=".ui.android.architecture.ArchitectureIndexActivity" />
+        <activity android:name=".ui.android.dialog.DialogIndexActivity" />
         <activity
             android:name=".ui.android.activity.DialogTestctivity"
-            android:theme="@style/DialogActivityTheme"></activity>
+            android:theme="@style/DialogActivityTheme" />
         <activity android:name=".ui.java.operator.OperatorActivity" />
         <activity
             android:name=".ui.widget.codeView.CodeViewActivity"

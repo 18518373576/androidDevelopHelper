@@ -1,14 +1,18 @@
 package com.example.developerandroidx.adapter;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseRcvHolder;
 import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.bean.FunctionItemBean;
 import com.example.developerandroidx.utils.RouteUtil;
+import com.kongzue.dialog.v3.Notification;
+import com.kongzue.dialog.v3.TipDialog;
 
 import java.util.List;
 
@@ -26,7 +30,13 @@ public class FunctionRcvAdapter extends BaseRcvAdapter<FunctionItemBean> {
             @Override
             public void onItemClick(@NonNull View v, int viewType, @NonNull Object data, int position) {
                 FunctionItemBean itemBean = (FunctionItemBean) data;
-                RouteUtil.goTo(v.getContext(), itemBean.goTo, itemBean.paramsMap, itemBean.paramStr);//路由到指定界面
+                if (!TextUtils.isEmpty(itemBean.goTo)) {
+                    RouteUtil.goTo(v.getContext(), itemBean.goTo, itemBean.paramsMap, itemBean.paramStr);//路由到指定界面
+                } else {
+//                    Notification.show(v.getContext(), "正在完善 . . .");
+                    TipDialog.show((AppCompatActivity) v.getContext(), "developing", TipDialog.TYPE.WARNING);
+
+                }
             }
         });
     }
