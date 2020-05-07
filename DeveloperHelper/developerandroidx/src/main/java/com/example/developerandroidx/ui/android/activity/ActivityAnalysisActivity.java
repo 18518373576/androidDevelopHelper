@@ -9,12 +9,14 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.RouteUtil;
+import com.kongzue.dialog.v3.MessageDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,18 +35,18 @@ public class ActivityAnalysisActivity extends BaseActivity {
 
     @Override
     protected int bindLayout() {
-        return R.layout.activity_analysis_activity;
+        //当屏幕切换的时候，布局文件也进行切换，适应屏幕方向
+        if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            return R.layout.activity_analysis_activity_landscape;
+        } else {
+            return R.layout.activity_analysis_activity_portrait;
+        }
     }
 
     @Override
     protected void initView() {
         super.initView();
         actionBar.setTitle("Activity");
-        if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-            iv_codes.setVisibility(View.GONE);
-        } else {
-            iv_codes.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
@@ -71,7 +73,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 RouteUtil.goTo(context, RouteUtil.getDestination(DialogTestctivity.class));
                 break;
             case R.id.btn_start_up_mode://启动模式
-
+                MessageDialog.show((AppCompatActivity) context, "提示", "这是一条消息", "确定");
                 break;
             case R.id.btn_orientation_change://横竖屏切换
 

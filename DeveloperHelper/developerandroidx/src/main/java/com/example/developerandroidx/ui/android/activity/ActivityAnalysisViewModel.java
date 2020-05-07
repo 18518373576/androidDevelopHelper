@@ -20,11 +20,13 @@ public class ActivityAnalysisViewModel extends ViewModel {
         liveDataBuffer.setValue(buffer);
     }
 
+    //activity生命周期变动，更新数据
     public void onLifecyleChanged(String lyfecyleInfo) {
         buffer.append(lyfecyleInfo);
         liveDataBuffer.setValue(buffer);
     }
 
+    //获取生命周期变化数据
     public LiveData<StringBuffer> getLifecycleBuffer() {
         return liveDataBuffer;
     }
