@@ -3,12 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/dp300"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    tools:context=".ui.android.activity.DialogTestctivity">
+    android:layout_height="@dimen/dp300"
+    tools:context=".ui.android.activity.launchMode.StandardActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_title"
         android:layout_width="@dimen/dp300"
         android:layout_height="@dimen/dp45"
         android:background="@color/colorMain"
@@ -28,13 +27,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"></ImageView>
 
-    <TextView
-        android:layout_width="@dimen/dp300"
-        android:layout_height="@dimen/dp300"
-        android:gravity="center"
-        android:text="这是一个dialog样式的activity"
+    <Button
+        android:id="@+id/btn_jump"
+        style="@style/ComonButtonStyle"
+        android:layout_width="@dimen/dp150"
+        android:text="跳转"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

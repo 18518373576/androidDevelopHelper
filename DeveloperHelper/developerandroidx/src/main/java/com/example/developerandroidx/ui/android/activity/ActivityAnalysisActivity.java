@@ -16,13 +16,21 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.ui.android.activity.launchMode.SingleInstanceActivity;
+import com.example.developerandroidx.ui.android.activity.launchMode.SingleTaskActivity;
+import com.example.developerandroidx.ui.android.activity.launchMode.SingleTopActivity;
+import com.example.developerandroidx.ui.android.activity.launchMode.StandardActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
-import com.kongzue.dialog.v3.MessageDialog;
+import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
+import com.kongzue.dialog.v3.BottomMenu;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * activity相关
+ */
 public class ActivityAnalysisActivity extends BaseActivity {
 
     @BindView(R.id.tv_print)
@@ -77,7 +85,27 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 RouteUtil.goTo(context, RouteUtil.getDestination(DialogTestctivity.class));
                 break;
             case R.id.btn_start_up_mode://启动模式
-                MessageDialog.show((AppCompatActivity) context, "提示", "这是一条消息", "确定");
+                String[] startUpModels = new String[]{"standard", "single Top", "single Task", "single Instance"};
+                BottomMenu.show((AppCompatActivity) context, startUpModels, new OnMenuItemClickListener() {
+                    @Override
+                    public void onClick(String text, int index) {
+                        switch (text) {
+                            case "standard":
+                                RouteUtil.goTo(context, RouteUtil.getDestination(StandardActivity.class), "standard_activity_1");
+                                break;
+                            case "single Top":
+                                RouteUtil.goTo(context, RouteUtil.getDestination(SingleTopActivity.class), "singleTop_activity_1");
+                                break;
+                            case "single Task":
+                                RouteUtil.goTo(context, RouteUtil.getDestination(SingleTaskActivity.class), "singleTask_activity_1");
+                                break;
+                            case "single Instance":
+                                RouteUtil.goTo(context, RouteUtil.getDestination(SingleInstanceActivity.class), "singleInstance_activity_1");
+                                break;
+
+                        }
+                    }
+                });
                 break;
             case R.id.btn_orientation_change://横竖屏切换
 

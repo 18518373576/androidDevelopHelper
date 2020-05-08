@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_style_ios"
+        android:title="IOS" />
+
+    <item
+        android:id="@+id/meun_style_material"
+        android:title="MATERIAL" />
+
+    <item
+        android:id="@+id/menu_style_kongzue"
+        android:title="KONGZUE" />
+    <item
+        android:id="@+id/menu_theme_light"
+        android:title="LIGHT THEME" />
+    <item
+        android:id="@+id/menu_theme_dark"
+        android:title="DARK THEME" />
+
+</menu>

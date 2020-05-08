@@ -13,7 +13,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.android.dialog.KongZueDialogActivity"></activity>
+        <activity
+            android:name=".ui.android.activity.launchMode.StandardActivity"
+            android:launchMode="standard"
+            android:theme="@style/DialogActivityTheme"></activity>
+        <activity
+            android:name=".ui.android.activity.launchMode.SingleTaskActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/DialogActivityTheme"></activity>
+        <activity
+            android:name=".ui.android.activity.launchMode.SingleTopActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/DialogActivityTheme"></activity>
+        <activity
+            android:name=".ui.android.activity.launchMode.SingleInstanceActivity"
+            android:launchMode="singleInstance"
+            android:theme="@style/DialogActivityTheme"></activity>
+        <activity android:name=".ui.android.dialog.KongZueDialogActivity" />
         <activity android:name=".ui.android.architecture.ArchitectureIndexActivity" />
         <activity android:name=".ui.android.dialog.DialogIndexActivity" />
         <activity

@@ -1,5 +1,7 @@
 package com.example.developerandroidx.ui.android.dialog;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
 import com.kongzue.dialog.interfaces.OnInputDialogButtonClickListener;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.util.BaseDialog;
+import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.BottomMenu;
 import com.kongzue.dialog.v3.CustomDialog;
 import com.kongzue.dialog.v3.FullScreenDialog;
@@ -25,6 +28,9 @@ import java.util.List;
 
 import butterknife.OnClick;
 
+/**
+ * KongZueDialog功能展示
+ */
 public class KongZueDialogActivity extends BaseActivity {
 
     private String[] bottomMenus;
@@ -108,7 +114,7 @@ public class KongZueDialogActivity extends BaseActivity {
                 });
                 break;
             case R.id.btn_full_screen_dialog:
-                FullScreenDialog.show((AppCompatActivity) context, R.layout.activity_dialog_testctivity, new FullScreenDialog.OnBindView() {
+                FullScreenDialog.show((AppCompatActivity) context, R.layout.activity_kong_zue_dialog, new FullScreenDialog.OnBindView() {
                     @Override
                     public void onBind(FullScreenDialog dialog, View rootView) {
 
@@ -149,5 +155,50 @@ public class KongZueDialogActivity extends BaseActivity {
                         .show();
                 break;
         }
+    }
+
+    /**
+     * 添加主题选择
+     *
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.kongzue_dialog_style_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.menu_style_ios:
+                DialogSettings.style = DialogSettings.STYLE.STYLE_IOS;
+                break;
+            case R.id.meun_style_material:
+                DialogSettings.style = DialogSettings.STYLE.STYLE_MATERIAL;
+                break;
+            case R.id.menu_style_kongzue:
+                DialogSettings.style = DialogSettings.STYLE.STYLE_KONGZUE;
+                break;
+            case R.id.menu_theme_light:
+                DialogSettings.theme = DialogSettings.THEME.LIGHT;
+                DialogSettings.tipTheme = DialogSettings.THEME.LIGHT;
+                break;
+            case R.id.menu_theme_dark:
+                DialogSettings.theme = DialogSettings.THEME.DARK;
+                DialogSettings.tipTheme = DialogSettings.THEME.DARK;
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        DialogSettings.init();
+        super.onDestroy();
     }
 }
