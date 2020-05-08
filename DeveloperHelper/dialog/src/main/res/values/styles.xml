@@ -11,6 +11,8 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.4</item>
+        <!--        设置背景全透明，提示框和加载框会用到-->
+        <!--        <item name="android:backgroundDimAmount">0.0</item>-->
     </style>
 
     <style name="LightDialogWithShadow" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -27,15 +29,15 @@
     </style>
 
     <declare-styleable name="CircularProgressBar">
-        <attr name="cpbStyle" format="reference"/>
-        <attr name="cpb_color" format="color"/>
-        <attr name="cpb_colors" format="reference"/>
-        <attr name="cpb_stroke_width" format="dimension"/>
-        <attr name="cpb_min_sweep_angle" format="integer"/>
-        <attr name="cpb_max_sweep_angle" format="integer"/>
-        <attr name="cpb_sweep_speed" format="float"/>
-        <attr name="cpb_rotation_speed" format="float"/>
-        <attr name="cpb_cap_round" format="boolean"/>
+        <attr name="cpbStyle" format="reference" />
+        <attr name="cpb_color" format="color" />
+        <attr name="cpb_colors" format="reference" />
+        <attr name="cpb_stroke_width" format="dimension" />
+        <attr name="cpb_min_sweep_angle" format="integer" />
+        <attr name="cpb_max_sweep_angle" format="integer" />
+        <attr name="cpb_sweep_speed" format="float" />
+        <attr name="cpb_rotation_speed" format="float" />
+        <attr name="cpb_cap_round" format="boolean" />
     </declare-styleable>
 
 
@@ -47,24 +49,24 @@
     </attr>
 
     <declare-styleable name="CircularProgressDrawable">
-        <attr name="cpd_padding" format="reference|dimension"/>
-        <attr name="cpd_initialAngle" format="reference|integer"/>
-        <attr name="cpd_maxSweepAngle" format="reference|integer"/>
-        <attr name="cpd_minSweepAngle" format="reference|integer"/>
-        <attr name="cpd_strokeSize" format="reference|dimension"/>
-        <attr name="cpd_strokeColor" format="reference|color"/>
-        <attr name="cpd_strokeSecondaryColor" format="reference|color"/>
-        <attr name="cpd_strokeColors" format="reference"/>
-        <attr name="cpd_reverse" format="boolean"/>
-        <attr name="cpd_rotateDuration" format="reference|integer"/>
-        <attr name="cpd_transformDuration" format="reference|integer"/>
-        <attr name="cpd_keepDuration" format="reference|integer"/>
-        <attr name="cpd_transformInterpolator" format="reference"/>
-        <attr name="cpd_inAnimDuration" format="reference|integer"/>
-        <attr name="cpd_outAnimDuration" format="reference|integer"/>
-        <attr name="cpd_inStepColors" format="reference"/>
-        <attr name="cpd_inStepPercent" format="float"/>
-        <attr name="pv_progressMode"/>
+        <attr name="cpd_padding" format="reference|dimension" />
+        <attr name="cpd_initialAngle" format="reference|integer" />
+        <attr name="cpd_maxSweepAngle" format="reference|integer" />
+        <attr name="cpd_minSweepAngle" format="reference|integer" />
+        <attr name="cpd_strokeSize" format="reference|dimension" />
+        <attr name="cpd_strokeColor" format="reference|color" />
+        <attr name="cpd_strokeSecondaryColor" format="reference|color" />
+        <attr name="cpd_strokeColors" format="reference" />
+        <attr name="cpd_reverse" format="boolean" />
+        <attr name="cpd_rotateDuration" format="reference|integer" />
+        <attr name="cpd_transformDuration" format="reference|integer" />
+        <attr name="cpd_keepDuration" format="reference|integer" />
+        <attr name="cpd_transformInterpolator" format="reference" />
+        <attr name="cpd_inAnimDuration" format="reference|integer" />
+        <attr name="cpd_outAnimDuration" format="reference|integer" />
+        <attr name="cpd_inStepColors" format="reference" />
+        <attr name="cpd_inStepPercent" format="float" />
+        <attr name="pv_progressMode" />
     </declare-styleable>
 
     <style name="CircularProgress">
@@ -86,11 +88,11 @@
     </style>
 
     <declare-styleable name="ShadowLayout">
-        <attr name="sl_cornerRadius" format="dimension"/>
-        <attr name="sl_shadowRadius" format="dimension"/>
-        <attr name="sl_shadowColor" format="color"/>
-        <attr name="sl_dx" format="dimension"/>
-        <attr name="sl_dy" format="dimension"/>
+        <attr name="sl_cornerRadius" format="dimension" />
+        <attr name="sl_shadowRadius" format="dimension" />
+        <attr name="sl_shadowColor" format="color" />
+        <attr name="sl_dx" format="dimension" />
+        <attr name="sl_dy" format="dimension" />
     </declare-styleable>
 
     <style name="toastAnim" parent="@android:style/Animation.Toast">
