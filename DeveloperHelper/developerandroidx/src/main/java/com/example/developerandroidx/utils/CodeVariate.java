@@ -178,18 +178,18 @@ public class CodeVariate {
     //android/activity
     public String getCode_5() {
         return "Activity的启动模式：\n" +
-                "standard\n" +
+                "<standard>\n" +
                 "默认模式,不设置启动模式即默认为standard，每次启动都会创建一个新的activity实例。\n" +
                 "以栈的形式存储实例，后创建的实例，在栈的顶部。如果以这种方式启动的Activity被跨进程调用，\n" +
                 "在5.0之前新启动的Activity实例会放入发送Intent的Task的栈的顶部，尽管它们属于不同的程序，\n" +
                 "5.0之后，会创建一个新的Task，新启动的Activity就会放入刚创建的Task中。\n" +
-                "singleTop\n" +
+                "<singleTop>\n" +
                 "单顶模式，如果当前activity存在于栈顶，则无法被创建新的实例，而是调用onNewIntent()方法\n" +
                 "可以解决，按钮重复点击，创建多个activity的问题。\n" +
-                "singleTask\n" +
+                "<singleTask>\n" +
                 "单任务模式，如果一个任务栈已经存在一个singleTask模式的activity，启动此activity会清空此activity\n" +
                 "任务栈上面的activity,调用onNewIntent()方法。\n" +
-                "singleInstance\n" +
+                "<singleInstance>\n" +
                 "单实例模式，整个手机系统内只会存在一个singleInstance模式的activity，所有的应用共用，例如：来电界面。";
     }
 

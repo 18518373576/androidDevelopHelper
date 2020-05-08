@@ -3,6 +3,7 @@ package com.example.developerandroidx.ui.android.activity;
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -48,6 +49,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         actionBar.setTitle("Activity");
+        Log.e(TAG, ":" + getRequestedOrientation());
     }
 
     @Override
@@ -87,7 +89,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 }
                 break;
             case R.id.iv_codes:
-                RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getCode_1());
+                RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getCode_5());
                 break;
         }
     }

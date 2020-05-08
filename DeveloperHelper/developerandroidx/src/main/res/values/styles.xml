@@ -26,12 +26,12 @@
     </style>
 
     <!--    展示代码界面主题-->
-    <style name="CodeViewAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="CodeViewAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/codeViewBackground</item>
         <item name="colorPrimaryDark">@color/codeViewBackground</item>
         <item name="colorAccent">@color/codeViewBackground</item>
-        <item name="android:screenOrientation">portrait</item>
+        <item name="android:screenOrientation">landscape</item>
     </style>
 
     <!--    首页recyclerView样式-->

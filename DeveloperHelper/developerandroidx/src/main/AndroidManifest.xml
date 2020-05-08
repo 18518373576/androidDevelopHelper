@@ -22,10 +22,15 @@
         <activity android:name=".ui.java.operator.OperatorActivity" />
         <activity
             android:name=".ui.widget.codeView.CodeViewActivity"
-            android:theme="@style/CodeViewAppTheme" />
+            android:screenOrientation="landscape"
+            android:theme="@style/CodeViewAppTheme"
+            tools:ignore="LockedOrientationActivity" />
         <activity android:name=".ui.widget.webView.WebViewActivity" />
         <activity android:name=".ui.widget.actionBar.ActionBarActivity" />
-        <activity android:name=".ui.android.activity.ActivityAnalysisActivity" />
+        <activity
+            android:name=".ui.android.activity.ActivityAnalysisActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

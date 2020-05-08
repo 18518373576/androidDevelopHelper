@@ -1,10 +1,13 @@
 package com.example.developerandroidx.ui.widget.codeView;
 
+import android.view.View;
+
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.Constant;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import thereisnospon.codeview.CodeView;
 import thereisnospon.codeview.CodeViewTheme;
 
@@ -26,7 +29,6 @@ public class CodeViewActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        actionBar.setTitle(R.string.code);
         cv_code_view.setTheme(CodeViewTheme.ANDROIDSTUDIO);
         cv_code_view.fillColor();
     }
@@ -35,5 +37,14 @@ public class CodeViewActivity extends BaseActivity {
     protected void initData() {
         code = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
         cv_code_view.showCode(code);
+    }
+
+    @OnClick({R.id.iv_back})
+    public void click(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+        }
     }
 }
