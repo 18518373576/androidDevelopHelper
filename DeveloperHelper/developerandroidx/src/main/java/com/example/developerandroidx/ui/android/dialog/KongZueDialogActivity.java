@@ -1,6 +1,5 @@
 package com.example.developerandroidx.ui.android.dialog;
 
-import android.content.Context;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,12 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
-import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.interfaces.OnInputDialogButtonClickListener;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
-import com.kongzue.dialog.interfaces.OnNotificationClickListener;
 import com.kongzue.dialog.util.BaseDialog;
-import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.BottomMenu;
 import com.kongzue.dialog.v3.CustomDialog;
 import com.kongzue.dialog.v3.FullScreenDialog;
