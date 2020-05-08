@@ -5,10 +5,10 @@
 
 ```
 ext {
-        compileSdkVersion = 29
+        compileSdkVersion = 28
         buildToolsVersion = "29.0.2"
         minSdkVersion = 21
-        targetSdkVersion = 29
+        targetSdkVersion = 28
     }
 ```
 ###### jdk:
