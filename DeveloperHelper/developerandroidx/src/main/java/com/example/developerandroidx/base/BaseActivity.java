@@ -26,8 +26,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         unbinder = ButterKnife.bind(this);
 
         actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
 
         initView();
 

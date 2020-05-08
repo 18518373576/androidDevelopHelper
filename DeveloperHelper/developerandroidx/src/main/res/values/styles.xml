@@ -8,7 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:screenOrientation">portrait</item>
     </style>
-
+    <!--    通用主题,没有actionBar-->
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorMain</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:screenOrientation">portrait</item>
+    </style>
     <!--    通用主题-->
     <style name="DialogActivityTheme" parent="Theme.AppCompat.Light.Dialog">
         <!-- Customize your theme here. -->

@@ -50,7 +50,7 @@
             android:text="Message dialog" />
 
         <Button
-            android:id="@+id/btn_Notifiction"
+            android:id="@+id/btn_notifiction"
             style="@style/ComonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp10"

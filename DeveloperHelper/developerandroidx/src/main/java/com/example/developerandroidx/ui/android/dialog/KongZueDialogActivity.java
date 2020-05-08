@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
+import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.interfaces.OnInputDialogButtonClickListener;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
+import com.kongzue.dialog.interfaces.OnNotificationClickListener;
 import com.kongzue.dialog.util.BaseDialog;
 import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.BottomMenu;
@@ -51,7 +53,7 @@ public class KongZueDialogActivity extends BaseActivity {
     }
 
     @OnClick({R.id.btn_message_dialog, R.id.btn_bottom_menu, R.id.btn_custom_dialog
-            , R.id.btn_full_screen_dialog, R.id.btn_input_dialog, R.id.btn_Notifiction
+            , R.id.btn_full_screen_dialog, R.id.btn_input_dialog, R.id.btn_notifiction
             , R.id.btn_share_dialog, R.id.btn_tip_dialog, R.id.btn_wait_dialog})
     public void click(View v) {
         switch (v.getId()) {
@@ -126,9 +128,9 @@ public class KongZueDialogActivity extends BaseActivity {
                     }
                 });
                 break;
-            case R.id.btn_Notifiction:
-
-                Notification.show(context, "这是一条通知！");
+            case R.id.btn_notifiction:
+                //api 29不提示弹窗，修改为28即可
+                Notification.show(context, "提示", "提示信息", R.mipmap.ic_launcher);
                 break;
             case R.id.btn_share_dialog:
                 List<ShareDialog.Item> list = new ArrayList<>();
@@ -148,7 +150,6 @@ public class KongZueDialogActivity extends BaseActivity {
             case R.id.btn_wait_dialog:
                 WaitDialog.build((AppCompatActivity) context)
                         .setTipTime(2000)
-                        .setTheme(DialogSettings.THEME.LIGHT)
                         .show();
                 break;
         }
