@@ -15,6 +15,19 @@
         <!--        <item name="android:backgroundDimAmount">0.0</item>-->
     </style>
 
+    <style name="TipDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/dark</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--        设置背景全透明，提示框和加载框会用到-->
+        <item name="android:backgroundDimAmount">0.0</item>
+    </style>
+
     <style name="LightDialogWithShadow" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
