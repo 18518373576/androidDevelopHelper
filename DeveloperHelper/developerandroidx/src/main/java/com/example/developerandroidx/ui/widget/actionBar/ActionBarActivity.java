@@ -79,8 +79,7 @@ public class ActionBarActivity extends BaseActivity {
                 }
                 break;
             case R.id.iv_codes:
-                RouteUtil.goTo(context, RouteUtil.getDestination(CodeViewActivity.class),
-                        null, CodeVariate.getInstance().getCode_1());
+                RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getCode_1());
                 break;
         }
     }

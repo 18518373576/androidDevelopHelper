@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
+
 import java.util.Map;
 
 public class RouteUtil {
@@ -69,5 +71,17 @@ public class RouteUtil {
         } else {
 
         }
+    }
+
+    /**
+     * 经常返给的界面，增加一个方法，方便替换
+     *
+     * @param context
+     * @param codeStr
+     */
+    public static void goToCodeViewActivity(Context context, String codeStr) {
+        intent = new Intent(context, CodeViewActivity.class);
+        intent.putExtra(Constant.IntentParams.INTENT_PARAM, codeStr);
+        context.startActivity(intent);
     }
 }

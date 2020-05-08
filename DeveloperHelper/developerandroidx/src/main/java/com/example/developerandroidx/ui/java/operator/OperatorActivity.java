@@ -12,6 +12,7 @@ import com.example.developerandroidx.adapter.OperatorRcvAdapter;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.bean.OperatorItemBean;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
+import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class OperatorActivity extends BaseActivity {
 
         switch (view.getId()) {
             case R.id.iv_codes:
-                RouteUtil.goTo(context, RouteUtil.getDestination(CodeViewActivity.class), "操作符");
+                RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getCode_4());
                 break;
         }
     }

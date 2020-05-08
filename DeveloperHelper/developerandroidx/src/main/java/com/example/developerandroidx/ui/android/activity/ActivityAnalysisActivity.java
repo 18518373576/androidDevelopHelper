@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.kongzue.dialog.v3.MessageDialog;
 
@@ -66,7 +67,8 @@ public class ActivityAnalysisActivity extends BaseActivity {
     }
 
     @SuppressLint("SourceLockedOrientationActivity")
-    @OnClick({R.id.btn_lifecyle, R.id.btn_start_up_mode, R.id.btn_orientation_change})
+    @OnClick({R.id.btn_lifecyle, R.id.btn_start_up_mode, R.id.btn_orientation_change,
+            R.id.iv_codes})
     public void click(View v) {
         switch (v.getId()) {
             case R.id.btn_lifecyle://生命周期
@@ -83,6 +85,9 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 } else {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 }
+                break;
+            case R.id.iv_codes:
+                RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getCode_1());
                 break;
         }
     }
