@@ -62,6 +62,32 @@
                     android:layout_weight="1"
                     android:text="方向切换" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_action_start"
+                    style="@style/ComonButtonStyle"
+                    android:layout_margin="@dimen/dp5"
+                    android:layout_weight="1"
+                    android:text="隐式启动" />
+
+                <Button
+                    android:id="@+id/btn_start_for_result"
+                    style="@style/ComonButtonStyle"
+                    android:layout_margin="@dimen/dp5"
+                    android:layout_weight="1"
+                    android:text="start for result" />
+
+                <Button
+                    android:id="@+id/btn_cut_animation"
+                    style="@style/ComonButtonStyle"
+                    android:layout_margin="@dimen/dp5"
+                    android:layout_weight="1"
+                    android:text="切换动画" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

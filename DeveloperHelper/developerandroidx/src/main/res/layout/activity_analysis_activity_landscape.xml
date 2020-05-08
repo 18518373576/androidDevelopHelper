@@ -36,30 +36,54 @@
             android:orientation="vertical"
             android:padding="@dimen/dp10">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:overScrollMode="never"
+                android:scrollbars="none">
 
-                <Button
-                    android:id="@+id/btn_lifecyle"
-                    style="@style/ComonButtonStyle"
-                    android:layout_margin="@dimen/dp5"
-                    android:text="生命周期" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btn_start_up_mode"
-                    style="@style/ComonButtonStyle"
-                    android:layout_margin="@dimen/dp5"
-                    android:text="启动模式" />
+                    <Button
+                        android:id="@+id/btn_lifecyle"
+                        style="@style/ComonButtonStyle"
+                        android:layout_margin="@dimen/dp5"
+                        android:text="生命周期" />
 
-                <Button
-                    android:id="@+id/btn_orientation_change"
-                    style="@style/ComonButtonStyle"
-                    android:layout_margin="@dimen/dp5"
-                    android:text="方向切换" />
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_start_up_mode"
+                        style="@style/ComonButtonStyle"
+                        android:layout_margin="@dimen/dp5"
+                        android:text="启动模式" />
+
+                    <Button
+                        android:id="@+id/btn_orientation_change"
+                        style="@style/ComonButtonStyle"
+                        android:layout_margin="@dimen/dp5"
+                        android:text="方向切换" />
+
+                    <Button
+                        android:id="@+id/btn_action_start"
+                        style="@style/ComonButtonStyle"
+                        android:layout_margin="@dimen/dp5"
+                        android:text="隐式启动" />
+
+                    <Button
+                        android:id="@+id/btn_start_for_result"
+                        style="@style/ComonButtonStyle"
+                        android:layout_margin="@dimen/dp5"
+                        android:text="start for result" />
+
+                    <Button
+                        android:id="@+id/btn_cut_animation"
+                        style="@style/ComonButtonStyle"
+                        android:layout_margin="@dimen/dp5"
+                        android:text="切换动画" />
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
     </LinearLayout>
 
