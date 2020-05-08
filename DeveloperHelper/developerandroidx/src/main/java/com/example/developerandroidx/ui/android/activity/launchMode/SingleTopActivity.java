@@ -31,7 +31,7 @@ public class SingleTopActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Notification.show(this, "还是我", "onNewIntent()调用：" +
+        Notification.show(this, "还是我", "onNewIntent()被调用：" +
                 intent.getStringExtra(Constant.IntentParams.INTENT_PARAM), R.mipmap.ic_launcher);
     }
 
