@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.ui.android.activity.activityforResult.ForResultActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleInstanceActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleTaskActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleTopActivity;
@@ -27,6 +28,7 @@ import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.v3.BottomMenu;
+import com.kongzue.dialog.v3.Notification;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -128,13 +130,19 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.btn_start_for_result://启动activity带返回结果
-
+                startActivityForResult(new Intent(this, ForResultActivity.class), 101);
                 break;
             case R.id.btn_cut_animation://切换动画
 
                 break;
 
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Notification.show(context, "消息回调", "resultCode:" + resultCode + " msg:" + data.getStringExtra("res"), R.mipmap.ic_launcher);
     }
 
     @Override
