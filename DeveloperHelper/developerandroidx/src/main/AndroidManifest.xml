@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.android.activity.cutAnimation.CutAnimationActivity"></activity>
         <activity
             android:name=".ui.android.activity.activityforResult.ForResultActivity"
             android:theme="@style/DialogActivityTheme" />
@@ -21,7 +22,9 @@
             android:theme="@style/DialogActivityTheme">
             <intent-filter>
                 <action android:name="com.example.developerandroidx.ActionIntentActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data
                     android:host="example.com"
                     android:port="1080"
