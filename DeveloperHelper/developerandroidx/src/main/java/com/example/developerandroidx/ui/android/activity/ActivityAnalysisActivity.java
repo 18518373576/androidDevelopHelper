@@ -175,4 +175,19 @@ public class ActivityAnalysisActivity extends BaseActivity {
         viewModel.onLifecyleChanged(TAG + "：onDestroy()\n");
         super.onDestroy();
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        viewModel.onLifecyleChanged(TAG + "：onSaveInstanceState()\n" +
+                "saved：saveData\n");
+        outState.putString("save", "saveData");
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        viewModel.onLifecyleChanged(TAG + "：onRestoreInstanceState()\n" +
+                "getData：" + savedInstanceState.getString("save") + "\n");
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 }
