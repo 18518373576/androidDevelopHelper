@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dp300"
+    android:layout_height="@dimen/dp300"
+    tools:context=".ui.android.activity.launchMode.StandardActivity">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="@dimen/dp300"
+        android:layout_height="@dimen/dp45"
+        android:background="@color/colorMain"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp45"
+        android:text="Activity for action"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        android:padding="@dimen/dp15"
+        android:src="@mipmap/icon_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="信息展示"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

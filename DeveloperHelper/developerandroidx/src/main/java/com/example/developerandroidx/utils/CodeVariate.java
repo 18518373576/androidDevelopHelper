@@ -195,7 +195,53 @@ public class CodeVariate {
                 "单任务模式，如果一个任务栈已经存在一个singleTask模式的activity，启动此activity会清空此activity\n" +
                 "任务栈上面的activity,调用onNewIntent()方法。\n" +
                 "<singleInstance>\n" +
-                "单实例模式，单独存在一个任务栈中，整个手机系统内只会存在一个singleInstance模式的activity，所有的应用共用，例如：来电界面。";
+                "单实例模式，单独存在一个任务栈中，整个手机系统内只会存在一个singleInstance模式的activity，所有的应用共用，例如：来电界面。\n" +
+                "\n隐式启动：\n" +
+                "例：Intent intent = new Intent(\"com.example.developerandroidx.ActionIntentActivity\");\n" +
+                "   startActivity(intent);\n" +
+                "以下内容摘录自：作者：menteelin 链接：https://www.jianshu.com/p/12c6253f1851 来源：简书\n" +
+                "<action的匹配规则>\n" +
+                "action在Intent-filter可以设置多条\n" +
+                "intent中必须指定action否则匹配失败且intent中action最多只有一条\n" +
+                "intent中的action和intent-filter中的action必须完全一样时（包括大小写）才算匹配成功\n" +
+                "intent中的action只要与intent-filter其中的一条匹配成功即可\n" +
+                "<category的匹配规则>\n" +
+                "category在intent-filter中可以有多条\n" +
+                "category在intent中也可以有多条\n" +
+                "intent中所有的category都可以在intent-filter中找到一样的（包括大小写）才算匹配成功\n" +
+                "通过intent启动Activity的时候如果没有添加category会自动添加android.intent.category.DEFAULT，\n" +
+                "如果intent-filter中没有添加android.intent.category.DEFAULT则会匹配失败\n" +
+                "<data的匹配规则>\n" +
+                "在说data的匹配规则之前我们先来说说data的语法\n" +
+                "<data \n" +
+                "  android:host=\"string\"\n" +
+                "  android:mimeType=\"string\"\n" +
+                "  android:path=\"string\"\n" +
+                "  android:pathPattern=\"string\"\n" +
+                "  android:pathPrefix=\"string\"\n" +
+                "  android:port=\"string\"\n" +
+                "  android:scheme=\"string\"/>\n" +
+                "举个栗子：\n" +
+                "scheme://host:port/path|pathPrefix|pathPattern\n" +
+                "jrmf://jrmf360.com:8888/first\n" +
+                "scheme：主机的协议部分，如jrmf\n" +
+                "host：主机部分，如jrmf360.com\n" +
+                "port： 端口号，如8888\n" +
+                "path：路径，如first\n" +
+                "pathPrefix：指定了部分路径，它会跟Intent对象中的路径初始部分匹配，如first\n" +
+                "pathPattern：指定的路径可以进行正则匹配，如first\n" +
+                "mimeType：处理的数据类型，如image/*\n" +
+                "\n" +
+                "intent-filter中可以设置多个data\n" +
+                "intent中只能设置一个data\n" +
+                "intent-filter中指定了data，intent中就要指定其中的一个data\n" +
+                "setType会覆盖setData，setData会覆盖setType，因此需要使用setDataAndType方法来设置data和mimeType\n\n" +
+                "其他注意：\n" +
+                "android.intent.action.MAIN ：程序最先启动的Activity可以给多个Activity设置\n" +
+                "android.intent.category.LAUNCHER：应用程序是否显示在桌面，可以给多个Activity配置\n" +
+                "android.intent.action.MAIN和android.intent.category.LAUNCHER同时设置会在launcher显示一个应用图标，\n" +
+                "单独设置android.intent.category.LAUNCHER不会出现图标，且一个应用程序最少要有一对。也可以设置多对，\n" +
+                "这样会在系统桌面出现过个应用程序图标。\n";
     }
 
     //android/性能优化

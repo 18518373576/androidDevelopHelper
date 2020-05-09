@@ -1,7 +1,9 @@
 package com.example.developerandroidx.ui.android.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -121,7 +123,9 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getCode_5());
                 break;
             case R.id.btn_action_start://activity隐式启动
-
+                Intent intent = new Intent("com.example.developerandroidx.ActionIntentActivity");
+                intent.setData(Uri.parse("example://example.com:1080/from?message=ActivityAnalysisActivity"));
+                startActivity(intent);
                 break;
             case R.id.btn_start_for_result://启动activity带返回结果
 
