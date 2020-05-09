@@ -1,4 +1,4 @@
-package com.example.developerandroidx.ui.android.activity;
+package com.example.developerandroidx.ui.android.activity.lifeCycle;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -5,7 +5,7 @@
     android:layout_width="@dimen/dp300"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    tools:context=".ui.android.activity.DialogTestctivity">
+    tools:context=".ui.android.activity.lifeCycle.DialogTestctivity">
 
     <TextView
         android:id="@+id/textView"

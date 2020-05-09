@@ -20,6 +20,7 @@ import com.example.developerandroidx.ui.android.activity.launchMode.SingleInstan
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleTaskActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleTopActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.StandardActivity;
+import com.example.developerandroidx.ui.android.activity.lifeCycle.DialogTestctivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
