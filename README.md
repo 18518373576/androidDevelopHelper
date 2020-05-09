@@ -1,6 +1,6 @@
 # androidDevelopHelper
-###### 开发笔记
-以项目形式记录安卓开发的一些知识点的笔记
+###### 以项目形式记录安卓开发的一些知识点
+
 ###### 项目环境：
 
 ```
@@ -20,5 +20,3 @@ compileOptions
         sourceCompatibility = 1.8
     }
 ```
-###### 图标库：
-https://www.iconfont.cn/
