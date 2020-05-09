@@ -52,11 +52,6 @@ public class OperatorActivity extends BaseActivity {
         rcv_operator.setLayoutManager(new LinearLayoutManager(context));
         rcv_operator.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 //                Log.e(TAG + ":", dx + "$" + dy);
@@ -83,5 +78,11 @@ public class OperatorActivity extends BaseActivity {
                 rcv_operator.setAdapter(new OperatorRcvAdapter(operatorItemBeans));
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        rcv_operator.clearOnScrollListeners();
+        super.onDestroy();
     }
 }
