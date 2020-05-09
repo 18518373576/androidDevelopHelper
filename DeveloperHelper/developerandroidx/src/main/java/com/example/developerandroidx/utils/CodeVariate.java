@@ -172,7 +172,12 @@ public class CodeVariate {
 
     //java/操作符
     public String getCode_4() {
-        return "操作符";
+        return "操作符：\n" +
+                "== 和 eqauls\n" +
+                "==作用于基本类型时，判断基本类型变量的值是否相等，相等则返回true。作用于引用类型时，\n" +
+                "则判断引用类型变量引用的地址是否相等。相等则返回true。\n" +
+                "eqauls是Object超类中的方法，默认作用与==一样。如果类重写了eqauls()方法，则按照重写的\n" +
+                "规则进行判断。如String类，重写了eqauls()方法，判断字符串是否一样";
     }
 
     //android/activity
@@ -190,7 +195,7 @@ public class CodeVariate {
                 "单任务模式，如果一个任务栈已经存在一个singleTask模式的activity，启动此activity会清空此activity\n" +
                 "任务栈上面的activity,调用onNewIntent()方法。\n" +
                 "<singleInstance>\n" +
-                "单实例模式，整个手机系统内只会存在一个singleInstance模式的activity，所有的应用共用，例如：来电界面。";
+                "单实例模式，单独存在一个任务栈中，整个手机系统内只会存在一个singleInstance模式的activity，所有的应用共用，例如：来电界面。";
     }
 
     //android/性能优化

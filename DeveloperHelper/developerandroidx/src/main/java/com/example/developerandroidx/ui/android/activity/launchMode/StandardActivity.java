@@ -37,6 +37,12 @@ public class StandardActivity extends AppCompatActivity implements View.OnClickL
                     case "standard_activity_1":
                         RouteUtil.goTo(this, RouteUtil.getDestination(StandardActivity.class), "standard_activity_2");
                         break;
+                    case "form_singleTask":
+                        RouteUtil.goTo(this, RouteUtil.getDestination(SingleTaskActivity.class), "from_standard");
+                        break;
+                    case "form_singleInstance":
+                        RouteUtil.goTo(this, RouteUtil.getDestination(SingleInstanceActivity.class), "from_standard");
+                        break;
                 }
                 break;
         }
