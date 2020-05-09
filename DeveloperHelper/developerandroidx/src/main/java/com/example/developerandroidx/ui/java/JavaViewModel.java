@@ -37,16 +37,16 @@ public class JavaViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("对象的生命周期", R.mipmap.icon_object, ""));
         functionList.add(new FunctionItemBean("内部类", R.mipmap.icon_inner_class, ""));
         functionList.add(new FunctionItemBean("多线程", R.mipmap.icon_thread, ""));
-        functionList.add(new FunctionItemBean("数组", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("集合", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("泛型", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("I/O", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("java常用类", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("Annotatio注解", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("反射", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("设计模式", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("数据结构", R.mipmap.icon_bluetooth, ""));
-        functionList.add(new FunctionItemBean("算法", R.mipmap.icon_bluetooth, ""));
+        functionList.add(new FunctionItemBean("数组", R.mipmap.icon_array, ""));
+        functionList.add(new FunctionItemBean("集合", R.mipmap.icon_collection, ""));
+        functionList.add(new FunctionItemBean("泛型", R.mipmap.icon_genericity, ""));
+        functionList.add(new FunctionItemBean("I/O", R.mipmap.icon_io, ""));
+        functionList.add(new FunctionItemBean("java常用类", R.mipmap.icon_common_class, ""));
+        functionList.add(new FunctionItemBean("Annotatio注解", R.mipmap.icon_annotation, ""));
+        functionList.add(new FunctionItemBean("反射", R.mipmap.icon_reflect, ""));
+        functionList.add(new FunctionItemBean("设计模式", R.mipmap.icon_develop_model, ""));
+        functionList.add(new FunctionItemBean("数据结构", R.mipmap.icon_data_structure, ""));
+        functionList.add(new FunctionItemBean("算法", R.mipmap.icon_algorithm, ""));
 
         return functionList;
     }

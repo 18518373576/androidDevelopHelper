@@ -34,14 +34,14 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
         functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, ""));
         functionList.add(new FunctionItemBean("Dialog", R.mipmap.icaon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));
-        functionList.add(new FunctionItemBean("Touch event", R.mipmap.icaon_dialog, ""));
+        functionList.add(new FunctionItemBean("Touch event", R.mipmap.icon_touch_event, ""));
         functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("NFC", R.mipmap.icon_nfc, ""));
         functionList.add(new FunctionItemBean("Camera", R.mipmap.icon_camera, ""));
         functionList.add(new FunctionItemBean("ConstraintLayout", R.mipmap.icon_constrain_layout, ""));
         functionList.add(new FunctionItemBean("Sqlite", R.mipmap.icon_sqlite, ""));
-        functionList.add(new FunctionItemBean("数据请求", R.mipmap.icon_sqlite, ""));
-        functionList.add(new FunctionItemBean("RXjava", R.mipmap.icon_sqlite, ""));
+        functionList.add(new FunctionItemBean("数据请求", R.mipmap.icon_internet, ""));
+        functionList.add(new FunctionItemBean("RXjava", R.mipmap.icon_rxjava, ""));
         functionList.add(new FunctionItemBean("Animation", R.mipmap.icon_animation, ""));
         functionList.add(new FunctionItemBean("JNI", R.mipmap.icon_jni, ""));
         functionList.add(new FunctionItemBean("扫码", R.mipmap.icon_scan, ""));
