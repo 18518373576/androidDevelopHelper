@@ -22,7 +22,8 @@
                 android:id="@+id/iv_landscape"
                 android:layout_width="106dp"
                 android:layout_height="@dimen/dp80"
-                android:src="@mipmap/bg_landscape"></ImageView>
+                android:src="@mipmap/bg_landscape"
+                android:transitionName="sharedView"></ImageView>
 
             <LinearLayout
                 android:layout_width="wrap_content"

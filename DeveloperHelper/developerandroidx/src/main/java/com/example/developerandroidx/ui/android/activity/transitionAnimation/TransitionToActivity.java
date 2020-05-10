@@ -27,13 +27,10 @@ public class TransitionToActivity extends BaseActivity {
                 transition = TransitionInflater.from(this).inflateTransition(R.transition.explode);
                 break;
             case "Slide":
-
+                transition = TransitionInflater.from(this).inflateTransition(R.transition.slide);
                 break;
             case "Fade":
-
-                break;
-            case "Shared Element":
-
+                transition = TransitionInflater.from(this).inflateTransition(R.transition.fade);
                 break;
         }
         //退出时使用

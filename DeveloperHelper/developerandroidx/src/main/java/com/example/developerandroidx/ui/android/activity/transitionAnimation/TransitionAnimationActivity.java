@@ -21,7 +21,6 @@ import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.bean.TransitionAnimationItemBean;
 import com.example.developerandroidx.utils.Constant;
-import com.example.developerandroidx.utils.RouteUtil;
 
 import java.util.List;
 
@@ -46,13 +45,10 @@ public class TransitionAnimationActivity extends BaseActivity implements BaseRcv
                 transition = TransitionInflater.from(this).inflateTransition(R.transition.explode);
                 break;
             case "Slide":
-
+                transition = TransitionInflater.from(this).inflateTransition(R.transition.slide);
                 break;
             case "Fade":
-
-                break;
-            case "Shared Element":
-
+                transition = TransitionInflater.from(this).inflateTransition(R.transition.fade);
                 break;
         }
         //退出时使用
@@ -108,6 +104,14 @@ public class TransitionAnimationActivity extends BaseActivity implements BaseRcv
     public void onItemClick(@NonNull View v, int viewType, @NonNull Object data, int position) {
         Intent intent = new Intent(this, TransitionToActivity.class);
         intent.putExtra(Constant.IntentParams.INTENT_PARAM, transitionType);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        switch (transitionType) {
+            case "Shared Element":
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this, v.findViewById(R.id.iv_landscape), "sharedView").toBundle());
+                break;
+            default:
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                break;
+        }
+
     }
 }
