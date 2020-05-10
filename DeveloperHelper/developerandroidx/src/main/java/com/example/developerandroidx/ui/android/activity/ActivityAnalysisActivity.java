@@ -19,17 +19,16 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.android.activity.activityforResult.ForResultActivity;
-import com.example.developerandroidx.ui.android.activity.transitionAnimation.TransitionAnimationActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleInstanceActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleTaskActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleTopActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.StandardActivity;
 import com.example.developerandroidx.ui.android.activity.lifeCycle.DialogTestctivity;
+import com.example.developerandroidx.ui.android.activity.transitionAnimation.TransitionAnimationActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.v3.BottomMenu;
-import com.kongzue.dialog.v3.Notification;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -62,7 +61,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        actionBar.setTitle("Activity");
+        setTitle("Activity");
         Log.e(TAG, ":" + getRequestedOrientation());
     }
 
@@ -149,7 +148,9 @@ public class ActivityAnalysisActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Notification.show(context, "消息回调", "resultCode:" + resultCode + " msg:" + data.getStringExtra("res"), R.mipmap.ic_launcher);
+        if (data != null) {
+            showNotify("消息回调", "resultCode:" + resultCode + " msg:" + data.getStringExtra("res"));
+        }
     }
 
     @Override

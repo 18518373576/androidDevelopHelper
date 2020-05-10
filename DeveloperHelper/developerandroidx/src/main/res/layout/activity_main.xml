@@ -10,6 +10,10 @@
     <!--    app:layout_constraintBottom_toTopOf="@id/nav_view" 不知道为什么没起作用
     设置了一个layout_marginBottom，使用的是actionBar的高度-->
 
+    <include
+        layout="@layout/title_bar"
+        android:visibility="gone" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"

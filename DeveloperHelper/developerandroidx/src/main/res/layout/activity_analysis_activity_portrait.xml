@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bg_interface"
     tools:context=".ui.android.activity.ActivityAnalysisActivity">
+
+    <include layout="@layout/title_bar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/titleBarHeigt"
         android:orientation="vertical">
 
         <ScrollView
@@ -63,6 +66,7 @@
                     android:layout_weight="1"
                     android:text="方向切换" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

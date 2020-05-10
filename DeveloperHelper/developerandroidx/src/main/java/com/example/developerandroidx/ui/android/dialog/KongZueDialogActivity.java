@@ -44,7 +44,7 @@ public class KongZueDialogActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        actionBar.setTitle("Kongzue Dialog");
+        setTitle("Kongzue Dialog");
     }
 
     @Override

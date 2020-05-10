@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppThemeNoActionBar">
         <activity android:name=".ui.android.activity.transitionAnimation.TransitionToActivity"></activity>
         <activity android:name=".ui.android.activity.transitionAnimation.TransitionAnimationActivity" />
         <activity
@@ -57,18 +57,19 @@
         <activity android:name=".ui.java.operator.OperatorActivity" />
         <activity
             android:name=".ui.widget.codeView.CodeViewActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/CodeViewAppTheme"
-            tools:ignore="LockedOrientationActivity" />
+            android:theme="@style/CodeViewAppTheme" />
         <activity android:name=".ui.widget.webView.WebViewActivity" />
-        <activity android:name=".ui.widget.actionBar.ActionBarActivity" />
+        <activity
+            android:name=".ui.widget.actionBar.ActionBarActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.android.activity.ActivityAnalysisActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -18,7 +18,7 @@ public class DialogIndexActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        actionBar.setTitle("Dialog");
+        setTitle("Dialog");
     }
 
     @OnClick({R.id.btn_kongzue})

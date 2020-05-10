@@ -23,6 +23,8 @@ import butterknife.OnClick;
  */
 public class ActionBarActivity extends BaseActivity {
 
+    private ActionBar actionBar;
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_action_bar;
@@ -92,7 +94,7 @@ public class ActionBarActivity extends BaseActivity {
         @Override
         public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
 
-            showToast(tab.getText().toString());
+            showNotify(tab.getText().toString());
         }
 
         @Override
@@ -145,13 +147,13 @@ public class ActionBarActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.navigation_android:
-                showToast(getResources().getString(R.string.android));
+                showNotify(getResources().getString(R.string.android));
                 break;
             case R.id.navigation_java:
-                showToast(getResources().getString(R.string.java));
+                showNotify(getResources().getString(R.string.java));
                 break;
             case R.id.navigation_widget:
-                showToast(getResources().getString(R.string.widget));
+                showNotify(getResources().getString(R.string.widget));
                 break;
         }
         return true;
@@ -160,6 +162,7 @@ public class ActionBarActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
+        actionBar = getSupportActionBar();
         actionBar.setTitle("actionBar");
     }
 }

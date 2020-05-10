@@ -48,4 +48,10 @@ public class TransitionToActivity extends BaseActivity {
     protected int bindLayout() {
         return R.layout.activity_transition_to;
     }
+
+    @Override
+    protected void initView() {
+        super.initView();
+        setTitle("过渡动画");
+    }
 }

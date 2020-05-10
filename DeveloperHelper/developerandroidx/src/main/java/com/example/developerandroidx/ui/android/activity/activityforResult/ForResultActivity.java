@@ -23,11 +23,8 @@ public class ForResultActivity extends AppCompatActivity implements View.OnClick
         Intent resultIntent = new Intent();
         resultIntent.putExtra("res", "这是返回的消息");
         switch (v.getId()) {
-            case R.id.iv_back:
-                setResult(100, resultIntent);
-                finish();
-                break;
             case R.id.btn_finish:
+            case R.id.iv_back:
                 setResult(100, resultIntent);
                 finish();
                 break;

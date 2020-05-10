@@ -7,6 +7,10 @@
     android:background="@color/white"
     tools:context=".ui.widget.actionBar.ActionBarActivity">
 
+    <include
+        layout="@layout/title_bar"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/iv_codes"
         style="@style/codeImageViewStyle"

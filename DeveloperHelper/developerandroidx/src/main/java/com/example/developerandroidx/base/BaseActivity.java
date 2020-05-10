@@ -1,35 +1,46 @@
 package com.example.developerandroidx.base;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import com.example.developerandroidx.R;
+import com.kongzue.dialog.v3.Notification;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
+/**
+ * 所有activity的基类
+ */
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected Context context;
-    protected ActionBar actionBar;
     private Unbinder unbinder;
+
+    @BindView(R.id.tv_title)
+    protected TextView tv_title;
+    @BindView(R.id.iv_back)
+    protected ImageView iv_back;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
+        setAndroidNativeLightStatusBar(true);
         setContentView(bindLayout());
 
         unbinder = ButterKnife.bind(this);
 
-        actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
-        }
 
         initView();
 
@@ -37,23 +48,68 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * actionBar左侧按钮点击
-     *
-     * @return
+     * 设置顶栏文字为浅色
      */
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return super.onSupportNavigateUp();
+    protected void setTopBarTextLight() {
+        //设置返回按钮的颜色
+        iv_back.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
+        //设置顶部信号栏字体颜色
+        setAndroidNativeLightStatusBar(false);
+        //设置title文字颜色
+        tv_title.setTextColor(getResources().getColor(R.color.white));
     }
 
     /**
-     * 弹出吐司
+     * 设置标题
+     *
+     * @param title
+     */
+    protected void setTitle(String title) {
+        tv_title.setText(title);
+    }
+
+    @OnClick({R.id.iv_back})
+    public void onTitleButtonClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+        }
+    }
+
+    /**
+     * 设置顶栏文字颜色
+     *
+     * @param dark
+     */
+    protected void setAndroidNativeLightStatusBar(boolean dark) {
+        View decor = this.getWindow().getDecorView();
+        if (dark) {
+            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN设置全屏，顶栏展示图片的时候会用到
+            //decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        }
+    }
+
+    /**
+     * 弹出通知
      *
      * @param showMsg
      */
-    protected void showToast(String showMsg) {
-        Toast.makeText(context, showMsg, Toast.LENGTH_LONG).show();
+    protected void showNotify(String showMsg) {
+        Notification.show(context, "提示", showMsg, R.mipmap.ic_launcher);
+    }
+
+    /**
+     * 弹出通知
+     *
+     * @param title
+     * @param showMsg
+     */
+    protected void showNotify(String title, String showMsg) {
+        Notification.show(context, "提示", showMsg, R.mipmap.ic_launcher);
     }
 
     /**

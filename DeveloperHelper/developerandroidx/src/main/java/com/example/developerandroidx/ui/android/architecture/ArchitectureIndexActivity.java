@@ -14,6 +14,6 @@ public class ArchitectureIndexActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        actionBar.setTitle("架构");
+        setTitle("架构");
     }
 }

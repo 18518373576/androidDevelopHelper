@@ -71,6 +71,7 @@ public class TransitionAnimationActivity extends BaseActivity implements BaseRcv
     @Override
     protected void initView() {
         super.initView();
+        setTitle("切换动画");
         rcv_transition.setLayoutManager(new LinearLayoutManager(context));
 
     }

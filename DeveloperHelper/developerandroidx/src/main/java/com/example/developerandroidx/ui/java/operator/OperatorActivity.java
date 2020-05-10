@@ -49,7 +49,7 @@ public class OperatorActivity extends BaseActivity {
     @Override
     protected void initView() {
 
-        actionBar.setTitle(R.string.operator);
+        setTitle(getResources().getString(R.string.operator));
         rcv_operator.setLayoutManager(new LinearLayoutManager(context));
         rcv_operator.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
