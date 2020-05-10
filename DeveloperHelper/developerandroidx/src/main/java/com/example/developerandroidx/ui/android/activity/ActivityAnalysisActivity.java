@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.android.activity.activityforResult.ForResultActivity;
+import com.example.developerandroidx.ui.android.activity.transitionAnimation.TransitionAnimationActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleInstanceActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleTaskActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleTopActivity;
@@ -133,7 +134,13 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 startActivityForResult(new Intent(this, ForResultActivity.class), 101);
                 break;
             case R.id.btn_cut_animation://切换动画
-
+                String[] transitions = new String[]{"Explode", "Slide", "Fade", "Shared Element"};
+                BottomMenu.show((AppCompatActivity) context, transitions, new OnMenuItemClickListener() {
+                    @Override
+                    public void onClick(String text, int index) {
+                        RouteUtil.goTo(context, RouteUtil.getDestination(TransitionAnimationActivity.class), text);
+                    }
+                });
                 break;
 
         }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.adapter.OperatorRcvAdapter;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.bean.OperatorItemBean;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
@@ -83,6 +84,7 @@ public class OperatorActivity extends BaseActivity {
     @Override
     public void onDestroy() {
         rcv_operator.clearOnScrollListeners();
+        BaseRcvAdapter.releaseAllHolder(rcv_operator);
         super.onDestroy();
     }
 }

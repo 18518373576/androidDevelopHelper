@@ -18,6 +18,11 @@ public abstract class BaseRcvHolder<T> extends RecyclerView.ViewHolder implement
     private Unbinder unbinder;
     private OnItemClickListener onItemClickListener;
 
+    /**
+     * 构造方法，执行初始化操作
+     *
+     * @param itemView
+     */
     public BaseRcvHolder(@NonNull View itemView) {
         super(itemView);
         //设置item点击事件

@@ -5,15 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_interface"
-    tools:context=".ui.java.JavaFragment">
+    tools:context=".ui.android.activity.transitionAnimation.TransitionAnimationActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_java"
+        android:id="@+id/rcv_transition"
         style="@style/CommonRcvStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

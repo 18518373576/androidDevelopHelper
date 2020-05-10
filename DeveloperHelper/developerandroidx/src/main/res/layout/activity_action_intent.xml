@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/dp300"
     android:layout_height="@dimen/dp300"
+    android:background="@color/white"
     tools:context=".ui.android.activity.launchMode.StandardActivity">
 
     <TextView

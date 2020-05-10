@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.android.activity.cutAnimation.CutAnimationActivity"></activity>
+        <activity android:name=".ui.android.activity.transitionAnimation.TransitionToActivity"></activity>
+        <activity android:name=".ui.android.activity.transitionAnimation.TransitionAnimationActivity" />
         <activity
             android:name=".ui.android.activity.activityforResult.ForResultActivity"
             android:theme="@style/DialogActivityTheme" />

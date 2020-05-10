@@ -59,9 +59,4 @@ public class AndroidViewModel extends ViewModel {
         return mList;
     }
 
-//    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-//    void onStart() {
-//        Log.e(TAG, new Date().getTime() + "：调用了onStart方法");
-//    }
-
 }

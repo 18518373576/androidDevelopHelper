@@ -28,6 +28,7 @@ public class WidgetViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.icon_recycler, ""));
         functionList.add(new FunctionItemBean("CardView", R.mipmap.icon_card_view, ""));
         functionList.add(new FunctionItemBean("WebView", R.mipmap.icon_web_view, ""));
+        functionList.add(new FunctionItemBean("CalendarView", R.mipmap.icon_web_view, ""));
 
         return functionList;
     }

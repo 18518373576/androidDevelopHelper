@@ -22,8 +22,6 @@ public class OperatorViewModel extends ViewModel {
 
     private MediatorLiveData<List<OperatorItemBean>> mList;
 
-    private LifecycleOwner lifecycleOwner;
-
     public OperatorViewModel() {
         mList = new MediatorLiveData<>();
 
@@ -32,22 +30,20 @@ public class OperatorViewModel extends ViewModel {
 
     /**
      * 绑定activity生命周期
-     *
-     * @param lifecycleOwner
+     * 官方文档，viewModel不能持有关于生命周期的变量
      */
-    public void bindLifeCircle(LifecycleOwner lifecycleOwner) {
-        this.lifecycleOwner = lifecycleOwner;
-        this.lifecycleOwner.getLifecycle().addObserver(new LifecycleEventObserver() {
-            @Override
-            public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
-                switch (event) {
-                    case ON_START:
-                        break;
-                }
-            }
-        });
-    }
-
+//    public void bindLifeCircle(LifecycleOwner lifecycleOwner) {
+//        this.lifecycleOwner = lifecycleOwner;
+//        this.lifecycleOwner.getLifecycle().addObserver(new LifecycleEventObserver() {
+//            @Override
+//            public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
+//                switch (event) {
+//                    case ON_START:
+//                        break;
+//                }
+//            }
+//        });
+//    }
     private List<OperatorItemBean> initData() {
         List<OperatorItemBean> operatorItemBeans = new ArrayList<>();
         operatorItemBeans.add(new OperatorItemBean("+", "(加法)将两个数相加", "算数操作符", true, false));
