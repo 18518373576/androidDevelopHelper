@@ -1,5 +1,6 @@
 package com.example.developerandroidx.view.navigationView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -13,7 +14,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.developerandroidx.view.navigationView.adapter.NavigationFragmentAdapter;
 import com.example.developerandroidx.view.navigationView.bean.NavigationBean;
 import com.example.developerandroidx.view.navigationView.utils.PixelTransformUtil;
-import com.kongzue.dialog.v3.Notification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
  * 参考:
  * 描述: 首页导航，以底部按钮导航，以viewpager加载fragment，最多添加5个
  */
-public class NavigationView extends LinearLayout implements View.OnClickListener {
+public class NavigationView extends LinearLayout implements View.OnClickListener, ViewPager.OnPageChangeListener {
     private Context context;
     private LayoutParams paramsPager;
     private ViewPager pager;
@@ -56,12 +56,16 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     /**
      * 初始化，添加viewpager和底部导航栏
      */
+    @SuppressLint("ResourceType")
     private void initView() {
 
         //设置linearLayout为竖向排列
         setOrientation(VERTICAL);
         pager = new ViewPager(context);
-//        pager.setOffscreenPageLimit(5);
+        //必须添加一个ID，否则报错： ViewPager with adapter com.example.developerandroidx.view.navigationView.adapter.NavigationFragmentAdapter@8c3e8eb requires a view id
+        pager.setId(1000);
+        pager.setOverScrollMode(OVER_SCROLL_NEVER);
+        pager.setOffscreenPageLimit(5);
 
         paramsPager = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         paramsPager.weight = 1000;
@@ -85,7 +89,7 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
             return;
         }
         this.navigationList = navigationList;
-
+        this.fragmentManager = fragmentManager;
         setNavigation();
     }
 
@@ -108,7 +112,8 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
         //设置viewPager
         adapter = new NavigationFragmentAdapter(fragmentManager, navigationList);
         pager.setAdapter(adapter);
-        pager.setCurrentItem(1);
+        pager.setCurrentItem(0);
+        pager.addOnPageChangeListener(this);
         //设置底栏
         items = new ArrayList<>();
         for (int i = 0; i < navigationList.size(); i++) {
@@ -124,6 +129,22 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     }
 
     /**
+     * 释放资源
+     */
+    public void release() {
+        pager.removeOnPageChangeListener(this);
+        Context context = null;
+        LayoutParams paramsPager = null;
+        ViewPager pager = null;
+        LinearLayout navigation = null;
+        LayoutParams paramsNavigation = null;
+        List<NavigationBean> navigationList = null;
+        List<NavigationItem> items = null;
+        FragmentManager fragmentManager = null;
+        NavigationFragmentAdapter adapter = null;
+    }
+
+    /**
      * 设置navigation栏背景颜色
      *
      * @param colorId
@@ -132,9 +153,11 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
         navigation.setBackgroundResource(colorId);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onClick(View view) {
 
+        pager.setCurrentItem(view.getId());
         setChecked(view.getId());
     }
 
@@ -147,5 +170,22 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
                 items.get(i).setCheckColor(unCheckedColorId);
             }
         }
+    }
+
+    //viewpager滑动监听
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+        setChecked(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

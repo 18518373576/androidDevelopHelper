@@ -28,6 +28,7 @@ public class NavigationViewActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
+        setTitle("自定义NavigationView");
         nv_view.setNavigationBG(R.color.bg_interface);
         List<NavigationBean> list = new ArrayList<>();
         list.add(new NavigationBean(new AndroidFragment(), "Android", R.mipmap.navigation_android));
@@ -35,5 +36,11 @@ public class NavigationViewActivity extends BaseActivity {
         list.add(new NavigationBean(new WidgetFragment(), "Widget", R.mipmap.navigation_widget));
         nv_view.setNavigationPager(getSupportFragmentManager(), list);
         nv_view.setNavitionSelector(R.color.colorMain, R.color.textColor);
+    }
+
+    @Override
+    public void onDestroy() {
+        nv_view.release();
+        super.onDestroy();
     }
 }
