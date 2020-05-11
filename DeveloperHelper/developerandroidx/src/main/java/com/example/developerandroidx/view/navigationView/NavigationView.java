@@ -34,6 +34,7 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     private List<NavigationItem> items;
     private FragmentManager fragmentManager;
     private NavigationFragmentAdapter adapter;
+    private OnNavigationChangedListener changListener;
 
     public NavigationView(Context context) {
         super(context);
@@ -133,15 +134,24 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
      */
     public void release() {
         pager.removeOnPageChangeListener(this);
-        Context context = null;
-        LayoutParams paramsPager = null;
-        ViewPager pager = null;
-        LinearLayout navigation = null;
-        LayoutParams paramsNavigation = null;
-        List<NavigationBean> navigationList = null;
-        List<NavigationItem> items = null;
-        FragmentManager fragmentManager = null;
-        NavigationFragmentAdapter adapter = null;
+        context = null;
+        paramsPager = null;
+        pager = null;
+        navigation = null;
+        paramsNavigation = null;
+        navigationList = null;
+        items = null;
+        fragmentManager = null;
+        adapter = null;
+        changListener = null;
+    }
+
+    public interface OnNavigationChangedListener {
+        public void OnNavigationChanged(int position);
+    }
+
+    public void setOnNavigationChangListener(OnNavigationChangedListener changListener) {
+        this.changListener = changListener;
     }
 
     /**
@@ -181,6 +191,7 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     @Override
     public void onPageSelected(int position) {
 
+        changListener.OnNavigationChanged(position);
         setChecked(position);
     }
 

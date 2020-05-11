@@ -1,12 +1,14 @@
 package com.example.developerandroidx;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import com.example.developerandroidx.base.BaseActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.developerandroidx.ui.android.AndroidFragment;
+import com.example.developerandroidx.ui.java.JavaFragment;
+import com.example.developerandroidx.ui.widget.WidgetFragment;
+import com.example.developerandroidx.view.navigationView.NavigationView;
+import com.example.developerandroidx.view.navigationView.bean.NavigationBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -14,10 +16,12 @@ import butterknife.BindView;
  * 关于对lifecircle的理解
  * 参考：https://www.jianshu.com/p/b1208012b268
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationChangedListener {
 
-    @BindView(R.id.nav_view)
-    BottomNavigationView navView;
+    @BindView(R.id.nv_view)
+    NavigationView nv_view;
+
+    private ArrayList<NavigationBean> list;
 
     /**
      * 绑定layout
@@ -34,14 +38,30 @@ public class MainActivity extends BaseActivity {
      */
     @Override
     protected void initView() {
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.navigation_android, R.id.navigation_java, R.id.navigation_widget).build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+        list = new ArrayList<>();
+        list.add(new NavigationBean(new AndroidFragment(), "Android", R.mipmap.navigation_android));
+        list.add(new NavigationBean(new JavaFragment(), "Java", R.mipmap.navigation_java));
+        list.add(new NavigationBean(new WidgetFragment(), "Widget", R.mipmap.navigation_widget));
+        
+        nv_view.setNavigationBG(R.color.bg_interface);
+        nv_view.setNavigationPager(getSupportFragmentManager(), list);
+        nv_view.setNavitionSelector(R.color.colorMain, R.color.textColor);
+        nv_view.setOnNavigationChangListener(this);
+
+        setTitle(list.get(0).navigationName);
+        iv_back.setClickable(false);
+        iv_back.setImageResource(list.get(0).navigationMipmapId);
     }
 
     @Override
-    protected void initData() {
+    public void onDestroy() {
+        nv_view.release();
+        super.onDestroy();
+    }
 
+    @Override
+    public void OnNavigationChanged(int position) {
+        setTitle(list.get(position).navigationName);
+        iv_back.setImageResource(list.get(position).navigationMipmapId);
     }
 }

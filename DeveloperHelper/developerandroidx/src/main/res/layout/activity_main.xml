@@ -10,33 +10,13 @@
     <!--    app:layout_constraintBottom_toTopOf="@id/nav_view" 不知道为什么没起作用
     设置了一个layout_marginBottom，使用的是actionBar的高度-->
 
-    <include
-        layout="@layout/title_bar"
-        android:visibility="gone" />
+    <include layout="@layout/title_bar" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <com.example.developerandroidx.view.navigationView.NavigationView
+        android:id="@+id/nv_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@id/nav_view"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/mobile_navigation" />
+        android:layout_marginTop="@dimen/titleBarHeigt"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

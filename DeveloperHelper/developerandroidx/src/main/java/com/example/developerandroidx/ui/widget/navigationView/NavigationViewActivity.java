@@ -1,7 +1,5 @@
 package com.example.developerandroidx.ui.widget.navigationView;
 
-import android.os.Bundle;
-
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.android.AndroidFragment;
@@ -29,6 +27,7 @@ public class NavigationViewActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         setTitle("自定义NavigationView");
+
         nv_view.setNavigationBG(R.color.bg_interface);
         List<NavigationBean> list = new ArrayList<>();
         list.add(new NavigationBean(new AndroidFragment(), "Android", R.mipmap.navigation_android));
