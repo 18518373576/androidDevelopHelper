@@ -1,5 +1,6 @@
 package com.example.developerandroidx.ui.android.dialog;
 
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.kongzue.dialog.interfaces.OnDialogButtonClickListener;
+import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.interfaces.OnInputDialogButtonClickListener;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.util.BaseDialog;
@@ -150,9 +152,24 @@ public class KongZueDialogActivity extends BaseActivity {
                 TipDialog.show((AppCompatActivity) context, "Error", TipDialog.TYPE.ERROR);
                 break;
             case R.id.btn_wait_dialog:
-                WaitDialog.build((AppCompatActivity) context)
-                        .setTipTime(2000)
-                        .show();
+//                WaitDialog.build((AppCompatActivity) context).show();
+                WaitDialog.show((AppCompatActivity) context, "正在加载");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                TipDialog.show((AppCompatActivity) context, "成功！", TipDialog.TYPE.SUCCESS).setOnDismissListener(new OnDismissListener() {
+                                    @Override
+                                    public void onDismiss() {
+
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }, 2000);
                 break;
         }
     }

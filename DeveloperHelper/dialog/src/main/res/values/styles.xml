@@ -21,7 +21,8 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:backgroundDimEnabled">true</item>
+        <!--        设置为true弹框背景为黑色半透明，false为亮色纯透明-->
+        <item name="android:backgroundDimEnabled">false</item>
         <!--        设置背景全透明，提示框和加载框会用到-->
         <item name="android:backgroundDimAmount">0.0</item>
     </style>

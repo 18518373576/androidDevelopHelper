@@ -1,4 +1,4 @@
-package com.example.developerandroidx.view;
+package com.example.developerandroidx.view.navigationView;
 
 /**
  * Date: 2020/5/10 22:49
