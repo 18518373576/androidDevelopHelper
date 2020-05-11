@@ -164,5 +164,8 @@ public class ActionBarActivity extends BaseActivity {
         super.initView();
         actionBar = getSupportActionBar();
         actionBar.setTitle("actionBar");
+
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
     }
 }

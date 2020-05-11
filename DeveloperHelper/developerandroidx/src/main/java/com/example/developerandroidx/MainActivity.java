@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         list.add(new NavigationBean(new AndroidFragment(), "Android", R.mipmap.navigation_android));
         list.add(new NavigationBean(new JavaFragment(), "Java", R.mipmap.navigation_java));
         list.add(new NavigationBean(new WidgetFragment(), "Widget", R.mipmap.navigation_widget));
-        
+
         nv_view.setNavigationBG(R.color.bg_interface);
         nv_view.setNavigationPager(getSupportFragmentManager(), list);
         nv_view.setNavitionSelector(R.color.colorMain, R.color.textColor);
