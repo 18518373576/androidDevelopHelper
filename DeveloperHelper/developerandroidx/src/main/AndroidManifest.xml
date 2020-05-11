@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".ui.android.activity.transitionAnimation.TransitionToActivity"></activity>
+        <activity android:name=".ui.widget.navigationView.NavigationViewActivity"></activity>
+        <activity android:name=".ui.android.activity.transitionAnimation.TransitionToActivity" />
         <activity android:name=".ui.android.activity.transitionAnimation.TransitionAnimationActivity" />
         <activity
             android:name=".ui.android.activity.activityforResult.ForResultActivity"

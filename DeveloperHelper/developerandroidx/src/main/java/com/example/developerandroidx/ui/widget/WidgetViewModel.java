@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.bean.FunctionItemBean;
 import com.example.developerandroidx.ui.widget.actionBar.ActionBarActivity;
+import com.example.developerandroidx.ui.widget.navigationView.NavigationViewActivity;
 import com.example.developerandroidx.utils.RouteUtil;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class WidgetViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("CardView", R.mipmap.icon_card_view, ""));
         functionList.add(new FunctionItemBean("WebView", R.mipmap.icon_web_view, ""));
         functionList.add(new FunctionItemBean("CalendarView", R.mipmap.icon_web_view, ""));
+        functionList.add(new FunctionItemBean("Navigation", R.mipmap.icon_web_view, RouteUtil.getDestination(NavigationViewActivity.class)));
 
         return functionList;
     }
