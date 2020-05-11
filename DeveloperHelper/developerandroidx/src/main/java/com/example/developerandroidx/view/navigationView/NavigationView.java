@@ -147,7 +147,7 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     }
 
     public interface OnNavigationChangedListener {
-        public void OnNavigationChanged(int position);
+        void OnNavigationChanged(int position);
     }
 
     public void setOnNavigationChangListener(OnNavigationChangedListener changListener) {
@@ -191,7 +191,9 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     @Override
     public void onPageSelected(int position) {
 
-        changListener.OnNavigationChanged(position);
+        if (changListener != null) {
+            changListener.OnNavigationChanged(position);
+        }
         setChecked(position);
     }
 

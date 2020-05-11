@@ -1,5 +1,7 @@
 package com.example.developerandroidx;
 
+import android.view.View;
+
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.android.AndroidFragment;
 import com.example.developerandroidx.ui.java.JavaFragment;
@@ -50,6 +52,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         setTitle(list.get(0).navigationName);
         iv_back.setClickable(false);
+        iv_back.setVisibility(View.GONE);
         iv_back.setImageResource(list.get(0).navigationMipmapId);
     }
 
