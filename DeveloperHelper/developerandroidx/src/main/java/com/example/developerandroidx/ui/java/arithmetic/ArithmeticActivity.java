@@ -47,10 +47,10 @@ public class ArithmeticActivity extends BaseActivity {
      * @param rootView
      */
     private void bubbleSort(View rootView) {
-        TextView point;
         LinearLayout.LayoutParams params;
         LinearLayout ll_content = rootView.findViewById(R.id.ll_content);
         for (int i = 0; i < 6; i++) {
+            TextView point;
             point = new TextView(context);
             params = new LinearLayout.LayoutParams(PixelTransformUtil.dip2px(context, 35), PixelTransformUtil.dip2px(context, 35));
             int margin = PixelTransformUtil.dip2px(context, 5);
@@ -61,8 +61,9 @@ public class ArithmeticActivity extends BaseActivity {
             point.setTextSize(14);
             point.setText("1");
             point.setGravity(Gravity.CENTER);
-            point.startAnimation(AnimUtil.getInstance().getScaleAnim(400, 400 + i * 100));
             ll_content.addView(point);
+
+            point.startAnimation(AnimUtil.getInstance().getScaleAnim(400, 400 + i * 100));
         }
     }
 }
