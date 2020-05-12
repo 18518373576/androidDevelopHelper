@@ -61,7 +61,7 @@ public class ArithmeticActivity extends BaseActivity {
             point.setTextSize(14);
             point.setText("1");
             point.setGravity(Gravity.CENTER);
-            point.startAnimation(AnimUtil.getInstance().getScaleAnim(500, 500 + i * 100));
+            point.startAnimation(AnimUtil.getInstance().getScaleAnim(400, 400 + i * 100));
             ll_content.addView(point);
         }
     }

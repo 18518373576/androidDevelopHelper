@@ -1,5 +1,6 @@
 package com.example.developerandroidx.utils;
 
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.ScaleAnimation;
@@ -51,6 +52,7 @@ public class AnimUtil {
         animation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, 1, 0.5f);
         animation.setDuration(duration);
         animation.setStartOffset(startOffset);
+        animation.setInterpolator(new AccelerateInterpolator());
         return animation;
     }
 
