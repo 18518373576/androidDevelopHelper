@@ -257,4 +257,31 @@ public class CodeVariate {
                 "   2.在activity或fragment执行的线程操作，或绑定例如：eventBus，butterknife，在onDestory\n" +
                 "要终止线程和解绑。";
     }
+
+    //android/animaiton
+    public String getCode_6() {
+        return "参考：\n" +
+                "链接：https://www.jianshu.com/p/16e0d4e92bb2 作者：Power_android 来源：简书\n\n" +
+                "平移动画 < translate >     TranslateAnimation     移动View\n" +
+                "缩放动画 < scale >         ScaleAnimation         方法或缩小View\n" +
+                "旋转动画 < rotate >        RotateAnimation        旋转view\n" +
+                "透明动画 < alpha >         AlphaAnimation         改变View的透明度\n" +
+                "Animation属性:\n" +
+                "android:duration            setDuration(long)               动画持续时间，毫秒为单位\n" +
+                "android:ShareInterpolator   setInterpolator(Interpolator)   设定插值器（指定的动画效果，譬如回弹等）\n" +
+                "android:fillAfter           setFillAfter(boolean)           控件动画结束时是否保持动画最后的状态\n" +
+                "android:fillBefore          setFillBefore(boolean)          控件动画结束时是否还原到开始动画前的状态\n" +
+                "android:repeatMode          setRepeatMode(int)              重复类型有两个值，reverse表示倒序回放，restart表示从头播放\n" +
+                "android:startOffset         setStartOffset(long)            调用start函数之后等待开始运行的时间，单位为毫秒\n" +
+                "插值器:\n" +
+                "AccelerateDecelerateInterpolator   @android:anim/accelerate_decelerate_interpolator    动画始末速率较慢，中间加速\n" +
+                "AccelerateInterpolator             @android:anim/accelerate_interpolator               动画开始速率较慢，之后慢慢加速\n" +
+                "AnticipateInterpolator             @android:anim/anticipate_interpolator               开始的时候从后向前甩\n" +
+                "AnticipateOvershootInterpolator    @android:anim/anticipate_overshoot_interpolator     类似上面AnticipateInterpolator\n" +
+                "BounceInterpolator                 @android:anim/bounce_interpolator                   动画结束时弹起\n" +
+                "CycleInterpolator                  @android:anim/cycle_interpolator                    循环播放速率改变为正弦曲线\n" +
+                "DecelerateInterpolator             @android:anim/decelerate_interpolator               动画开始快然后慢\n" +
+                "LinearInterpolator                 @android:anim/linear_interpolator                   动画匀速改变\n" +
+                "OvershootInterpolator              @android:anim/overshoot_interpolator                向前弹出一定值之后回到原来位置\n";
+    }
 }

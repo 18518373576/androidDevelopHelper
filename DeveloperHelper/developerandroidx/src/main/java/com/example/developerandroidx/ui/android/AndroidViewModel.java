@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.bean.FunctionItemBean;
 import com.example.developerandroidx.ui.android.activity.ActivityAnalysisActivity;
+import com.example.developerandroidx.ui.android.animation.AnimationActivity;
 import com.example.developerandroidx.ui.android.architecture.ArchitectureIndexActivity;
 import com.example.developerandroidx.ui.android.dialog.DialogIndexActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
@@ -42,7 +43,7 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Sqlite", R.mipmap.icon_sqlite, ""));
         functionList.add(new FunctionItemBean("数据请求", R.mipmap.icon_internet, ""));
         functionList.add(new FunctionItemBean("RXjava", R.mipmap.icon_rxjava, ""));
-        functionList.add(new FunctionItemBean("Animation", R.mipmap.icon_animation, ""));
+        functionList.add(new FunctionItemBean("Animation", R.mipmap.icon_animation, RouteUtil.getDestination(AnimationActivity.class)));
         functionList.add(new FunctionItemBean("JNI", R.mipmap.icon_jni, ""));
         functionList.add(new FunctionItemBean("扫码", R.mipmap.icon_scan, ""));
         functionList.add(new FunctionItemBean("架构", R.mipmap.icon_architecture, RouteUtil.getDestination(ArchitectureIndexActivity.class)));
