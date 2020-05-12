@@ -3,6 +3,7 @@ package com.example.developerandroidx.ui.android.animation;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
 
 import com.example.developerandroidx.R;
@@ -36,6 +37,7 @@ public class AnimationActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.btn_translate://平移动画
                 animation = AnimationUtils.loadAnimation(context, R.anim.translate);
+                animation.setInterpolator(new BounceInterpolator());
                 v.startAnimation(animation);
                 break;
             case R.id.btn_scale://缩放
@@ -44,6 +46,7 @@ public class AnimationActivity extends BaseActivity {
                 break;
             case R.id.btn_rotate://旋转
                 animation = AnimationUtils.loadAnimation(context, R.anim.rotate);
+                animation.setInterpolator(new BounceInterpolator());
                 v.startAnimation(animation);
                 break;
             case R.id.btn_alpha://渐变
