@@ -60,7 +60,6 @@ public class AnimUtil {
         animation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
         animation.setDuration(duration);
         animation.setStartOffset(startOffset);
-        animation.setFillAfter(true);
         return animation;
     }
 }

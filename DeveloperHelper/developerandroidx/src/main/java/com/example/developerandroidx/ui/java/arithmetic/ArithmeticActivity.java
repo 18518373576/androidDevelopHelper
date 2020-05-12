@@ -54,6 +54,7 @@ public class ArithmeticActivity extends BaseActivity {
         LinearLayout.LayoutParams params;
         LinearLayout ll_content = rootView.findViewById(R.id.ll_content);
         List<TextView> points = new ArrayList<>();
+        List<Integer> pointsNum = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             TextView point;
             point = new TextView(context);
@@ -65,72 +66,65 @@ public class ArithmeticActivity extends BaseActivity {
             point.setTextColor(getResources().getColor(R.color.white));
             point.setTextSize(14);
             //Math.random()返回一个0-1之间的随机数
-            point.setText(String.valueOf((int) (Math.random() * 100)));
+            int random = (int) (Math.random() * 100);
+            point.setText(String.valueOf(random));
             point.setGravity(Gravity.CENTER);
             point.startAnimation(AnimUtil.getInstance().getScaleAnim(400, 400 + i * 100));
             ll_content.addView(point);
             points.add(point);
+            pointsNum.add(random);
         }
         rootView.findViewById(R.id.btn_sort).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //排序
-                for (int i = 0; i < points.size() - 1; i++) {
-                    for (int j = i + 1; j < points.size(); j++) {
-                        int pointI = Integer.parseInt(points.get(i).getText().toString());
-                        int pointJ = Integer.parseInt(points.get(j).getText().toString());
-                        if (pointI > pointJ) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            for (int i = 0; i < points.size() - 1; i++) {
+                                for (int j = i + 1; j < points.size(); j++) {
+                                    int pointI = pointsNum.get(i);
+                                    int pointJ = pointsNum.get(j);
 
-//                            float pIX = points.get(i).getX();
-//                            float pJX = points.get(j).getX();
-//
-                            points.get(i).setText(String.valueOf(pointJ));
-                            points.get(j).setText(String.valueOf(pointI));
+                                    TextView tvPointI = points.get(i);
+                                    TextView tvPointJ = points.get(j);
 
-//                            Animation animI = AnimUtil.getInstance().getTranslateAnim(0f, pJX - pIX,
-//                                    0f, 0f, 500, 0);
-//                            int finalI = i;
-//                            animI.setAnimationListener(new Animation.AnimationListener() {
-//                                @Override
-//                                public void onAnimationStart(Animation animation) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onAnimationEnd(Animation animation) {
-//                                    points.get(finalI).setX(pJX);
-//                                }
-//
-//                                @Override
-//                                public void onAnimationRepeat(Animation animation) {
-//
-//                                }
-//                            });
-//                            points.get(i).startAnimation(animI);
-//
-//                            Animation animJ = AnimUtil.getInstance().getTranslateAnim(0f, pIX - pJX,
-//                                    0f, 0f, 500, 0);
-//                            int finalJ = j;
-//                            animJ.setAnimationListener(new Animation.AnimationListener() {
-//                                @Override
-//                                public void onAnimationStart(Animation animation) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onAnimationEnd(Animation animation) {
-//                                    points.get(finalJ).setX(pIX);
-//                                }
-//
-//                                @Override
-//                                public void onAnimationRepeat(Animation animation) {
-//
-//                                }
-//                            });
-//                            points.get(j).startAnimation(animJ);
+                                    if (pointI > pointJ) {
+
+                                        float pIX = points.get(i).getX();
+                                        float pJX = points.get(j).getX();
+
+                                        pointsNum.set(i, pointJ);
+                                        pointsNum.set(j, pointI);
+
+                                        Animation animI = AnimUtil.getInstance().getTranslateAnim(0f, pJX - pIX,
+                                                0f, 0f, 500, 0);
+                                        points.get(i).startAnimation(animI);
+
+                                        Animation animJ = AnimUtil.getInstance().getTranslateAnim(0f, pIX - pJX,
+                                                0f, 0f, 500, 0);
+                                        points.get(j).startAnimation(animJ);
+
+                                        try {
+                                            Thread.sleep(1000);
+                                            points.get(i).setX(pJX);
+                                            points.get(j).setX(pIX);
+
+                                            points.set(i, tvPointJ);
+                                            points.set(j, tvPointI);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
-                }
+                }).start();
+
             }
         });
 
