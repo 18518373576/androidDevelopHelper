@@ -199,7 +199,8 @@ public class CodeVariate {
                 "\n隐式启动：\n" +
                 "例：Intent intent = new Intent(\"com.example.developerandroidx.ActionIntentActivity\");\n" +
                 "   startActivity(intent);\n" +
-                "以下内容摘录自：作者：menteelin 链接：https://www.jianshu.com/p/12c6253f1851 来源：简书\n" +
+                "以下内容参考:\n" +
+                "链接：https://www.jianshu.com/p/12c6253f1851 作者：menteelin 来源：简书\n" +
                 "<action的匹配规则>\n" +
                 "action在Intent-filter可以设置多条\n" +
                 "intent中必须指定action否则匹配失败且intent中action最多只有一条\n" +
