@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".ui.widget.webView.TechnologyWebviewActivity"></activity>
+        <activity android:name=".ui.java.arithmetic.ArithmeticActivity"></activity>
+        <activity android:name=".ui.widget.webView.TechnologyWebviewActivity" />
         <activity android:name=".ui.android.animation.AnimationActivity" />
         <activity android:name=".ui.widget.navigationView.NavigationViewActivity" />
         <activity android:name=".ui.android.activity.transitionAnimation.TransitionToActivity" />
