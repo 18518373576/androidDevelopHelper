@@ -78,15 +78,16 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
                     TextView tvPointI = points.get(i);
                     TextView tvPointJ = points.get(j);
 
-                    Log.e("打印排序：",i+"*"+j+ pointsNum.toString());
-                    Log.e("打印排序tvPointIX：", tvPointI.getX() + "");
-                    Log.e("打印排序tvPointJX：", tvPointJ.getX() + "");
+                    float iX = pointsX.get(i);
+                    float jX = pointsX.get(j);
 
-                    pointsNum.set(i, pointJ);
-                    pointsNum.set(j, pointI);
+                    Log.e("打印排序：", i + "*" + j + pointsNum.toString() + "*" + pointsX.toString());
+                    Log.e("打印排序tvPointIX：", "获取：" + tvPointI.getX() + "保存:" + iX);
+                    Log.e("打印排序tvPointJX：", "获取：" + tvPointJ.getX() + "保存:" + jX);
 
-                    float[] iTranslationXs = new float[]{tvPointI.getTranslationX(), tvPointJ.getX() - tvPointI.getX()};
-                    float[] jTranslationXs = new float[]{tvPointJ.getTranslationX(), tvPointI.getX() - tvPointJ.getX()};
+
+                    float[] iTranslationXs = new float[]{tvPointI.getTranslationX(), jX - iX};
+                    float[] jTranslationXs = new float[]{tvPointJ.getTranslationX(), iX - jX};
 
                     ObjectAnimator iAnimator = ObjectAnimator.ofFloat(tvPointI, "translationX", iTranslationXs);
                     iAnimator.setDuration(500);
@@ -97,6 +98,12 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
                     iAnimator.start();
                     jAnimator.start();
 
+                    pointsNum.set(i, pointJ);
+                    pointsNum.set(j, pointI);
+
+                    pointsX.set(i, jX);
+                    pointsX.set(j, iX);
+
                     points.set(i, tvPointJ);
                     points.set(j, tvPointI);
                     break;
@@ -106,6 +113,7 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
 
     private List<TextView> points;
     private List<Integer> pointsNum;
+    private List<Float> pointsX;
 
     /**
      * 冒泡排序
@@ -117,6 +125,7 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
         LinearLayout ll_content = rootView.findViewById(R.id.ll_content);
         points = new ArrayList<>();
         pointsNum = new ArrayList<>();
+        pointsX = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             //随机生成一组100以内的数，用于排序
             TextView point;
@@ -192,6 +201,9 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
 //                                    }
 //                                }
 //                            }
+                            for (TextView tv : points) {
+                                pointsX.add(tv.getX());
+                            }
                             //使用属性动画修改
                             for (int i = 0; i < pointsNum.size() - 1; i++) {
                                 for (int j = i + 1; j < pointsNum.size(); j++) {
