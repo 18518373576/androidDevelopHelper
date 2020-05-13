@@ -101,11 +101,11 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
                     pointsNum.set(i, pointJ);
                     pointsNum.set(j, pointI);
 
-                    pointsX.set(i, jX);
-                    pointsX.set(j, iX);
+//                    pointsX.set(i, jX);
+//                    pointsX.set(j, iX);
 
-                    points.set(i, tvPointJ);
-                    points.set(j, tvPointI);
+//                    points.set(i, tvPointJ);
+//                    points.set(j, tvPointI);
                     break;
             }
         }
@@ -223,8 +223,8 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
                                         try {
                                             Thread.sleep(2000);
 
-                                            points.set(i, tvPointJ);
-                                            points.set(j, tvPointI);
+//                                            points.set(i, tvPointJ);
+//                                            points.set(j, tvPointI);
 
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
