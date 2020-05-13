@@ -13,6 +13,7 @@ import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.AnimUtil;
 import com.example.developerandroidx.utils.MyAnimationListener;
 import com.example.developerandroidx.view.navigationView.utils.PixelTransformUtil;
+import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.v3.FullScreenDialog;
 
 import java.util.ArrayList;
@@ -20,7 +21,10 @@ import java.util.List;
 
 import butterknife.OnClick;
 
-public class ArithmeticActivity extends BaseActivity {
+public class ArithmeticActivity extends BaseActivity implements OnDismissListener {
+
+    private FullScreenDialog dialog;
+    private Thread thread;
 
     @Override
     protected int bindLayout() {
@@ -41,12 +45,14 @@ public class ArithmeticActivity extends BaseActivity {
 //                    showNotify("kong");
 //                    return;
 //                }
-                FullScreenDialog.show((AppCompatActivity) context, R.layout.view_arithmetic_dialog, new FullScreenDialog.OnBindView() {
+                dialog = FullScreenDialog.show((AppCompatActivity) context, R.layout.view_arithmetic_dialog, new FullScreenDialog.OnBindView() {
                     @Override
                     public void onBind(FullScreenDialog dialog, View rootView) {
+
                         bubbleSort(rootView);
                     }
                 });
+                dialog.setOnDismissListener(this);
                 break;
         }
     }
@@ -93,7 +99,7 @@ public class ArithmeticActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //排序
-                new Thread(new Runnable() {
+                thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
@@ -114,20 +120,21 @@ public class ArithmeticActivity extends BaseActivity {
                                         pointsNum.set(j, pointI);
 
                                         Animation animI = AnimUtil.getInstance().getTranslateAnim(0f, pJX - pIX,
-                                                0f, 0f, 500, 0);
+                                                0f, 0f, 800, 0);
                                         points.get(i).startAnimation(animI);
 
                                         Animation animJ = AnimUtil.getInstance().getTranslateAnim(0f, pIX - pJX,
-                                                0f, 0f, 500, 0);
+                                                0f, 0f, 800, 0);
                                         points.get(j).startAnimation(animJ);
 
                                         try {
-                                            Thread.sleep(1000);
+                                            Thread.sleep(850);
                                             points.get(i).setX(pJX);
                                             points.get(j).setX(pIX);
-
+                                            Thread.sleep(300);
                                             points.set(i, tvPointJ);
                                             points.set(j, tvPointI);
+                                            Thread.sleep(300);
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
@@ -138,9 +145,21 @@ public class ArithmeticActivity extends BaseActivity {
                             e.printStackTrace();
                         }
                     }
-                }).start();
+                });
+                thread.start();
             }
         });
 
+    }
+
+    /**
+     * dialog退出的时候释放资源
+     */
+    @Override
+    public void onDismiss() {
+        if (thread != null) {
+            thread.interrupt();
+            thread = null;
+        }
     }
 }
