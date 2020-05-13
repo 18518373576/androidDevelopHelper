@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.AnimUtil;
+import com.example.developerandroidx.utils.MyAnimationListener;
 import com.example.developerandroidx.view.navigationView.utils.PixelTransformUtil;
 import com.kongzue.dialog.v3.FullScreenDialog;
 
@@ -35,6 +36,11 @@ public class ArithmeticActivity extends BaseActivity {
     public void click(View v) {
         switch (v.getId()) {
             case R.id.btn_bubble_sort:
+                //测试没有执行setTag调用getTag是否为空
+//                if (v.getTag() == null) {
+//                    showNotify("kong");
+//                    return;
+//                }
                 FullScreenDialog.show((AppCompatActivity) context, R.layout.view_arithmetic_dialog, new FullScreenDialog.OnBindView() {
                     @Override
                     public void onBind(FullScreenDialog dialog, View rootView) {
@@ -56,6 +62,7 @@ public class ArithmeticActivity extends BaseActivity {
         List<TextView> points = new ArrayList<>();
         List<Integer> pointsNum = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
+            //随机生成一组100以内的数，用于排序
             TextView point;
             point = new TextView(context);
             params = new LinearLayout.LayoutParams(PixelTransformUtil.dip2px(context, 35), PixelTransformUtil.dip2px(context, 35));
@@ -69,8 +76,16 @@ public class ArithmeticActivity extends BaseActivity {
             int random = (int) (Math.random() * 100);
             point.setText(String.valueOf(random));
             point.setGravity(Gravity.CENTER);
-            point.startAnimation(AnimUtil.getInstance().getScaleAnim(400, 400 + i * 100));
+            Animation animScal = AnimUtil.getInstance().getScaleAnim(400, 400 + i * 100);
+            animScal.setAnimationListener(new MyAnimationListener() {
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    point.setText(String.valueOf(random));
+                }
+            });
+            point.startAnimation(animScal);
             ll_content.addView(point);
+            //记录每次数值的改变，和view位置的改变
             points.add(point);
             pointsNum.add(random);
         }
@@ -124,7 +139,6 @@ public class ArithmeticActivity extends BaseActivity {
                         }
                     }
                 }).start();
-
             }
         });
 

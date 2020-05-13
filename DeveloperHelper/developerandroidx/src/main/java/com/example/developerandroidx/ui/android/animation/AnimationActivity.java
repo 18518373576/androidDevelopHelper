@@ -1,24 +1,31 @@
 package com.example.developerandroidx.ui.android.animation;
 
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
+import android.widget.Button;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
-import com.example.developerandroidx.ui.widget.webView.TechnologyWebviewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
+import com.example.developerandroidx.utils.MyAnimationListener;
 import com.example.developerandroidx.utils.RouteUtil;
+import com.kongzue.dialog.v3.TipDialog;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
  * 参考：https://www.jianshu.com/p/16e0d4e92bb2
  */
 public class AnimationActivity extends BaseActivity {
+
+    @BindView(R.id.btn_translate)
+    Button btn_translate;
 
     @Override
     protected int bindLayout() {
@@ -38,6 +45,20 @@ public class AnimationActivity extends BaseActivity {
             case R.id.btn_translate://平移动画
                 animation = AnimationUtils.loadAnimation(context, R.anim.translate);
                 animation.setInterpolator(new BounceInterpolator());
+                animation.setFillAfter(true);
+                animation.setAnimationListener(new MyAnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+//                        Log.e("打印位置：", v.getX() + "#" + v.getY());
+                        btn_translate.setText("X:" + v.getX() + "\nY:" + v.getY());
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+//                        Log.e("打印位置：", v.getX() + "#" + v.getY());
+                        btn_translate.setText("X:" + v.getX() + "\nY:" + v.getY());
+                    }
+                });
                 v.startAnimation(animation);
                 break;
             case R.id.btn_scale://缩放
