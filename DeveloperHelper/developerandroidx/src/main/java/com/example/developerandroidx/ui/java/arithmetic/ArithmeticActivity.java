@@ -1,5 +1,9 @@
 package com.example.developerandroidx.ui.java.arithmetic;
 
+import android.animation.ObjectAnimator;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -57,6 +61,49 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
         }
     }
 
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+
+                case 100:
+
+                    int i = ((int[]) (msg.obj))[0];
+                    int j = ((int[]) (msg.obj))[1];
+
+                    int pointI = pointsNum.get(i);
+                    int pointJ = pointsNum.get(j);
+
+                    TextView tvPointI = points.get(i);
+                    TextView tvPointJ = points.get(j);
+
+                    pointsNum.set(i, pointJ);
+                    pointsNum.set(j, pointI);
+
+                    Log.e("打印排序：", pointsNum.toString());
+                    float[] iTranslationXs = new float[]{tvPointI.getTranslationX(), tvPointJ.getX() - tvPointI.getX()};
+                    float[] jTranslationXs = new float[]{tvPointJ.getTranslationX(), tvPointI.getX() - tvPointJ.getX()};
+
+                    ObjectAnimator iAnimator = ObjectAnimator.ofFloat(tvPointI, "translationX", iTranslationXs);
+                    iAnimator.setDuration(500);
+
+                    ObjectAnimator jAnimator = ObjectAnimator.ofFloat(tvPointJ, "translationX", jTranslationXs);
+                    jAnimator.setDuration(500);
+
+                    iAnimator.start();
+                    jAnimator.start();
+
+                    points.set(i, tvPointJ);
+                    points.set(j, tvPointI);
+                    break;
+            }
+        }
+    };
+
+    private List<TextView> points;
+    private List<Integer> pointsNum;
+
     /**
      * 冒泡排序
      *
@@ -65,8 +112,8 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
     private void bubbleSort(View rootView) {
         LinearLayout.LayoutParams params;
         LinearLayout ll_content = rootView.findViewById(R.id.ll_content);
-        List<TextView> points = new ArrayList<>();
-        List<Integer> pointsNum = new ArrayList<>();
+        points = new ArrayList<>();
+        pointsNum = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             //随机生成一组100以内的数，用于排序
             TextView point;
@@ -103,8 +150,48 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
                     @Override
                     public void run() {
                         try {
-                            for (int i = 0; i < points.size() - 1; i++) {
-                                for (int j = i + 1; j < points.size(); j++) {
+                            //尝试使用补间动画位移，总是位移，失败
+//                            for (int i = 0; i < points.size() - 1; i++) {
+//                                for (int j = i + 1; j < points.size(); j++) {
+//                                    int pointI = pointsNum.get(i);
+//                                    int pointJ = pointsNum.get(j);
+//
+//                                    TextView tvPointI = points.get(i);
+//                                    TextView tvPointJ = points.get(j);
+//
+//                                    if (pointI > pointJ) {
+//
+//                                        float pIX = points.get(i).getX();
+//                                        float pJX = points.get(j).getX();
+//
+//                                        pointsNum.set(i, pointJ);
+//                                        pointsNum.set(j, pointI);
+//
+//                                        Animation animI = AnimUtil.getInstance().getTranslateAnim(0f, pJX - pIX,
+//                                                0f, 0f, 800, 0);
+//                                        points.get(i).startAnimation(animI);
+//
+//                                        Animation animJ = AnimUtil.getInstance().getTranslateAnim(0f, pIX - pJX,
+//                                                0f, 0f, 800, 0);
+//                                        points.get(j).startAnimation(animJ);
+//
+//                                        try {
+//                                            Thread.sleep(850);
+//                                            points.get(i).setX(pJX);
+//                                            points.get(j).setX(pIX);
+//                                            Thread.sleep(300);
+//                                            points.set(i, tvPointJ);
+//                                            points.set(j, tvPointI);
+//                                            Thread.sleep(300);
+//                                        } catch (InterruptedException e) {
+//                                            e.printStackTrace();
+//                                        }
+//                                    }
+//                                }
+//                            }
+                            //使用属性动画修改
+                            for (int i = 0; i < pointsNum.size() - 1; i++) {
+                                for (int j = i + 1; j < pointsNum.size(); j++) {
                                     int pointI = pointsNum.get(i);
                                     int pointJ = pointsNum.get(j);
 
@@ -113,28 +200,13 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
 
                                     if (pointI > pointJ) {
 
-                                        float pIX = points.get(i).getX();
-                                        float pJX = points.get(j).getX();
-
-                                        pointsNum.set(i, pointJ);
-                                        pointsNum.set(j, pointI);
-
-                                        Animation animI = AnimUtil.getInstance().getTranslateAnim(0f, pJX - pIX,
-                                                0f, 0f, 800, 0);
-                                        points.get(i).startAnimation(animI);
-
-                                        Animation animJ = AnimUtil.getInstance().getTranslateAnim(0f, pIX - pJX,
-                                                0f, 0f, 800, 0);
-                                        points.get(j).startAnimation(animJ);
+                                        Message msg = new Message();
+                                        msg.what = 100;
+                                        msg.obj = new int[]{i, j};
+                                        handler.sendMessage(msg);
 
                                         try {
-                                            Thread.sleep(850);
-                                            points.get(i).setX(pJX);
-                                            points.get(j).setX(pIX);
-                                            Thread.sleep(300);
-                                            points.set(i, tvPointJ);
-                                            points.set(j, tvPointI);
-                                            Thread.sleep(300);
+                                            Thread.sleep(1000);
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
