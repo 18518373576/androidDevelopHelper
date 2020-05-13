@@ -78,10 +78,13 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
                     TextView tvPointI = points.get(i);
                     TextView tvPointJ = points.get(j);
 
+                    Log.e("打印排序：",i+"*"+j+ pointsNum.toString());
+                    Log.e("打印排序tvPointIX：", tvPointI.getX() + "");
+                    Log.e("打印排序tvPointJX：", tvPointJ.getX() + "");
+
                     pointsNum.set(i, pointJ);
                     pointsNum.set(j, pointI);
 
-                    Log.e("打印排序：", pointsNum.toString());
                     float[] iTranslationXs = new float[]{tvPointI.getTranslationX(), tvPointJ.getX() - tvPointI.getX()};
                     float[] jTranslationXs = new float[]{tvPointJ.getTranslationX(), tvPointI.getX() - tvPointJ.getX()};
 
@@ -206,7 +209,11 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
                                         handler.sendMessage(msg);
 
                                         try {
-                                            Thread.sleep(1000);
+                                            Thread.sleep(2000);
+
+                                            points.set(i, tvPointJ);
+                                            points.set(j, tvPointI);
+
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
@@ -223,6 +230,7 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
         });
 
     }
+
 
     /**
      * dialog退出的时候释放资源
