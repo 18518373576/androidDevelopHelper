@@ -1,5 +1,7 @@
 package com.example.developerandroidx.ui.android.animation;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -38,7 +40,7 @@ public class AnimationActivity extends BaseActivity {
     }
 
     @OnClick({R.id.btn_translate, R.id.btn_scale, R.id.btn_rotate, R.id.btn_alpha,
-            R.id.btn_shake, R.id.iv_code, R.id.btn_anim_set})
+            R.id.btn_shake, R.id.iv_code, R.id.btn_anim_set, R.id.btn_translate_animator})
     public void click(View v) {
         Animation animation;
         switch (v.getId()) {
@@ -50,7 +52,7 @@ public class AnimationActivity extends BaseActivity {
                     @Override
                     public void onAnimationStart(Animation animation) {
 //                        Log.e("打印位置：", v.getX() + "#" + v.getY());
-                        btn_translate.setText("X:" + v.getX() + "\nY:" + v.getY());
+                        btn_translate.setText("X:" + v.getTranslationX() + "\nY:" + v.getY());
                     }
 
                     @Override
@@ -87,6 +89,32 @@ public class AnimationActivity extends BaseActivity {
             case R.id.iv_code:
                 //参考文章
                 RouteUtil.goTo(context, RouteUtil.getDestination(CodeViewActivity.class), CodeVariate.getInstance().getCode_6());
+                break;
+            case R.id.btn_translate_animator:
+                //ObjectAnimator animator = ObjectAnimator.ofFloat(mButton, "alpha", 1f, 0f, 1f);
+                // 表示的是:
+                // 动画作用对象是mButton
+                // 动画作用的对象的属性是透明度alpha
+                // 动画效果是:常规 - 全透明 - 常规
+                //ObjectAnimator animator = ObjectAnimator.ofFloat(mButton, "rotation", 0f, 360f);
+                // 表示的是:
+                // 动画作用对象是mButton
+                // 动画作用的对象的属性是旋转alpha
+                // 动画效果是:0 - 360
+                //ObjectAnimator animator = ObjectAnimator.ofFloat(mButton, "translationX", curTranslationX, 300,curTranslationX);
+                // 表示的是:
+                // 动画作用对象是mButton
+                // 动画作用的对象的属性是X轴平移（在Y轴上平移同理，采用属性"translationY"
+                // 动画效果是:从当前位置平移到 x=1500 再平移到初始位置
+                //ObjectAnimator animator = ObjectAnimator.ofFloat(mButton, "scaleX", 1f, 3f, 1f);
+                // 表示的是:
+                // 动画作用对象是mButton
+                // 动画作用的对象的属性是X轴缩放
+                // 动画效果是:放大到3倍,再缩小到初始大小
+                float[] translationXs = new float[]{v.getTranslationX(), v.getWidth(), v.getTranslationX(), -v.getWidth(), v.getTranslationX()};
+                ObjectAnimator animator = ObjectAnimator.ofFloat(v, "translationX", translationXs);
+                animator.setDuration(3000);
+                animator.start();
                 break;
         }
     }

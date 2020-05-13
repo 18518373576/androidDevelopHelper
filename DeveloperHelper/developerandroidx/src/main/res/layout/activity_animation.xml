@@ -16,6 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tv_animation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp150"
+            android:gravity="center"
+            android:padding="@dimen/dp10"
+            android:text="Animation"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/btn_translate"
             style="@style/ComonButtonStyle"
@@ -26,7 +38,8 @@
         <Button
             android:id="@+id/btn_scale"
             style="@style/ComonButtonStyle"
-            android:layout_centerInParent="true"
+            android:layout_below="@+id/tv_animation"
+            android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/dp20"
             android:text="Scale" />
 
@@ -59,6 +72,27 @@
             android:layout_marginLeft="@dimen/dp20"
             android:layout_toRightOf="@id/btn_alpha"
             android:text="AnimSet" />
+
+        <TextView
+            android:id="@+id/tv_animator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_alpha"
+            android:layout_marginTop="@dimen/dp20"
+            android:gravity="center"
+            android:padding="@dimen/dp10"
+            android:text="Animator"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_translate_animator"
+            style="@style/ComonButtonStyle"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_below="@+id/tv_animator"
+            android:layout_centerHorizontal="true"
+            android:text="Translate" />
 
         <ImageView
             android:id="@+id/iv_code"
