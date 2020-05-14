@@ -7,7 +7,9 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.OvershootInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -152,19 +154,25 @@ public class BubbleSortDialog {
                                         pointsNum.set(i, pointJ);
                                         pointsNum.set(j, pointI);
 
-                                        points.get(i).setTextColor(context.getResources().getColor(R.color.colorMain));
-                                        points.get(j).setTextColor(context.getResources().getColor(R.color.colorMain));
 
-                                        Animation animI = AnimUtil.getInstance().getTranslateAnim(0f, pJX - pIX,
-                                                0f, 0f, 800, 0);
-                                        points.get(i).startAnimation(animI);
+                                        AnimationSet setI = new AnimationSet(true);
+                                        setI.addAnimation(AnimUtil.getInstance().getTranslateAnim(0f, pJX - pIX,
+                                                0f, 0f, 800, 0));
 
-                                        Animation animJ = AnimUtil.getInstance().getTranslateAnim(0f, pIX - pJX,
-                                                0f, 0f, 800, 0);
-                                        points.get(j).startAnimation(animJ);
+                                        points.get(i).startAnimation(setI);
+
+
+                                        AnimationSet setJ = new AnimationSet(true);
+                                        setJ.addAnimation(AnimUtil.getInstance().getTranslateAnim(0f, pIX - pJX,
+                                                0f, 0f, 800, 0));
+
+                                        points.get(j).startAnimation(setJ);
 
                                         try {
-                                            Thread.sleep(850);
+                                            Thread.sleep(300);
+                                            points.get(i).setTextColor(context.getResources().getColor(R.color.colorMain));
+                                            points.get(j).setTextColor(context.getResources().getColor(R.color.colorMain));
+                                            Thread.sleep(550);
 
                                             points.get(i).setX(pJX);
                                             points.get(j).setX(pIX);

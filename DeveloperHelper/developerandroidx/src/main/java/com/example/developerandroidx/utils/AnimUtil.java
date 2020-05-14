@@ -3,6 +3,7 @@ package com.example.developerandroidx.utils;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
+import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 
@@ -53,6 +54,16 @@ public class AnimUtil {
         animation.setDuration(duration);
         animation.setStartOffset(startOffset);
         animation.setInterpolator(new AccelerateInterpolator());
+        return animation;
+    }
+
+    public Animation getScaleAnim(float fromX, float toX, float fromY, float toY, int duration, int startOffset, Interpolator interpolator) {
+        animation = new ScaleAnimation(fromX, toX, fromY, toY, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(duration);
+        animation.setStartOffset(startOffset);
+        if (interpolator != null) {
+            animation.setInterpolator(interpolator);
+        }
         return animation;
     }
 
