@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * @作者： zjf 2020/5/14 11:25
  * @参考：
- * @描述：
+ * @描述： 冒泡排序
  */
 public class BubbleSortDialog {
 
@@ -68,6 +68,8 @@ public class BubbleSortDialog {
                     isDis = true;
                     thread.interrupt();
                     thread = null;
+                    points = null;
+                    pointsNum = null;
                 }
             }
         });
@@ -127,7 +129,7 @@ public class BubbleSortDialog {
                     @Override
                     public void run() {
                         try {
-                            //尝试使用补间动画位移，总是位移，失败,会闪动,因为补间动画执行完会回到原始位置。所以在动画开始之前只显示背景，视觉上看不见闪动了
+                            //尝试使用补间动画位移，失败,会闪动,因为补间动画执行完会回到原始位置。所以在动画开始之前只显示背景，视觉上看不见闪动了
                             for (int i = 0; i < points.size() - 1; i++) {
                                 if (isDis) {
                                     break;
@@ -180,7 +182,7 @@ public class BubbleSortDialog {
                                     }
                                 }
                             }
-                            //使用属性动画修改,失败
+                            //使用属性动画修改,失败,总是漂移
 //                            for (int i = 0; i < pointsNum.size() - 1; i++) {
 //                                for (int j = i + 1; j < pointsNum.size(); j++) {
 //                                    int pointI = pointsNum.get(i);
