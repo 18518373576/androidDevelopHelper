@@ -1,6 +1,5 @@
 package com.example.developerandroidx.ui.java.arithmetic;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Handler;
@@ -14,8 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.utils.AnimUtil;
@@ -23,6 +20,7 @@ import com.example.developerandroidx.utils.MyAnimationListener;
 import com.example.developerandroidx.view.navigationView.utils.PixelTransformUtil;
 import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.v3.FullScreenDialog;
+import com.kongzue.dialog.v3.Notification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +30,12 @@ import java.util.List;
  * @参考：
  * @描述：
  */
-public class BubbleSortDialog implements OnDismissListener {
+public class BubbleSortDialog {
 
     private FullScreenDialog dialog;
     private Context context;
+
+    private boolean isDis = false;
 
     private static BubbleSortDialog bubbleSortDialog;
     private Thread thread;
@@ -52,6 +52,7 @@ public class BubbleSortDialog implements OnDismissListener {
     }
 
     public void show(Context context) {
+        isDis = false;
         this.context = context;
         dialog = FullScreenDialog.show((AppCompatActivity) context, R.layout.view_arithmetic_dialog, new FullScreenDialog.OnBindView() {
             @Override
@@ -60,7 +61,16 @@ public class BubbleSortDialog implements OnDismissListener {
                 bubbleSort(rootView);
             }
         });
-        dialog.setOnDismissListener(this);
+        dialog.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if (thread != null) {
+                    isDis = true;
+                    thread.interrupt();
+                    thread = null;
+                }
+            }
+        });
     }
 
     private List<TextView> points;
@@ -119,7 +129,13 @@ public class BubbleSortDialog implements OnDismissListener {
                         try {
                             //尝试使用补间动画位移，总是位移，失败,会闪动,因为补间动画执行完会回到原始位置。所以在动画开始之前只显示背景，视觉上看不见闪动了
                             for (int i = 0; i < points.size() - 1; i++) {
+                                if (isDis) {
+                                    break;
+                                }
                                 for (int j = i + 1; j < points.size(); j++) {
+                                    if (isDis) {
+                                        break;
+                                    }
                                     int pointI = pointsNum.get(i);
                                     int pointJ = pointsNum.get(j);
 
@@ -261,16 +277,4 @@ public class BubbleSortDialog implements OnDismissListener {
             }
         }
     };
-
-
-    /**
-     * dialog退出的时候释放资源
-     */
-    @Override
-    public void onDismiss() {
-        if (thread != null) {
-            thread.interrupt();
-            thread = null;
-        }
-    }
 }
