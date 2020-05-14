@@ -57,6 +57,14 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="CancelButtonStyle">
+        <item name="android:layout_width">@dimen/dp80</item>
+        <item name="android:layout_height">@dimen/dp40</item>
+        <item name="android:background">@drawable/selector_gray_btn</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="textAllCaps">false</item>
+    </style>
     <!--    页面的跳转codeview按钮-->
     <style name="codeImageViewStyle">
         <item name="android:padding">@dimen/dp10</item>

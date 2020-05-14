@@ -10,6 +10,7 @@ import com.example.developerandroidx.ui.android.activity.ActivityAnalysisActivit
 import com.example.developerandroidx.ui.android.animation.AnimationActivity;
 import com.example.developerandroidx.ui.android.architecture.ArchitectureIndexActivity;
 import com.example.developerandroidx.ui.android.dialog.DialogIndexActivity;
+import com.example.developerandroidx.ui.android.service.ServiceActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
@@ -30,7 +31,7 @@ public class AndroidViewModel extends ViewModel {
     private List<FunctionItemBean> initData() {
         List<FunctionItemBean> functionList = new ArrayList<>();
         functionList.add(new FunctionItemBean("Activity", R.mipmap.icon_activity, RouteUtil.getDestination(ActivityAnalysisActivity.class)));
-        functionList.add(new FunctionItemBean("Service", R.mipmap.icon_service, ""));
+        functionList.add(new FunctionItemBean("Service", R.mipmap.icon_service, RouteUtil.getDestination(ServiceActivity.class)));
         functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, ""));
         functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
         functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, ""));
