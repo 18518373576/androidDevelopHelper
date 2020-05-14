@@ -169,10 +169,10 @@ public class BubbleSortDialog {
                                         points.get(j).startAnimation(setJ);
 
                                         try {
-                                            Thread.sleep(300);
                                             points.get(i).setTextColor(context.getResources().getColor(R.color.colorMain));
                                             points.get(j).setTextColor(context.getResources().getColor(R.color.colorMain));
-                                            Thread.sleep(550);
+                                            
+                                            Thread.sleep(850);
 
                                             points.get(i).setX(pJX);
                                             points.get(j).setX(pIX);
