@@ -5,6 +5,7 @@ import android.view.View;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.android.AndroidFragment;
 import com.example.developerandroidx.ui.java.JavaFragment;
+import com.example.developerandroidx.ui.java.arithmetic.BubbleSortDialog;
 import com.example.developerandroidx.ui.widget.WidgetFragment;
 import com.example.developerandroidx.view.navigationView.NavigationView;
 import com.example.developerandroidx.view.navigationView.bean.NavigationBean;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 关于对lifecircle的理解
@@ -50,10 +52,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         nv_view.setNavitionSelector(R.color.colorMain, R.color.textColor);
         nv_view.setOnNavigationChangListener(this);
 
+        //设置title
         setTitle(list.get(0).navigationName);
-        iv_back.setClickable(false);
         iv_back.setVisibility(View.GONE);
-        iv_back.setImageResource(list.get(0).navigationMipmapId);
+        iv_right.setVisibility(View.VISIBLE);
+
+    }
+
+    @OnClick({R.id.iv_right})
+    public void click(View v) {
+        BubbleSortDialog.getInstance().show(context);
     }
 
     @Override

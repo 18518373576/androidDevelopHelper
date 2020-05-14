@@ -47,6 +47,7 @@ public class KongZueDialogActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         setTitle("Kongzue Dialog");
+        iv_right.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -58,7 +59,7 @@ public class KongZueDialogActivity extends BaseActivity {
 
     @OnClick({R.id.btn_message_dialog, R.id.btn_bottom_menu, R.id.btn_custom_dialog
             , R.id.btn_full_screen_dialog, R.id.btn_input_dialog, R.id.btn_notifiction
-            , R.id.btn_share_dialog, R.id.btn_tip_dialog, R.id.btn_wait_dialog})
+            , R.id.btn_share_dialog, R.id.btn_tip_dialog, R.id.btn_wait_dialog, R.id.iv_right})
     public void click(View v) {
         switch (v.getId()) {
             case R.id.btn_message_dialog:
@@ -171,46 +172,34 @@ public class KongZueDialogActivity extends BaseActivity {
                     }
                 }, 2000);
                 break;
-        }
-    }
-
-    /**
-     * 添加主题选择
-     *
-     * @param menu
-     * @return
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.kongzue_dialog_style_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-            case R.id.menu_style_ios:
-                DialogSettings.style = DialogSettings.STYLE.STYLE_IOS;
-                break;
-            case R.id.meun_style_material:
-                DialogSettings.style = DialogSettings.STYLE.STYLE_MATERIAL;
-                break;
-            case R.id.menu_style_kongzue:
-                DialogSettings.style = DialogSettings.STYLE.STYLE_KONGZUE;
-                break;
-            case R.id.menu_theme_light:
-                DialogSettings.theme = DialogSettings.THEME.LIGHT;
-                DialogSettings.tipTheme = DialogSettings.THEME.LIGHT;
-                break;
-            case R.id.menu_theme_dark:
-                DialogSettings.theme = DialogSettings.THEME.DARK;
-                DialogSettings.tipTheme = DialogSettings.THEME.DARK;
+            case R.id.iv_right://主题选择
+                String[] themes = new String[]{"IOS", "MATERIAL", "KONGZUE", "LIGHT", "DARK"};
+                BottomMenu.show((AppCompatActivity) context, "THEMES", themes, new OnMenuItemClickListener() {
+                    @Override
+                    public void onClick(String text, int index) {
+                        switch (text) {
+                            case "IOS":
+                                DialogSettings.style = DialogSettings.STYLE.STYLE_IOS;
+                                break;
+                            case "MATERIAL":
+                                DialogSettings.style = DialogSettings.STYLE.STYLE_MATERIAL;
+                                break;
+                            case "KONGZUE":
+                                DialogSettings.style = DialogSettings.STYLE.STYLE_KONGZUE;
+                                break;
+                            case "LIGHT":
+                                DialogSettings.theme = DialogSettings.THEME.LIGHT;
+                                DialogSettings.tipTheme = DialogSettings.THEME.LIGHT;
+                                break;
+                            case "DARK":
+                                DialogSettings.theme = DialogSettings.THEME.DARK;
+                                DialogSettings.tipTheme = DialogSettings.THEME.DARK;
+                                break;
+                        }
+                    }
+                });
                 break;
         }
-        return true;
     }
 
     @Override

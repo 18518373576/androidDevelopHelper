@@ -19,9 +19,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
         android:layout_weight="1000"
         android:text="标题"
         android:textColor="@color/textColor"
         android:textSize="@dimen/sp16"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/iv_right"
+        android:layout_width="@dimen/titleBarHeigt"
+        android:layout_height="@dimen/titleBarHeigt"
+        android:layout_marginRight="@dimen/dp5"
+        android:padding="@dimen/dp15"
+        android:src="@mipmap/icon_more"
+        android:tint="@color/textColor"
+        android:visibility="gone" />
+
 </LinearLayout>

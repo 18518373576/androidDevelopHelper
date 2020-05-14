@@ -31,6 +31,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected TextView tv_title;
     @BindView(R.id.iv_back)
     protected ImageView iv_back;
+    @BindView(R.id.iv_right)
+    protected ImageView iv_right;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

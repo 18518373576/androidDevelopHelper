@@ -20,7 +20,7 @@ public class App extends Application {
         DialogSettings.init();                           //初始化清空 BaseDialog 队列
         DialogSettings.isUseBlur = true;                   //是否开启模糊效果，默认关闭
 //        DialogSettings.modalDialog = (boolean);                 //是否开启模态窗口模式，一次显示多个对话框将以队列形式一个一个显示，默认关闭
-        DialogSettings.style = DialogSettings.STYLE.STYLE_IOS;          //全局主题风格，提供三种可选风格，STYLE_MATERIAL, STYLE_KONGZUE, STYLE_IOS
+        DialogSettings.style = DialogSettings.STYLE.STYLE_MATERIAL;          //全局主题风格，提供三种可选风格，STYLE_MATERIAL, STYLE_KONGZUE, STYLE_IOS
 //        DialogSettings.theme = (DialogSettings.THEME);          //全局对话框明暗风格，提供两种可选主题，LIGHT, DARK
 //        DialogSettings.tipTheme = (DialogSettings.THEME);       //全局提示框明暗风格，提供两种可选主题，LIGHT, DARK
 //        DialogSettings.titleTextInfo = (TextInfo);              //全局对话框标题文字样式
