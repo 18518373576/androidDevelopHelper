@@ -67,6 +67,9 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
             super.handleMessage(msg);
             switch (msg.what) {
 
+                case 200:
+                    ll_content.requestLayout();
+                    break;
                 case 100:
 
                     int i = ((int[]) (msg.obj))[0];
@@ -78,8 +81,10 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
                     TextView tvPointI = points.get(i);
                     TextView tvPointJ = points.get(j);
 
-                    float iX = pointsX.get(i);
-                    float jX = pointsX.get(j);
+//                    float iX = pointsX.get(i);
+//                    float jX = pointsX.get(j);
+                    float iX = tvPointI.getX();
+                    float jX = tvPointJ.getX();
 
                     Log.e("打印排序：", i + "*" + j + pointsNum.toString() + "*" + pointsX.toString());
                     Log.e("打印排序tvPointIX：", "获取：" + tvPointI.getX() + "保存:" + iX);
@@ -114,6 +119,7 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
     private List<TextView> points;
     private List<Integer> pointsNum;
     private List<Float> pointsX;
+    private LinearLayout ll_content;
 
     /**
      * 冒泡排序
@@ -122,7 +128,7 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
      */
     private void bubbleSort(View rootView) {
         LinearLayout.LayoutParams params;
-        LinearLayout ll_content = rootView.findViewById(R.id.ll_content);
+        ll_content = rootView.findViewById(R.id.ll_content);
         points = new ArrayList<>();
         pointsNum = new ArrayList<>();
         pointsX = new ArrayList<>();
@@ -223,8 +229,9 @@ public class ArithmeticActivity extends BaseActivity implements OnDismissListene
                                         try {
                                             Thread.sleep(2000);
 
-//                                            points.set(i, tvPointJ);
-//                                            points.set(j, tvPointI);
+                                            handler.sendEmptyMessage(200);
+                                            points.set(i, tvPointJ);
+                                            points.set(j, tvPointI);
 
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
