@@ -20,8 +20,16 @@ import java.util.List;
 
 /**
  * Date: 2020/5/10 22:49
- * 参考:
- * 描述: 首页导航，以底部按钮导航，以viewpager加载fragment，最多添加5个
+ * 使用:
+ * nv_view.setNavigationBG(R.color.bg_interface);设置底栏背景色
+ * List<NavigationBean> list = new ArrayList<>();
+ * nv_view.setNavigationPager(getSupportFragmentManager(), list);添加导航页面
+ * nv_view.setNavitionSelector(R.color.colorMain, R.color.textColor);设置底部按钮选中和未选中颜色
+ * nv_view.showNotify(int index);显示通知红点
+ * nv_view.showNotify(int index, int notifyNum);显示通知并显示通知数量
+ * 退出时释放资源
+ * nv_view.release();
+ * 描述: 首页导航，以底部按钮导航，以viewpager加载fragment，最多添加5个 {@link NavigationItem}
  */
 public class NavigationView extends LinearLayout implements View.OnClickListener, ViewPager.OnPageChangeListener {
     private Context context;
@@ -95,6 +103,26 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     }
 
     /**
+     * 显示通知
+     *
+     * @param index 通知所在底栏图标的索引
+     */
+    public void showNotify(int index) {
+
+        ((NavigationItem) navigation.getChildAt(index)).showNotify();
+    }
+
+    /**
+     * 显示通知，和通知条数
+     *
+     * @param index
+     * @param notifyNum
+     */
+    public void showNotify(int index, int notifyNum) {
+        ((NavigationItem) navigation.getChildAt(index)).showNotify(notifyNum);
+    }
+
+    /**
      * 设置底部导航栏选中颜色
      *
      * @param checkedColorId
@@ -162,6 +190,7 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     public void setNavigationBG(int colorId) {
         navigation.setBackgroundResource(colorId);
     }
+
 
     @SuppressLint("ResourceType")
     @Override

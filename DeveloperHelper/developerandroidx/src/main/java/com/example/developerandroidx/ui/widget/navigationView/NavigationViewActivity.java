@@ -35,6 +35,8 @@ public class NavigationViewActivity extends BaseActivity {
         list.add(new NavigationBean(new WidgetFragment(), "Widget", R.mipmap.navigation_widget));
         nv_view.setNavigationPager(getSupportFragmentManager(), list);
         nv_view.setNavitionSelector(R.color.colorMain, R.color.textColor);
+        nv_view.showNotify(0);
+        nv_view.showNotify(1, 101);
     }
 
     @Override

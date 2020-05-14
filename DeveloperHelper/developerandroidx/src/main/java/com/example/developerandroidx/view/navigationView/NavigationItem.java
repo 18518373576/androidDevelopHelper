@@ -1,9 +1,11 @@
 package com.example.developerandroidx.view.navigationView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
-import android.util.AttributeSet;
+import android.graphics.drawable.GradientDrawable;
 import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,6 +29,7 @@ public class NavigationItem extends RelativeLayout {
     private Context context;
     private ImageView imageView;
     private TextView textView;
+    private TextView notify;
 
 
     public NavigationItem(Context context, NavigationBean navigationBean) {
@@ -37,6 +40,7 @@ public class NavigationItem extends RelativeLayout {
         initView();
     }
 
+    @SuppressLint("ResourceType")
     private void initView() {
         //获取系统的点击水波纹效果
         TypedValue typedValue = new TypedValue();
@@ -47,6 +51,7 @@ public class NavigationItem extends RelativeLayout {
         LayoutParams paramsIV = new LayoutParams(PixelTransformUtil.dip2px(context, 23), PixelTransformUtil.dip2px(context, 23));
         paramsIV.addRule(CENTER_HORIZONTAL);
         imageView = new ImageView(context);
+        imageView.setId(1001);
         imageView.setLayoutParams(paramsIV);
         imageView.setImageResource(navigationBean.navigationMipmapId);
 
@@ -68,5 +73,51 @@ public class NavigationItem extends RelativeLayout {
 
         textView.setTextColor(context.getResources().getColor(colorID));
         imageView.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(context, colorID)));
+    }
+
+    /**
+     * 显示通知
+     */
+    public void showNotify() {
+
+        showNotify(-1);
+    }
+
+    /**
+     * 显示通知，和通知条数
+     *
+     * @param notifyNum
+     */
+
+    public void showNotify(int notifyNum) {
+        if (notify != null) {
+            this.removeView(notify);
+        }
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setCornerRadius(90);//设置4个角的弧度
+        drawable.setColor(Color.rgb(255, 69, 0));// 设置颜色
+
+        if (notifyNum < 0) {
+            LayoutParams paramsNotofy = new LayoutParams(PixelTransformUtil.dip2px(context, 5), PixelTransformUtil.dip2px(context, 5));
+            paramsNotofy.addRule(RIGHT_OF, imageView.getId());
+            paramsNotofy.addRule(ALIGN_PARENT_TOP);
+            notify = new TextView(context);
+            notify.setLayoutParams(paramsNotofy);
+            notify.setBackground(drawable);
+            this.addView(notify);
+        } else {
+            LayoutParams paramsNotofy = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            paramsNotofy.addRule(RIGHT_OF, imageView.getId());
+            paramsNotofy.addRule(ALIGN_PARENT_TOP);
+            notify = new TextView(context);
+            int padding = PixelTransformUtil.dip2px(context, 3);
+            notify.setPadding(padding, 0, padding, 0);
+            notify.setLayoutParams(paramsNotofy);
+            notify.setBackground(drawable);
+            notify.setTextSize(8);
+            notify.setTextColor(Color.rgb(255, 255, 255));
+            notify.setText(String.valueOf(notifyNum));
+            this.addView(notify);
+        }
     }
 }
