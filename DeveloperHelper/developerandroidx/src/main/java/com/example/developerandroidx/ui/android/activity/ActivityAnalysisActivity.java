@@ -26,6 +26,7 @@ import com.example.developerandroidx.ui.android.activity.launchMode.StandardActi
 import com.example.developerandroidx.ui.android.activity.lifeCycle.DialogTestctivity;
 import com.example.developerandroidx.ui.android.activity.transitionAnimation.TransitionAnimationActivity;
 import com.example.developerandroidx.utils.CodeVariate;
+import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.v3.BottomMenu;
@@ -62,6 +63,9 @@ public class ActivityAnalysisActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         setTitle("Activity");
+
+        iv_right.setVisibility(View.VISIBLE);
+        //获取屏幕方向
         Log.e(TAG, ":" + getRequestedOrientation());
     }
 
@@ -83,7 +87,8 @@ public class ActivityAnalysisActivity extends BaseActivity {
 
     @SuppressLint("SourceLockedOrientationActivity")
     @OnClick({R.id.btn_lifecyle, R.id.btn_start_up_mode, R.id.btn_orientation_change,
-            R.id.iv_codes, R.id.btn_action_start, R.id.btn_start_for_result, R.id.btn_cut_animation})
+            R.id.iv_codes, R.id.btn_action_start, R.id.btn_start_for_result, R.id.btn_cut_animation,
+            R.id.iv_right})
     public void click(View v) {
         switch (v.getId()) {
             case R.id.btn_lifecyle://生命周期
@@ -141,7 +146,9 @@ public class ActivityAnalysisActivity extends BaseActivity {
                     }
                 });
                 break;
-
+            case R.id.iv_right:
+                DialogUtils.getInstance().shouFullScreenDialog(context, R.layout.dialog_activity_lifecycle);
+                break;
         }
     }
 

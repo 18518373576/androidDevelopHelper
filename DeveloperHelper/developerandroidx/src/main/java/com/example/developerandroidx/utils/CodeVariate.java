@@ -100,7 +100,7 @@ public class CodeVariate {
                 "短整型         short        2Byte(16bit)    -2^15~2^15-1         0\n" +
                 "整型           int          4Byte(32bit)    -2^31~2^31-1         0\n" +
                 "长整型         long         8Byte(64bit)    -2^63~2^63-1         0\n" +
-                "单精度浮点型    float        8Byte(32bit)    1.4E-45~3.4E+38      0.0F\n" +
+                "单精度浮点型    float        4Byte(32bit)    1.4E-45~3.4E+38      0.0F\n" +
                 "双精度浮点型    double       8Byte(64bit)    4.9E-324~1.7977E+308 0.0D\n\n" +
                 "引用类型：\n" +
                 "类类型、接口类型、数组类型\n\n" +
