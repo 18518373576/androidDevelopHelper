@@ -14,9 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
         <service
+            android:name=".ui.android.service.service.TestIntentService"
+            android:exported="false"></service>
+        <service
             android:name=".ui.android.service.service.TestService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity android:name=".ui.android.service.ServiceActivity" />
         <activity android:name=".ui.java.arithmetic.ArithmeticActivity" />

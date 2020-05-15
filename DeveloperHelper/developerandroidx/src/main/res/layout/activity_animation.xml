@@ -30,14 +30,14 @@
 
         <Button
             android:id="@+id/btn_translate"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_alignTop="@id/btn_scale"
             android:layout_toLeftOf="@+id/btn_scale"
             android:text="Translate" />
 
         <Button
             android:id="@+id/btn_scale"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_below="@+id/tv_animation"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/dp20"
@@ -45,21 +45,21 @@
 
         <Button
             android:id="@+id/btn_rotate"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_alignTop="@id/btn_scale"
             android:layout_toRightOf="@id/btn_scale"
             android:text="Rotate" />
 
         <Button
             android:id="@+id/btn_alpha"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_below="@+id/btn_scale"
             android:layout_alignLeft="@id/btn_scale"
             android:text="Alpha" />
 
         <Button
             android:id="@+id/btn_shake"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_alignTop="@+id/btn_alpha"
             android:layout_marginRight="@dimen/dp20"
             android:layout_toLeftOf="@id/btn_alpha"
@@ -67,7 +67,7 @@
 
         <Button
             android:id="@+id/btn_anim_set"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_alignTop="@id/btn_alpha"
             android:layout_marginLeft="@dimen/dp20"
             android:layout_toRightOf="@id/btn_alpha"
@@ -88,7 +88,7 @@
 
         <Button
             android:id="@+id/btn_translate_animator"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_marginTop="@dimen/dp20"
             android:layout_below="@+id/tv_animator"
             android:layout_centerHorizontal="true"

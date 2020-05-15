@@ -19,13 +19,13 @@
 
         <Button
             android:id="@+id/btn_kongzue"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:text="Kongzue Dialog" />
 
         <Button
             android:id="@+id/btn_android"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp15"
             android:text="Android Dialog" />

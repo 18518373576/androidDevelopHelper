@@ -13,7 +13,7 @@
 
     <Button
         android:id="@+id/btn_bubble_sort"
-        style="@style/ComonButtonStyle"
+        style="@style/CommonButtonStyle"
         android:layout_margin="@dimen/dp15"
         android:text="冒泡排序"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,7 @@
 
     <Button
         android:id="@+id/btn_sellect_sort"
-        style="@style/ComonButtonStyle"
+        style="@style/CommonButtonStyle"
         android:layout_margin="@dimen/dp15"
         android:text="选择排序"
         app:layout_constraintBottom_toBottomOf="@+id/btn_bubble_sort"
@@ -32,7 +32,7 @@
 
     <Button
         android:id="@+id/btn_other_sort"
-        style="@style/ComonButtonStyle"
+        style="@style/CommonButtonStyle"
         android:layout_margin="@dimen/dp15"
         android:text="其他排序"
         app:layout_constraintBottom_toBottomOf="@+id/btn_bubble_sort"

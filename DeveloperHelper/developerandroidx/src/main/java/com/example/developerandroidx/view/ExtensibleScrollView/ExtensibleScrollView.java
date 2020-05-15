@@ -70,6 +70,8 @@ public class ExtensibleScrollView extends ScrollView {
                 TextView body = new TextView(context);
                 body.setText("        " + text);
                 body.setTextSize(14);
+                int padding = PixelTransformUtil.dip2px(context, 5);
+                body.setPadding(0, padding, 0, padding);
                 //add增加的间距，mult增加的间距倍数
                 body.setLineSpacing(0, 1.5f);
                 body.setTextColor(context.getResources().getColor(colorId));
@@ -79,13 +81,13 @@ public class ExtensibleScrollView extends ScrollView {
             break;
             case TITLE_1: {
                 TextView title_1 = new TextView(context);
-                title_1.setText(text);
+                title_1.setText("    " + text);
                 title_1.setTextSize(18);
                 //设置字体加粗
                 title_1.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 //add增加的间距，mult增加的间距倍数
                 title_1.setLineSpacing(0, 1.5f);
-                int padding = PixelTransformUtil.dip2px(context, 8);
+                int padding = PixelTransformUtil.dip2px(context, 5);
                 title_1.setPadding(0, padding, 0, padding);
                 title_1.setTextColor(context.getResources().getColor(colorId));
 
@@ -94,7 +96,7 @@ public class ExtensibleScrollView extends ScrollView {
             break;
             case TITLE_2: {
                 TextView title_2 = new TextView(context);
-                title_2.setText(text);
+                title_2.setText("    " + text);
                 title_2.setTextSize(16);
                 //设置字体加粗
                 title_2.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));

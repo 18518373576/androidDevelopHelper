@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout">
 
         <Button
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp120"
             android:layout_margin="@dimen/dp10"
             android:text="Start Service" />
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/include3">
 
         <Button
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp120"
             android:layout_margin="@dimen/dp10"
             android:text="Start Foreground" />
@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp120"
             android:layout_margin="@dimen/dp10"
             android:text="Bind Service" />
@@ -104,17 +104,17 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <Button
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp120"
             android:layout_margin="@dimen/dp10"
             android:text="AIDL" />
 
         <Button
-            style="@style/CancelButtonStyle"
+            android:id="@+id/btn_intent_service"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp120"
             android:layout_margin="@dimen/dp10"
-            android:text="Unbind Service"
-            android:visibility="invisible" />
+            android:text="IntentService" />
     </LinearLayout>
 
     <ImageView

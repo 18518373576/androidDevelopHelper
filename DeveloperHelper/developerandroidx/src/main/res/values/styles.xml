@@ -48,7 +48,7 @@
     </style>
 
     <!--    通用button样式-->
-    <style name="ComonButtonStyle">
+    <style name="CommonButtonStyle">
         <item name="android:layout_width">@dimen/dp80</item>
         <item name="android:layout_height">@dimen/dp40</item>
         <item name="android:background">@drawable/selector_btn</item>

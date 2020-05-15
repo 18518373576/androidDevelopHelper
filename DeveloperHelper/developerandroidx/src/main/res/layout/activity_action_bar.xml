@@ -35,21 +35,21 @@
 
             <Button
                 android:id="@+id/btn_change_title"
-                style="@style/ComonButtonStyle"
+                style="@style/CommonButtonStyle"
                 android:layout_margin="@dimen/dp5"
                 android:layout_weight="1"
                 android:text="修改标题" />
 
             <Button
                 android:id="@+id/btn_set_subhead_title"
-                style="@style/ComonButtonStyle"
+                style="@style/CommonButtonStyle"
                 android:layout_margin="@dimen/dp5"
                 android:layout_weight="1"
                 android:text="副标题" />
 
             <Button
                 android:id="@+id/btn_navigation"
-                style="@style/ComonButtonStyle"
+                style="@style/CommonButtonStyle"
                 android:layout_margin="@dimen/dp5"
                 android:layout_weight="1"
                 android:text="按钮和背景" />
@@ -62,21 +62,21 @@
 
             <Button
                 android:id="@+id/btn_set_tab"
-                style="@style/ComonButtonStyle"
+                style="@style/CommonButtonStyle"
                 android:layout_margin="@dimen/dp5"
                 android:layout_weight="1"
                 android:text="添加Tab" />
 
             <Button
                 android:id="@+id/btn_show_custom_view"
-                style="@style/ComonButtonStyle"
+                style="@style/CommonButtonStyle"
                 android:layout_margin="@dimen/dp5"
                 android:layout_weight="1"
                 android:text="自定义" />
 
             <Button
                 android:id="@+id/btn_hide_show"
-                style="@style/ComonButtonStyle"
+                style="@style/CommonButtonStyle"
                 android:layout_margin="@dimen/dp5"
                 android:layout_weight="1"
                 android:text="隐藏和显示" />

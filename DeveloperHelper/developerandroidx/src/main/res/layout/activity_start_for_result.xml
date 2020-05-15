@@ -30,7 +30,7 @@
 
     <Button
         android:id="@+id/btn_finish"
-        style="@style/ComonButtonStyle"
+        style="@style/CommonButtonStyle"
         android:layout_width="@dimen/dp150"
         android:text="FINISH"
         app:layout_constraintBottom_toBottomOf="parent"

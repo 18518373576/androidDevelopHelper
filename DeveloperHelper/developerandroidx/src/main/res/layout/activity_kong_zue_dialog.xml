@@ -20,62 +20,62 @@
 
         <Button
             android:id="@+id/btn_bottom_menu"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:text="Bottom Menu" />
 
         <Button
             android:id="@+id/btn_custom_dialog"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp10"
             android:text="Custom dialog" />
 
         <Button
             android:id="@+id/btn_full_screen_dialog"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp10"
             android:text="Full screen dialog" />
 
         <Button
             android:id="@+id/btn_input_dialog"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp10"
             android:text="Input dialog" />
 
         <Button
             android:id="@+id/btn_message_dialog"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp10"
             android:text="Message dialog" />
 
         <Button
             android:id="@+id/btn_notifiction"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp10"
             android:text="Notifiction" />
 
         <Button
             android:id="@+id/btn_share_dialog"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp10"
             android:text="Share dialog" />
 
         <Button
             android:id="@+id/btn_tip_dialog"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp10"
             android:text="Tip dialog" />
 
         <Button
             android:id="@+id/btn_wait_dialog"
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp150"
             android:layout_marginTop="@dimen/dp10"
             android:text="Wait dialog" />

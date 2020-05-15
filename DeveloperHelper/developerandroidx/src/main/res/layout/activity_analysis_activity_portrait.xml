@@ -47,21 +47,21 @@
 
                 <Button
                     android:id="@+id/btn_lifecyle"
-                    style="@style/ComonButtonStyle"
+                    style="@style/CommonButtonStyle"
                     android:layout_margin="@dimen/dp5"
                     android:layout_weight="1"
                     android:text="生命周期" />
 
                 <Button
                     android:id="@+id/btn_start_up_mode"
-                    style="@style/ComonButtonStyle"
+                    style="@style/CommonButtonStyle"
                     android:layout_margin="@dimen/dp5"
                     android:layout_weight="1"
                     android:text="启动模式" />
 
                 <Button
                     android:id="@+id/btn_orientation_change"
-                    style="@style/ComonButtonStyle"
+                    style="@style/CommonButtonStyle"
                     android:layout_margin="@dimen/dp5"
                     android:layout_weight="1"
                     android:text="方向切换" />
@@ -74,21 +74,21 @@
 
                 <Button
                     android:id="@+id/btn_action_start"
-                    style="@style/ComonButtonStyle"
+                    style="@style/CommonButtonStyle"
                     android:layout_margin="@dimen/dp5"
                     android:layout_weight="1"
                     android:text="隐式启动" />
 
                 <Button
                     android:id="@+id/btn_start_for_result"
-                    style="@style/ComonButtonStyle"
+                    style="@style/CommonButtonStyle"
                     android:layout_margin="@dimen/dp5"
                     android:layout_weight="1"
                     android:text="start for result" />
 
                 <Button
                     android:id="@+id/btn_cut_animation"
-                    style="@style/ComonButtonStyle"
+                    style="@style/CommonButtonStyle"
                     android:layout_margin="@dimen/dp5"
                     android:layout_weight="1"
                     android:text="切换动画" />

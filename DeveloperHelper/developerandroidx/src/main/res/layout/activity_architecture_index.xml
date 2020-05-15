@@ -19,18 +19,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp120"
             android:text="MVC" />
 
         <Button
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp120"
             android:layout_marginTop="@dimen/dp15"
             android:text="MVP" />
 
         <Button
-            style="@style/ComonButtonStyle"
+            style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp120"
             android:layout_marginTop="@dimen/dp15"
             android:text="MVVM" />
