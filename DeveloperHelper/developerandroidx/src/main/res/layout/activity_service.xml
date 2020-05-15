@@ -12,17 +12,44 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/ll_ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/include3">
+
+        <TextView
+            android:id="@+id/tv_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:padding="@dimen/dp10"
+            android:text="A计划：0%"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp13" />
+
+        <ProgressBar
+            android:id="@+id/pb_task"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp2"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:progress="10" />
+    </LinearLayout>
+
     <ScrollView
         android:id="@+id/sv_show_data"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp200"
+        android:layout_height="@dimen/dp150"
         android:layout_margin="@dimen/dp10"
         android:layout_weight="1"
         android:background="@drawable/bg_dark_white"
         android:padding="@dimen/dp10"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/include3"
-        tools:layout_editor_absoluteX="10dp">
+        app:layout_constraintTop_toBottomOf="@+id/ll_ProgressBar">
 
         <TextView
             android:id="@+id/tv_print"

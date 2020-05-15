@@ -1,7 +1,8 @@
 package com.example.developerandroidx.ui.android.service;
 
-import android.content.Intent;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
@@ -10,12 +11,18 @@ import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView;
 import com.kongzue.dialog.v3.FullScreenDialog;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
  * service(服务)知识点整理
  */
 public class ServiceActivity extends BaseActivity {
+
+    @BindView(R.id.tv_task)
+    TextView tv_task;
+    @BindView(R.id.pb_task)
+    ProgressBar pb_task;
 
     @Override
     protected int bindLayout() {

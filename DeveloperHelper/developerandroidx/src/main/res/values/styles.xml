@@ -16,7 +16,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/bg_interface</item>
         <item name="colorPrimaryDark">@color/bg_interface</item>
-        <item name="colorAccent">@color/bg_interface</item>
+        <item name="colorAccent">@color/colorMain</item>
         <item name="android:screenOrientation">portrait</item>
         <item name="android:windowBackground">@color/bg_interface</item>
     </style>
