@@ -70,10 +70,8 @@ public class ServiceActivity extends BaseActivity {
                 });
                 break;
             case R.id.btn_intent_service:
-
                 TestIntentService.startActionFoo(context, "", "");
                 TestIntentService.startActionBaz(context, "", "");
-//                startService(new Intent(this, TestIntentService.class));
                 break;
         }
 

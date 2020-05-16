@@ -43,9 +43,12 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     //应用代码展示的library
-    // github: https://github.com/Thereisnospon/CodeView
+    // github:https://github.com/Thereisnospon/CodeView
     implementation project(":codeview")
     //kongzue.dialog控件
-    //github: https://github.com/kongzue/DialogV3
+    //github:https://github.com/kongzue/DialogV3
     implementation project(":dialog")
+    //eventbus
+    //github:https://github.com/greenrobot/EventBus
+    implementation 'org.greenrobot:eventbus:3.2.0'
 }
