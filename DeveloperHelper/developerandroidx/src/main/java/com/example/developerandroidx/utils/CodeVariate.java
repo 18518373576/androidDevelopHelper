@@ -176,8 +176,8 @@ public class CodeVariate {
                 "== 和 eqauls\n" +
                 "==作用于基本类型时，判断基本类型变量的值是否相等，相等则返回true。作用于引用类型时，\n" +
                 "则判断引用类型变量引用的地址是否相等。相等则返回true。\n" +
-                "eqauls是Object超类中的方法，默认作用与==一样。如果类重写了eqauls()方法，则按照重写的\n" +
-                "规则进行判断。如String类，重写了eqauls()方法，判断字符串是否一样";
+                "eqauls是Object超类中的方法，所以只能作用与引用数据类型。默认作用与==一样。\n" +
+                "如果类重写了eqauls()方法，则按照重写的规则进行判断。如String类，重写了eqauls()方法，判断字符串是否一样";
     }
 
     //android/activity

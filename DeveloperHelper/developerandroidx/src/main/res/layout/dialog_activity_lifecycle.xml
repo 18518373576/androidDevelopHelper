@@ -10,14 +10,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/dp10"
-        android:text="Activity的生命周期"
+        android:text="Activity描述"
         android:textColor="@color/textColor"
         android:textSize="@dimen/sp16"
         android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="@dimen/dp350"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:src="@mipmap/activity_lifecycle" />
+    <com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView
+        android:id="@+id/esv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

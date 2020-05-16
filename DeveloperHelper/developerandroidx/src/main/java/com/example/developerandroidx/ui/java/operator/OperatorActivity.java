@@ -2,6 +2,8 @@ package com.example.developerandroidx.ui.java.operator;
 
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import com.example.developerandroidx.adapter.OperatorRcvAdapter;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.bean.OperatorItemBean;
+import com.example.developerandroidx.utils.AnimUtil;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
 
@@ -58,11 +61,17 @@ public class OperatorActivity extends BaseActivity {
 //                Log.e(TAG + ":", dx + "$" + dy);
                 //dy < 0为上滑
                 if (dy <= 0) {
-                    if (iv_codes.getVisibility() == View.GONE)
+                    if (iv_codes.getVisibility() == View.GONE) {
                         iv_codes.setVisibility(View.VISIBLE);
+                        iv_codes.startAnimation(AnimUtil.getInstance().
+                                getScaleAnim(0, 1, 0, 1, 300, 0, null));
+                    }
                 } else {
-                    if (iv_codes.getVisibility() == View.VISIBLE)
+                    if (iv_codes.getVisibility() == View.VISIBLE) {
                         iv_codes.setVisibility(View.GONE);
+                        iv_codes.startAnimation(AnimUtil.getInstance().
+                                getScaleAnim(1, 0, 1, 0, 300, 0, null));
+                    }
                 }
             }
         });
