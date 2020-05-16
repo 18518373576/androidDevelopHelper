@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.developerandroidx.bean.EventBusMessageBean;
+import com.example.developerandroidx.utils.Constant;
+
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * 这是 Service 的子类，其使用工作线程逐一处理所有启动请求。如果您不要求服务同时处理多个请求，
  * 此类为最佳选择。实现 onHandleIntent()，该方法会接收每个启动请求的 Intent，以便您执行后台工作。
@@ -71,7 +76,8 @@ public class TestIntentService extends IntentService {
      */
     private void handleActionFoo() {
         try {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i <= 10; i++) {
+                EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_01, this.getClass().getName(), String.valueOf(i)));
                 Thread.sleep(1000);
                 Log.e("TestIntentService:", "Foo" + i);
             }
@@ -86,7 +92,8 @@ public class TestIntentService extends IntentService {
      */
     private void handleActionBaz() {
         try {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i <= 10; i++) {
+                EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_02, this.getClass().getName(), String.valueOf(i)));
                 Thread.sleep(1000);
                 Log.e("TestIntentService:", "Baz" + i);
             }

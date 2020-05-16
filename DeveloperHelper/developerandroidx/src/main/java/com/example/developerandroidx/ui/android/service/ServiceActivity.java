@@ -6,10 +6,16 @@ import android.widget.TextView;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.bean.EventBusMessageBean;
 import com.example.developerandroidx.ui.android.service.service.TestIntentService;
+import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView;
 import com.kongzue.dialog.v3.FullScreenDialog;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,6 +37,8 @@ public class ServiceActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+        EventBus.getDefault().register(this);
         setTitle("Service");
         iv_right.setVisibility(View.VISIBLE);
     }
@@ -75,5 +83,36 @@ public class ServiceActivity extends BaseActivity {
                 break;
         }
 
+    }
+
+
+    /**
+     * POSTING：默认，表示事件处理函数的线程跟发布事件的线程在同一个线程。
+     * MAIN：表示事件处理函数的线程在主线程(UI)线程，因此在这里不能进行耗时操作。
+     * BACKGROUND：表示事件处理函数的线程在后台线程，因此不能进行UI操作。如果发布事件的线程是主线程(UI线程)，那么事件处理函数将会开启一个后台线程，如果果发布事件的线程是在后台线程，那么事件处理函数就使用该线程。
+     * ASYNC：表示无论事件发布的线程是哪一个，事件处理函数始终会新建一个子线程运行，同样不能进行UI操作。
+     *
+     * @param message
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMsg(EventBusMessageBean message) {
+        int progress = Integer.parseInt(message.msg) * 10;
+
+        switch (message.msgId) {
+            case Constant.EventBusMsgId.MSG_ID_01:
+                tv_task.setText("A计划：" + progress + "%");
+                pb_task.setProgress(progress);
+                break;
+            case Constant.EventBusMsgId.MSG_ID_02:
+                tv_task.setText("B计划：" + progress + "%");
+                pb_task.setProgress(progress);
+                break;
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }

@@ -13,4 +13,9 @@ public class Constant {
     public static class IntentParams {
         public static final String INTENT_PARAM = "INTENT_PARAM";
     }
+
+    public static class EventBusMsgId {
+        public static final int MSG_ID_01 = 1;
+        public static final int MSG_ID_02 = 2;
+    }
 }
