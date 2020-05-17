@@ -1,5 +1,10 @@
 package com.example.developerandroidx.ui.android.service;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -8,6 +13,7 @@ import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.bean.EventBusMessageBean;
 import com.example.developerandroidx.ui.android.service.service.TestIntentService;
+import com.example.developerandroidx.ui.android.service.service.TestService;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView;
@@ -27,8 +33,29 @@ public class ServiceActivity extends BaseActivity {
 
     @BindView(R.id.tv_task)
     TextView tv_task;
+    @BindView(R.id.tv_print)
+    TextView tv_print;
     @BindView(R.id.pb_task)
     ProgressBar pb_task;
+
+    //服务是否是绑定状态
+    private boolean mBound = false;
+
+    private TestService myService;
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            TestService.MyIBinder binder = (TestService.MyIBinder) service;//获取IBinder
+            myService = binder.getService();//获取服务实例
+            showNotify(myService.showMessage());//与服务通信，并提示消息
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mBound = false;
+        }
+    };
 
     @Override
     protected int bindLayout() {
@@ -48,7 +75,8 @@ public class ServiceActivity extends BaseActivity {
      *
      * @param v
      */
-    @OnClick({R.id.iv_right, R.id.btn_intent_service})
+    @OnClick({R.id.iv_right, R.id.btn_intent_service, R.id.btn_start_service, R.id.btn_bind_service,
+            R.id.btn_stop_service, R.id.btn_unbind_service})
     public void click(View v) {
 
         switch (v.getId()) {
@@ -73,6 +101,15 @@ public class ServiceActivity extends BaseActivity {
                         esv_content.addText("简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
                         esv_content.addText("如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 onCreate() 中创建线程，在 onStart() 中启动线程运行，然后在 onStop() 中停止线程。您还可考虑使用 AsyncTask 或 HandlerThread，而非传统的 Thread 类。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
                         esv_content.addText("请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。", ExtensibleScrollView.InsertTextType.BODY, R.color.colorRed);
+                        esv_content.addText("绑定到已启动服务", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
+                        esv_content.addText("您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 startService() 启动服务，让服务无限期运行；此外，还可通过调用 bindService() 让客户端绑定到该服务。如果您确实允许服务同时具有已启动和已绑定状态，则在启动服务后，如果所有客户端均解绑服务，则系统不会销毁该服务。为此，您必须通过调用 stopSelf() 或 stopService() 显式停止服务。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addText("IntentService", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
+                        esv_content.addText("IntentService 类为在单个后台线程上运行操作提供了一个简单明了的结构。这使它能够在不影响界面响应速度的情况下处理长时间运行的操作。此外，IntentService 不受大多数界面生命周期事件的影响，因此它能够在会关闭 AsyncTask 的情况下继续运行", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addText("IntentService 有一些限制：", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addText("1.它无法直接与您的界面互动。要在界面中显示其结果，您必须将结果发送到 Activity。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addText("2.工作请求依序运行。如果某个操作在 IntentService 中运行，并且您向其发送了另一个请求，则该请求会等待第一个操作完成。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addText("3.在 IntentService 上运行的操作无法中断。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addText("但在大多数情况下，执行简单后台操作的首选方式是 IntentService。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
 
                     }
                 });
@@ -80,6 +117,21 @@ public class ServiceActivity extends BaseActivity {
             case R.id.btn_intent_service:
                 TestIntentService.startActionFoo(context, "", "");
                 TestIntentService.startActionBaz(context, "", "");
+                break;
+            case R.id.btn_start_service:
+                startService(new Intent(this, TestService.class));
+                break;
+            case R.id.btn_stop_service:
+                stopService(new Intent(this, TestService.class));
+                break;
+            case R.id.btn_bind_service:
+                bindService(new Intent(this, TestService.class), connection, Context.BIND_AUTO_CREATE);
+                break;
+            case R.id.btn_unbind_service:
+                if (mBound) {
+                    unbindService(connection);
+                    mBound = false;
+                }
                 break;
         }
 
@@ -96,17 +148,23 @@ public class ServiceActivity extends BaseActivity {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMsg(EventBusMessageBean message) {
-        int progress = Integer.parseInt(message.msg) * 10;
-
         switch (message.msgId) {
-            case Constant.EventBusMsgId.MSG_ID_01:
+            case Constant.EventBusMsgId.MSG_ID_01: {
+                int progress = Integer.parseInt(message.msg) * 10;
                 tv_task.setText("A计划：" + progress + "%");
                 pb_task.setProgress(progress);
-                break;
-            case Constant.EventBusMsgId.MSG_ID_02:
+            }
+            break;
+            case Constant.EventBusMsgId.MSG_ID_02: {
+                int progress = Integer.parseInt(message.msg) * 10;
                 tv_task.setText("B计划：" + progress + "%");
                 pb_task.setProgress(progress);
-                break;
+            }
+            break;
+            case Constant.EventBusMsgId.MSG_ID_03: {
+                tv_print.append(message.msg + "\n");
+            }
+            break;
         }
     }
 

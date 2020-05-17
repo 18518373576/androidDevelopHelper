@@ -1,18 +1,21 @@
 package com.example.developerandroidx.base;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.kongzue.dialog.util.DialogSettings;
 
 public class App extends Application {
+    public static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
+        context = this;
         //初始化弹框
         initDialog();
     }
-
     /**
      * 初始化dialog{@link DialogSettings}
      */

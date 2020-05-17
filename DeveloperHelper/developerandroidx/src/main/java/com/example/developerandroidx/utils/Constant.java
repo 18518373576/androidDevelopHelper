@@ -17,5 +17,6 @@ public class Constant {
     public static class EventBusMsgId {
         public static final int MSG_ID_01 = 1;
         public static final int MSG_ID_02 = 2;
+        public static final int MSG_ID_03 = 3;
     }
 }

@@ -2,7 +2,16 @@ package com.example.developerandroidx.ui.android.service.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
+
+import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.App;
+import com.example.developerandroidx.bean.EventBusMessageBean;
+import com.example.developerandroidx.utils.Constant;
+import com.kongzue.dialog.v3.Notification;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * 如果组件通过调用 startService() 启动服务（这会引起对 onStartCommand() 的调用），
@@ -18,7 +27,18 @@ import android.os.IBinder;
  * 如果系统终止服务，则其会在资源可用时立即重启服务，但这还取决于您从 onStartCommand() 返回的值。
  */
 public class TestService extends Service {
-    public TestService() {
+
+    private final IBinder binder = new MyIBinder();
+
+    /**
+     * 定义binder
+     */
+    public class MyIBinder extends Binder {
+
+        public TestService getService() {
+            //返回服务实例
+            return TestService.this;
+        }
     }
 
     /**
@@ -28,6 +48,7 @@ public class TestService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onCreate()"));
     }
 
     /**
@@ -42,6 +63,7 @@ public class TestService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onStartCommand(Intent intent, int flags, int startId)"));
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -55,16 +77,24 @@ public class TestService extends Service {
      */
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onBind(Intent intent)"));
+
+        return binder;
     }
 
     /**
+     * 调用 unbindService(connection)时执行此方法，如果组件调用bindService开启服务，所有组件与服务解绑后，此方法后会执行
+     * onDestroy()
+     * activity退出时默认会调用unbindService方法，如果组件同时调用startService和bindService开启服务，
+     * 则所有组件与服务解绑后，调用stopService才能结束服务。
+     *
      * @param intent
      * @return
      */
     @Override
     public boolean onUnbind(Intent intent) {
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onUnbind(Intent intent)"));
+        Notification.show(App.context, "TestService", "onUnbind()", R.mipmap.ic_launcher);
         return super.onUnbind(intent);
     }
 
@@ -74,6 +104,17 @@ public class TestService extends Service {
      */
     @Override
     public void onDestroy() {
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onDestroy()"));
+        Notification.show(App.context, "TestService", "onDestroy()", R.mipmap.ic_launcher);
         super.onDestroy();
+    }
+
+    /**
+     * 组件与服务通信方法
+     *
+     * @return
+     */
+    public String showMessage() {
+        return "TestService通信消息";
     }
 }

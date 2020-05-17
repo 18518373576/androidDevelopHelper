@@ -158,7 +158,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
                         esv_content.addText("Activity 类是 Android 应用的关键组件，而 Activity 的启动和组合方式则是该平台应用模型的基本组成部分。在编程范式中，应用是通过 main() 方法启动的，而 Android 系统与此不同，它会调用与其生命周期特定阶段相对应的特定回调方法来启动 Activity 实例中的代码。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
                         esv_content.addText("Activity 提供窗口供应用在其中绘制界面。此窗口通常会填满屏幕，但也可能比屏幕小，并浮动在其他窗口上面。通常，一个 Activity 实现应用中的一个屏幕。例如，应用中的一个 Activity 实现“偏好设置”屏幕，而另一个 Activity 实现“选择照片”屏幕。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
                         esv_content.addText("Activity的生命周期", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
-                        esv_content.addImage(R.mipmap.activity_lifecycle, 350);
+                        esv_content.addImage(R.mipmap.activity_lifecycle, 400);
                         esv_content.addText("", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
 
                         esv_content.addText("onCreate()", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
