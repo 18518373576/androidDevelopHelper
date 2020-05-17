@@ -103,6 +103,12 @@ public class ServiceActivity extends BaseActivity {
                         esv_content.addText("请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。", ExtensibleScrollView.InsertTextType.BODY, R.color.colorRed);
                         esv_content.addText("绑定到已启动服务", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
                         esv_content.addText("您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 startService() 启动服务，让服务无限期运行；此外，还可通过调用 bindService() 让客户端绑定到该服务。如果您确实允许服务同时具有已启动和已绑定状态，则在启动服务后，如果所有客户端均解绑服务，则系统不会销毁该服务。为此，您必须通过调用 stopSelf() 或 stopService() 显式停止服务。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addText("管理绑定服务的生命周期", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
+                        esv_content.addText("当取消服务与所有客户端之间的绑定时，Android 系统会销毁该服务（除非您还使用 onStartCommand() 启动了该服务）。因此，如果您的服务完全是绑定服务，则您无需管理其生命周期，Android 系统会根据它是否绑定到任何客户端代您管理。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addText("不过，如果您选择实现 onStartCommand() 回调方法，则您必须显式停止服务，因为系统现已将其视为已启动状态。在此情况下，服务将一直运行，直到其通过 stopSelf() 自行停止，或其他组件调用 stopService()（与该服务是否绑定到任何客户端无关）。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addText("此外，如果您的服务已启动并接受绑定，则当系统调用您的 onUnbind() 方法时，如果您想在客户端下一次绑定到服务时接收 onRebind() 调用，则可选择返回 true。onRebind() 返回空值，但客户端仍在其 onServiceConnected() 回调中接收 IBinder。下图说明这种生命周期的逻辑。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                        esv_content.addImage(R.mipmap.service_binding_tree_lifecycle, 350);
+
                         esv_content.addText("IntentService", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
                         esv_content.addText("IntentService 类为在单个后台线程上运行操作提供了一个简单明了的结构。这使它能够在不影响界面响应速度的情况下处理长时间运行的操作。此外，IntentService 不受大多数界面生命周期事件的影响，因此它能够在会关闭 AsyncTask 的情况下继续运行", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
                         esv_content.addText("IntentService 有一些限制：", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);

@@ -82,6 +82,12 @@ public class TestService extends Service {
         return binder;
     }
 
+    @Override
+    public void onRebind(Intent intent) {
+        super.onRebind(intent);
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onRebind(Intent intent)"));
+    }
+
     /**
      * 调用 unbindService(connection)时执行此方法，如果组件调用bindService开启服务，所有组件与服务解绑后，此方法后会执行
      * onDestroy()
@@ -95,7 +101,7 @@ public class TestService extends Service {
     public boolean onUnbind(Intent intent) {
         EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onUnbind(Intent intent)"));
         Notification.show(App.context, "TestService", "onUnbind()", R.mipmap.ic_launcher);
-        return super.onUnbind(intent);
+        return true;
     }
 
     /**
