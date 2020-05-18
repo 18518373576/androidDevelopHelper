@@ -14,9 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
+        <activity
+            android:name=".ui.android.NotificationActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""></activity>
+
         <service
             android:name=".ui.android.service.service.TestIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name=".ui.android.service.service.TestService"
             android:enabled="true"

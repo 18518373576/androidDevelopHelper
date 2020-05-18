@@ -14,6 +14,7 @@ import com.kongzue.dialog.v3.Notification;
 public class App extends Application {
     public static Context context;
     public static String channel_id;
+    public static String download_channel_id;
     public static int defaults;
 
     @Override
@@ -32,6 +33,7 @@ public class App extends Application {
      */
     private void initNotification() {
         channel_id = "channel_id";  // 通知渠道的id
+        download_channel_id = "channel_id_01";  // 通知渠道的id
         CharSequence name = "到账提醒";   // 用户可以看到的通知渠道的名字.
         String description = "用户账户变动通知";// 用户可以看到的通知渠道的描述
 
@@ -40,7 +42,12 @@ public class App extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel(channel_id, name, importance);
+            NotificationChannel downloadChannel = new NotificationChannel(download_channel_id, name, importance);
             channel.setDescription(description);
+            downloadChannel.setDescription(description);
+            downloadChannel.enableLights(false);
+            downloadChannel.enableVibration(false);
+
             //高版本可以根据渠道id分别设置通知震动和铃声
             //            mChannel.enableLights(true); // 设置通知出现时的闪灯（如果 android 设备支持的话）
             if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE
@@ -51,6 +58,7 @@ public class App extends Application {
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+            notificationManager.createNotificationChannel(downloadChannel);
         } else {
             //低版本设置通知震动和铃声
             int defaults = android.app.Notification.DEFAULT_LIGHTS | android.app.Notification.DEFAULT_SOUND;

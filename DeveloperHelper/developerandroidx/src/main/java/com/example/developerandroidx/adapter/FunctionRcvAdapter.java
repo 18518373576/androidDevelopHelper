@@ -10,6 +10,7 @@ import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseRcvHolder;
 import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.bean.FunctionItemBean;
+import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.kongzue.dialog.v3.Notification;
 import com.kongzue.dialog.v3.TipDialog;
@@ -33,9 +34,15 @@ public class FunctionRcvAdapter extends BaseRcvAdapter<FunctionItemBean> {
                 if (!TextUtils.isEmpty(itemBean.goTo)) {
                     RouteUtil.goTo(v.getContext(), itemBean.goTo, itemBean.paramsMap, itemBean.paramStr);//路由到指定界面
                 } else {
-//                    Notification.show(v.getContext(), "正在完善 . . .");
-                    TipDialog.show((AppCompatActivity) v.getContext(), "developing", TipDialog.TYPE.WARNING);
-
+                    switch (itemBean.itemName) {
+                        //不需要路由，展示弹框
+                        case "Notification":
+                            DialogUtils.getInstance().showNotificationBottomMenuDialog(v.getContext());
+                            break;
+                        default:
+                            DialogUtils.getInstance().showTip(v.getContext(),"developing");
+                            break;
+                    }
                 }
             }
         });
