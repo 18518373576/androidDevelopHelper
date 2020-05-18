@@ -36,7 +36,7 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
         functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, ""));
         functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));
-        functionList.add(new FunctionItemBean("Notification", R.mipmap.icon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));
+//        functionList.add(new FunctionItemBean("Notification", R.mipmap.icon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));
         functionList.add(new FunctionItemBean("Touch event", R.mipmap.icon_touch_event, ""));
         functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("NFC", R.mipmap.icon_nfc, ""));

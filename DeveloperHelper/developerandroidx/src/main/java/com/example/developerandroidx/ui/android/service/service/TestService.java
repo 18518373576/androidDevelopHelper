@@ -1,17 +1,17 @@
 package com.example.developerandroidx.ui.android.service.service;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.media.AudioManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import com.example.developerandroidx.MainActivity;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.bean.EventBusMessageBean;
@@ -83,46 +83,47 @@ public class TestService extends Service {
      * 开启前台服务
      */
     private void startForeground() {
+
         Notification notification;
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        int importance = NotificationManager.IMPORTANCE_HIGH;
-        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
         String title = "到账提醒";
         String content = "账户到账￥0.01元";
-        if (Build.VERSION.SDK_INT >= 26) {
-            String id = "channel_id";  // 通知渠道的id
-            CharSequence name = "channelName";   // 用户可以看到的通知渠道的名字.
-            String description = "channelDesc";// 用户可以看到的通知渠道的描述
-            NotificationChannel mChannel = new NotificationChannel(id, name, importance);
-            mChannel.setDescription(description);  // 配置通知渠道的属性
-//            mChannel.enableLights(true); // 设置通知出现时的闪灯（如果 android 设备支持的话）
-            if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE
-                    || audioManager.getRingerMode() == AudioManager.MODE_NORMAL) {
-                mChannel.enableVibration(true);  // 设置通知出现时的震动（如果 android 设备支持的话）
-            }
-            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-            mNotificationManager.createNotificationChannel(mChannel);
 
-            notification = new Notification.Builder(this, id)
-                    .setContentTitle(title).setContentText(content)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .build();
-        } else {
-//            int defaults = Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND;
-            int defaults = Notification.DEFAULT_SOUND;
-            if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE
-                    || audioManager.getRingerMode() == AudioManager.MODE_NORMAL) {
-                defaults |= Notification.DEFAULT_VIBRATE;//设置Notification.DEFAULT_VIBRATE的flag后可能会在任何情况下都震动，部分系统的bug，所以要判断是否开启振动
-            }
-            notification = new Notification.Builder(this)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-                    .setContentTitle(title)
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentText(content)
-                    .setAutoCancel(true)
-                    .setDefaults(defaults).getNotification();
+        //设置点击通知事件
+        Intent intent = new Intent(this, MainActivity.class);
+        //setFlags() 方法帮助保留用户在通过通知打开应用后的预期导航体验。但您是否要使用这一方法取决于您要启动的 Activity 类型
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        //添加通知按钮,发送一条广播执行操作
+//        Intent snoozeIntent = new Intent(this, MyBroadcastReceiver.class);
+//        snoozeIntent.setAction("ACTION_SNOOZE");
+//        snoozeIntent.putExtra("EXTRA_NOTIFICATION_ID", 0);
+//        PendingIntent snoozePendingIntent =
+//                PendingIntent.getBroadcast(this, 0, snoozeIntent, 0);
+        /**
+         * 小图标，通过 setSmallIcon() 设置。这是所必需的唯一一个用户可见内容。
+         * 标题，通过 setContentTitle() 设置。
+         * 正文文本，通过 setContentText() 设置。
+         * 通知优先级，通过 setPriority() 设置。优先级确定通知在 Android 7.1 和更低版本上的干扰程度。（对于 Android 8.0 和更高版本，必须设置渠道重要性，如下一节中所示。）
+         */
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, App.channel_id)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setAutoCancel(true)//setAutoCancel()，它会在用户点按通知后自动移除通知。不过对于前台服务通知无效
+                .setContentIntent(pendingIntent)
+                .addAction(R.mipmap.icon_map, "了然", pendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+
+            builder.setDefaults(App.defaults);
+
         }
+//        要显示通知，请调用 NotificationManagerCompat.notify()，并将通知的唯一 ID 和 NotificationCompat.Builder.build() 的结果传递给它
+//        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+//        notificationManager.notify(100, builder.build());
+        notification = builder.build();
 
         startForeground(1, notification);
     }

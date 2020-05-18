@@ -1,7 +1,11 @@
 package com.example.developerandroidx.base;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.media.AudioManager;
+import android.os.Build;
 
 import com.example.developerandroidx.R;
 import com.kongzue.dialog.util.DialogSettings;
@@ -9,6 +13,8 @@ import com.kongzue.dialog.v3.Notification;
 
 public class App extends Application {
     public static Context context;
+    public static String channel_id;
+    public static int defaults;
 
     @Override
     public void onCreate() {
@@ -17,6 +23,44 @@ public class App extends Application {
         context = this;
         //初始化弹框
         initDialog();
+        //初始化通知
+        initNotification();
+    }
+
+    /**
+     * 初始化通知
+     */
+    private void initNotification() {
+        channel_id = "channel_id";  // 通知渠道的id
+        CharSequence name = "到账提醒";   // 用户可以看到的通知渠道的名字.
+        String description = "用户账户变动通知";// 用户可以看到的通知渠道的描述
+
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(channel_id, name, importance);
+            channel.setDescription(description);
+            //高版本可以根据渠道id分别设置通知震动和铃声
+            //            mChannel.enableLights(true); // 设置通知出现时的闪灯（如果 android 设备支持的话）
+            if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE
+                    || audioManager.getRingerMode() == AudioManager.MODE_NORMAL) {
+                channel.enableVibration(true);  // 设置通知出现时的震动（如果 android 设备支持的话）
+            }
+            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        } else {
+            //低版本设置通知震动和铃声
+            int defaults = android.app.Notification.DEFAULT_LIGHTS | android.app.Notification.DEFAULT_SOUND;
+//            defaults = android.app.Notification.DEFAULT_SOUND;
+            if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE
+                    || audioManager.getRingerMode() == AudioManager.MODE_NORMAL) {
+                defaults |= android.app.Notification.DEFAULT_VIBRATE;//设置Notification.DEFAULT_VIBRATE的flag后可能会在任何情况下都震动，部分系统的bug，所以要判断是否开启振动
+            }
+        }
+
     }
 
     /**
