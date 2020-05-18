@@ -36,7 +36,7 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
         functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, ""));
         functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));
-//        functionList.add(new FunctionItemBean("Notification", R.mipmap.icon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));
+        functionList.add(new FunctionItemBean("Notification", R.mipmap.icon_notification, RouteUtil.getDestination(DialogIndexActivity.class)));
         functionList.add(new FunctionItemBean("Touch event", R.mipmap.icon_touch_event, ""));
         functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("NFC", R.mipmap.icon_nfc, ""));
@@ -50,7 +50,7 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("扫码", R.mipmap.icon_scan, ""));
         functionList.add(new FunctionItemBean("架构", R.mipmap.icon_architecture, RouteUtil.getDestination(ArchitectureIndexActivity.class)));
         functionList.add(new FunctionItemBean("DataBinding", R.mipmap.icon_data_binding, ""));
-        functionList.add(new FunctionItemBean("Butter Knife", R.mipmap.icon_butter_knife, ""));
+//        functionList.add(new FunctionItemBean("Butter Knife", R.mipmap.icon_butter_knife, ""));
         functionList.add(new FunctionItemBean("地图", R.mipmap.icon_map, ""));
         functionList.add(new FunctionItemBean("性能优化", R.mipmap.icon_performance_optimization,
                 RouteUtil.getDestination(CodeViewActivity.class), CodeVariate.getInstance().getCode_3()));
