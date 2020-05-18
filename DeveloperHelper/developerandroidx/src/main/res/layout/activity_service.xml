@@ -50,6 +50,7 @@
         android:layout_weight="1"
         android:background="@drawable/bg_dark_white"
         android:padding="@dimen/dp10"
+        android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintTop_toBottomOf="@+id/ll_ProgressBar">
 
@@ -58,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorMain"
+            android:textIsSelectable="true"
             android:textSize="@dimen/sp14" />
     </ScrollView>
 
@@ -94,12 +96,14 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <Button
+            android:id="@+id/btn_start_foreground"
             style="@style/CommonButtonStyle"
             android:layout_width="@dimen/dp120"
             android:layout_margin="@dimen/dp10"
             android:text="Start Foreground" />
 
         <Button
+            android:id="@+id/btn_stop_foreground"
             style="@style/CancelButtonStyle"
             android:layout_width="@dimen/dp120"
             android:layout_margin="@dimen/dp10"

@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.android.activity.activityforResult.ForResultActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleInstanceActivity;
@@ -195,7 +196,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
-            showNotify("消息回调", "resultCode:" + resultCode + " msg:" + data.getStringExtra("res"));
+            App.showNotify("消息回调", "resultCode:" + resultCode + " msg:" + data.getStringExtra("res"));
         }
     }
 

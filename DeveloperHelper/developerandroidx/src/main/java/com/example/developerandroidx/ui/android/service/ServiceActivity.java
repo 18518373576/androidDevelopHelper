@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.bean.EventBusMessageBean;
 import com.example.developerandroidx.ui.android.service.service.TestIntentService;
@@ -47,7 +48,7 @@ public class ServiceActivity extends BaseActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             TestService.MyIBinder binder = (TestService.MyIBinder) service;//获取IBinder
             myService = binder.getService();//获取服务实例
-            showNotify(myService.showMessage());//与服务通信，并提示消息
+            App.showNotify(myService.showMessage());//与服务通信，并提示消息
             mBound = true;
         }
 
@@ -76,7 +77,7 @@ public class ServiceActivity extends BaseActivity {
      * @param v
      */
     @OnClick({R.id.iv_right, R.id.btn_intent_service, R.id.btn_start_service, R.id.btn_bind_service,
-            R.id.btn_stop_service, R.id.btn_unbind_service})
+            R.id.btn_stop_service, R.id.btn_unbind_service, R.id.btn_start_foreground, R.id.btn_stop_foreground})
     public void click(View v) {
 
         switch (v.getId()) {
@@ -139,6 +140,14 @@ public class ServiceActivity extends BaseActivity {
                     mBound = false;
                 }
                 break;
+            case R.id.btn_start_foreground:
+                Intent intent = new Intent(this, TestService.class).putExtra("isForeground", true);
+                startService(intent);
+                bindService(intent, connection, Context.BIND_AUTO_CREATE);
+                break;
+            case R.id.btn_stop_foreground:
+                myService.stopForeground();
+                break;
         }
 
     }
@@ -169,8 +178,17 @@ public class ServiceActivity extends BaseActivity {
             break;
             case Constant.EventBusMsgId.MSG_ID_03: {
                 tv_print.append(message.msg + "\n");
+                setOffset();
             }
             break;
+        }
+    }
+
+
+    private void setOffset() {
+        int offset = tv_print.getLineCount() * tv_print.getLineHeight();
+        if (offset > tv_print.getHeight()) {
+            tv_print.scrollTo(0, offset - tv_print.getHeight());
         }
     }
 

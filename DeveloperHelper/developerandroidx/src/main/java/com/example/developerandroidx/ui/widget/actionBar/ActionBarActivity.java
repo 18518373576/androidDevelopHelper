@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
@@ -94,7 +95,7 @@ public class ActionBarActivity extends BaseActivity {
         @Override
         public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
 
-            showNotify(tab.getText().toString());
+            App.showNotify(tab.getText().toString());
         }
 
         @Override
@@ -147,13 +148,13 @@ public class ActionBarActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.navigation_android:
-                showNotify(getResources().getString(R.string.android));
+                App.showNotify(getResources().getString(R.string.android));
                 break;
             case R.id.navigation_java:
-                showNotify(getResources().getString(R.string.java));
+                App.showNotify(getResources().getString(R.string.java));
                 break;
             case R.id.navigation_widget:
-                showNotify(getResources().getString(R.string.widget));
+                App.showNotify(getResources().getString(R.string.widget));
                 break;
         }
         return true;

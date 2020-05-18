@@ -1,15 +1,22 @@
 package com.example.developerandroidx.ui.android.service.service;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.media.AudioManager;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.bean.EventBusMessageBean;
 import com.example.developerandroidx.utils.Constant;
-import com.kongzue.dialog.v3.Notification;
+import com.example.developerandroidx.utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -48,7 +55,8 @@ public class TestService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onCreate()"));
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(),
+                StringUtils.getInstance().getCurrentTime() + "\nonCreate()"));
     }
 
     /**
@@ -63,8 +71,67 @@ public class TestService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onStartCommand(Intent intent, int flags, int startId)"));
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), StringUtils.getInstance().getCurrentTime() +
+                "\nonStartCommand(Intent intent, int flags, int startId)"));
+        if (intent.getBooleanExtra("isForeground", false)) {
+            startForeground();
+        }
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    /**
+     * 开启前台服务
+     */
+    private void startForeground() {
+        Notification notification;
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        String title = "到账提醒";
+        String content = "账户到账￥0.01元";
+        if (Build.VERSION.SDK_INT >= 26) {
+            String id = "channel_id";  // 通知渠道的id
+            CharSequence name = "channelName";   // 用户可以看到的通知渠道的名字.
+            String description = "channelDesc";// 用户可以看到的通知渠道的描述
+            NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+            mChannel.setDescription(description);  // 配置通知渠道的属性
+//            mChannel.enableLights(true); // 设置通知出现时的闪灯（如果 android 设备支持的话）
+            if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE
+                    || audioManager.getRingerMode() == AudioManager.MODE_NORMAL) {
+                mChannel.enableVibration(true);  // 设置通知出现时的震动（如果 android 设备支持的话）
+            }
+            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            mNotificationManager.createNotificationChannel(mChannel);
+
+            notification = new Notification.Builder(this, id)
+                    .setContentTitle(title).setContentText(content)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .build();
+        } else {
+//            int defaults = Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND;
+            int defaults = Notification.DEFAULT_SOUND;
+            if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE
+                    || audioManager.getRingerMode() == AudioManager.MODE_NORMAL) {
+                defaults |= Notification.DEFAULT_VIBRATE;//设置Notification.DEFAULT_VIBRATE的flag后可能会在任何情况下都震动，部分系统的bug，所以要判断是否开启振动
+            }
+            notification = new Notification.Builder(this)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    .setContentTitle(title)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentText(content)
+                    .setAutoCancel(true)
+                    .setDefaults(defaults).getNotification();
+        }
+
+        startForeground(1, notification);
+    }
+
+    /**
+     * 停止前台服务
+     */
+    public void stopForeground() {
+        stopForeground(true);
     }
 
     /**
@@ -77,7 +144,8 @@ public class TestService extends Service {
      */
     @Override
     public IBinder onBind(Intent intent) {
-        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onBind(Intent intent)"));
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), StringUtils.getInstance().getCurrentTime() +
+                "\nonBind(Intent intent)"));
 
         return binder;
     }
@@ -85,7 +153,7 @@ public class TestService extends Service {
     @Override
     public void onRebind(Intent intent) {
         super.onRebind(intent);
-        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onRebind(Intent intent)"));
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), StringUtils.getInstance().getCurrentTime() + "\nonRebind(Intent intent)"));
     }
 
     /**
@@ -99,8 +167,9 @@ public class TestService extends Service {
      */
     @Override
     public boolean onUnbind(Intent intent) {
-        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onUnbind(Intent intent)"));
-        Notification.show(App.context, "TestService", "onUnbind()", R.mipmap.ic_launcher);
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), StringUtils.getInstance().getCurrentTime() +
+                "\nonUnbind(Intent intent)"));
+        App.showNotify("TestService", "onUnbind()");
         return true;
     }
 
@@ -110,8 +179,9 @@ public class TestService extends Service {
      */
     @Override
     public void onDestroy() {
-        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), "onDestroy()"));
-        Notification.show(App.context, "TestService", "onDestroy()", R.mipmap.ic_launcher);
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), StringUtils.getInstance().getCurrentTime() +
+                "\nonDestroy()"));
+        App.showNotify("TestService", "onDestroy()");
         super.onDestroy();
     }
 

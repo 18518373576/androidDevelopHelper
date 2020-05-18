@@ -3,7 +3,9 @@ package com.example.developerandroidx.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.developerandroidx.R;
 import com.kongzue.dialog.util.DialogSettings;
+import com.kongzue.dialog.v3.Notification;
 
 public class App extends Application {
     public static Context context;
@@ -16,6 +18,26 @@ public class App extends Application {
         //初始化弹框
         initDialog();
     }
+
+    /**
+     * 弹出通知
+     *
+     * @param showMsg
+     */
+    public static void showNotify(String showMsg) {
+        Notification.show(context, "提示", showMsg, R.mipmap.ic_launcher);
+    }
+
+    /**
+     * 弹出通知
+     *
+     * @param title
+     * @param showMsg
+     */
+    public static void showNotify(String title, String showMsg) {
+        Notification.show(context, "提示", showMsg, R.mipmap.ic_launcher);
+    }
+
     /**
      * 初始化dialog{@link DialogSettings}
      */
