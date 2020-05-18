@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.view.View;
 
@@ -175,7 +176,8 @@ public class DialogUtils {
          * 通知优先级，通过 setPriority() 设置。优先级确定通知在 Android 7.1 和更低版本上的干扰程度。（对于 Android 8.0 和更高版本，必须设置渠道重要性，如下一节中所示。）
          */
         builder = new NotificationCompat.Builder(context, App.channel_id)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.icon_notification)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_notification))
                 .setContentTitle(title)
                 .setContentText(content)
                 .setAutoCancel(true)//setAutoCancel()，它会在用户点按通知后自动移除通知。不过对于前台服务通知无效

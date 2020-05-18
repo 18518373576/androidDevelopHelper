@@ -40,9 +40,9 @@ public class App extends Application {
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel(channel_id, name, importance);
-            NotificationChannel downloadChannel = new NotificationChannel(download_channel_id, "到账进度", importance);
+
+            NotificationChannel channel = new NotificationChannel(channel_id, name, NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel downloadChannel = new NotificationChannel(download_channel_id, "到账进度", NotificationManager.IMPORTANCE_LOW);
             channel.setDescription(description);
             downloadChannel.setDescription(description);
             downloadChannel.enableLights(false);
