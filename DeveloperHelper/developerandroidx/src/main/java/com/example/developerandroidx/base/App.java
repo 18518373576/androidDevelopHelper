@@ -42,7 +42,7 @@ public class App extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel(channel_id, name, importance);
-            NotificationChannel downloadChannel = new NotificationChannel(download_channel_id, name, importance);
+            NotificationChannel downloadChannel = new NotificationChannel(download_channel_id, "到账进度", importance);
             channel.setDescription(description);
             downloadChannel.setDescription(description);
             downloadChannel.enableLights(false);

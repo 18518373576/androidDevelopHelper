@@ -104,9 +104,11 @@ public class DialogUtils {
      */
     private NotificationCompat.Builder builder;
     private NotificationManagerCompat notificationManager;
+    private Context ProgressNotificaionContext;
 
     private void showProgressNotificaion(Context context) {
         EventBus.getDefault().register(this);
+        ProgressNotificaionContext = context;
         notificationManager = NotificationManagerCompat.from(context);
         builder = new NotificationCompat.Builder(context, App.download_channel_id);
         builder.setContentTitle("发工资")
@@ -139,6 +141,7 @@ public class DialogUtils {
                     builder.setProgress(0, 0, false);
                     EventBus.getDefault().unregister(this);
                     notificationManager.cancel(101);
+                    showCommonNotification(ProgressNotificaionContext);
                 }
             }
             break;
