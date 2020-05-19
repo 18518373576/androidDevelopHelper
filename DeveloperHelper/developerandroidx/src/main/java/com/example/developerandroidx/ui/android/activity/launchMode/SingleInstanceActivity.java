@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.kongzue.dialog.v3.Notification;
@@ -31,8 +32,8 @@ public class SingleInstanceActivity extends AppCompatActivity implements View.On
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Notification.show(this, "一直就是我", "onNewIntent()被调用：" +
-                intent.getStringExtra(Constant.IntentParams.INTENT_PARAM), R.mipmap.ic_launcher);
+        App.showNotify("一直就是我", "onNewIntent()被调用：" +
+                intent.getStringExtra(Constant.IntentParams.INTENT_PARAM));
     }
 
     @Override
@@ -53,7 +54,7 @@ public class SingleInstanceActivity extends AppCompatActivity implements View.On
 
     @Override
     protected void onDestroy() {
-        Notification.show(this, "被销毁", "singleInstance onDestroy()", R.mipmap.ic_launcher);
+        App.showNotify("被销毁", "singleInstance onDestroy()");
         super.onDestroy();
     }
 }

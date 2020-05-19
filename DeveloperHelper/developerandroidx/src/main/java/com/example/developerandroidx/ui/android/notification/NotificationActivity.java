@@ -1,4 +1,4 @@
-package com.example.developerandroidx.ui.android;
+package com.example.developerandroidx.ui.android.notification;
 
 import android.os.Bundle;
 

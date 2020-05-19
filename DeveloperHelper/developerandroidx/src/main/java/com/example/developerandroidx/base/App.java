@@ -77,7 +77,7 @@ public class App extends Application {
      * @param showMsg
      */
     public static void showNotify(String showMsg) {
-        Notification.show(context, "提示", showMsg, R.mipmap.ic_launcher);
+        showNotify("提示", showMsg, R.mipmap.icon_message);
     }
 
     /**
@@ -87,7 +87,22 @@ public class App extends Application {
      * @param showMsg
      */
     public static void showNotify(String title, String showMsg) {
-        Notification.show(context, "提示", showMsg, R.mipmap.ic_launcher);
+        showNotify(title, showMsg, R.mipmap.icon_message);
+    }
+
+    /**
+     * 弹出通知
+     *
+     * @param title
+     * @param showMsg
+     */
+    public static void showNotify(String title, String showMsg, int mipmapId) {
+//        Notification.show(context, title, showMsg, mipmapId);
+        Notification.build(context, showMsg)
+                .setIconResId(mipmapId)
+                .setTitle(title)
+                .setStyle(DialogSettings.STYLE.STYLE_IOS)
+                .showNotification();
     }
 
     /**

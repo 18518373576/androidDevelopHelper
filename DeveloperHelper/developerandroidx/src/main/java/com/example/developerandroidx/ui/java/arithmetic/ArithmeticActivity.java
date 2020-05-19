@@ -28,7 +28,7 @@ public class ArithmeticActivity extends BaseActivity {
 //                    showNotify("kong");
 //                    return;
 //                }
-                BubbleSortDialog.getInstance().show(context);
+                new BubbleSortDialog().show(context);
                 break;
         }
     }

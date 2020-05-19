@@ -14,10 +14,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
+        <receiver
+            android:name=".ui.android.broadcastReceiver.AppBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <!--                必须在activity动态申请此广播，清单文件申请无效-->
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.example.developerandroidx.HANDLE_NOTIFICATION" />
+                <action android:name="com.example.developerandroidx.TEST" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".ui.android.broadcastReceiver.BroadcastReceiverActivity" />
         <activity
-            android:name=".ui.android.NotificationActivity"
+            android:name=".ui.android.notification.NotificationActivity"
             android:excludeFromRecents="true"
-            android:taskAffinity=""></activity>
+            android:taskAffinity="" />
 
         <service
             android:name=".ui.android.service.service.TestIntentService"

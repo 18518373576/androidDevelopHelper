@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.kongzue.dialog.v3.Notification;
@@ -31,8 +32,8 @@ public class SingleTaskActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Notification.show(this, "还是我", "onNewIntent()被调用：" +
-                intent.getStringExtra(Constant.IntentParams.INTENT_PARAM), R.mipmap.ic_launcher);
+        App.showNotify("还是我", "onNewIntent()被调用：" +
+                intent.getStringExtra(Constant.IntentParams.INTENT_PARAM));
     }
 
     @Override

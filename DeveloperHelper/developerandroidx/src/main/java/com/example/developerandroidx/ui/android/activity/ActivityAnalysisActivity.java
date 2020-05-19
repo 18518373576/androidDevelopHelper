@@ -66,7 +66,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         setTitle("Activity");
-        
+
         iv_right.setVisibility(View.VISIBLE);
         //获取屏幕方向
         Log.e(TAG, ":" + getRequestedOrientation());
@@ -99,7 +99,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 break;
             case R.id.btn_start_up_mode://启动模式
                 String[] startUpModels = new String[]{"standard", "single Top", "single Task", "single Instance"};
-                BottomMenu.show((AppCompatActivity) context, startUpModels, new OnMenuItemClickListener() {
+                DialogUtils.getInstance().showBottomMenu(context, startUpModels, new DialogUtils.OnItemClickListener() {
                     @Override
                     public void onClick(String text, int index) {
                         switch (text) {
@@ -115,7 +115,6 @@ public class ActivityAnalysisActivity extends BaseActivity {
                             case "single Instance":
                                 RouteUtil.goTo(context, RouteUtil.getDestination(SingleInstanceActivity.class), "singleInstance_activity_1");
                                 break;
-
                         }
                     }
                 });
@@ -142,7 +141,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 break;
             case R.id.btn_cut_animation://切换动画
                 String[] transitions = new String[]{"Explode", "Slide", "Fade", "Shared Element"};
-                BottomMenu.show((AppCompatActivity) context, transitions, new OnMenuItemClickListener() {
+                DialogUtils.getInstance().showBottomMenu(context, transitions, new DialogUtils.OnItemClickListener() {
                     @Override
                     public void onClick(String text, int index) {
                         RouteUtil.goTo(context, RouteUtil.getDestination(TransitionAnimationActivity.class), text);

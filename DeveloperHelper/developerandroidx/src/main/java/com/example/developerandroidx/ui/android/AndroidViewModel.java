@@ -9,6 +9,7 @@ import com.example.developerandroidx.bean.FunctionItemBean;
 import com.example.developerandroidx.ui.android.activity.ActivityAnalysisActivity;
 import com.example.developerandroidx.ui.android.animation.AnimationActivity;
 import com.example.developerandroidx.ui.android.architecture.ArchitectureIndexActivity;
+import com.example.developerandroidx.ui.android.broadcastReceiver.BroadcastReceiverActivity;
 import com.example.developerandroidx.ui.android.dialog.DialogIndexActivity;
 import com.example.developerandroidx.ui.android.service.ServiceActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
@@ -32,7 +33,7 @@ public class AndroidViewModel extends ViewModel {
         List<FunctionItemBean> functionList = new ArrayList<>();
         functionList.add(new FunctionItemBean("Activity", R.mipmap.icon_activity, RouteUtil.getDestination(ActivityAnalysisActivity.class)));
         functionList.add(new FunctionItemBean("Service", R.mipmap.icon_service, RouteUtil.getDestination(ServiceActivity.class)));
-        functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, ""));
+        functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, RouteUtil.getDestination(BroadcastReceiverActivity.class)));
         functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
         functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, ""));
         functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));

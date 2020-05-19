@@ -10,6 +10,7 @@ import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseRcvHolder;
 import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.bean.FunctionItemBean;
+import com.example.developerandroidx.ui.android.notification.NotificationDialog;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.kongzue.dialog.v3.Notification;
@@ -37,10 +38,10 @@ public class FunctionRcvAdapter extends BaseRcvAdapter<FunctionItemBean> {
                     switch (itemBean.itemName) {
                         //不需要路由，展示弹框
                         case "Notification":
-                            DialogUtils.getInstance().showNotificationBottomMenuDialog(v.getContext());
+                            new NotificationDialog().show(v.getContext());
                             break;
                         default:
-                            DialogUtils.getInstance().showTip(v.getContext(),"developing");
+                            DialogUtils.getInstance().showTip(v.getContext(), "developing");
                             break;
                     }
                 }

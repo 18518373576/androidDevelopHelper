@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.utils.AnimUtil;
+import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.MyAnimationListener;
 import com.example.developerandroidx.view.navigationView.utils.PixelTransformUtil;
 import com.kongzue.dialog.interfaces.OnDismissListener;
@@ -34,45 +35,33 @@ import java.util.List;
  */
 public class BubbleSortDialog {
 
-    private FullScreenDialog dialog;
+    private FullScreenDialog myDialog;
     private Context context;
 
     private boolean isDis = false;
 
-    private static BubbleSortDialog bubbleSortDialog;
     private Thread thread;
 
-    private BubbleSortDialog() {
-    }
-
-    public static BubbleSortDialog getInstance() {
-        if (bubbleSortDialog == null) {
-            bubbleSortDialog = new BubbleSortDialog();
-        }
-
-        return bubbleSortDialog;
-    }
 
     public void show(Context context) {
         isDis = false;
         this.context = context;
-        dialog = FullScreenDialog.show((AppCompatActivity) context, R.layout.view_arithmetic_dialog, new FullScreenDialog.OnBindView() {
+        DialogUtils.getInstance().shouFullScreenDialog(context, R.layout.view_arithmetic_dialog, new DialogUtils.OnFullScreenDialogBindView() {
             @Override
             public void onBind(FullScreenDialog dialog, View rootView) {
-
                 bubbleSort(rootView);
-            }
-        });
-        dialog.setOnDismissListener(new OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                if (thread != null) {
-                    isDis = true;
-                    thread.interrupt();
-                    thread = null;
-                    points = null;
-                    pointsNum = null;
-                }
+                dialog.setOnDismissListener(new OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        if (thread != null) {
+                            isDis = true;
+                            thread.interrupt();
+                            thread = null;
+                            points = null;
+                            pointsNum = null;
+                        }
+                    }
+                });
             }
         });
     }

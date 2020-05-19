@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @OnClick({R.id.iv_right})
     public void click(View v) {
-        BubbleSortDialog.getInstance().show(context);
+        new BubbleSortDialog().show(context);
     }
 
     @Override
