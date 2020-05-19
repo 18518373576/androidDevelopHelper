@@ -7,6 +7,9 @@ package com.example.developerandroidx.utils;
  */
 public class Constant {
 
+    //创建带回复能力的通知使用到的字段
+    public static final String KEY_TEXT_REPLY = "key_text_reply";
+
     /**
      * intent参数
      */

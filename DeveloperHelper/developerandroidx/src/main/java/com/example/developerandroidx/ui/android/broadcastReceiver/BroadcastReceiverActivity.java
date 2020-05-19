@@ -31,17 +31,17 @@ public class BroadcastReceiverActivity extends BaseActivity {
     protected void initData() {
         super.initData();
         receiver = new AppBroadcastReceiver();
-        IntentFilter screenStatusIF = new IntentFilter();
-        screenStatusIF.addAction(Intent.ACTION_SCREEN_ON);
-        screenStatusIF.addAction("com.example.developerandroidx.TEST");
-        registerReceiver(receiver, screenStatusIF);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+        intentFilter.addAction("com.example.developerandroidx.TEST");
+        registerReceiver(receiver, intentFilter);
 
         receiver.setOnReceivedListener(new AppBroadcastReceiver.OnReceivedListener() {
             @Override
             public void onReceived(Intent intent) {
                 switch (intent.getAction()) {
                     case "com.example.developerandroidx.TEST":
-                        DialogUtils.getInstance().showTip(context, intent.getAction());
+                        DialogUtils.getInstance().showMessageDialog(context, "提示", intent.getStringExtra("sendBroadcast"));
                         break;
                 }
             }
@@ -53,8 +53,12 @@ public class BroadcastReceiverActivity extends BaseActivity {
 
         switch (v.getId()) {
             case R.id.iv_right:
-                sendBroadcast(new Intent("com.example.developerandroidx.TEST"));
-//                DialogUtils.getInstance().
+                DialogUtils.getInstance().showBottomMenu(context, new String[]{"sendBroadcast"}, new DialogUtils.OnItemClickListener() {
+                    @Override
+                    public void onClick(String text, int index) {
+                        sendBroadcast(new Intent("com.example.developerandroidx.TEST").putExtra("sendBroadcast", "发送一条广播，顺便附加了一条消息"));
+                    }
+                });
                 break;
         }
     }

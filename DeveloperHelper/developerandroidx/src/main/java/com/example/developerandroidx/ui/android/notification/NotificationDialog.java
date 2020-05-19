@@ -8,6 +8,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.RemoteInput;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
@@ -115,17 +116,37 @@ public class NotificationDialog {
         String title = "到账提醒";
         String content = "账户到账￥0.01元";
 
-        //设置点击通知事件
+        //设置点击通知事件，点击item的事件
         Intent intent = new Intent(context, NotificationActivity.class);
         //setFlags() 方法帮助保留用户在通过通知打开应用后的预期导航体验。但您是否要使用这一方法取决于您要启动的 Activity 类型
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         //添加通知按钮,发送一条广播执行操作
-        Intent snoozeIntent = new Intent(context, AppBroadcastReceiver.class);
-        snoozeIntent.setAction("com.example.developerandroidx.HANDLE_NOTIFICATION");
-        snoozeIntent.putExtra("NOTIFICATION_ID", 100);
-        PendingIntent snoozePendingIntent =
-                PendingIntent.getBroadcast(context, 0, snoozeIntent, 0);
+        Intent iKonwIntent = new Intent(context, AppBroadcastReceiver.class);
+        iKonwIntent.setAction("com.example.developerandroidx.HANDLE_NOTIFICATION");
+        iKonwIntent.putExtra("NOTIFICATION_ID", 100);
+        PendingIntent iKonwPendingIntent =
+                PendingIntent.getBroadcast(context, 0, iKonwIntent, 0);
+        //创建支持直接回复的通知操作
+        RemoteInput remoteInput = new RemoteInput.Builder(Constant.KEY_TEXT_REPLY)
+                .setLabel("我要吐槽")
+                .build();
+        Intent inputIntent = new Intent(context, AppBroadcastReceiver.class);
+        inputIntent.setAction("com.example.developerandroidx.INPUT_NOTIFICATION");
+        inputIntent.putExtra("NOTIFICATION_ID", 100);
+        PendingIntent replyPendingIntent =
+                PendingIntent.getBroadcast(context,
+                        0,
+                        inputIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Action action =
+                new NotificationCompat.Action.Builder(R.mipmap.icon_notification,
+                        "我要吐槽", replyPendingIntent)
+                        .addRemoteInput(remoteInput)
+                        .build();
+
+
+
         /**
          * 小图标，通过 setSmallIcon() 设置。这是所必需的唯一一个用户可见内容。
          * 标题，通过 setContentTitle() 设置。
@@ -139,7 +160,8 @@ public class NotificationDialog {
                 .setContentText(content)
                 .setAutoCancel(true)//setAutoCancel()，它会在用户点按通知后自动移除通知。不过对于前台服务通知无效
                 .setContentIntent(pendingIntent)
-                .addAction(R.mipmap.icon_map, "了然", snoozePendingIntent)
+                .addAction(R.mipmap.icon_map, "了然", iKonwPendingIntent)
+                .addAction(action)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {

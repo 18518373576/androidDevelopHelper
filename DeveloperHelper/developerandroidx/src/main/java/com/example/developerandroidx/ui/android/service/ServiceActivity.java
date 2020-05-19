@@ -144,10 +144,10 @@ public class ServiceActivity extends BaseActivity {
             case R.id.btn_start_foreground:
                 Intent intent = new Intent(this, TestService.class).putExtra("isForeground", true);
                 startService(intent);
-                bindService(intent, connection, Context.BIND_AUTO_CREATE);
                 break;
             case R.id.btn_stop_foreground:
-                myService.stopForeground();
+                //发送关闭前台服务的广播
+                sendBroadcast(new Intent("com.example.developerandroidx.STOP_FOREGROUND"));
                 break;
             case R.id.btn_aidl:
 

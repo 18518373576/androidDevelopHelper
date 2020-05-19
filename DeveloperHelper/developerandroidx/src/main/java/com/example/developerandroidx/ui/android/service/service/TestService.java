@@ -1,21 +1,22 @@
 package com.example.developerandroidx.ui.android.service.service;
 
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
-import com.example.developerandroidx.MainActivity;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.bean.EventBusMessageBean;
+import com.example.developerandroidx.ui.android.broadcastReceiver.AppBroadcastReceiver;
+import com.example.developerandroidx.ui.android.notification.NotificationActivity;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.StringUtils;
 
@@ -37,6 +38,8 @@ import org.greenrobot.eventbus.EventBus;
 public class TestService extends Service {
 
     private final IBinder binder = new MyIBinder();
+    private AppBroadcastReceiver receiver;
+    private Context context;
 
     /**
      * 定义binder
@@ -56,6 +59,29 @@ public class TestService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        context = this;
+        //开启服务时，注册监听，用于响应前台服务通知栏事件
+        receiver = new AppBroadcastReceiver();
+        //广播监听回调
+        receiver.setOnReceivedListener(new AppBroadcastReceiver.OnReceivedListener() {
+            @Override
+            public void onReceived(Intent intent) {
+                switch (intent.getAction()) {
+                    case "com.example.developerandroidx.STOP_FOREGROUND":
+                        //销毁当前服务，服务销毁会自动关闭启动的前台服务
+                        //除非有绑定服务的组件没有解绑
+                        stopForeground();
+                        stopSelf();
+                        break;
+                }
+            }
+        });
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.example.developerandroidx.STOP_FOREGROUND");
+        registerReceiver(receiver, intentFilter);
+
+
         EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(),
                 StringUtils.getInstance().getCurrentTime() + "\nonCreate()"));
     }
@@ -85,22 +111,19 @@ public class TestService extends Service {
      */
     private void startForeground() {
 
-        Notification notification;
-
         String title = "到账提醒";
         String content = "账户到账￥0.01元";
 
         //设置点击通知事件
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, NotificationActivity.class);
         //setFlags() 方法帮助保留用户在通过通知打开应用后的预期导航体验。但您是否要使用这一方法取决于您要启动的 Activity 类型
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         //添加通知按钮,发送一条广播执行操作
-//        Intent snoozeIntent = new Intent(this, MyBroadcastReceiver.class);
-//        snoozeIntent.setAction("ACTION_SNOOZE");
-//        snoozeIntent.putExtra("EXTRA_NOTIFICATION_ID", 0);
-//        PendingIntent snoozePendingIntent =
-//                PendingIntent.getBroadcast(this, 0, snoozeIntent, 0);
+        Intent snoozeIntent = new Intent(context, AppBroadcastReceiver.class);
+        snoozeIntent.setAction("com.example.developerandroidx.STOP_FOREGROUND");
+        PendingIntent snoozePendingIntent =
+                PendingIntent.getBroadcast(context, 0, snoozeIntent, 0);
         /**
          * 小图标，通过 setSmallIcon() 设置。这是所必需的唯一一个用户可见内容。
          * 标题，通过 setContentTitle() 设置。
@@ -114,7 +137,7 @@ public class TestService extends Service {
                 .setContentText(content)
                 .setAutoCancel(true)//setAutoCancel()，它会在用户点按通知后自动移除通知。不过对于前台服务通知无效
                 .setContentIntent(pendingIntent)
-                .addAction(R.mipmap.icon_map, "了然", pendingIntent)
+                .addAction(R.mipmap.icon_map, "了然", snoozePendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -125,9 +148,8 @@ public class TestService extends Service {
 //        要显示通知，请调用 NotificationManagerCompat.notify()，并将通知的唯一 ID 和 NotificationCompat.Builder.build() 的结果传递给它
 //        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 //        notificationManager.notify(100, builder.build());
-        notification = builder.build();
 
-        startForeground(1, notification);
+        startForeground(102, builder.build());
     }
 
     /**
@@ -182,6 +204,7 @@ public class TestService extends Service {
      */
     @Override
     public void onDestroy() {
+        unregisterReceiver(receiver);
         EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(), StringUtils.getInstance().getCurrentTime() +
                 "\nonDestroy()"));
         App.showNotify("TestService", "onDestroy()");

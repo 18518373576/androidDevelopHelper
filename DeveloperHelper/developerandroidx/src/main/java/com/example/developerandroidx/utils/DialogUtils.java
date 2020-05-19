@@ -6,8 +6,10 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
+import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.BottomMenu;
 import com.kongzue.dialog.v3.FullScreenDialog;
+import com.kongzue.dialog.v3.MessageDialog;
 import com.kongzue.dialog.v3.TipDialog;
 
 /**
@@ -78,5 +80,20 @@ public class DialogUtils {
 
     public interface OnItemClickListener {
         void onClick(String text, int index);
+    }
+
+    /**
+     * 展示消息对话框
+     *
+     * @param context
+     * @param title
+     * @param msg
+     */
+    public void showMessageDialog(Context context, String title, String msg) {
+        MessageDialog.build((AppCompatActivity) context)
+                .setTitle(title)
+                .setMessage(msg)
+                .setStyle(DialogSettings.STYLE.STYLE_IOS)
+                .show();
     }
 }
