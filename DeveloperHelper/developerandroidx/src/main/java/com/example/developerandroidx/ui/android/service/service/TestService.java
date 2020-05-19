@@ -130,7 +130,7 @@ public class TestService extends Service {
          * 正文文本，通过 setContentText() 设置。
          * 通知优先级，通过 setPriority() 设置。优先级确定通知在 Android 7.1 和更低版本上的干扰程度。（对于 Android 8.0 和更高版本，必须设置渠道重要性，如下一节中所示。）
          */
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, App.channel_id)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, App.IMPORTANCE_HIGH_CHANNEL_ID)
                 .setSmallIcon(R.mipmap.icon_service)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.icon_service))
                 .setContentTitle(title)

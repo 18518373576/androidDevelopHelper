@@ -7,14 +7,16 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
 import com.example.developerandroidx.R;
 import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.Notification;
 
 public class App extends Application {
     public static Context context;
-    public static String channel_id;
-    public static String download_channel_id;
+    public static String IMPORTANCE_HIGH_CHANNEL_ID;
+    public static String IMPORTANCE_LOW_CHANNEL_ID;
     public static int defaults;
 
     @Override
@@ -32,34 +34,19 @@ public class App extends Application {
      * 初始化通知
      */
     private void initNotification() {
-        channel_id = "channel_id";  // 通知渠道的id
-        download_channel_id = "channel_id_01";  // 通知渠道的id
-        CharSequence name = "到账提醒";   // 用户可以看到的通知渠道的名字.
-        String description = "用户账户变动通知";// 用户可以看到的通知渠道的描述
-
-        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        IMPORTANCE_HIGH_CHANNEL_ID = "channel_id";  // 通知渠道的id
+        IMPORTANCE_LOW_CHANNEL_ID = "channel_id_01";  // 进度条通知渠道的id
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            NotificationChannel channel = new NotificationChannel(channel_id, name, NotificationManager.IMPORTANCE_HIGH);
-            NotificationChannel downloadChannel = new NotificationChannel(download_channel_id, "到账进度", NotificationManager.IMPORTANCE_LOW);
-            channel.setDescription(description);
-            downloadChannel.setDescription(description);
-            downloadChannel.enableLights(false);
-            downloadChannel.enableVibration(false);
+            //紧急
+            //发出提示音，并以浮动通知的形式显示	IMPORTANCE_HIGH	PRIORITY_HIGH 或 PRIORITY_MAX
+            //测试手机华为mate20x不起作用，不会浮窗展示，需要手动开启
+            createNotificationChannel(NotificationManager.IMPORTANCE_HIGH, IMPORTANCE_HIGH_CHANNEL_ID, "重要通知", "用户账户变动通知，等");
+            createNotificationChannel(NotificationManager.IMPORTANCE_LOW, IMPORTANCE_LOW_CHANNEL_ID, "次要通知", "到账进度，等");
 
-            //高版本可以根据渠道id分别设置通知震动和铃声
-            //            mChannel.enableLights(true); // 设置通知出现时的闪灯（如果 android 设备支持的话）
-            if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE
-                    || audioManager.getRingerMode() == AudioManager.MODE_NORMAL) {
-                channel.enableVibration(true);  // 设置通知出现时的震动（如果 android 设备支持的话）
-            }
-            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-            notificationManager.createNotificationChannel(downloadChannel);
         } else {
+            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
             //低版本设置通知震动和铃声
             int defaults = android.app.Notification.DEFAULT_LIGHTS | android.app.Notification.DEFAULT_SOUND;
 //            defaults = android.app.Notification.DEFAULT_SOUND;
@@ -69,6 +56,36 @@ public class App extends Application {
             }
         }
 
+    }
+
+    /**
+     * 创建通知渠道
+     *
+     * @param importance  通知重要级别
+     * @param channelId   渠道id
+     * @param channelName 通知渠道名称，会展示在系统通知设置界面
+     * @param channelDesc 通知渠道描述
+     */
+    private void createNotificationChannel(int importance, String channelId, String channelName, String channelDesc) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+            channel.setDescription(channelDesc);
+            switch (channelId) {
+                case "channel_id":
+                    channel.setShowBadge(true);//官方文档：显示启动按钮通知角标，测试手机华为mate20x不起作用
+                    AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                    if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE
+                            || audioManager.getRingerMode() == AudioManager.MODE_NORMAL) {
+                        channel.enableVibration(true);  // 设置通知出现时的震动（如果 android 设备支持的话）
+                    }
+                    channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                    break;
+            }
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
     /**
