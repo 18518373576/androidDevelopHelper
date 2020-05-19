@@ -201,6 +201,8 @@ public class NotificationDialog {
     private void showCustomNotification(Context context) {
         RemoteViews notificationLayout = new RemoteViews(context.getPackageName(), R.layout.notification_small_custom);
         RemoteViews notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.notification_large_custom);
+        //交互实现
+//        notificationLayout.setTextViewText();
 
         Notification customNotification = new NotificationCompat.Builder(context, App.IMPORTANCE_LOW_CHANNEL_ID)
                 .setSmallIcon(R.mipmap.icon_notification)
