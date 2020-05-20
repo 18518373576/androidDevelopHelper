@@ -1,6 +1,7 @@
 package com.example.developerandroidx.view.ExtensibleScrollView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -63,6 +64,29 @@ public class ExtensibleScrollView extends ScrollView {
     }
 
     /**
+     * 添加内容，带着意图，如点击可以跳转
+     *
+     * @param intent
+     */
+    public void addBodyWithIntent(String text, int colorId, Intent intent) {
+        TextView body = new TextView(context);
+        body.setText("        " + text);
+        body.setTextSize(14);
+        int padding = PixelTransformUtil.dip2px(context, 5);
+        body.setPadding(0, padding, 0, padding);
+        //add增加的间距，mult增加的间距倍数
+        body.setLineSpacing(0, 1.5f);
+        body.setTextColor(context.getResources().getColor(colorId));
+        body.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(intent);
+            }
+        });
+        contentLayout.addView(body);
+    }
+
+    /**
      * 添加文本
      *
      * @param text     文本内容
@@ -73,6 +97,7 @@ public class ExtensibleScrollView extends ScrollView {
         switch (textType) {
             case BODY: {
                 TextView body = new TextView(context);
+                body.setTextIsSelectable(true);
                 body.setText("        " + text);
                 body.setTextSize(14);
                 int padding = PixelTransformUtil.dip2px(context, 5);

@@ -288,6 +288,131 @@ public class CodeVariate {
 
     public String getCode_7() {
 
-        return "";
+        return "创建基本通知：\n" +
+                "NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)\n" +
+                "         .setSmallIcon(R.drawable.notification_icon)\n" +
+                "         .setContentTitle(textTitle)\n" +
+                "         .setContentText(textContent)\n" +
+                "         .setPriority(NotificationCompat.PRIORITY_DEFAULT);\n" +
+                "\n创建展示更多内容的通知：\n" +
+                "NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)\n" +
+                "         .setSmallIcon(R.drawable.notification_icon)\n" +
+                "         .setContentTitle(\"My notification\")\n" +
+                "         .setContentText(\"Much longer text that cannot fit one line...\")\n" +
+                "         .setStyle(new NotificationCompat.BigTextStyle()\n" +
+                "                 .bigText(\"Much longer text that cannot fit one line...\"))\n" +
+                "         .setPriority(NotificationCompat.PRIORITY_DEFAULT);\n" +
+                "\n创建通知渠道：\n" +
+                "private void createNotificationChannel() {\n" +
+                "     // Create the NotificationChannel, but only on API 26+ because\n" +
+                "     // the NotificationChannel class is new and not in the support library\n" +
+                "     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {\n" +
+                "         CharSequence name = getString(R.string.channel_name);\n" +
+                "         String description = getString(R.string.channel_description);\n" +
+                "         int importance = NotificationManager.IMPORTANCE_DEFAULT;\n" +
+                "         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);\n" +
+                "         channel.setDescription(description);\n" +
+                "         // Register the channel with the system; you can't change the importance\n" +
+                "         // or other notification behaviors after this\n" +
+                "         NotificationManager notificationManager = getSystemService(NotificationManager.class);\n" +
+                "         notificationManager.createNotificationChannel(channel);\n" +
+                "     }\n" +
+                " }\n" +
+                "\n设置通知的点按操作：\n" +
+                "// Create an explicit intent for an Activity in your app\n" +
+                "Intent intent = new Intent(this, AlertDetails.class);\n" +
+                "intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);\n" +
+                "PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);\n" +
+                "\n" +
+                "NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)\n" +
+                "        .setSmallIcon(R.drawable.notification_icon)\n" +
+                "        .setContentTitle(\"My notification\")\n" +
+                "        .setContentText(\"Hello World!\")\n" +
+                "        .setPriority(NotificationCompat.PRIORITY_DEFAULT)\n" +
+                "        // Set the intent that will fire when the user taps the notification\n" +
+                "        .setContentIntent(pendingIntent)\n" +
+                "        .setAutoCancel(true);\n" +
+                "\n显示通知：\n" +
+                "NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);\n" +
+                "// notificationId is a unique int for each notification that you must define\n" +
+                "notificationManager.notify(notificationId, builder.build());\n" +
+                "\n添加操作按钮：\n" +
+                "Intent snoozeIntent = new Intent(this, MyBroadcastReceiver.class);\n" +
+                "snoozeIntent.setAction(ACTION_SNOOZE);\n" +
+                "snoozeIntent.putExtra(EXTRA_NOTIFICATION_ID, 0);\n" +
+                "PendingIntent snoozePendingIntent =\n" +
+                "        PendingIntent.getBroadcast(this, 0, snoozeIntent, 0);\n" +
+                "\n" +
+                "NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)\n" +
+                "        .setSmallIcon(R.drawable.notification_icon)\n" +
+                "        .setContentTitle(\"My notification\")\n" +
+                "        .setContentText(\"Hello World!\")\n" +
+                "        .setPriority(NotificationCompat.PRIORITY_DEFAULT)\n" +
+                "        .setContentIntent(pendingIntent)\n" +
+                "        .addAction(R.drawable.ic_snooze, getString(R.string.snooze),\n" +
+                "                snoozePendingIntent);\n" +
+                "添加直接回复操作：\n" +
+                "// Key for the string that's delivered in the action's intent.\n" +
+                "private static final String KEY_TEXT_REPLY = \"key_text_reply\";\n" +
+                "\n" +
+                "String replyLabel = getResources().getString(R.string.reply_label);\n" +
+                "RemoteInput remoteInput = new RemoteInput.Builder(KEY_TEXT_REPLY)\n" +
+                "        .setLabel(replyLabel)\n" +
+                "        .build();\n\n" +
+                "// Build a PendingIntent for the reply action to trigger.\n" +
+                "PendingIntent replyPendingIntent =\n" +
+                "        PendingIntent.getBroadcast(getApplicationContext(),\n" +
+                "                conversation.getConversationId(),\n" +
+                "                getMessageReplyIntent(conversation.getConversationId()),\n" +
+                "                PendingIntent.FLAG_UPDATE_CURRENT);\n\n" +
+                "// Create the reply action and add the remote input.\n" +
+                "NotificationCompat.Action action =\n" +
+                "        new NotificationCompat.Action.Builder(R.drawable.ic_reply_icon,\n" +
+                "                getString(R.string.label), replyPendingIntent)\n" +
+                "                .addRemoteInput(remoteInput)\n" +
+                "                .build();\n\n" +
+                "// Build the notification and add the action.\n" +
+                "Notification newMessageNotification = new Notification.Builder(context, CHANNEL_ID)\n" +
+                "        .setSmallIcon(R.drawable.ic_message)\n" +
+                "        .setContentTitle(getString(R.string.title))\n" +
+                "        .setContentText(getString(R.string.content))\n" +
+                "        .addAction(action)\n" +
+                "        .build();\n" +
+                "\n" +
+                "// Issue the notification.\n" +
+                "NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);\n" +
+                "notificationManager.notify(notificationId, newMessageNotification);\n\n" +
+                "private CharSequence getMessageText(Intent intent) {\n" +
+                "   Bundle remoteInput = RemoteInput.getResultsFromIntent(intent);\n" +
+                "   if (remoteInput != null) {\n" +
+                "       return remoteInput.getCharSequence(KEY_TEXT_REPLY);\n" +
+                "   }\n" +
+                "   return null;\n" +
+                "}\n" +
+                "\n添加进度条：\n" +
+                "NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);\n" +
+                "NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);\n" +
+                "builder.setContentTitle(\"Picture Download\")\n" +
+                "        .setContentText(\"Download in progress\")\n" +
+                "        .setSmallIcon(R.drawable.ic_notification)\n" +
+                "        .setPriority(NotificationCompat.PRIORITY_LOW);\n" +
+                "\n" +
+                "// Issue the initial notification with zero progress\n" +
+                "int PROGRESS_MAX = 100;\n" +
+                "int PROGRESS_CURRENT = 0;\n" +
+                "builder.setProgress(PROGRESS_MAX, PROGRESS_CURRENT, false);\n" +
+                "notificationManager.notify(notificationId, builder.build());\n" +
+                "\n" +
+                "// Do the job here that tracks the progress.\n" +
+                "// Usually, this should be in a\n" +
+                "// worker thread\n" +
+                "// To show progress, update PROGRESS_CURRENT and update the notification with:\n" +
+                "// builder.setProgress(PROGRESS_MAX, PROGRESS_CURRENT, false);\n" +
+                "// notificationManager.notify(notificationId, builder.build());\n" +
+                "\n" +
+                "// When done, update the notification one more time to remove the progress bar\n" +
+                "builder.setContentText(\"Download complete\")\n" +
+                "        .setProgress(0,0,false);\n" +
+                "notificationManager.notify(notificationId, builder.build());";
     }
 }

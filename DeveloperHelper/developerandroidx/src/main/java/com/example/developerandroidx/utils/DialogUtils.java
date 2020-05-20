@@ -11,6 +11,7 @@ import com.kongzue.dialog.v3.BottomMenu;
 import com.kongzue.dialog.v3.FullScreenDialog;
 import com.kongzue.dialog.v3.MessageDialog;
 import com.kongzue.dialog.v3.TipDialog;
+import com.kongzue.dialog.v3.WaitDialog;
 
 /**
  * @作者： zjf 2020/5/15 9:17
@@ -95,5 +96,19 @@ public class DialogUtils {
                 .setMessage(msg)
                 .setStyle(DialogSettings.STYLE.STYLE_IOS)
                 .show();
+    }
+
+    /**
+     * 展示loading框
+     *
+     * @param context
+     * @param loadingMsg
+     */
+    public void showLoadingDialog(Context context, String loadingMsg) {
+        WaitDialog.show((AppCompatActivity) context, loadingMsg);
+    }
+
+    public void dismissLoadingDialog() {
+        WaitDialog.dismiss();
     }
 }

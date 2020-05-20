@@ -9,6 +9,8 @@ import android.webkit.WebViewClient;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.Constant;
+import com.example.developerandroidx.utils.DialogUtils;
+import com.example.developerandroidx.utils.LogUtils;
 
 import butterknife.BindView;
 
@@ -25,7 +27,8 @@ public class TechnologyWebviewActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setTitle("参考文章");
+        setTitle("参考文档");
+        DialogUtils.getInstance().showLoadingDialog(context, "正在加载...");
         String url = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
         wv_web.setWebViewClient(new WebViewClient() {
             @Override
@@ -41,6 +44,10 @@ public class TechnologyWebviewActivity extends BaseActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
+                LogUtils.e("网页加载", newProgress + "");
+                if (newProgress == 100) {
+                    DialogUtils.getInstance().dismissLoadingDialog();
+                }
             }
         });
         wv_web.loadUrl(url);
