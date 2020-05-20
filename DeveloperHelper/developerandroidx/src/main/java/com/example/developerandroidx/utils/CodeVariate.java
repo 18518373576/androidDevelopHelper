@@ -285,4 +285,9 @@ public class CodeVariate {
                 "LinearInterpolator                 @android:anim/linear_interpolator                   动画匀速改变\n" +
                 "OvershootInterpolator              @android:anim/overshoot_interpolator                向前弹出一定值之后回到原来位置\n";
     }
+
+    public String getCode_7() {
+
+        return "";
+    }
 }

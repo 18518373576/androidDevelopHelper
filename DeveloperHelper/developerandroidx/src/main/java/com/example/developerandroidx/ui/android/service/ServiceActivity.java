@@ -107,7 +107,7 @@ public class ServiceActivity extends BaseActivity {
                 break;
             case R.id.btn_stop_foreground:
                 //发送关闭前台服务的广播
-                sendBroadcast(new Intent("com.example.developerandroidx.STOP_FOREGROUND"));
+                sendBroadcast(new Intent(Constant.BroadcastAction.STOP_FOREGROUND_ACTION));
                 break;
             case R.id.btn_aidl:
 

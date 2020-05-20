@@ -4,11 +4,15 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.example.developerandroidx.utils.LogUtils;
 
 /**
  * @作者： zjf 2020/5/15 11:16
@@ -19,6 +23,7 @@ public class ExtensibleScrollView extends ScrollView {
 
     private Context context;
     private LinearLayout contentLayout;
+    private float Y = 0;
 
     /**
      * 可添加的文类型
@@ -129,5 +134,47 @@ public class ExtensibleScrollView extends ScrollView {
         image.setImageResource(imageResourceId);
 
         contentLayout.addView(image, params);
+    }
+
+    public interface OnScrollChangedListener {
+        /**
+         * 上滑
+         *
+         * @param isToTop 是否到顶,未实现，需要的时候再实现
+         */
+        void toUp(boolean isToTop);
+
+        /**
+         * 下滑
+         *
+         * @param isToBottom 是否到底
+         */
+        void toDown(boolean isToBottom);
+    }
+
+    public void setOnScrollChangedListener(OnScrollChangedListener onScrollChangedListener) {
+        this.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        LogUtils.e("滑动监听", motionEvent.getY() + "");
+                        Y = motionEvent.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        Y = motionEvent.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        LogUtils.e("滑动监听", motionEvent.getY() + "");
+                        if ((Y - motionEvent.getY()) < -100) {
+                            onScrollChangedListener.toDown(false);
+                        } else if ((Y - motionEvent.getY()) > 100) {
+                            onScrollChangedListener.toUp(false);
+                        }
+                        break;
+                }
+                return false;
+            }
+        });
     }
 }

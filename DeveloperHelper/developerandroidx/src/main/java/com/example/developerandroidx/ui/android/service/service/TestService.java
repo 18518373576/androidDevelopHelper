@@ -67,7 +67,7 @@ public class TestService extends Service {
             @Override
             public void onReceived(Intent intent) {
                 switch (intent.getAction()) {
-                    case "com.example.developerandroidx.STOP_FOREGROUND":
+                    case Constant.BroadcastAction.STOP_FOREGROUND_ACTION:
                         //销毁当前服务，服务销毁会自动关闭启动的前台服务
                         //除非有绑定服务的组件没有解绑
                         stopForeground();
@@ -78,7 +78,7 @@ public class TestService extends Service {
         });
 
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.example.developerandroidx.STOP_FOREGROUND");
+        intentFilter.addAction(Constant.BroadcastAction.STOP_FOREGROUND_ACTION);
         registerReceiver(receiver, intentFilter);
 
 
@@ -121,7 +121,7 @@ public class TestService extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         //添加通知按钮,发送一条广播执行操作
         Intent snoozeIntent = new Intent(context, AppBroadcastReceiver.class);
-        snoozeIntent.setAction("com.example.developerandroidx.STOP_FOREGROUND");
+        snoozeIntent.setAction(Constant.BroadcastAction.STOP_FOREGROUND);
         PendingIntent snoozePendingIntent =
                 PendingIntent.getBroadcast(context, 0, snoozeIntent, 0);
         /**

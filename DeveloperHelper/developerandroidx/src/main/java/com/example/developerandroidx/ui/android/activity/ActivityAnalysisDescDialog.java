@@ -1,9 +1,10 @@
-package com.example.developerandroidx.ui.android.activity.transitionAnimation;
+package com.example.developerandroidx.ui.android.activity;
 
 import android.content.Context;
 import android.view.View;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.projectInterface.FunctionDialogInterface;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView;
 import com.kongzue.dialog.v3.FullScreenDialog;
@@ -13,8 +14,9 @@ import com.kongzue.dialog.v3.FullScreenDialog;
  * 参考:
  * 描述: activity的描述弹框，增加一个类，为了使activity类界面更加简洁
  */
-public class ActivityAnalysisDescDialog {
+public class ActivityAnalysisDescDialog implements FunctionDialogInterface {
 
+    @Override
     public void show(Context context) {
         DialogUtils.getInstance().shouFullScreenDialog(context, R.layout.dialog_activity_lifecycle, new DialogUtils.OnFullScreenDialogBindView() {
             @Override

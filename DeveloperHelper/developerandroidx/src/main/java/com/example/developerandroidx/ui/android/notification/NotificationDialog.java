@@ -138,7 +138,7 @@ public class NotificationDialog {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         //添加通知按钮,发送一条广播执行操作
         Intent iKonwIntent = new Intent(context, AppBroadcastReceiver.class);
-        iKonwIntent.setAction("com.example.developerandroidx.HANDLE_NOTIFICATION");
+        iKonwIntent.setAction(Constant.BroadcastAction.HANDLE_NOTIFICATION);
         iKonwIntent.putExtra("NOTIFICATION_ID", 100);
         PendingIntent iKonwPendingIntent =
                 PendingIntent.getBroadcast(context, 0, iKonwIntent, 0);
@@ -147,7 +147,7 @@ public class NotificationDialog {
                 .setLabel("我要吐槽")
                 .build();
         Intent inputIntent = new Intent(context, AppBroadcastReceiver.class);
-        inputIntent.setAction("com.example.developerandroidx.INPUT_NOTIFICATION");
+        inputIntent.setAction(Constant.BroadcastAction.INPUT_NOTIFICATION);
         inputIntent.putExtra("NOTIFICATION_ID", 100);
         PendingIntent replyPendingIntent =
                 PendingIntent.getBroadcast(context,

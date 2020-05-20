@@ -26,13 +26,13 @@ public class AppBroadcastReceiver extends BroadcastReceiver {
             listener.onReceived(intent);
         }
         switch (intent.getAction()) {
-            case "com.example.developerandroidx.STOP_FOREGROUND":
+            case Constant.BroadcastAction.STOP_FOREGROUND:
                 /**
-                 * 接收到通知栏事件的广播，继续传递给服务，执行事件
+                 * 接收到通知栏事件的广播，继续传递给服务，执行事件,这里是关闭前台服务
                  * {@link com.example.developerandroidx.ui.android.service.service.TestService}
                  * {@link com.example.developerandroidx.ui.android.service.ServiceActivity}
                  */
-                context.sendBroadcast(new Intent("com.example.developerandroidx.STOP_FOREGROUND"));
+                context.sendBroadcast(new Intent(Constant.BroadcastAction.STOP_FOREGROUND_ACTION));
                 break;
             case Intent.ACTION_SCREEN_ON:
                 /**
@@ -41,7 +41,7 @@ public class AppBroadcastReceiver extends BroadcastReceiver {
                  */
                 App.showNotify("广播通知", intent.getAction(), R.mipmap.icon_broadcast_receiver);
                 break;
-            case "com.example.developerandroidx.HANDLE_NOTIFICATION":
+            case Constant.BroadcastAction.HANDLE_NOTIFICATION:
                 /**
                  * 处理通知栏按钮事件，此处是删除当前通知
                  * {@link com.example.developerandroidx.ui.android.notification.NotificationDialog}
@@ -49,7 +49,7 @@ public class AppBroadcastReceiver extends BroadcastReceiver {
                  */
                 NotificationManagerCompat.from(context).cancel(intent.getIntExtra("NOTIFICATION_ID", 0));
                 break;
-            case "com.example.developerandroidx.INPUT_NOTIFICATION":
+            case Constant.BroadcastAction.INPUT_NOTIFICATION:
                 /**
                  * 处理通知栏输入内容
                  * {@link com.example.developerandroidx.ui.android.notification.NotificationDialog}

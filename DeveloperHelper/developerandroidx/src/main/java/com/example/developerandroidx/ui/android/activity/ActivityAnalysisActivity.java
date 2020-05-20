@@ -24,7 +24,6 @@ import com.example.developerandroidx.ui.android.activity.launchMode.SingleTaskAc
 import com.example.developerandroidx.ui.android.activity.launchMode.SingleTopActivity;
 import com.example.developerandroidx.ui.android.activity.launchMode.StandardActivity;
 import com.example.developerandroidx.ui.android.activity.lifeCycle.DialogTestctivity;
-import com.example.developerandroidx.ui.android.activity.transitionAnimation.ActivityAnalysisDescDialog;
 import com.example.developerandroidx.ui.android.activity.transitionAnimation.TransitionAnimationActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.DialogUtils;
@@ -84,7 +83,6 @@ public class ActivityAnalysisActivity extends BaseActivity {
         });
     }
 
-    @SuppressLint("SourceLockedOrientationActivity")
     @OnClick({R.id.btn_lifecyle, R.id.btn_start_up_mode, R.id.btn_orientation_change,
             R.id.iv_codes, R.id.btn_action_start, R.id.btn_start_for_result, R.id.btn_cut_animation,
             R.id.iv_right})
@@ -94,35 +92,10 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 RouteUtil.goTo(context, RouteUtil.getDestination(DialogTestctivity.class));
                 break;
             case R.id.btn_start_up_mode://启动模式
-                String[] startUpModels = new String[]{"standard", "single Top", "single Task", "single Instance"};
-                DialogUtils.getInstance().showBottomMenu(context, startUpModels, new DialogUtils.OnItemClickListener() {
-                    @Override
-                    public void onClick(String text, int index) {
-                        switch (text) {
-                            case "standard":
-                                RouteUtil.goTo(context, RouteUtil.getDestination(StandardActivity.class), "standard_activity_1");
-                                break;
-                            case "single Top":
-                                RouteUtil.goTo(context, RouteUtil.getDestination(SingleTopActivity.class), "singleTop_activity_1");
-                                break;
-                            case "single Task":
-                                RouteUtil.goTo(context, RouteUtil.getDestination(SingleTaskActivity.class), "singleTask_activity_1");
-                                break;
-                            case "single Instance":
-                                RouteUtil.goTo(context, RouteUtil.getDestination(SingleInstanceActivity.class), "singleInstance_activity_1");
-                                break;
-                        }
-                    }
-                });
+                showLaunchModeDialog();
                 break;
             case R.id.btn_orientation_change://横竖屏切换
-
-                viewModel.onLifecyleChanged("-----屏幕切换方向了-----\n");
-                if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                } else {
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                }
+                changeOrientation();
                 break;
             case R.id.iv_codes:
                 RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getCode_5());
@@ -136,13 +109,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
                 startActivityForResult(new Intent(this, ForResultActivity.class), 101);
                 break;
             case R.id.btn_cut_animation://切换动画
-                String[] transitions = new String[]{"Explode", "Slide", "Fade", "Shared Element"};
-                DialogUtils.getInstance().showBottomMenu(context, transitions, new DialogUtils.OnItemClickListener() {
-                    @Override
-                    public void onClick(String text, int index) {
-                        RouteUtil.goTo(context, RouteUtil.getDestination(TransitionAnimationActivity.class), text);
-                    }
-                });
+                showTransitionDialog();
                 break;
             case R.id.iv_right://activity描述弹框
                 new ActivityAnalysisDescDialog().show(context);
@@ -150,6 +117,65 @@ public class ActivityAnalysisActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 界面切换效果列表
+     */
+    private void showTransitionDialog() {
+        String[] transitions = new String[]{"Explode", "Slide", "Fade", "Shared Element"};
+        DialogUtils.getInstance().showBottomMenu(context, transitions, new DialogUtils.OnItemClickListener() {
+            @Override
+            public void onClick(String text, int index) {
+                RouteUtil.goTo(context, RouteUtil.getDestination(TransitionAnimationActivity.class), text);
+            }
+        });
+    }
+
+    /**
+     * 横竖屏切换
+     */
+    @SuppressLint("SourceLockedOrientationActivity")
+    private void changeOrientation() {
+        viewModel.onLifecyleChanged("-----屏幕切换方向了-----\n");
+        if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+    }
+
+    /**
+     * 启动模式列表
+     */
+    private void showLaunchModeDialog() {
+        String[] startUpModels = new String[]{"standard", "single Top", "single Task", "single Instance"};
+        DialogUtils.getInstance().showBottomMenu(context, startUpModels, new DialogUtils.OnItemClickListener() {
+            @Override
+            public void onClick(String text, int index) {
+                switch (text) {
+                    case "standard":
+                        RouteUtil.goTo(context, RouteUtil.getDestination(StandardActivity.class), "standard_activity_1");
+                        break;
+                    case "single Top":
+                        RouteUtil.goTo(context, RouteUtil.getDestination(SingleTopActivity.class), "singleTop_activity_1");
+                        break;
+                    case "single Task":
+                        RouteUtil.goTo(context, RouteUtil.getDestination(SingleTaskActivity.class), "singleTask_activity_1");
+                        break;
+                    case "single Instance":
+                        RouteUtil.goTo(context, RouteUtil.getDestination(SingleInstanceActivity.class), "singleInstance_activity_1");
+                        break;
+                }
+            }
+        });
+    }
+
+    /**
+     * {@link ForResultActivity}
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

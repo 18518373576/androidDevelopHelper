@@ -18,14 +18,14 @@
             android:name=".ui.android.broadcastReceiver.AppBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
-            <intent-filter>
-                <!--                必须在activity动态申请此广播，清单文件申请无效-->
-                <action android:name="android.intent.action.SCREEN_ON" />
-                <action android:name="com.example.developerandroidx.HANDLE_NOTIFICATION" />
-                <action android:name="com.example.developerandroidx.INPUT_NOTIFICATION" />
-                <action android:name="com.example.developerandroidx.STOP_FOREGROUND" />
-                <action android:name="com.example.developerandroidx.TEST" />
-            </intent-filter>
+            <!--            <intent-filter>-->
+            <!--                必须在activity动态申请此广播，清单文件申请无效-->
+            <!--                <action android:name="android.intent.action.SCREEN_ON" />-->
+            <!--                刚开始以为通知栏发送的广播需要在这里注册，后来发现是动态注册，故注释掉<intent-filter>信息-->
+            <!--                <action android:name="com.example.developerandroidx.HANDLE_NOTIFICATION" />-->
+            <!--                <action android:name="com.example.developerandroidx.INPUT_NOTIFICATION" />-->
+            <!--                <action android:name="com.example.developerandroidx.STOP_FOREGROUND" />-->
+            <!--            </intent-filter>-->
         </receiver>
 
         <activity android:name=".ui.android.broadcastReceiver.BroadcastReceiverActivity" />

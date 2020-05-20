@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.projectInterface.FunctionDialogInterface;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView;
 import com.kongzue.dialog.v3.FullScreenDialog;
@@ -13,8 +14,9 @@ import com.kongzue.dialog.v3.FullScreenDialog;
  * 参考:
  * 描述: service描述弹框
  */
-public class ServiceDescDialog {
+public class ServiceDescDialog implements FunctionDialogInterface {
 
+    @Override
     public void show(Context context) {
         DialogUtils.getInstance().shouFullScreenDialog(context, R.layout.dialog_service_desc, new DialogUtils.OnFullScreenDialogBindView() {
             @Override
