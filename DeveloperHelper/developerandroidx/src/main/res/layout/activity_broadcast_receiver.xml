@@ -9,4 +9,10 @@
     <include
         layout="@layout/title_bar"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView
+        android:id="@+id/esv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/titleBarHeigt" />
 </androidx.constraintlayout.widget.ConstraintLayout>
