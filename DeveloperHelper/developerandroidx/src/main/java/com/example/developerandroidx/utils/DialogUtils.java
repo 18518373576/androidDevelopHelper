@@ -79,6 +79,15 @@ public class DialogUtils {
         });
     }
 
+    public void showBottomMenu(Context context, String title, String[] items, OnItemClickListener listener) {
+        BottomMenu.show((AppCompatActivity) context, title, items, new OnMenuItemClickListener() {
+            @Override
+            public void onClick(String text, int index) {
+                listener.onClick(text, index);
+            }
+        });
+    }
+
     public interface OnItemClickListener {
         void onClick(String text, int index);
     }

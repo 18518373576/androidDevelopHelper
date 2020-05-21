@@ -1,8 +1,6 @@
 package com.example.developerandroidx.ui.android.animation;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -14,9 +12,9 @@ import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
+import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.MyAnimationListener;
 import com.example.developerandroidx.utils.RouteUtil;
-import com.kongzue.dialog.v3.TipDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,10 +35,12 @@ public class AnimationActivity extends BaseActivity {
     @Override
     protected void initView() {
         setTitle("Animation");
+        iv_right.setVisibility(View.VISIBLE);
     }
 
     @OnClick({R.id.btn_translate, R.id.btn_scale, R.id.btn_rotate, R.id.btn_alpha,
-            R.id.btn_shake, R.id.iv_code, R.id.btn_anim_set, R.id.btn_translate_animator})
+            R.id.btn_shake, R.id.iv_code, R.id.btn_anim_set, R.id.btn_translate_animator,
+            R.id.iv_right})
     public void click(View v) {
         Animation animation;
         switch (v.getId()) {
@@ -116,6 +116,23 @@ public class AnimationActivity extends BaseActivity {
                 animator.setDuration(3000);
                 animator.start();
                 break;
+            case R.id.iv_right:
+                showExtendDialog();
+                break;
         }
+    }
+
+    /**
+     * 动画扩展
+     */
+    private void showExtendDialog() {
+
+        String[] items = new String[]{"可绘制图形动画", "Fling动画", "物理原理动画", "布局更新动画", "布局过度动画"};
+        DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
+            @Override
+            public void onClick(String text, int index) {
+
+            }
+        });
     }
 }

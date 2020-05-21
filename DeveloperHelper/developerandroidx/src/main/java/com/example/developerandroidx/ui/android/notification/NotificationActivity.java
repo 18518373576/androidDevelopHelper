@@ -38,22 +38,24 @@ public class NotificationActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         setTitle("通知中心");
+
         esv_content.setOnScrollChangedListener(new ExtensibleScrollView.OnScrollChangedListener() {
-            @Override
-            public void toUp(boolean isToTop) {
-                if (iv_code.getVisibility() == View.VISIBLE) {
-                    iv_code.setVisibility(View.GONE);
-                    iv_code.startAnimation(AnimUtil.getInstance().
-                            getScaleAnim(1, 0, 1, 0, 300, 0, null));
-                }
-            }
 
             @Override
-            public void toDown(boolean isToBottom) {
-                if (iv_code.getVisibility() == View.GONE) {
-                    iv_code.setVisibility(View.VISIBLE);
-                    iv_code.startAnimation(AnimUtil.getInstance().
-                            getScaleAnim(0, 1, 0, 1, 300, 0, null));
+            public void onScrolled(int dy) {
+                if (dy <= 0) {
+                    if (iv_code.getVisibility() == View.GONE) {
+                        iv_code.setVisibility(View.VISIBLE);
+                        iv_code.startAnimation(AnimUtil.getInstance().
+                                getScaleAnim(0, 1, 0, 1, 300, 0, null));
+                    }
+                } else {
+                    if (iv_code.getVisibility() == View.VISIBLE) {
+                        iv_code.setVisibility(View.GONE);
+                        iv_code.startAnimation(AnimUtil.getInstance().
+                                getScaleAnim(1, 0, 1, 0, 300, 0, null));
+                    }
+
                 }
             }
         });
