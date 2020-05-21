@@ -73,14 +73,14 @@ public class ValueAnimatorDialog implements FunctionDialogInterface {
         @Override
         public Tree evaluate(float fraction, Tree startValue, Tree endValue) {
             boolean isSprout = false;
-            float age = 0;
-            float height = 0;
+            float age;
+            float height;
             if (fraction > 0.05) {
                 isSprout = true;
-                age = startValue.age + (endValue.age - startValue.age) * fraction;
-                //开始和结束时缓慢但在中间会加快，借用了官方文档插值器的函数，为了符合树木生长规律，年龄匀速增长，高度开始慢，中间加快生长，长到一定程度生长放缓
-                height = startValue.height + (endValue.height - startValue.height) * ((float) (Math.cos((fraction + 1) * Math.PI) / 2.0f) + 0.5f);
             }
+            age = startValue.age + (endValue.age - startValue.age) * fraction;
+            //开始和结束时缓慢但在中间会加快，借用了官方文档插值器的函数，为了符合树木生长规律，年龄匀速增长，高度开始慢，中间加快生长，长到一定程度生长放缓
+            height = startValue.height + (endValue.height - startValue.height) * ((float) (Math.cos((fraction + 1) * Math.PI) / 2.0f) + 0.5f);
             return new Tree(isSprout, age, height);
         }
     }
@@ -102,7 +102,7 @@ public class ValueAnimatorDialog implements FunctionDialogInterface {
 
         ValueAnimator animator = ValueAnimator.ofObject(new GrowEvaluator(), new Tree(false, 0, 0), new Tree(true, 20, 200));
         //一秒发芽，10秒生长
-        animator.setDuration(10500);
+        animator.setDuration(10000);
         //插值器作用于对象的所有属性，在估值器对属性进行了插值变化处理，不再设置插值器
         //animator.setInterpolator(new GrowInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -112,13 +112,12 @@ public class ValueAnimatorDialog implements FunctionDialogInterface {
                 LogUtils.e("属性动画对象", tree.age + "*" + tree.height);
                 if (tree.isSprout) {
                     tv_title.setText("Grow up");
-                    v_seed.getLayoutParams().width = PixelTransformForAppUtil.dip2px(context, 50 + tree.age);
-                    v_seed.getLayoutParams().height = PixelTransformForAppUtil.dip2px(context, 50 + tree.height);
-                    v_seed.requestLayout();
                 } else {
                     tv_title.setText("Sprouting");
                 }
-
+                v_seed.getLayoutParams().width = PixelTransformForAppUtil.dip2px(context, 20 + tree.age);
+                v_seed.getLayoutParams().height = PixelTransformForAppUtil.dip2px(context, 20 + tree.height);
+                v_seed.requestLayout();
             }
         });
         animator.start();
