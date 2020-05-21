@@ -11,6 +11,7 @@
         android:layout_margin="@dimen/dp5"
         android:background="@color/cardview_light_background"
         android:padding="@dimen/dp10"
+        android:stateListAnimator="@drawable/selector_btn_animator"
         app:cardCornerRadius="@dimen/dp5"
         app:cardElevation="@dimen/dp3">
 
