@@ -27,5 +27,5 @@
         android:id="@+id/btn_sort"
         style="@style/CommonButtonStyle"
         android:layout_margin="@dimen/dp20"
-        android:text="排序" />
+        android:text="Sort" />
 </LinearLayout>

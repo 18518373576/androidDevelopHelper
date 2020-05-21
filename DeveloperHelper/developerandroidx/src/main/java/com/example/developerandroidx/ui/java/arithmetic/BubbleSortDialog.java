@@ -9,7 +9,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.CycleInterpolator;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,7 +34,6 @@ import java.util.List;
  */
 public class BubbleSortDialog {
 
-    private FullScreenDialog myDialog;
     private Context context;
 
     private boolean isDis = false;
@@ -65,6 +67,7 @@ public class BubbleSortDialog {
     private List<TextView> points;
     private List<Integer> pointsNum;
     private LinearLayout ll_content;
+    private boolean isSorting = false;
 
     /**
      * 冒泡排序
@@ -108,14 +111,22 @@ public class BubbleSortDialog {
             pointsNum.add(random);
         }
 
-        rootView.findViewById(R.id.btn_sort).setOnClickListener(new View.OnClickListener() {
+        Button btn_sort = rootView.findViewById(R.id.btn_sort);
+        btn_sort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (isSorting) {
+                    Animation animation = AnimationUtils.loadAnimation(context, R.anim.shake);
+                    animation.setInterpolator(new CycleInterpolator(3));
+                    v.startAnimation(animation);
+                    return;
+                }
                 //排序
                 thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
+                            isSorting = true;
                             //尝试使用补间动画位移，失败,会闪动,因为补间动画执行完会回到原始位置。所以在动画开始之前只显示背景，视觉上看不见闪动了
                             for (int i = 0; i < points.size() - 1; i++) {
                                 if (isDis) {
@@ -175,6 +186,7 @@ public class BubbleSortDialog {
                                     }
                                 }
                             }
+                            isSorting = false;
                             //使用属性动画修改,失败,总是漂移
 //                            for (int i = 0; i < pointsNum.size() - 1; i++) {
 //                                for (int j = i + 1; j < pointsNum.size(); j++) {
