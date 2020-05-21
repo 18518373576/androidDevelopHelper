@@ -4,18 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/dp300"
     android:layout_height="@dimen/dp300"
-    android:background="@color/white"
+    android:background="@color/tran"
     tools:context=".ui.android.activity.launchMode.StandardActivity">
 
-    <include layout="@layout/title_bar" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp10"
+        android:background="@color/tran"
+        app:cardCornerRadius="@dimen/dp10">
 
-    <Button
-        android:id="@+id/btn_jump"
-        style="@style/CommonButtonStyle"
-        android:layout_width="@dimen/dp150"
-        android:text="跳转"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <include layout="@layout/title_bar" />
+
+        <Button
+            android:id="@+id/btn_jump"
+            style="@style/CommonButtonStyle"
+            android:layout_width="@dimen/dp150"
+            android:layout_gravity="center"
+            android:text="跳转" />
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

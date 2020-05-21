@@ -3,20 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/dp300"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:layout_height="@dimen/dp300"
+    android:background="@color/tran"
     tools:context=".ui.android.activity.lifeCycle.DialogTestctivity">
 
-    <include layout="@layout/title_bar" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp10"
+        android:background="@color/tran"
+        app:cardCornerRadius="@dimen/dp10">
 
-    <TextView
-        android:layout_width="@dimen/dp300"
-        android:layout_height="@dimen/dp300"
-        android:layout_marginTop="@dimen/titleBarHeigt"
-        android:gravity="center"
-        android:text="这是一个dialog样式的activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <include layout="@layout/title_bar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/titleBarHeigt"
+            android:gravity="center"
+            android:text="这是一个dialog样式的activity" />
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

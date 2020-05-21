@@ -20,14 +20,29 @@
         <item name="android:screenOrientation">portrait</item>
         <item name="android:windowBackground">@color/bg_interface</item>
     </style>
-    <!--    通用主题-->
+    <!--    dialogActivity通用主题-->
     <style name="DialogActivityTheme" parent="Theme.AppCompat.Light.Dialog">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorMain</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--没有标题-->
         <item name="windowNoTitle">true</item>
-        <item name="android:screenOrientation">portrait</item>
+        <!--背景透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否有覆盖-->
+        <item name="android:windowContentOverlay">@null</item>
+        <!--是否浮动-->
+        <item name="android:windowIsFloating">true</item>
+        <!--边框-->
+        <item name="android:windowFrame">@null</item>
+        <!-- 点击空白部分activity不消失 -->
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <!--背景：透明-->
+        <item name="android:windowBackground">@color/tran</item>
+        <!--dialog的整个屏幕的背景是否有遮障层-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--弹出动画-->
+        <!--        <item name="android:windowAnimationStyle">@style/AnimSlideBottom</item>-->
+
     </style>
 
     <!--    展示代码界面主题-->

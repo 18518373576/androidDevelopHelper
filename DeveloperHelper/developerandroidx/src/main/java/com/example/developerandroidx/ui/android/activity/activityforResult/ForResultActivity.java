@@ -1,30 +1,32 @@
 package com.example.developerandroidx.ui.android.activity.activityforResult;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseActivity;
 
-public class ForResultActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.OnClick;
+
+public class ForResultActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_for_result);
-        findViewById(R.id.iv_back).setOnClickListener(this);
-        findViewById(R.id.btn_finish).setOnClickListener(this);
+    protected int bindLayout() {
+        return R.layout.activity_start_for_result;
     }
 
     @Override
-    public void onClick(View v) {
+    protected void initView() {
+        super.initView();
+        setTitle("ForResultActivity");
+    }
+
+    @OnClick({R.id.btn_finish})
+    public void click(View v) {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("res", "这是返回的消息");
         switch (v.getId()) {
             case R.id.btn_finish:
-            case R.id.iv_back:
                 setResult(100, resultIntent);
                 finish();
                 break;
