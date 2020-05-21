@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/commonTitleText"
+        android:text="there is a seed" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp300"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/v_seed"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:background="@drawable/bg_circle_main_color" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_grow"
+        style="@style/CommonButtonStyle"
+        android:layout_margin="@dimen/dp20"
+        android:text="Grow" />
+</LinearLayout>

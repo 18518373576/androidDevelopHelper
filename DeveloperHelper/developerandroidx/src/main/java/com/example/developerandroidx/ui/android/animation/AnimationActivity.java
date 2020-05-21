@@ -2,6 +2,7 @@ package com.example.developerandroidx.ui.android.animation;
 
 import android.animation.ObjectAnimator;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.BounceInterpolator;
@@ -10,6 +11,7 @@ import android.widget.Button;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.DialogUtils;
@@ -113,6 +115,7 @@ public class AnimationActivity extends BaseActivity {
                 // 动画效果是:放大到3倍,再缩小到初始大小
                 float[] translationXs = new float[]{v.getTranslationX(), v.getWidth(), v.getTranslationX(), -v.getWidth(), v.getTranslationX()};
                 ObjectAnimator animator = ObjectAnimator.ofFloat(v, "translationX", translationXs);
+                animator.setInterpolator(new AccelerateDecelerateInterpolator());
                 animator.setDuration(3000);
                 animator.start();
                 break;
@@ -127,11 +130,15 @@ public class AnimationActivity extends BaseActivity {
      */
     private void showExtendDialog() {
 
-        String[] items = new String[]{"可绘制图形动画", "Fling动画", "物理原理动画", "布局更新动画", "布局过度动画"};
+        String[] items = new String[]{"为对象添加属性动画", "可绘制图形动画", "Fling动画", "物理原理动画", "布局更新动画", "布局过渡动画"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
-
+                switch (text) {
+                    case "为对象添加属性动画":
+                        new ValueAnimatorDialog().show(context);
+                        break;
+                }
             }
         });
     }
