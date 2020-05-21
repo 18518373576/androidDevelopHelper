@@ -8,6 +8,9 @@ import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 
 import java.util.Map;
 
+/**
+ * activity跳转类
+ */
 public class RouteUtil {
     private static Intent intent;
 

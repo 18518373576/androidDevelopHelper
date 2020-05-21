@@ -7,8 +7,6 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
-
 import com.example.developerandroidx.R;
 import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.Notification;
@@ -89,7 +87,7 @@ public class App extends Application {
     }
 
     /**
-     * 弹出通知
+     * 弹出通知，此通知为自定义toast弹窗，非系统通知，切勿混淆
      *
      * @param showMsg
      */

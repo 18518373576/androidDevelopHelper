@@ -115,8 +115,8 @@ public class ValueAnimatorDialog implements FunctionDialogInterface {
                 } else {
                     tv_title.setText("Sprouting");
                 }
-                v_seed.getLayoutParams().width = PixelTransformForAppUtil.dip2px(context, 20 + tree.age);
-                v_seed.getLayoutParams().height = PixelTransformForAppUtil.dip2px(context, 20 + tree.height);
+                v_seed.getLayoutParams().width = PixelTransformForAppUtil.dip2px(20 + tree.age);
+                v_seed.getLayoutParams().height = PixelTransformForAppUtil.dip2px(20 + tree.height);
                 v_seed.requestLayout();
             }
         });
