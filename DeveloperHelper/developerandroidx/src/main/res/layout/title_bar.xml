@@ -12,6 +12,7 @@
         android:layout_height="@dimen/titleBarHeigt"
         android:padding="@dimen/dp15"
         android:src="@mipmap/icon_back"
+        android:stateListAnimator="@drawable/selector_btn_animator"
         android:tint="@color/textColor" />
 
     <TextView
@@ -33,6 +34,7 @@
         android:layout_marginRight="@dimen/dp5"
         android:padding="@dimen/dp15"
         android:src="@mipmap/icon_more"
+        android:stateListAnimator="@drawable/selector_btn_animator"
         android:tint="@color/textColor"
         android:visibility="gone" />
 

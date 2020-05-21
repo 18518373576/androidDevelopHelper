@@ -96,6 +96,7 @@
     <ImageView
         android:id="@+id/iv_codes"
         style="@style/codeImageViewStyle"
+        android:elevation="@dimen/dp5"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true" />
 </RelativeLayout>

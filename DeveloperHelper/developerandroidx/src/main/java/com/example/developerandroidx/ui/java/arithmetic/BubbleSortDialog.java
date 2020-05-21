@@ -7,23 +7,19 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.OvershootInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.utils.AnimUtil;
 import com.example.developerandroidx.utils.DialogUtils;
-import com.example.developerandroidx.utils.MyAnimationListener;
+import com.example.developerandroidx.realize.MyAnimationListener;
 import com.example.developerandroidx.view.navigationView.utils.PixelTransformUtil;
 import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.v3.FullScreenDialog;
-import com.kongzue.dialog.v3.Notification;
 
 import java.util.ArrayList;
 import java.util.List;

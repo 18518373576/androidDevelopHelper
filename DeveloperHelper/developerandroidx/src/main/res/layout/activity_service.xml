@@ -157,6 +157,7 @@
 
     <ImageView
         style="@style/codeImageViewStyle"
+        android:elevation="@dimen/dp5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

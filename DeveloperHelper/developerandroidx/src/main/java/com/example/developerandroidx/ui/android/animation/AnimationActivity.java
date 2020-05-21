@@ -15,7 +15,7 @@ import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDi
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.DialogUtils;
-import com.example.developerandroidx.utils.MyAnimationListener;
+import com.example.developerandroidx.realize.MyAnimationListener;
 import com.example.developerandroidx.utils.RouteUtil;
 
 import butterknife.BindView;
