@@ -7,26 +7,7 @@
     android:background="@color/white"
     tools:context=".ui.android.activity.launchMode.StandardActivity">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="@dimen/dp300"
-        android:layout_height="@dimen/dp45"
-        android:background="@color/colorMain"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/dp45"
-        android:text="DialogActivity"
-        android:textColor="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="@dimen/dp45"
-        android:layout_height="@dimen/dp45"
-        android:padding="@dimen/dp15"
-        android:src="@mipmap/icon_back"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
+    <include layout="@layout/title_bar" />
 
     <Button
         android:id="@+id/btn_jump"

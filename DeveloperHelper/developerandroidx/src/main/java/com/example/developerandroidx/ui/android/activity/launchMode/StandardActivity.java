@@ -1,37 +1,32 @@
 package com.example.developerandroidx.ui.android.activity.launchMode;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.RouteUtil;
 
-public class StandardActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.OnClick;
+
+public class StandardActivity extends BaseActivity {
 
     private String param;
-    private TextView tv_title;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launch_model);
-        findViewById(R.id.iv_back).setOnClickListener(this);
-        param = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText(param);
-        findViewById(R.id.btn_jump).setOnClickListener(this);
+    protected int bindLayout() {
+        return R.layout.activity_launch_model;
     }
 
     @Override
-    public void onClick(View v) {
+    protected void initView() {
+        super.initView();
+        param = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
+        setTitle(param);
+    }
+
+    @OnClick({R.id.btn_jump})
+    public void click(View v) {
         switch (v.getId()) {
-            case R.id.iv_back:
-                finish();
-                break;
             case R.id.btn_jump:
                 switch (param) {
                     case "standard_activity_1":

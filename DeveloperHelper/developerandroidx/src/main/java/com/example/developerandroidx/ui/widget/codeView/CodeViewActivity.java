@@ -11,12 +11,16 @@ import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 
 import androidx.core.content.ContextCompat;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.Constant;
+import com.example.developerandroidx.utils.DialogUtils;
+import com.example.developerandroidx.utils.LogUtils;
 
 import butterknife.BindView;
 import thereisnospon.codeview.CodeView;
@@ -140,8 +144,19 @@ public class CodeViewActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        DialogUtils.getInstance().showLoadingDialog(context, "正在加载...");
         code = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
         cv_code_view.showCode(code);
+
+        cv_code_view.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    DialogUtils.getInstance().dismissLoadingDialog();
+                }
+            }
+        });
     }
 
     @Override

@@ -1,32 +1,30 @@
 package com.example.developerandroidx.ui.android.activity.launchMode;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
+import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.RouteUtil;
-import com.kongzue.dialog.v3.Notification;
 
-public class SingleTopActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.OnClick;
+
+public class SingleTopActivity extends BaseActivity {
 
     private String param;
-    private TextView tv_title;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launch_model);
-        findViewById(R.id.iv_back).setOnClickListener(this);
+    protected int bindLayout() {
+        return R.layout.activity_launch_model;
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
         param = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText(param);
-        findViewById(R.id.btn_jump).setOnClickListener(this);
+        setTitle(param);
     }
 
     @Override
@@ -36,12 +34,9 @@ public class SingleTopActivity extends AppCompatActivity implements View.OnClick
                 intent.getStringExtra(Constant.IntentParams.INTENT_PARAM));
     }
 
-    @Override
-    public void onClick(View v) {
+    @OnClick({R.id.btn_jump})
+    public void click(View v) {
         switch (v.getId()) {
-            case R.id.iv_back:
-                finish();
-                break;
             case R.id.btn_jump:
                 switch (param) {
                     case "singleTop_activity_1":

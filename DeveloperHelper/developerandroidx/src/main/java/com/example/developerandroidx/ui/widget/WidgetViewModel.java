@@ -33,6 +33,7 @@ public class WidgetViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("CalendarView", R.mipmap.icon_web_view, ""));
         functionList.add(new FunctionItemBean("Custom Toast", R.mipmap.icon_web_view, ""));
         functionList.add(new FunctionItemBean("Snackbar", R.mipmap.icon_web_view, ""));
+        functionList.add(new FunctionItemBean("Mathematical Curve", R.mipmap.icon_web_view, ""));
         functionList.add(new FunctionItemBean("Navigation", R.mipmap.icon_web_view, RouteUtil.getDestination(NavigationViewActivity.class)));
 
         return functionList;

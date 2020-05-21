@@ -1,24 +1,17 @@
 package com.example.developerandroidx.ui.android.activity.lifeCycle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.view.View;
-
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseActivity;
 
-public class DialogTestctivity extends AppCompatActivity {
+public class DialogTestctivity extends BaseActivity {
+    @Override
+    protected int bindLayout() {
+        return R.layout.activity_dialog_testctivity;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dialog_testctivity);
-
-        findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+    protected void initView() {
+        super.initView();
+        setTitle("DialogActivity");
     }
 }
