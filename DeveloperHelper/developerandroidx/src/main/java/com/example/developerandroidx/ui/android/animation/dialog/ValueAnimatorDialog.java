@@ -18,17 +18,17 @@ import com.kongzue.dialog.v3.FullScreenDialog;
 /**
  * @作者： zjf 2020/5/21 11:50
  * @参考：
- * @描述：
+ * @描述： 作用于对象的属性动画，Tree对象模拟一棵树发芽生长的过程，对象有三个参数
+ * public boolean isSprouting;  是否正在发芽，动画事件在5%的时候设置为true，开始生长
+ * public float age;            树龄，随着时间的推移匀速增长
+ * public float height;         树高，随着时间的推移，开始生长缓慢，然后生长加速，最后生长放缓
  */
 public class ValueAnimatorDialog implements FunctionDialogInterface {
     private View v_seed;
     private TextView tv_title;
 
-    private Context context;
-
     @Override
     public void show(Context context) {
-        this.context = context;
         DialogUtils.getInstance().shouFullScreenDialog(context, R.layout.dialog_value_animator, new DialogUtils.OnFullScreenDialogBindView() {
             @Override
             public void onBind(FullScreenDialog dialog, View rootView) {
@@ -44,7 +44,6 @@ public class ValueAnimatorDialog implements FunctionDialogInterface {
                 dialog.setOnDismissListener(new OnDismissListener() {
                     @Override
                     public void onDismiss() {
-
                         v_seed.clearAnimation();
                     }
                 });
@@ -54,12 +53,12 @@ public class ValueAnimatorDialog implements FunctionDialogInterface {
 
     private class Tree {
         //发芽
-        public boolean isSprout;
+        public boolean isSprouting;
         public float age;
         public float height;
 
         public Tree(boolean isSprout, float age, float height) {
-            this.isSprout = isSprout;
+            this.isSprouting = isSprout;
             this.age = age;
             this.height = height;
         }
@@ -110,7 +109,7 @@ public class ValueAnimatorDialog implements FunctionDialogInterface {
             public void onAnimationUpdate(ValueAnimator animation) {
                 Tree tree = (Tree) animation.getAnimatedValue();
                 LogUtils.e("属性动画对象", tree.age + "*" + tree.height);
-                if (tree.isSprout) {
+                if (tree.isSprouting) {
                     tv_title.setText("Grow up");
                 } else {
                     tv_title.setText("Sprouting");
