@@ -89,15 +89,16 @@
         <Button
             android:id="@+id/btn_translate_animator"
             style="@style/CommonButtonStyle"
-            android:layout_marginTop="@dimen/dp20"
             android:layout_below="@+id/tv_animator"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp20"
             android:text="Translate" />
 
         <ImageView
             android:id="@+id/iv_code"
             style="@style/codeImageViewStyle"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:elevation="@dimen/dp5" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
