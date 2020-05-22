@@ -29,6 +29,7 @@ public class Constant {
     }
 
     public static class BroadcastAction {
+        public static final String TEST = "com.example.developerandroidx.TEST";
         /**
          * 关闭前台服务的广播
          * {@link com.example.developerandroidx.ui.android.service.ServiceActivity}
@@ -54,5 +55,11 @@ public class Constant {
          * {@link com.example.developerandroidx.ui.android.broadcastReceiver.AppBroadcastReceiver}
          */
         public static final String INPUT_NOTIFICATION = "com.example.developerandroidx.INPUT_NOTIFICATION";
+        /**
+         * 自定义通知栏,按钮点击广播
+         * {@link com.example.developerandroidx.ui.android.notification.NotificationDialog}
+         * {@link com.example.developerandroidx.ui.android.broadcastReceiver.AppBroadcastReceiver}
+         */
+        public static final String CONTROL_PLAY_MUSIC_ACTION = "com.example.developerandroidx.CONTROL_PLAY_MUSIC_ACTION";
     }
 }

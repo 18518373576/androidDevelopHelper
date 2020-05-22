@@ -70,8 +70,8 @@ public class DialogUtils {
      * @param items
      * @param listener
      */
-    public void showBottomMenu(Context context, String[] items, OnItemClickListener listener) {
-        BottomMenu.show((AppCompatActivity) context, items, new OnMenuItemClickListener() {
+    public BottomMenu showBottomMenu(Context context, String[] items, OnItemClickListener listener) {
+        return BottomMenu.show((AppCompatActivity) context, items, new OnMenuItemClickListener() {
             @Override
             public void onClick(String text, int index) {
                 listener.onClick(text, index);

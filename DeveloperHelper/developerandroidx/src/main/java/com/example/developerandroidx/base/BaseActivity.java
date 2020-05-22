@@ -33,6 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected ImageView iv_back;
     @BindView(R.id.iv_right)
     protected ImageView iv_right;
+    protected View decor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,7 +87,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param dark
      */
     protected void setAndroidNativeLightStatusBar(boolean dark) {
-        View decor = this.getWindow().getDecorView();
+        decor = this.getWindow().getDecorView();
         if (dark) {
             decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         } else {

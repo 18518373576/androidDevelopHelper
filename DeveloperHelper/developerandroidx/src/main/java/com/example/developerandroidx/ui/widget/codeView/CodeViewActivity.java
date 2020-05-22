@@ -160,19 +160,8 @@ public class CodeViewActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        DialogUtils.getInstance().showLoadingDialog(context, "正在加载...");
         code = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
         cv_code_view.showCode(code);
-
-        cv_code_view.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-                if (newProgress == 100) {
-                    DialogUtils.getInstance().dismissLoadingDialog();
-                }
-            }
-        });
     }
 
     @SuppressLint("SourceLockedOrientationActivity")

@@ -52,6 +52,7 @@
         <item name="colorPrimaryDark">@color/codeViewBackground</item>
         <item name="colorAccent">@color/codeViewBackground</item>
         <item name="android:screenOrientation">landscape</item>
+        <item name="android:windowBackground">@color/codeViewBackground</item>
     </style>
 
     <!--    首页recyclerView样式-->
@@ -91,6 +92,9 @@
         <item name="android:stateListAnimator">@drawable/selector_btn_animator</item>
         <item name="android:background">@drawable/bg_circle_main_color</item>
         <item name="android:src">@mipmap/icon_code</item>
+        <item name="android:clickable">true</item>
+        <!--        添加水波纹点击效果-->
+        <!--        <item name="android:foreground">?android:selectableItemBackground</item>-->
     </style>
     <!--    通用标题text样式-->
     <style name="commonTitleText">

@@ -60,6 +60,15 @@ public class TestService extends Service {
     public void onCreate() {
         super.onCreate();
         context = this;
+        registerBroadcastReceiver();
+        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(),
+                StringUtils.getInstance().getCurrentTime() + "\nonCreate()"));
+    }
+
+    /**
+     * 注册广播接收者
+     */
+    private void registerBroadcastReceiver() {
         //开启服务时，注册监听，用于响应前台服务通知栏事件
         receiver = new AppBroadcastReceiver();
         //广播监听回调
@@ -67,7 +76,7 @@ public class TestService extends Service {
             @Override
             public void onReceived(Intent intent) {
                 switch (intent.getAction()) {
-                    case Constant.BroadcastAction.STOP_FOREGROUND_ACTION:
+                    case Constant.BroadcastAction.STOP_FOREGROUND:
                         //销毁当前服务，服务销毁会自动关闭启动的前台服务
                         //除非有绑定服务的组件没有解绑
                         stopForeground();
@@ -78,12 +87,8 @@ public class TestService extends Service {
         });
 
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Constant.BroadcastAction.STOP_FOREGROUND_ACTION);
+        intentFilter.addAction(Constant.BroadcastAction.STOP_FOREGROUND);
         registerReceiver(receiver, intentFilter);
-
-
-        EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.MSG_ID_03, this.getClass().getName(),
-                StringUtils.getInstance().getCurrentTime() + "\nonCreate()"));
     }
 
     /**
@@ -120,8 +125,7 @@ public class TestService extends Service {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         //添加通知按钮,发送一条广播执行操作
-        Intent snoozeIntent = new Intent(context, AppBroadcastReceiver.class);
-        snoozeIntent.setAction(Constant.BroadcastAction.STOP_FOREGROUND);
+        Intent snoozeIntent = new Intent(Constant.BroadcastAction.STOP_FOREGROUND);
         PendingIntent snoozePendingIntent =
                 PendingIntent.getBroadcast(context, 0, snoozeIntent, 0);
         /**

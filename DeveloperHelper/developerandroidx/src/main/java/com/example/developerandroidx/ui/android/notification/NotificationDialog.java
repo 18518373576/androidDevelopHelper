@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.provider.Settings;
@@ -20,6 +21,7 @@ import com.example.developerandroidx.ui.android.broadcastReceiver.AppBroadcastRe
 import com.example.developerandroidx.ui.android.service.service.TestIntentService;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
+import com.kongzue.dialog.v3.BottomMenu;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -41,7 +43,7 @@ public class NotificationDialog {
      */
     public void showNotificationBottomMenuDialog(Context context) {
         String[] notificationStyles = new String[]{"common", "progress", "custom", "setting"};
-        DialogUtils.getInstance().showBottomMenu(context, notificationStyles, new DialogUtils.OnItemClickListener() {
+        BottomMenu bottomMenu = DialogUtils.getInstance().showBottomMenu(context, notificationStyles, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
                 switch (text) {
@@ -198,19 +200,57 @@ public class NotificationDialog {
      *
      * @param context
      */
-    private void showCustomNotification(Context context) {
-        RemoteViews notificationLayout = new RemoteViews(context.getPackageName(), R.layout.notification_small_custom);
-        RemoteViews notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.notification_large_custom);
-        //交互实现
-//        notificationLayout.setTextViewText();
+    private final int PLAY_LAST = 0;
+    private AppBroadcastReceiver receiver;
+    private RemoteViews notificationLayout;
+    private RemoteViews notificationLayoutExpanded;
+    private Notification customNotification;
 
-        Notification customNotification = new NotificationCompat.Builder(context, App.IMPORTANCE_LOW_CHANNEL_ID)
+    private void showCustomNotification(Context context) {
+        //使用上下文注册一个广播,用于接收自定义view的事件
+        registerBroadcastReceiver(context);
+        //自定义通知栏的小图
+        notificationLayout = new RemoteViews(context.getPackageName(), R.layout.notification_small_custom);
+        //自定义通知栏的大图
+        notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.notification_large_custom);
+        //        Intent playMusicIntent = new Intent(context, AppBroadcastReceiver.class);
+        //        playMusicIntent.setAction(Constant.BroadcastAction.CONTROL_PLAY_MUSIC);
+        Intent playMusicIntent = new Intent(Constant.BroadcastAction.CONTROL_PLAY_MUSIC_ACTION);
+        playMusicIntent.putExtra("controlType", PLAY_LAST);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, playMusicIntent, 0);
+        notificationLayout.setOnClickPendingIntent(R.id.iv_last_song, pendingIntent);
+
+
+        customNotification = new NotificationCompat.Builder(context, App.IMPORTANCE_LOW_CHANNEL_ID)
                 .setSmallIcon(R.mipmap.icon_notification)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .setCustomContentView(notificationLayout)//完全自定义，只实现此方法即可
                 .setCustomBigContentView(notificationLayoutExpanded)
+                .setContentIntent(pendingIntent)
                 .build();
         notificationManager = NotificationManagerCompat.from(context);
-        notificationManager.notify(103, customNotification);
+        notificationManager.notify(104, customNotification);
+    }
+
+    /**
+     * 注册广播接收者
+     */
+    private void registerBroadcastReceiver(Context context) {
+        receiver = new AppBroadcastReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Constant.BroadcastAction.CONTROL_PLAY_MUSIC_ACTION);
+        context.registerReceiver(receiver, intentFilter);
+
+        receiver.setOnReceivedListener(new AppBroadcastReceiver.OnReceivedListener() {
+            @Override
+            public void onReceived(Intent intent) {
+                switch (intent.getAction()) {
+                    case Constant.BroadcastAction.CONTROL_PLAY_MUSIC_ACTION:
+                        notificationLayout.setTextViewText(R.id.tv_song_name, "上一首");
+                        notificationManager.notify(104, customNotification);
+                        break;
+                }
+            }
+        });
     }
 }

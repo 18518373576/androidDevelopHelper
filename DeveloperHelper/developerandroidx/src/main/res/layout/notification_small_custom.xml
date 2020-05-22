@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
-    android:background="@color/tran"></LinearLayout>
+    android:layout_height="40dp"
+    android:background="@color/tran"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_song_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="歌曲名称"
+            android:textColor="@color/textColorBlack"
+            android:textSize="@dimen/sp14"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp3"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="作者"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_weight="1000"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp5">
+
+        <ImageView
+            android:id="@+id/iv_last_song"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:src="@mipmap/icon_last" />
+
+        <ImageView
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:layout_marginLeft="@dimen/dp30"
+            android:layout_marginRight="@dimen/dp30"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:padding="@dimen/dp2"
+            android:src="@mipmap/icon_play" />
+
+        <ImageView
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:src="@mipmap/icon_next" />
+    </LinearLayout>
+</LinearLayout>
