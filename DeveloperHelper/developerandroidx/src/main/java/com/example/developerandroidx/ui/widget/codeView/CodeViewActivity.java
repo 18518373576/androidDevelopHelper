@@ -13,6 +13,7 @@ import android.os.Message;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.ImageView;
 
 import androidx.core.content.ContextCompat;
 
@@ -23,6 +24,7 @@ import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.LogUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import thereisnospon.codeview.CodeView;
 import thereisnospon.codeview.CodeViewTheme;
 
@@ -38,6 +40,9 @@ public class CodeViewActivity extends BaseActivity {
     CodeView cv_code_view;
     @BindView(R.id.tltle)
     View tltle;
+    @BindView(R.id.iv_shrink)
+    ImageView iv_shrink;
+
     private ChangeOrientationHandler handler;
     private SensorManager sm;
     private Sensor sensor;
@@ -50,17 +55,19 @@ public class CodeViewActivity extends BaseActivity {
             if (msg.what == 888) {
                 int orientation = msg.arg1;
                 if (orientation > 45 && orientation < 135) {
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                    if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
 //                Log.d(MainActivity.TAG, "横屏翻转: ");
                 } else if (orientation > 135 && orientation < 225) {
                     //倒转竖屏，效果还是竖屏，所以不做处理
 //                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
 //                Log.d(MainActivity.TAG, "竖屏翻转: ");
                 } else if (orientation > 225 && orientation < 315) {
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE)
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 //                Log.d(MainActivity.TAG, "横屏: ");
                 } else if ((orientation > 315 && orientation < 360) || (orientation > 0 && orientation < 45)) {
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 //                Log.d(MainActivity.TAG, "竖屏: ");
                 }
             }
@@ -114,11 +121,13 @@ public class CodeViewActivity extends BaseActivity {
         }
     }
 
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_code_view;
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initView() {
         cv_code_view.setTheme(CodeViewTheme.ANDROIDSTUDIO);
@@ -126,6 +135,10 @@ public class CodeViewActivity extends BaseActivity {
         tltle.setBackgroundResource(R.color.codeViewBackground);
         setTopBarTextLight();
         setTitle("Code");
+        iv_right.setImageResource(R.mipmap.icon_blow_up);
+        iv_right.setVisibility(View.VISIBLE);
+
+        //取消使用重力感应切换，使用体验比较差，改用放大缩小按钮
         //根据手重力感应切换屏幕方向
         handler = new ChangeOrientationHandler();
 
@@ -133,12 +146,15 @@ public class CodeViewActivity extends BaseActivity {
         sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         listener = new OrientationSensorListener(handler);
         sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
+
         //横屏的时候不显示title栏，可视面积最大化
         if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ||
                 getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE) {
             tltle.setVisibility(View.GONE);
+            iv_shrink.setVisibility(View.VISIBLE);
         } else {
             tltle.setVisibility(View.VISIBLE);
+            iv_shrink.setVisibility(View.GONE);
         }
     }
 
@@ -157,6 +173,19 @@ public class CodeViewActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @SuppressLint("SourceLockedOrientationActivity")
+    @OnClick({R.id.iv_right, R.id.iv_shrink})
+    public void click(View v) {
+        switch (v.getId()) {
+            case R.id.iv_right:
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                break;
+            case R.id.iv_shrink:
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                break;
+        }
     }
 
     @Override

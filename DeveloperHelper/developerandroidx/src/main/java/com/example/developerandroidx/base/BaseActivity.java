@@ -55,6 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void setTopBarTextLight() {
         //设置返回按钮的颜色
         iv_back.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
+        iv_right.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
         //设置顶部信号栏字体颜色
         setAndroidNativeLightStatusBar(false);
         //设置title文字颜色
@@ -94,6 +95,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             //decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
     }
+
     /**
      * 绑定layout
      *

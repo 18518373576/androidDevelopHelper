@@ -7,7 +7,6 @@
     android:background="@color/codeViewBackground"
     tools:context=".ui.widget.codeView.CodeViewActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,4 +22,13 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/iv_shrink"
+        style="@style/codeImageViewStyle"
+        android:background="@color/tran"
+        android:src="@mipmap/icon_shrink"
+        android:stateListAnimator="@drawable/selector_btn_animator"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
