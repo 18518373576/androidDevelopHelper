@@ -9,20 +9,16 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.realize.MyAnimationListener;
 import com.example.developerandroidx.ui.android.animation.dialog.CircularRevealDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.DialogUtils;
-import com.example.developerandroidx.realize.MyAnimationListener;
 import com.example.developerandroidx.utils.RouteUtil;
-import com.kongzue.dialog.interfaces.OnDismissListener;
-import com.kongzue.dialog.v3.WaitDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
