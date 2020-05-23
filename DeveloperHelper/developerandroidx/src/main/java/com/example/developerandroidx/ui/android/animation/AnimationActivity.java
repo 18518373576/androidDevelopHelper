@@ -54,22 +54,13 @@ public class AnimationActivity extends BaseActivity {
      * 利用动画可以减慢更改的速度，并通过概念吸引用户的注意，以使更新更加明显。
      */
     private void showViewTransitionAnimation() {
-        WaitDialog.build((AppCompatActivity) context)
-                .setMessage("正在加载...")
-                .setTipTime(500)
-                .setOnDismissListener(new OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        //将 config_shortAnimTime 系统属性缓存到成员变量中。此属性用于定义动画的标准“短”持续时间。该持续时间非常适用于巧妙的动画效果或经常显示的动画。
-                        //实在是太短了
-                        int shortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-                        rl_content.setAlpha(0);//完全透明
-                        rl_content.setVisibility(View.VISIBLE);
-                        rl_content.animate().alpha(1).setDuration(500);
-                    }
-                })
-                .show();
 
+        //将 config_shortAnimTime 系统属性缓存到成员变量中。此属性用于定义动画的标准“短”持续时间。该持续时间非常适用于巧妙的动画效果或经常显示的动画。
+        //实在是太短了
+        int shortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        rl_content.setAlpha(0);//完全透明
+        rl_content.setVisibility(View.VISIBLE);
+        rl_content.animate().alpha(1).setDuration(500).setStartDelay(50);
     }
 
     @OnClick({R.id.btn_translate, R.id.btn_scale, R.id.btn_rotate, R.id.btn_alpha,

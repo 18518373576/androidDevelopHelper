@@ -14,30 +14,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
+        <activity android:name=".ui.AboutActivity"></activity>
+
         <receiver
             android:name=".ui.android.broadcastReceiver.AppBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
-            <!--            <intent-filter>-->
-            <!--                必须在activity动态申请此广播，清单文件申请无效-->
-            <!--                <action android:name="android.intent.action.SCREEN_ON" />-->
-            <!--                刚开始以为通知栏发送的广播需要在这里注册，后来发现是动态注册，故注释掉<intent-filter>信息-->
-            <!--                <action android:name="com.example.developerandroidx.HANDLE_NOTIFICATION" />-->
-            <!--                <action android:name="com.example.developerandroidx.INPUT_NOTIFICATION" />-->
-            <!--                <action android:name="com.example.developerandroidx.STOP_FOREGROUND" />-->
-            <!--            </intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- 必须在activity动态申请此广播，清单文件申请无效 -->
+            <!-- <action android:name="android.intent.action.SCREEN_ON" /> -->
+            <!-- 刚开始以为通知栏发送的广播需要在这里注册，后来发现是动态注册，故注释掉<intent-filter>信息 -->
+            <!-- <action android:name="com.example.developerandroidx.HANDLE_NOTIFICATION" /> -->
+            <!-- <action android:name="com.example.developerandroidx.INPUT_NOTIFICATION" /> -->
+            <!-- <action android:name="com.example.developerandroidx.STOP_FOREGROUND" /> -->
+            <!-- </intent-filter> -->
         </receiver>
 
         <activity
             android:name=".ui.android.broadcastReceiver.BroadcastReceiverActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <!--        由于从通知启动的“特殊 Activity”不需要返回堆栈，因此您可以通过调用 getActivity() 来创建 PendingIntent，但您还应确保在清单中定义了相应的任务选项。-->
-        <!--        在清单中，将以下属性添加到 <activity> 元素中。-->
-        <!--        android:taskAffinity=""-->
-        <!--        与您将在代码中使用的 FLAG_ACTIVITY_NEW_TASK 标记结合使用，将此属性设置为空可以确保这类 Activity 不会进入应用的默认任务。具有应用默认相似性的任何现有任务都不会受到影响。-->
-        <!--        android:excludeFromRecents="true"-->
-        <!--        用于从“最近”中排除新任务，以免用户意外返回它。-->
+            tools:ignore="LockedOrientationActivity" /> <!-- 由于从通知启动的“特殊 Activity”不需要返回堆栈，因此您可以通过调用 getActivity() 来创建 PendingIntent，但您还应确保在清单中定义了相应的任务选项。 -->
+        <!-- 在清单中，将以下属性添加到 <activity> 元素中。 -->
+        <!-- android:taskAffinity="" -->
+        <!-- 与您将在代码中使用的 FLAG_ACTIVITY_NEW_TASK 标记结合使用，将此属性设置为空可以确保这类 Activity 不会进入应用的默认任务。具有应用默认相似性的任何现有任务都不会受到影响。 -->
+        <!-- android:excludeFromRecents="true" -->
+        <!-- 用于从“最近”中排除新任务，以免用户意外返回它。 -->
         <activity
             android:name=".ui.android.notification.NotificationActivity"
             android:excludeFromRecents="true"
@@ -152,8 +154,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/CodeViewAppTheme"
             tools:ignore="LockedOrientationActivity">
-            <!--            问题描述:切换屏幕为横屏时刘海区域会出现黑边-->
-            <!--            解决方案:添加以下meta属性,并在theme里面设置windowBackground为界面颜色即可,适用于华为手机,其他品牌未测试-->
+
+            <!-- 问题描述:切换屏幕为横屏时刘海区域会出现黑边 -->
+            <!-- 解决方案:添加以下meta属性,并在theme里面设置windowBackground为界面颜色即可,适用于华为手机,其他品牌未测试 -->
             <meta-data
                 android:name="android.notch_support"
                 android:value="true" />
@@ -176,12 +179,13 @@
                 android:value="true" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -1,11 +1,11 @@
-package com.example.developerandroidx;
+package com.example.developerandroidx.ui;
 
 import android.view.View;
 
+import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.android.AndroidFragment;
 import com.example.developerandroidx.ui.java.JavaFragment;
-import com.example.developerandroidx.ui.java.arithmetic.BubbleSortDialog;
 import com.example.developerandroidx.ui.widget.WidgetFragment;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.DialogUtils;
@@ -14,7 +14,6 @@ import com.example.developerandroidx.view.navigationView.NavigationView;
 import com.example.developerandroidx.view.navigationView.bean.NavigationBean;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -70,7 +69,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             public void onClick(String text, int index) {
                 switch (text) {
                     case "About":
-
+                        RouteUtil.goTo(context, RouteUtil.getDestination(AboutActivity.class));
                         break;
                     case "Develop Notes":
                         RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getDelelopNotes());
