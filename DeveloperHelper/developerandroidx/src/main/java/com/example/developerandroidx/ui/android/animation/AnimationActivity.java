@@ -9,14 +9,19 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.realize.MyAnimationListener;
 import com.example.developerandroidx.utils.RouteUtil;
+import com.kongzue.dialog.interfaces.OnDismissListener;
+import com.kongzue.dialog.v3.WaitDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,6 +33,8 @@ public class AnimationActivity extends BaseActivity {
 
     @BindView(R.id.btn_translate)
     Button btn_translate;
+    @BindView(R.id.rl_content)
+    View rl_content;
 
     @Override
     protected int bindLayout() {
@@ -38,6 +45,31 @@ public class AnimationActivity extends BaseActivity {
     protected void initView() {
         setTitle("Animation");
         iv_right.setVisibility(View.VISIBLE);
+        showViewTransitionAnimation();
+    }
+
+    /**
+     * 在应用的使用过程中，需要在屏幕上显示新信息，同时移除旧信息。
+     * 立即切换显示的内容看起来有些突兀，或者导致用户很容易错过屏幕上的新内容。
+     * 利用动画可以减慢更改的速度，并通过概念吸引用户的注意，以使更新更加明显。
+     */
+    private void showViewTransitionAnimation() {
+        WaitDialog.build((AppCompatActivity) context)
+                .setMessage("正在加载...")
+                .setTipTime(500)
+                .setOnDismissListener(new OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        //将 config_shortAnimTime 系统属性缓存到成员变量中。此属性用于定义动画的标准“短”持续时间。该持续时间非常适用于巧妙的动画效果或经常显示的动画。
+                        //实在是太短了
+                        int shortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+                        rl_content.setAlpha(0);//完全透明
+                        rl_content.setVisibility(View.VISIBLE);
+                        rl_content.animate().alpha(1).setDuration(500);
+                    }
+                })
+                .show();
+
     }
 
     @OnClick({R.id.btn_translate, R.id.btn_scale, R.id.btn_rotate, R.id.btn_alpha,
@@ -130,13 +162,16 @@ public class AnimationActivity extends BaseActivity {
      */
     private void showExtendDialog() {
 
-        String[] items = new String[]{"为对象添加属性动画", "可绘制图形动画", "Fling动画", "物理原理动画", "布局更新动画", "布局过渡动画"};
+        String[] items = new String[]{"为对象添加属性动画", "视图反转", "Fling动画", "物理原理动画", "布局更新动画", "布局过渡动画"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
                 switch (text) {
                     case "为对象添加属性动画":
                         new ValueAnimatorDialog().show(context);
+                        break;
+                    case "视图反转":
+                        new FlipCardDialog().show(context);
                         break;
                 }
             }

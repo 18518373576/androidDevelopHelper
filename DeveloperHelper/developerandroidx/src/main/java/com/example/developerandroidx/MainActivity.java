@@ -7,6 +7,9 @@ import com.example.developerandroidx.ui.android.AndroidFragment;
 import com.example.developerandroidx.ui.java.JavaFragment;
 import com.example.developerandroidx.ui.java.arithmetic.BubbleSortDialog;
 import com.example.developerandroidx.ui.widget.WidgetFragment;
+import com.example.developerandroidx.utils.CodeVariate;
+import com.example.developerandroidx.utils.DialogUtils;
+import com.example.developerandroidx.utils.RouteUtil;
 import com.example.developerandroidx.view.navigationView.NavigationView;
 import com.example.developerandroidx.view.navigationView.bean.NavigationBean;
 
@@ -61,7 +64,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @OnClick({R.id.iv_right})
     public void click(View v) {
-        new BubbleSortDialog().show(context);
+        String[] mainMenus = new String[]{"About", "Develop Notes"};
+        DialogUtils.getInstance().showBottomMenu(context, mainMenus, new DialogUtils.OnItemClickListener() {
+            @Override
+            public void onClick(String text, int index) {
+                switch (text) {
+                    case "About":
+
+                        break;
+                    case "Develop Notes":
+                        RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getDelelopNotes());
+                        break;
+                }
+            }
+        });
     }
 
     @Override

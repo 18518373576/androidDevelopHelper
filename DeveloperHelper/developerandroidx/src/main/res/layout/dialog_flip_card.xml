@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/commonTitleText"
+        android:text="flip card" />
+
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
+
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="@dimen/dp150"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/bg_landscape" />
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="@dimen/dp150"
+            android:layout_centerInParent="true"
+            android:background="@color/bg_interface"
+            android:lineSpacingExtra="@dimen/dp2"
+            android:padding="@dimen/dp5"
+            android:text="要创建卡片翻转动画，总共需要四个 Animator。 两个 Animator 用于卡片正面向左侧淡出以及从左侧淡入的动画。您还需要两个 Animator，用于卡片背面从右侧淡入以及向右侧淡出的动画。"
+            android:textColor="@color/textColor"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

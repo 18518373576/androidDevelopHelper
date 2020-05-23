@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
@@ -21,6 +22,7 @@ import com.example.developerandroidx.ui.android.broadcastReceiver.AppBroadcastRe
 import com.example.developerandroidx.ui.android.service.service.TestIntentService;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
+import com.example.developerandroidx.utils.PreferenceUtils;
 import com.kongzue.dialog.v3.BottomMenu;
 
 import org.greenrobot.eventbus.EventBus;
@@ -197,36 +199,62 @@ public class NotificationDialog {
      * 注意：使用自定义通知布局时，请特别注意确保您的自定义布局适用于不同的设备屏幕方向和分辨率。
      * 虽然对于所有界面布局，此建议都适用，但它对通知布局而言尤为重要，因为抽屉式通知栏中的空间非常有限。
      * 自定义通知布局的可用高度取决于通知视图。通常情况下，收起后的视图布局的高度上限为 64 dp，展开后的视图布局的高度上限为 256 dp。
+     * <p>
+     * FLAG_CANCEL_CURRENT:如果要创建的PendingIntent已经存在了，那么在创建新的PendingIntent之前，原先已经存在的PendingIntent中的intent将不能使用
+     * <p>
+     * FLAG_NO_CREATE:如果要创建的PendingIntent尚未存在，则不创建新的PendingIntent，直接返回null
+     * <p>
+     * FLAG_ONE_SHOT:相同的PendingIntent只能使用一次，且遇到相同的PendingIntent时不会去更新PendingIntent中封装的Intent的extra部分的内容
+     * <p>
+     * FLAG_UPDATE_CURRENT:如果要创建的PendingIntent已经存在了，那么在保留原先PendingIntent的同时，将原先PendingIntent封装的Intent中的extra部分替换为现在新创建的PendingIntent的intent中extra的内容
      *
      * @param context
      */
     private final int PLAY_LAST = 0;
+    private final int PLAY_STOP = 1;
+    private final int PLAY_NEXT = 2;
     private AppBroadcastReceiver receiver;
     private RemoteViews notificationLayout;
     private RemoteViews notificationLayoutExpanded;
     private Notification customNotification;
+    private Intent playMusicIntent;
+    private PendingIntent pendingIntent;
 
     private void showCustomNotification(Context context) {
+        PreferenceUtils.getInstance().setBooleanValue(Constant.PreferenceKeys.IS_PALYING, false);
         //使用上下文注册一个广播,用于接收自定义view的事件
         registerBroadcastReceiver(context);
         //自定义通知栏的小图
         notificationLayout = new RemoteViews(context.getPackageName(), R.layout.notification_small_custom);
         //自定义通知栏的大图
         notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.notification_large_custom);
+        //此种方式发送的广播必须在清单文件中声明广播接收器
         //        Intent playMusicIntent = new Intent(context, AppBroadcastReceiver.class);
         //        playMusicIntent.setAction(Constant.BroadcastAction.CONTROL_PLAY_MUSIC);
-        Intent playMusicIntent = new Intent(Constant.BroadcastAction.CONTROL_PLAY_MUSIC_ACTION);
+        //上一曲
+        playMusicIntent = new Intent(Constant.BroadcastAction.CONTROL_PLAY_MUSIC_ACTION);
         playMusicIntent.putExtra("controlType", PLAY_LAST);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, playMusicIntent, 0);
+        pendingIntent = PendingIntent.getBroadcast(context, 0, playMusicIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         notificationLayout.setOnClickPendingIntent(R.id.iv_last_song, pendingIntent);
 
+        //下一曲
+        playMusicIntent = new Intent(Constant.BroadcastAction.CONTROL_PLAY_MUSIC_ACTION);
+        playMusicIntent.putExtra("controlType", PLAY_NEXT);
+        pendingIntent = PendingIntent.getBroadcast(context, 1, playMusicIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationLayout.setOnClickPendingIntent(R.id.iv_play_next, pendingIntent);
+
+        //播放和暂停
+        playMusicIntent = new Intent(Constant.BroadcastAction.CONTROL_PLAY_MUSIC_ACTION);
+        playMusicIntent.putExtra("controlType", PLAY_STOP);
+        pendingIntent = PendingIntent.getBroadcast(context, 2, playMusicIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationLayout.setOnClickPendingIntent(R.id.iv_play_stop, pendingIntent);
 
         customNotification = new NotificationCompat.Builder(context, App.IMPORTANCE_LOW_CHANNEL_ID)
                 .setSmallIcon(R.mipmap.icon_notification)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .setCustomContentView(notificationLayout)//完全自定义，只实现此方法即可
                 .setCustomBigContentView(notificationLayoutExpanded)
-                .setContentIntent(pendingIntent)
+//                .setContentIntent(pendingIntent) //此处设置的是整个通知栏的点击事件
                 .build();
         notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(104, customNotification);
@@ -246,8 +274,27 @@ public class NotificationDialog {
             public void onReceived(Intent intent) {
                 switch (intent.getAction()) {
                     case Constant.BroadcastAction.CONTROL_PLAY_MUSIC_ACTION:
-                        notificationLayout.setTextViewText(R.id.tv_song_name, "上一首");
-                        notificationManager.notify(104, customNotification);
+                        switch (intent.getIntExtra("controlType", 0)) {
+                            case PLAY_LAST:
+                                notificationLayout.setTextViewText(R.id.tv_song_name, "上一曲");
+                                notificationManager.notify(104, customNotification);
+                                break;
+                            case PLAY_NEXT:
+                                notificationLayout.setTextViewText(R.id.tv_song_name, "下一曲");
+                                notificationManager.notify(104, customNotification);
+                                break;
+                            case PLAY_STOP:
+                                //默认没播放，点击播放按钮切换播放状态
+                                boolean isPlaying = !PreferenceUtils.getInstance().getBooleanValue(Constant.PreferenceKeys.IS_PALYING);
+                                if (isPlaying) {
+                                    notificationLayout.setImageViewResource(R.id.iv_play_stop, R.mipmap.icon_stop);
+                                } else {
+                                    notificationLayout.setImageViewResource(R.id.iv_play_stop, R.mipmap.icon_play);
+                                }
+                                PreferenceUtils.getInstance().setBooleanValue(Constant.PreferenceKeys.IS_PALYING, isPlaying);
+                                notificationManager.notify(104, customNotification);
+                                break;
+                        }
                         break;
                 }
             }
