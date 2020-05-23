@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * Date: 2020/5/10 22:49
- * 使用:
+ * 使用方法:
  * nv_view.setNavigationBG(R.color.bg_interface);设置底栏背景色
  * List<NavigationBean> list = new ArrayList<>();
  * nv_view.setNavigationPager(getSupportFragmentManager(), list);添加导航页面
