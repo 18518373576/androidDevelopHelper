@@ -15,7 +15,7 @@ import com.kongzue.dialog.v3.FullScreenDialog;
 /**
  * Date: 2020/5/23 11:23
  * 参考:
- * 描述:
+ * 描述: 卡片反转动画
  */
 public class FlipCardDialog implements FunctionDialogInterface {
     @Override

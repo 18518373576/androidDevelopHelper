@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.ui.android.animation.dialog.CircularRevealDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
@@ -153,16 +154,19 @@ public class AnimationActivity extends BaseActivity {
      */
     private void showExtendDialog() {
 
-        String[] items = new String[]{"为对象添加属性动画", "视图反转", "Fling动画", "物理原理动画", "布局更新动画", "布局过渡动画"};
+        String[] items = new String[]{"ValueAnimator for object", "Flip card", "Circular reveal", "Fling", "物理原理动画", "布局更新动画", "布局过渡动画"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
                 switch (text) {
-                    case "为对象添加属性动画":
+                    case "ValueAnimator for object":
                         new ValueAnimatorDialog().show(context);
                         break;
-                    case "视图反转":
+                    case "Flip card":
                         new FlipCardDialog().show(context);
+                        break;
+                    case "Circular reveal":
+                        new CircularRevealDialog().show(context);
                         break;
                 }
             }

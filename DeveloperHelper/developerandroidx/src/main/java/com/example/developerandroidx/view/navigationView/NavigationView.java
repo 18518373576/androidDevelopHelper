@@ -44,6 +44,8 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     private NavigationFragmentAdapter adapter;
     private OnNavigationChangedListener changListener;
 
+    private int currentIndex = 0;
+
     public NavigationView(Context context) {
         super(context);
         this.context = context;
@@ -103,7 +105,7 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     }
 
     /**
-     * 显示通知
+     * 显示通知，只显示一个圆点，不显示数量
      *
      * @param index 通知所在底栏图标的索引
      */
@@ -123,7 +125,8 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     }
 
     /**
-     * 设置底部导航栏选中颜色
+     * 设置底部导航栏选中和未选中的颜色
+     * 原理是使用了imageview的tint属性值，所以尽量使用纯色图标
      *
      * @param checkedColorId
      * @param unCheckedColorId
@@ -131,7 +134,7 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     public void setNavitionSelector(int checkedColorId, int unCheckedColorId) {
         this.checkedColorId = checkedColorId;
         this.unCheckedColorId = unCheckedColorId;
-        setChecked(0);//默认选中左边第一个
+        setCheckedDefult(currentIndex);//默认选中左边第一个
     }
 
     /**
@@ -197,18 +200,35 @@ public class NavigationView extends LinearLayout implements View.OnClickListener
     public void onClick(View view) {
 
         pager.setCurrentItem(view.getId());
-        setChecked(view.getId());
+        //viewPager已经添加监听，这里不再调用setChecked方法
+        //setChecked(view.getId());
     }
 
-    private void setChecked(int indx) {
-
+    /**
+     * 默认选中的不加动画
+     *
+     * @param index
+     */
+    private void setCheckedDefult(int index) {
         for (int i = 0; i < items.size(); i++) {
-            if (i == indx) {
-                items.get(i).setCheckColor(checkedColorId);
+            if (i == index) {
+                items.get(i).setCheckedDefult(true, checkedColorId, unCheckedColorId);
             } else {
-                items.get(i).setCheckColor(unCheckedColorId);
+                items.get(i).setCheckedDefult(false, unCheckedColorId, unCheckedColorId);
             }
         }
+    }
+
+    /**
+     * 点击选中的加动画
+     *
+     * @param index
+     */
+    private void setChecked(int index) {
+
+        items.get(currentIndex).setChecked(false, checkedColorId, unCheckedColorId);
+        items.get(index).setChecked(true, checkedColorId, unCheckedColorId);
+        currentIndex = index;
     }
 
     //viewpager滑动监听
