@@ -2,6 +2,7 @@ package com.example.developerandroidx.view.ExtensibleScrollView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -60,6 +61,19 @@ public class ExtensibleScrollView extends ScrollView {
         contentLayout.setPadding(padding, padding, padding, padding);
         contentLayout.setOrientation(LinearLayout.VERTICAL);
         this.addView(contentLayout, contentParam);
+    }
+
+    /**
+     * 添加一条分割线
+     */
+    public void addLine(int lineColorResId) {
+
+        View view = new View(context);
+        LinearLayout.LayoutParams lineParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2);
+        int margin = PixelTransformUtil.dip2px(context, 10);
+        lineParam.setMargins(margin, margin, margin, margin);
+        view.setBackgroundResource(lineColorResId);
+        contentLayout.addView(view, lineParam);
     }
 
     /**

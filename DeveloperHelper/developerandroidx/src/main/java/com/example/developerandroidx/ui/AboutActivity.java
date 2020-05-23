@@ -28,7 +28,22 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        esv_content.addBodyWithIntent("项目GitHub", R.color.textColor,
+        esv_content.addBodyWithIntent("项目GitHub", R.color.colorMain,
                 new Intent(context, TechnologyWebviewActivity.class).putExtra(Constant.IntentParams.INTENT_PARAM, "https://github.com/18518373576/androidDevelopHelper"));
+        esv_content.addLine(R.color.lightGrayColor);
+        esv_content.addBodyWithIntent("图标库：https://www.iconfont.cn", R.color.colorMain,
+                new Intent(context, TechnologyWebviewActivity.class).putExtra(Constant.IntentParams.INTENT_PARAM, "https://www.iconfont.cn"));
+        esv_content.addLine(R.color.lightGrayColor);
+        esv_content.addBodyWithIntent("butterknife", R.color.colorMain,
+                new Intent(context, TechnologyWebviewActivity.class).putExtra(Constant.IntentParams.INTENT_PARAM, "https://github.com/JakeWharton/butterknife"));
+        esv_content.addLine(R.color.lightGrayColor);
+        esv_content.addBodyWithIntent("CodeView", R.color.colorMain,
+                new Intent(context, TechnologyWebviewActivity.class).putExtra(Constant.IntentParams.INTENT_PARAM, "https://github.com/Thereisnospon/CodeView"));
+        esv_content.addLine(R.color.lightGrayColor);
+        esv_content.addBodyWithIntent("kongzue.dialog", R.color.colorMain,
+                new Intent(context, TechnologyWebviewActivity.class).putExtra(Constant.IntentParams.INTENT_PARAM, "https://github.com/kongzue/DialogV3"));
+        esv_content.addLine(R.color.lightGrayColor);
+        esv_content.addBodyWithIntent("eventbus", R.color.colorMain,
+                new Intent(context, TechnologyWebviewActivity.class).putExtra(Constant.IntentParams.INTENT_PARAM, "https://github.com/greenrobot/EventBus"));
     }
 }

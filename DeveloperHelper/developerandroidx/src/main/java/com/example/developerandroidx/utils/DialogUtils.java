@@ -1,10 +1,12 @@
 package com.example.developerandroidx.utils;
 
 import android.content.Context;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.BottomMenu;
@@ -114,7 +116,10 @@ public class DialogUtils {
      * @param loadingMsg
      */
     public void showLoadingDialog(Context context, String loadingMsg) {
-        WaitDialog.show((AppCompatActivity) context, loadingMsg);
+        WaitDialog.build((AppCompatActivity) context)
+                .setTipTime(1000 * 30)
+                .setMessage(loadingMsg)
+                .show();
     }
 
     public void dismissLoadingDialog() {

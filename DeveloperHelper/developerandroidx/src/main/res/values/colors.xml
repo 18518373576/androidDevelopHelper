@@ -9,6 +9,7 @@
     <color name="textColor">#6E6E6E</color>
     <color name="textColorBlack">#363636</color>
     <color name="grayColor">#AAAAAA</color>
+    <color name="lightGrayColor">#E5E5E5</color>
     <color name="bg_dark_white">#EDEDED</color>
     <color name="bg_interface">#F5F5F5</color>
     <color name="colorGrayCancel">#D3D3D3</color>

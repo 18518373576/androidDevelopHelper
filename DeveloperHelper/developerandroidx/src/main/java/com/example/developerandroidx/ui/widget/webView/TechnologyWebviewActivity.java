@@ -27,7 +27,7 @@ public class TechnologyWebviewActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setTitle("参考文档");
+        setTitle("链接");
         DialogUtils.getInstance().showLoadingDialog(context, "正在加载...");
         String url = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
         wv_web.setWebViewClient(new WebViewClient() {
@@ -35,7 +35,7 @@ public class TechnologyWebviewActivity extends BaseActivity {
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 String url = request.getUrl().toString();
                 //重定向URL请求，返回true表示拦截此url，返回false表示不拦截此url。
-                return true;
+                return false;
             }
         });
         WebSettings webSettings = wv_web.getSettings();
