@@ -63,7 +63,9 @@
         <item name="android:overScrollMode">never</item>
     </style>
 
-    <!--    通用button样式-->
+    <!--    通用button样式 stateListAnimator: https://developer.android.google.cn/guide/topics/graphics/prop-animation
+            如果要转为在代码中将状态列表 Animator 分配给视图，则可使用 AnimatorInflater.loadStateListAnimator() 方法，然后使用 View.setStateListAnimator() 方法将 Animator 分配给相应视图。
+    -->
     <style name="CommonButtonStyle">
         <item name="android:layout_width">@dimen/dp80</item>
         <item name="android:layout_height">@dimen/dp40</item>

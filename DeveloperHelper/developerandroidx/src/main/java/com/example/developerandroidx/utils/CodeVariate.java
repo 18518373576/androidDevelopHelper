@@ -46,7 +46,12 @@ public class CodeVariate {
                 "2.使用动画显示或隐藏视图\n" +
                 "在应用的使用过程中，需要在屏幕上显示新信息，同时移除旧信息。立即切换显示的内容看起来有些突兀，\n" +
                 "或者导致用户很容易错过屏幕上的新内容。利用动画可以减慢更改的速度，并通过概念吸引用户的注意，以使更新更加明显。\n" +
-                "在显示或隐藏视图时，有三种常见的动画可供使用。您可以使用圆形揭露动画、淡入淡出动画或卡片翻转动画。";
+                "在显示或隐藏视图时，有三种常见的动画可供使用。您可以使用圆形揭露动画、淡入淡出动画或卡片翻转动画。\n" +
+                "\n2020/05/24\n" +
+                "\n记录系统设置点击水波纹效果：\n" +
+                "android:background=\"?android:attr/selectableItemBackground\"\n" +
+                "android:background=\"?android:attr/selectableItemBackgroundBorderless\"\n" +
+                "可设置为foreground前景色和background背景色";
     }
 
     //widget/actionBar

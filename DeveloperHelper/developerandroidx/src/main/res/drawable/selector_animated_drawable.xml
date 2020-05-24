@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pressed"
+        android:drawable="@drawable/number_9"
+        android:state_pressed="true" />
+    <item
+        android:id="@+id/un_pressed"
+        android:drawable="@drawable/number_0"
+        android:state_pressed="false" />
+
+    <transition
+        android:fromId="@id/un_pressed"
+        android:toId="@id/pressed">
+        <animation-list>
+            <item
+                android:drawable="@drawable/number_0"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_1"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_2"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_3"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_4"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_5"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_6"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_7"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_8"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_9"
+                android:duration="50" />
+        </animation-list>
+    </transition>
+    <transition
+        android:fromId="@+id/pressed"
+        android:toId="@+id/un_pressed">
+        <animation-list>
+            <item
+                android:drawable="@drawable/number_9"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_8"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_7"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_6"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_5"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_4"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_3"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_2"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_1"
+                android:duration="50" />
+            <item
+                android:drawable="@drawable/number_0"
+                android:duration="50" />
+        </animation-list>
+    </transition>
+</animated-selector>

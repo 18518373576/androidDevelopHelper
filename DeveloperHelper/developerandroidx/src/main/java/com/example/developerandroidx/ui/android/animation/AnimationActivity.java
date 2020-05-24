@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.realize.MyAnimationListener;
+import com.example.developerandroidx.ui.android.animation.dialog.AnimatedStateListDrawableDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.CircularRevealDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.PathInterpolatorDialog;
@@ -151,13 +152,17 @@ public class AnimationActivity extends BaseActivity {
      */
     private void showExtendDialog() {
 
-        String[] items = new String[]{"ValueAnimator for object", "Flip card", "Circular reveal", "PathInterpolator", "Fling", "物理原理动画", "布局更新动画", "布局过渡动画"};
+        String[] items = new String[]{"ValueAnimator for object", "AnimatedStateListDrawable", "Flip card", "Circular reveal", "PathInterpolator", "Fling", "物理原理动画", "布局更新动画", "布局过渡动画"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
                 switch (text) {
                     case "ValueAnimator for object":
                         new ValueAnimatorDialog().show(context);
+                        break;
+                    case "AnimatedStateListDrawable":
+                        //文档： https://developer.android.google.cn/guide/topics/graphics/prop-animation
+                        new AnimatedStateListDrawableDialog().show(context);
                         break;
                     case "Flip card":
                         new FlipCardDialog().show(context);
