@@ -19,36 +19,17 @@ public class CodeVariate {
         return codeVariate;
     }
 
-    public String getDelelopNotes() {
+    public String getIssueNotes() {
         return "2020/05/22\n" +
-                "\n问题一:\n" +
+                "\n问题描述:\n" +
                 "刘海屏在切换到横屏后，刘海区域没有展示，是一条黑色的区域。\n" +
                 "添加以下代码解决，可在application节点和activity节点设置。\n" +
                 "<meta-data\n" +
                 "   android:name=\"android.notch_support\"\n" +
                 "   android:value=\"true\" />\n" +
                 "设置完成后，刘海区域屏幕会显示theme里面设置的windowBackground颜色\n" +
-                "\n问题二:\n" +
-                "广播两种发送方式的区别。\n" +
-                "方式1:\n" +
-                "现象描述:此种广播发送方式,广播接收者必须在清单文件中声明,不在清单文件中声明的动态注册的广播接收者无法接收到,\n" +
-                "因为我在通知栏发送的广播是以这种方式发送的,所以一直很困惑二次传递的问题,后来改用<方式2>发送广播,所有的问题解决了.\n" +
-                "因为是静态注册所以,这里实现的 OnReceivedListener listener没有被赋值,消息需要再经过<方式2>的发送方式才能被动态注册的AppBroadcastReceiver接收到.\n" +
-                "Intent intent = new Intent(context, AppBroadcastReceiver.class);\n" +
-                "intent.setAction(Constant.BroadcastAction.TEST);\n" +
-                "intent.putExtra(\"sendBroadcast\", \"收到一条广播，还附加了一条消息\");\n" +
-                "sendBroadcast(intent);\n" +
-                "方式2:\n" +
-                "这种方式发送的广播,广播接收者不需要在清单文件中声明\n" +
-                "sendBroadcast(new Intent(Constant.BroadcastAction.TEST).putExtra(\"sendBroadcast\", \"收到一条广播，还附加了一条消息\"));\n" +
-                "\n2020/05/23\n" +
-                "\n1.自定义通知栏，按钮点击事件的交互\n" +
-                "2.使用动画显示或隐藏视图\n" +
-                "在应用的使用过程中，需要在屏幕上显示新信息，同时移除旧信息。立即切换显示的内容看起来有些突兀，\n" +
-                "或者导致用户很容易错过屏幕上的新内容。利用动画可以减慢更改的速度，并通过概念吸引用户的注意，以使更新更加明显。\n" +
-                "在显示或隐藏视图时，有三种常见的动画可供使用。您可以使用圆形揭露动画、淡入淡出动画或卡片翻转动画。\n" +
                 "\n2020/05/24\n" +
-                "\n记录系统设置点击水波纹效果：\n" +
+                "\n系统设置点击水波纹效果：\n" +
                 "android:background=\"?android:attr/selectableItemBackground\"\n" +
                 "android:background=\"?android:attr/selectableItemBackgroundBorderless\"\n" +
                 "可设置为foreground前景色和background背景色";
@@ -448,6 +429,18 @@ public class CodeVariate {
                 "// When done, update the notification one more time to remove the progress bar\n" +
                 "builder.setContentText(\"Download complete\")\n" +
                 "        .setProgress(0,0,false);\n" +
-                "notificationManager.notify(notificationId, builder.build());";
+                "notificationManager.notify(notificationId, builder.build());\n" +
+                "\n广播两种发送方式的区别。\n" +
+                "方式1:\n" +
+                "现象描述:此种广播发送方式,广播接收者必须在清单文件中声明,不在清单文件中声明的动态注册的广播接收者无法接收到,\n" +
+                "因为我在通知栏发送的广播是以这种方式发送的,所以一直很困惑二次传递的问题,后来改用<方式2>发送广播,所有的问题解决了.\n" +
+                "因为是静态注册所以,这里实现的 OnReceivedListener listener没有被赋值,消息需要再经过<方式2>的发送方式才能被动态注册的AppBroadcastReceiver接收到.\n" +
+                "Intent intent = new Intent(context, AppBroadcastReceiver.class);\n" +
+                "intent.setAction(Constant.BroadcastAction.TEST);\n" +
+                "intent.putExtra(\"sendBroadcast\", \"收到一条广播，还附加了一条消息\");\n" +
+                "sendBroadcast(intent);\n" +
+                "方式2:\n" +
+                "这种方式发送的广播,广播接收者不需要在清单文件中声明\n" +
+                "sendBroadcast(new Intent(Constant.BroadcastAction.TEST).putExtra(\"sendBroadcast\", \"收到一条广播，还附加了一条消息\"));\n";
     }
 }

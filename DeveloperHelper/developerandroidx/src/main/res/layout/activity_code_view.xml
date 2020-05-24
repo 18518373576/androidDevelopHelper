@@ -25,7 +25,7 @@
     <ImageView
         android:id="@+id/iv_shrink"
         style="@style/codeImageViewStyle"
-        android:background="@color/tran"
+        android:background="@drawable/selector_circuler_black"
         android:src="@mipmap/icon_shrink"
         android:stateListAnimator="@drawable/selector_btn_animator"
         android:visibility="gone"

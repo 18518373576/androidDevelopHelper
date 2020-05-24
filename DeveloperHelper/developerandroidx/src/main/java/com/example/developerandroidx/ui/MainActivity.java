@@ -63,7 +63,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @OnClick({R.id.iv_right})
     public void click(View v) {
-        String[] mainMenus = new String[]{"About", "Develop Notes"};
+        String[] mainMenus = new String[]{"About", "Issues"};
         DialogUtils.getInstance().showBottomMenu(context, mainMenus, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
@@ -71,8 +71,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     case "About":
                         RouteUtil.goTo(context, RouteUtil.getDestination(AboutActivity.class));
                         break;
-                    case "Develop Notes":
-                        RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getDelelopNotes());
+                    case "Issues":
+                        RouteUtil.goToCodeViewActivity(context, CodeVariate.getInstance().getIssueNotes());
                         break;
                 }
             }

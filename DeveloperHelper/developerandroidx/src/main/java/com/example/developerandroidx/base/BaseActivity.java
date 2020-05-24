@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.developerandroidx.R;
-import com.kongzue.dialog.v3.Notification;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,12 +50,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 设置顶栏文字为浅色
+     * 设置顶栏文字为浅色，页面背景为深色时使用
      */
     protected void setTopBarTextLight() {
         //设置返回按钮的颜色
         iv_back.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
+        iv_back.setBackgroundResource(R.drawable.selector_circuler_black);
         iv_right.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.white)));
+        iv_right.setBackgroundResource(R.drawable.selector_circuler_black);
         //设置顶部信号栏字体颜色
         setAndroidNativeLightStatusBar(false);
         //设置title文字颜色
