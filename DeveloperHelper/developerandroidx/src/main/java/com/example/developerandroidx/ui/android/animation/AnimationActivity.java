@@ -14,6 +14,7 @@ import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.realize.MyAnimationListener;
 import com.example.developerandroidx.ui.android.animation.dialog.CircularRevealDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
+import com.example.developerandroidx.ui.android.animation.dialog.PathInterpolatorDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
@@ -121,7 +122,7 @@ public class AnimationActivity extends BaseActivity {
                 //ObjectAnimator animator = ObjectAnimator.ofFloat(mButton, "rotation", 0f, 360f);
                 // 表示的是:
                 // 动画作用对象是mButton
-                // 动画作用的对象的属性是旋转alpha
+                // 动画作用的对象的属性是旋转rotation
                 // 动画效果是:0 - 360
                 //ObjectAnimator animator = ObjectAnimator.ofFloat(mButton, "translationX", curTranslationX, 300,curTranslationX);
                 // 表示的是:
@@ -150,7 +151,7 @@ public class AnimationActivity extends BaseActivity {
      */
     private void showExtendDialog() {
 
-        String[] items = new String[]{"ValueAnimator for object", "Flip card", "Circular reveal", "Fling", "物理原理动画", "布局更新动画", "布局过渡动画"};
+        String[] items = new String[]{"ValueAnimator for object", "Flip card", "Circular reveal", "PathInterpolator", "Fling", "物理原理动画", "布局更新动画", "布局过渡动画"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
@@ -163,6 +164,9 @@ public class AnimationActivity extends BaseActivity {
                         break;
                     case "Circular reveal":
                         new CircularRevealDialog().show(context);
+                        break;
+                    case "PathInterpolator":
+                        new PathInterpolatorDialog().show(context);
                         break;
                 }
             }
