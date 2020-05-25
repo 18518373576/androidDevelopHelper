@@ -38,7 +38,7 @@ public class FlingAnimationDialog implements FunctionDialogInterface {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         gestureDetectorCompat.onTouchEvent(event);
-                        return false;
+                        return true;
                     }
                 });
                 ll_bg = rootView.findViewById(R.id.ll_bg);
@@ -67,7 +67,12 @@ public class FlingAnimationDialog implements FunctionDialogInterface {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 
-            FlingAnimation flingAnimation = new FlingAnimation(iv_fling, DynamicAnimation.SCROLL_Y);
+            FlingAnimation flingAnimation = new FlingAnimation(iv_fling, DynamicAnimation.Y);
+            //设置为DynamicAnimation.Y，下面的方法的含义为：
+            //setMinValue被移动的view的y点可在父控件移动的最小值
+            //setMaxValue被移动的view的y点可在父控件移动的最大值，这里设置了view的高度的偏移量，以免移到屏幕外面
+            //setStartVelocity动画起始速率，这里根据手指的滑动确定速度
+            //setFriction设置摩擦力
             flingAnimation.setMinValue(0f).setMaxValue(max).setStartVelocity(velocityY).setFriction(1.1f).start();
             return super.onFling(e1, e2, velocityX, velocityY);
         }
