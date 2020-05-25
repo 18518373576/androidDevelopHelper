@@ -11,7 +11,6 @@ import com.example.developerandroidx.base.App;
  * 描述:
  */
 public class PreferenceUtils {
-    private static PreferenceUtils preferenceUtils;
     private SharedPreferences preferences;
 
     private PreferenceUtils() {
@@ -26,11 +25,12 @@ public class PreferenceUtils {
         preferences = App.context.getSharedPreferences(Constant.PreferenceKeys.MY_PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
 
+    public static class PreferenceUtilsInstance {
+        public static final PreferenceUtils INSTANCE = new PreferenceUtils();
+    }
+
     public static PreferenceUtils getInstance() {
-        if (preferenceUtils == null) {
-            preferenceUtils = new PreferenceUtils();
-        }
-        return preferenceUtils;
+        return PreferenceUtilsInstance.INSTANCE;
     }
 
     /**

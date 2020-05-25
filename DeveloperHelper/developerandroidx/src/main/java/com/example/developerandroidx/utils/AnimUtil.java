@@ -13,18 +13,18 @@ import android.view.animation.TranslateAnimation;
  */
 public class AnimUtil {
 
-    private static AnimUtil animUtil;
-    private Animation animation;
-
     private AnimUtil() {
     }
 
-    public static AnimUtil getInstance() {
-        if (animUtil == null) {
-            animUtil = new AnimUtil();
-        }
+    /**
+     * 使用静态内部类实现单例，静态内部类不会随着类的加载而加载，既可以保证线程安全，又可以减小程序启动的负担
+     */
+    private static class AnimutilInstance {
+        public static final AnimUtil INSTANCE = new AnimUtil();
+    }
 
-        return animUtil;
+    public static AnimUtil getInstance() {
+        return AnimutilInstance.INSTANCE;
     }
 
     /**
@@ -50,7 +50,7 @@ public class AnimUtil {
          * @param pivotYType 同from/to
          * @param pivotYValue 原理同上
          */
-        animation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        Animation animation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(duration);
         animation.setStartOffset(startOffset);
         animation.setInterpolator(new AccelerateInterpolator());
@@ -58,7 +58,7 @@ public class AnimUtil {
     }
 
     public Animation getScaleAnim(float fromX, float toX, float fromY, float toY, int duration, int startOffset, Interpolator interpolator) {
-        animation = new ScaleAnimation(fromX, toX, fromY, toY, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        Animation animation = new ScaleAnimation(fromX, toX, fromY, toY, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(duration);
         animation.setStartOffset(startOffset);
         if (interpolator != null) {
@@ -68,7 +68,7 @@ public class AnimUtil {
     }
 
     public Animation getTranslateAnim(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, int duration, int startOffset) {
-        animation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
+        Animation animation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
         animation.setDuration(duration);
         animation.setStartOffset(startOffset);
         return animation;

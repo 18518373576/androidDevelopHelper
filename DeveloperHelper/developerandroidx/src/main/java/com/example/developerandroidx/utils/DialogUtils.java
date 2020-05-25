@@ -23,17 +23,15 @@ import com.kongzue.dialog.v3.WaitDialog;
  */
 public class DialogUtils {
 
-    private static DialogUtils dialogUtils;
-
-
     private DialogUtils() {
     }
 
+    private static class DialogUtilsInstance {
+        public static final DialogUtils INSTANCE = new DialogUtils();
+    }
+
     public static DialogUtils getInstance() {
-        if (dialogUtils == null) {
-            dialogUtils = new DialogUtils();
-        }
-        return dialogUtils;
+        return DialogUtilsInstance.INSTANCE;
     }
 
     public interface OnFullScreenDialogBindView {

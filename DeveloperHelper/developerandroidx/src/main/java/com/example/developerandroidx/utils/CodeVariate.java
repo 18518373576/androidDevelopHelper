@@ -7,16 +7,15 @@ package com.example.developerandroidx.utils;
  * 使用单例和一些get方法获取，调用完成后既可以释放。
  */
 public class CodeVariate {
-    private static CodeVariate codeVariate = null;
-
     private CodeVariate() {
     }
 
+    public static class CodeVariateInstance {
+        public static final CodeVariate INSTANCE = new CodeVariate();
+    }
+
     public static CodeVariate getInstance() {
-        if (codeVariate == null) {
-            codeVariate = new CodeVariate();
-        }
-        return codeVariate;
+        return CodeVariateInstance.INSTANCE;
     }
 
     public String getIssueNotes() {

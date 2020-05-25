@@ -9,17 +9,15 @@ import java.util.Date;
  * @描述：
  */
 public class StringUtils {
-    private static StringUtils stringUtils;
-
     private StringUtils() {
     }
 
-    public static StringUtils getInstance() {
-        if (stringUtils == null) {
-            stringUtils = new StringUtils();
-        }
+    public static class StringUtilsInstance {
+        public static final StringUtils INSTANCE = new StringUtils();
+    }
 
-        return stringUtils;
+    public static StringUtils getInstance() {
+        return StringUtilsInstance.INSTANCE;
     }
 
     /**
