@@ -9,6 +9,8 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
 import android.widget.Button;
 
+import androidx.dynamicanimation.animation.FlingAnimation;
+
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.realize.MyAnimationListener;
@@ -172,6 +174,9 @@ public class AnimationActivity extends BaseActivity {
                         break;
                     case "PathInterpolator":
                         new PathInterpolatorDialog().show(context);
+                        break;
+                    case "Fling":
+//                        FlingAnimation flingAnimation
                         break;
                 }
             }
