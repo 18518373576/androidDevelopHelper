@@ -16,6 +16,7 @@ import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.realize.MyAnimationListener;
 import com.example.developerandroidx.ui.android.animation.dialog.AnimatedStateListDrawableDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.CircularRevealDialog;
+import com.example.developerandroidx.ui.android.animation.dialog.FlingAnimationDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.PathInterpolatorDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
@@ -176,7 +177,7 @@ public class AnimationActivity extends BaseActivity {
                         new PathInterpolatorDialog().show(context);
                         break;
                     case "Fling":
-//                        FlingAnimation flingAnimation
+                        new FlingAnimationDialog().show(context);
                         break;
                 }
             }

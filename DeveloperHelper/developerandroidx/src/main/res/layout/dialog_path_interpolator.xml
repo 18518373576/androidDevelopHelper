@@ -11,12 +11,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <ImageView
         android:id="@+id/v_path"
-        android:layout_width="@dimen/dp50"
-        android:layout_height="@dimen/dp50"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp80"
         android:layout_marginTop="@dimen/dp50"
-        android:background="@drawable/bg_circle_main_color"
+        android:src="@mipmap/icon_basketball"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
