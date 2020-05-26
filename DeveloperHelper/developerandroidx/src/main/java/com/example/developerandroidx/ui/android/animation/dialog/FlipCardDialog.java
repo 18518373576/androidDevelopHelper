@@ -20,7 +20,7 @@ import com.kongzue.dialog.v3.FullScreenDialog;
 public class FlipCardDialog implements FunctionDialogInterface {
     @Override
     public void show(Context context) {
-        DialogUtils.getInstance().shouFullScreenDialog(context, R.layout.dialog_flip_card, new DialogUtils.OnFullScreenDialogBindView() {
+        DialogUtils.getInstance().showFullScreenDialog(context, R.layout.dialog_flip_card, new DialogUtils.OnFullScreenDialogBindView() {
             @Override
             public void onBind(FullScreenDialog dialog, View rootView) {
                 View iv_image = rootView.findViewById(R.id.iv_image);

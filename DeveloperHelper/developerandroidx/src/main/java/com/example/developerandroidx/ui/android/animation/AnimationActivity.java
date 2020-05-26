@@ -19,6 +19,7 @@ import com.example.developerandroidx.ui.android.animation.dialog.CircularRevealD
 import com.example.developerandroidx.ui.android.animation.dialog.FlingAnimationDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.PathInterpolatorDialog;
+import com.example.developerandroidx.ui.android.animation.dialog.ScaleViewToViewDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
@@ -155,7 +156,8 @@ public class AnimationActivity extends BaseActivity {
      */
     private void showExtendDialog() {
 
-        String[] items = new String[]{"ValueAnimator for object", "AnimatedStateListDrawable", "Flip card", "Circular reveal", "PathInterpolator", "Fling", "物理原理动画", "布局更新动画", "布局过渡动画"};
+        String[] items = new String[]{"ValueAnimator for object", "AnimatedStateListDrawable", "Flip card", "Circular reveal", "PathInterpolator", "Fling",
+                "Scale view to view", "物理原理动画", "布局更新动画", "布局过渡动画"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
@@ -178,6 +180,9 @@ public class AnimationActivity extends BaseActivity {
                         break;
                     case "Fling":
                         new FlingAnimationDialog().show(context);
+                        break;
+                    case "Scale view to view":
+                        new ScaleViewToViewDialog().show(context);
                         break;
                 }
             }

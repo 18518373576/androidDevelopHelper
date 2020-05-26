@@ -18,7 +18,7 @@ public class ActivityAnalysisDescDialog implements FunctionDialogInterface {
 
     @Override
     public void show(Context context) {
-        DialogUtils.getInstance().shouFullScreenDialog(context, R.layout.dialog_activity_lifecycle, new DialogUtils.OnFullScreenDialogBindView() {
+        DialogUtils.getInstance().showFullScreenDialog(context, R.layout.dialog_activity_lifecycle, new DialogUtils.OnFullScreenDialogBindView() {
             @Override
             public void onBind(FullScreenDialog dialog, View rootView) {
                 ExtensibleScrollView esv_content = rootView.findViewById(R.id.esv_content);

@@ -44,7 +44,7 @@ public class BubbleSortDialog {
     public void show(Context context) {
         isDis = false;
         this.context = context;
-        DialogUtils.getInstance().shouFullScreenDialog(context, R.layout.view_arithmetic_dialog, new DialogUtils.OnFullScreenDialogBindView() {
+        DialogUtils.getInstance().showFullScreenDialog(context, R.layout.view_arithmetic_dialog, new DialogUtils.OnFullScreenDialogBindView() {
             @Override
             public void onBind(FullScreenDialog dialog, View rootView) {
                 bubbleSort(rootView);

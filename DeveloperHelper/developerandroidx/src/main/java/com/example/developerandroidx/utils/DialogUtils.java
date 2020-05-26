@@ -1,12 +1,10 @@
 package com.example.developerandroidx.utils;
 
 import android.content.Context;
-import android.os.Handler;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.BottomMenu;
@@ -39,7 +37,7 @@ public class DialogUtils {
     }
 
     //全屏对话框展示,需要处理回调
-    public void shouFullScreenDialog(Context context, int layoutId, OnFullScreenDialogBindView onFullScreenDialogBindView) {
+    public void showFullScreenDialog(Context context, int layoutId, OnFullScreenDialogBindView onFullScreenDialogBindView) {
         FullScreenDialog.show((AppCompatActivity) context, layoutId, new FullScreenDialog.OnBindView() {
             @Override
             public void onBind(FullScreenDialog dialog, View rootView) {
@@ -50,8 +48,8 @@ public class DialogUtils {
     }
 
     //全屏对话框展示,不需要处理回调
-    public void shouFullScreenDialog(Context context, int layoutId) {
-        shouFullScreenDialog(context, layoutId, null);
+    public void showFullScreenDialog(Context context, int layoutId) {
+        showFullScreenDialog(context, layoutId, null);
     }
 
     /**

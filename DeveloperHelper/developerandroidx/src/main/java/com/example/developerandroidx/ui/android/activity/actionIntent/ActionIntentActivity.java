@@ -8,15 +8,24 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseActivity;
 
-public class ActionIntentActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.BindView;
+
+public class ActionIntentActivity extends BaseActivity implements View.OnClickListener {
+
+    @BindView(R.id.tv_message)
+    TextView tv_message;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_action_intent);
-        findViewById(R.id.iv_back).setOnClickListener(this);
-        TextView tv_message = findViewById(R.id.tv_message);
+    protected int bindLayout() {
+        return R.layout.activity_action_intent;
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+        setTitle("Action intent");
         Uri data = getIntent().getData();
         if (data != null) {
             tv_message.setText("");

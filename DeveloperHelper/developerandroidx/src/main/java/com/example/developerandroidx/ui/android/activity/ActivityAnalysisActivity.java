@@ -187,19 +187,19 @@ public class ActivityAnalysisActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel.onLifecyleChanged(TAG + "：onCreate()\n");
+        viewModel.onLifecyleChanged(TAG + "：onCreate()\n" + "tv_print.getWidth():" + tv_print.getWidth() + "\n");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        viewModel.onLifecyleChanged(TAG + "：onStart()\n");
+        viewModel.onLifecyleChanged(TAG + "：onStart()\n" + "tv_print.getWidth():" + tv_print.getWidth() + "\n");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        viewModel.onLifecyleChanged(TAG + "：onResume()\n");
+        viewModel.onLifecyleChanged(TAG + "：onResume()\n" + "tv_print.getWidth():" + tv_print.getWidth() + "\n");
     }
 
     @Override

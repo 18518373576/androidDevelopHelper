@@ -31,7 +31,7 @@ import com.kongzue.dialog.v3.FullScreenDialog;
 public class CircularRevealDialog implements FunctionDialogInterface {
     @Override
     public void show(Context context) {
-        DialogUtils.getInstance().shouFullScreenDialog(context, R.layout.dialog_circular_reveal, new DialogUtils.OnFullScreenDialogBindView() {
+        DialogUtils.getInstance().showFullScreenDialog(context, R.layout.dialog_circular_reveal, new DialogUtils.OnFullScreenDialogBindView() {
             @Override
             public void onBind(FullScreenDialog dialog, View rootView) {
                 ImageView iv_landscape = rootView.findViewById(R.id.iv_landscape);
