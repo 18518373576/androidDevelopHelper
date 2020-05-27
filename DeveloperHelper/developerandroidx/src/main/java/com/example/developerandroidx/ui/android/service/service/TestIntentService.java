@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.developerandroidx.bean.EventBusMessageBean;
+import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.utils.Constant;
 
 import org.greenrobot.eventbus.EventBus;

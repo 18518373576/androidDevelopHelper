@@ -1,4 +1,4 @@
-package com.example.developerandroidx.ui.java.arithmetic;
+package com.example.developerandroidx.ui.java.arithmetic.dialog;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.example.developerandroidx.bean;
+package com.example.developerandroidx.model;
 
 /**
  * Date: 2020/5/16 17:22

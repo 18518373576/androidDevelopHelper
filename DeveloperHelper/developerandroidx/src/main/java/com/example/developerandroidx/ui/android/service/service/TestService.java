@@ -14,7 +14,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
-import com.example.developerandroidx.bean.EventBusMessageBean;
+import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.ui.android.broadcastReceiver.AppBroadcastReceiver;
 import com.example.developerandroidx.ui.android.notification.NotificationActivity;
 import com.example.developerandroidx.utils.Constant;

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.base.BaseActivity;
-import com.example.developerandroidx.bean.EventBusMessageBean;
+import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.ui.android.service.service.TestIntentService;
 import com.example.developerandroidx.ui.android.service.service.TestService;
 import com.example.developerandroidx.utils.Constant;

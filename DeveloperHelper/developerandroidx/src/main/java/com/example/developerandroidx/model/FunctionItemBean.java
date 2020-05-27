@@ -1,4 +1,4 @@
-package com.example.developerandroidx.bean;
+package com.example.developerandroidx.model;
 
 import java.util.Map;
 

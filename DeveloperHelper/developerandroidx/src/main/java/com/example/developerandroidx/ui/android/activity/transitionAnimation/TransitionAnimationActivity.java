@@ -19,7 +19,7 @@ import com.example.developerandroidx.R;
 import com.example.developerandroidx.adapter.TransitionAnimationRcvAdapter;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.base.BaseRcvAdapter;
-import com.example.developerandroidx.bean.TransitionAnimationItemBean;
+import com.example.developerandroidx.model.TransitionAnimationItemBean;
 import com.example.developerandroidx.utils.Constant;
 
 import java.util.List;

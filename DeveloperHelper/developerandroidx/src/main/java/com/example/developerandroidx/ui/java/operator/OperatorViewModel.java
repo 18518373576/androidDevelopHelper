@@ -1,14 +1,10 @@
 package com.example.developerandroidx.ui.java.operator;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleEventObserver;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.developerandroidx.bean.OperatorItemBean;
+import com.example.developerandroidx.model.OperatorItemBean;
 
 import java.util.ArrayList;
 import java.util.List;

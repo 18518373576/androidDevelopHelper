@@ -5,7 +5,7 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.developerandroidx.R;
-import com.example.developerandroidx.bean.TransitionAnimationItemBean;
+import com.example.developerandroidx.model.TransitionAnimationItemBean;
 
 import java.util.ArrayList;
 import java.util.List;

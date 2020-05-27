@@ -11,6 +11,13 @@
         layout="@layout/title_bar"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_arithmetic"
+        style="@style/CommonRcvStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/titleBarHeigt" />
+
     <Button
         android:id="@+id/btn_bubble_sort"
         style="@style/CommonButtonStyle"

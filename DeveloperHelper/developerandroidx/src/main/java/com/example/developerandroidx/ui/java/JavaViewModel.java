@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.developerandroidx.R;
-import com.example.developerandroidx.bean.FunctionItemBean;
+import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.java.arithmetic.ArithmeticActivity;
 import com.example.developerandroidx.ui.java.operator.OperatorActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;

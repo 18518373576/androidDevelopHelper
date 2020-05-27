@@ -1,9 +1,6 @@
 package com.example.developerandroidx.ui.java.operator;
 
-import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +13,7 @@ import com.example.developerandroidx.R;
 import com.example.developerandroidx.adapter.OperatorRcvAdapter;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.base.BaseRcvAdapter;
-import com.example.developerandroidx.bean.OperatorItemBean;
+import com.example.developerandroidx.model.OperatorItemBean;
 import com.example.developerandroidx.utils.AnimUtil;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;

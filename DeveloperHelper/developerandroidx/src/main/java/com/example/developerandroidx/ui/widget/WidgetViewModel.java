@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.developerandroidx.R;
-import com.example.developerandroidx.bean.FunctionItemBean;
+import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.widget.actionBar.ActionBarActivity;
 import com.example.developerandroidx.ui.widget.navigationView.NavigationViewActivity;
 import com.example.developerandroidx.ui.widget.webView.WebViewActivity;

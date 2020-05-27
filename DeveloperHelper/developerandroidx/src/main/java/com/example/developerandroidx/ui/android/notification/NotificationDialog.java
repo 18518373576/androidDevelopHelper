@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.provider.Settings;
-import android.view.View;
 import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
@@ -17,7 +16,7 @@ import androidx.core.app.RemoteInput;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
-import com.example.developerandroidx.bean.EventBusMessageBean;
+import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.ui.android.broadcastReceiver.AppBroadcastReceiver;
 import com.example.developerandroidx.ui.android.service.service.TestIntentService;
 import com.example.developerandroidx.utils.Constant;

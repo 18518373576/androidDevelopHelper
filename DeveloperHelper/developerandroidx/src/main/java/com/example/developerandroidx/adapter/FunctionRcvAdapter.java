@@ -4,17 +4,14 @@ import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseRcvHolder;
 import com.example.developerandroidx.base.BaseRcvAdapter;
-import com.example.developerandroidx.bean.FunctionItemBean;
+import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.android.notification.NotificationDialog;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.RouteUtil;
-import com.kongzue.dialog.v3.Notification;
-import com.kongzue.dialog.v3.TipDialog;
 
 import java.util.List;
 

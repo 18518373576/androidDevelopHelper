@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseRcvHolder;
-import com.example.developerandroidx.bean.FunctionItemBean;
+import com.example.developerandroidx.model.FunctionItemBean;
 
 import butterknife.BindView;
 
