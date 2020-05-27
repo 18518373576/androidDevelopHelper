@@ -21,6 +21,8 @@ public class TransitionToActivity extends BaseActivity {
 
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         transitionType = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
+        //默认使用淡入淡出动画，配合sharedView使用
+        transition = TransitionInflater.from(this).inflateTransition(R.transition.fade);
 
         switch (transitionType) {
             case "Explode":
