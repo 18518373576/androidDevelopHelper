@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.BottomMenu;
@@ -12,6 +13,9 @@ import com.kongzue.dialog.v3.FullScreenDialog;
 import com.kongzue.dialog.v3.MessageDialog;
 import com.kongzue.dialog.v3.TipDialog;
 import com.kongzue.dialog.v3.WaitDialog;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * @作者： zjf 2020/5/15 9:17

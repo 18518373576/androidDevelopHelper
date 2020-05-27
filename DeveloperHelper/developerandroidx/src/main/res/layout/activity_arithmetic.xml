@@ -10,39 +10,10 @@
         android:id="@+id/include2"
         layout="@layout/title_bar"
         app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_arithmetic"
         style="@style/CommonRcvStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/titleBarHeigt" />
-
-    <Button
-        android:id="@+id/btn_bubble_sort"
-        style="@style/CommonButtonStyle"
-        android:layout_margin="@dimen/dp15"
-        android:text="冒泡排序"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
-
-    <Button
-        android:id="@+id/btn_sellect_sort"
-        style="@style/CommonButtonStyle"
-        android:layout_margin="@dimen/dp15"
-        android:text="选择排序"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_bubble_sort"
-        app:layout_constraintRight_toLeftOf="@+id/btn_bubble_sort"
-        app:layout_constraintTop_toTopOf="@+id/btn_bubble_sort" />
-
-    <Button
-        android:id="@+id/btn_other_sort"
-        style="@style/CommonButtonStyle"
-        android:layout_margin="@dimen/dp15"
-        android:text="其他排序"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_bubble_sort"
-        app:layout_constraintLeft_toRightOf="@+id/btn_bubble_sort"
-        app:layout_constraintTop_toTopOf="@+id/btn_bubble_sort" />
 </androidx.constraintlayout.widget.ConstraintLayout>

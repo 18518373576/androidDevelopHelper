@@ -27,11 +27,6 @@ public class TransitionAnimationRcvAdapter extends BaseRcvAdapter<TransitionAnim
         super(mList);
     }
 
-    public void notifyDataSetChanged(List<TransitionAnimationItemBean> mList) {
-        super.mList = mList;
-        notifyDataSetChanged();
-    }
-
     @Override
     protected int bindItemLayout(int viewType) {
         return R.layout.item_transition_animation;

@@ -116,9 +116,7 @@ public class BubbleSortDialog {
             @Override
             public void onClick(View v) {
                 if (isSorting) {
-                    Animation animation = AnimationUtils.loadAnimation(context, R.anim.shake);
-                    animation.setInterpolator(new CycleInterpolator(3));
-                    v.startAnimation(animation);
+                    v.startAnimation(AnimUtil.getInstance().getShakeAnim());
                     return;
                 }
                 //排序

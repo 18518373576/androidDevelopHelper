@@ -90,7 +90,7 @@ public class TransitionAnimationActivity extends BaseActivity implements BaseRcv
                     rcv_transition.setAdapter(adapter);
                     adapter.setOnItemClickListener(TransitionAnimationActivity.this);
                 } else {
-                    adapter.notifyDataSetChanged(transitionAnimationItemBeans);
+                    adapter.notifyDataChanged(transitionAnimationItemBeans);
                 }
             }
         });

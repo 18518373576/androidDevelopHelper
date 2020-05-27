@@ -5,19 +5,30 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tv_arithmetic"
+        android:id="@+id/tv_add_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp5"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginRight="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp5"
         android:background="@drawable/bg_round_corner_light_gray"
         android:gravity="center|left"
         android:minHeight="@dimen/dp80"
         android:padding="@dimen/dp10"
         android:stateListAnimator="@drawable/selector_btn_animator"
-        android:text="算法"
+        android:text="Thew view is added"
         android:textColor="@color/textColorBlack"
         android:textSize="@dimen/sp14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv_remove"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:padding="@dimen/dp5"
+        android:src="@mipmap/icon_close"
+        app:layout_constraintEnd_toEndOf="@+id/tv_add_view"
+        app:layout_constraintTop_toTopOf="@+id/tv_add_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

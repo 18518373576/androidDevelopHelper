@@ -2,9 +2,14 @@ package com.example.developerandroidx.utils;
 
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.CycleInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
+
+import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.App;
 
 /**
  * @作者： zjf 2020/5/12 16:42
@@ -57,6 +62,18 @@ public class AnimUtil {
         return animation;
     }
 
+    /**
+     * 获取缩放动画
+     *
+     * @param fromX
+     * @param toX
+     * @param fromY
+     * @param toY
+     * @param duration
+     * @param startOffset
+     * @param interpolator
+     * @return
+     */
     public Animation getScaleAnim(float fromX, float toX, float fromY, float toY, int duration, int startOffset, Interpolator interpolator) {
         Animation animation = new ScaleAnimation(fromX, toX, fromY, toY, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(duration);
@@ -67,10 +84,32 @@ public class AnimUtil {
         return animation;
     }
 
+    /**
+     * 获取平移动画
+     *
+     * @param fromXDelta
+     * @param toXDelta
+     * @param fromYDelta
+     * @param toYDelta
+     * @param duration
+     * @param startOffset
+     * @return
+     */
     public Animation getTranslateAnim(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta, int duration, int startOffset) {
         Animation animation = new TranslateAnimation(fromXDelta, toXDelta, fromYDelta, toYDelta);
         animation.setDuration(duration);
         animation.setStartOffset(startOffset);
+        return animation;
+    }
+
+    /**
+     * 获取抖动动画
+     *
+     * @return
+     */
+    public Animation getShakeAnim() {
+        Animation animation = AnimationUtils.loadAnimation(App.context, R.anim.shake);
+        animation.setInterpolator(new CycleInterpolator(3));
         return animation;
     }
 }

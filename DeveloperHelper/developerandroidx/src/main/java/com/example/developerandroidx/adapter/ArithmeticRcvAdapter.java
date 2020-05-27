@@ -27,12 +27,12 @@ public class ArithmeticRcvAdapter extends BaseRcvAdapter<String> {
 
     @Override
     protected int bindItemLayout(int viewType) {
-        return 0;
+        return R.layout.item_arithmetic;
     }
 
     @NonNull
     @Override
     protected BaseRcvHolder<String> bindHolder(@NonNull View v, int viewType) {
-        return null;
+        return new ArithmeticRcvHolder(v);
     }
 }

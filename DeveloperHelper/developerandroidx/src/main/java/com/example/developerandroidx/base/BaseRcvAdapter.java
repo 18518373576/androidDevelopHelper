@@ -21,6 +21,16 @@ public abstract class BaseRcvAdapter<T> extends RecyclerView.Adapter<BaseRcvHold
     protected OnRecyclerViewItemClickListner itemClickListner;
 
     /**
+     * 通知数据变化
+     *
+     * @param mList
+     */
+    public void notifyDataChanged(List<T> mList) {
+        this.mList = mList;
+        notifyDataSetChanged();
+    }
+
+    /**
      * 构造方法，初始化数据
      *
      * @param mList

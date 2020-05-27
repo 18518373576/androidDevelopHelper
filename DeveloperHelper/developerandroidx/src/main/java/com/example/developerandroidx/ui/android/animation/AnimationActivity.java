@@ -18,6 +18,7 @@ import com.example.developerandroidx.ui.android.animation.dialog.AnimatedStateLi
 import com.example.developerandroidx.ui.android.animation.dialog.CircularRevealDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.FlingAnimationDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
+import com.example.developerandroidx.ui.android.animation.dialog.LayoutTransitionDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.PathInterpolatorDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ScaleViewToViewDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
@@ -157,7 +158,7 @@ public class AnimationActivity extends BaseActivity {
     private void showExtendDialog() {
 
         String[] items = new String[]{"ValueAnimator for object", "AnimatedStateListDrawable", "Flip card", "Circular reveal", "PathInterpolator", "Fling",
-                "Scale view to view", "物理原理动画", "布局更新动画", "布局过渡动画"};
+                "Scale view to view", "LayoutTransition", "物理原理动画", "布局更新动画", "布局过渡动画"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
@@ -183,6 +184,9 @@ public class AnimationActivity extends BaseActivity {
                         break;
                     case "Scale view to view":
                         new ScaleViewToViewDialog().show(context);
+                        break;
+                    case "LayoutTransition":
+                        new LayoutTransitionDialog().show(context);
                         break;
                 }
             }

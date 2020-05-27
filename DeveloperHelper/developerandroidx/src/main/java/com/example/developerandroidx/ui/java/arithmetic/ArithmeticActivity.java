@@ -2,24 +2,28 @@ package com.example.developerandroidx.ui.java.arithmetic;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.adapter.ArithmeticRcvAdapter;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.ui.java.arithmetic.dialog.BubbleSortDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
-public class ArithmeticActivity extends BaseActivity {
+public class ArithmeticActivity extends BaseActivity implements BaseRcvAdapter.OnRecyclerViewItemClickListner {
 
     @BindView(R.id.rcv_arithmetic)
     RecyclerView rcv_arithmetic;
+    private ArithmeticRcvAdapter adapter;
 
     @Override
     protected int bindLayout() {
@@ -30,6 +34,9 @@ public class ArithmeticActivity extends BaseActivity {
     protected void initView() {
         setTitle("算法");
         rcv_arithmetic.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        adapter = new ArithmeticRcvAdapter(new ArrayList<String>());
+        rcv_arithmetic.setAdapter(adapter);
+        adapter.setOnItemClickListener(this);
     }
 
     @Override
@@ -39,22 +46,19 @@ public class ArithmeticActivity extends BaseActivity {
         viewModel.getData().observe(this, new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> strings) {
-
+                adapter.notifyDataChanged(strings);
             }
         });
     }
 
-    @OnClick({R.id.btn_bubble_sort})
-    public void click(View v) {
-        switch (v.getId()) {
-            case R.id.btn_bubble_sort://冒泡排序
-                //测试没有执行setTag调用getTag是否为空
-//                if (v.getTag() == null) {
-//                    showNotify("kong");
-//                    return;
-//                }
+    @Override
+    public void onItemClick(@NonNull View v, int viewType, @NonNull Object data, int position) {
+        switch ((String) data) {
+
+            case "冒泡排序":
                 new BubbleSortDialog().show(context);
                 break;
         }
+
     }
 }
