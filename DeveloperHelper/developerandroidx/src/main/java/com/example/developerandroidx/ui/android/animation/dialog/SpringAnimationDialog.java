@@ -7,7 +7,6 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import androidx.dynamicanimation.animation.DynamicAnimation;
-import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 
@@ -18,12 +17,23 @@ import com.kongzue.dialog.v3.FullScreenDialog;
 
 /**
  * Date: 2020/5/28 9:08
- * 参考:
+ * 参考: https://developer.android.google.cn/guide/topics/graphics/spring-animation
+ * https://github.com/yizhanzjz/springdemo
  * 描述: 弹簧效果动画
+ * <p>
+ * 调用 start()，或调用 animateToFinalPosition() 方法。这两种方法都需要对主线程调用。
+ * <p>
+ * animateToFinalPosition() 方法会执行两项任务：
+ * <p>
+ * 设置弹簧的最终位置。
+ * 启动动画（如果尚未启动）。
+ * 由于此方法会更新弹簧的最终位置并根据需要启动动画，因此您可以随时通过调用此方法来更改动画过程。
+ * 例如，在链接的弹簧动画中，一个视图的动画依赖于另一个视图。对于此类动画，使用 animateToFinalPosition()
+ * 方法更为便捷。在链接的弹簧动画中使用此方法后，您便无需担心接下来要更新的动画当前是否正在运行。
  */
 public class SpringAnimationDialog implements FunctionDialogInterface, CompoundButton.OnCheckedChangeListener {
     private ImageView iv_basketball;
-    private CheckBox cb_scale, cb_transition, cb_rotate, cb_alpha;
+    private CheckBox cb_scale, cb_translation, cb_rotate, cb_alpha;
 
     @Override
     public void show(Context context) {
@@ -33,12 +43,12 @@ public class SpringAnimationDialog implements FunctionDialogInterface, CompoundB
 
                 iv_basketball = rootView.findViewById(R.id.iv_basketball);
                 cb_scale = rootView.findViewById(R.id.cb_scale);
-                cb_transition = rootView.findViewById(R.id.cb_transition);
+                cb_translation = rootView.findViewById(R.id.cb_translation);
                 cb_rotate = rootView.findViewById(R.id.cb_rotate);
                 cb_alpha = rootView.findViewById(R.id.cb_alpha);
 
                 cb_scale.setOnCheckedChangeListener(SpringAnimationDialog.this);
-                cb_transition.setOnCheckedChangeListener(SpringAnimationDialog.this);
+                cb_translation.setOnCheckedChangeListener(SpringAnimationDialog.this);
                 cb_rotate.setOnCheckedChangeListener(SpringAnimationDialog.this);
                 cb_alpha.setOnCheckedChangeListener(SpringAnimationDialog.this);
 
@@ -54,74 +64,35 @@ public class SpringAnimationDialog implements FunctionDialogInterface, CompoundB
         switch (buttonView.getId()) {
             case R.id.cb_scale://缩放
                 if (isChecked) {
-                    animationProperty_01 = new SpringAnimation(iv_basketball, new FloatPropertyCompat<ImageView>("scaleX") {
-                        @Override
-                        public float getValue(ImageView object) {
-                            return object.getScaleX();
-                        }
+                    //可以这样定义Animation
+//                    animationProperty_01 = new SpringAnimation(iv_basketball, new FloatPropertyCompat<ImageView>("scaleX") {
+//                        @Override
+//                        public float getValue(ImageView object) {
+//                            return object.getScaleX();
+//                        }
+//
+//                        @Override
+//                        public void setValue(ImageView object, float value) {
+//
+//                            object.setScaleX(value);
+//                        }
+//                    }, 2.0f);
 
-                        @Override
-                        public void setValue(ImageView object, float value) {
-
-                            object.setScaleX(value);
-                        }
-                    }, 2.0f);
-                    animationProperty_02 = new SpringAnimation(iv_basketball, new FloatPropertyCompat<ImageView>("scaleY") {
-                        @Override
-                        public float getValue(ImageView object) {
-                            return object.getScaleY();
-                        }
-
-                        @Override
-                        public void setValue(ImageView object, float value) {
-
-                            object.setScaleY(value);
-                        }
-                    }, 2.0f);
+                    //也可以这样定义Animation
+                    animationProperty_01 = new SpringAnimation(iv_basketball, DynamicAnimation.SCALE_X, 2.0f);
+                    animationProperty_02 = new SpringAnimation(iv_basketball, DynamicAnimation.SCALE_Y, 2.0f);
                 } else {
-                    animationProperty_01 = new SpringAnimation(iv_basketball, new FloatPropertyCompat<ImageView>("scaleX") {
-                        @Override
-                        public float getValue(ImageView object) {
-                            return object.getScaleX();
-                        }
-
-                        @Override
-                        public void setValue(ImageView object, float value) {
-
-                            object.setScaleX(value);
-                        }
-                    }, 1.0f);
-                    animationProperty_02 = new SpringAnimation(iv_basketball, new FloatPropertyCompat<ImageView>("scaleY") {
-                        @Override
-                        public float getValue(ImageView object) {
-                            return object.getScaleY();
-                        }
-
-                        @Override
-                        public void setValue(ImageView object, float value) {
-
-                            object.setScaleY(value);
-                        }
-                    }, 1.0f);
+                    animationProperty_01 = new SpringAnimation(iv_basketball, DynamicAnimation.SCALE_X, 1.0f);
+                    animationProperty_02 = new SpringAnimation(iv_basketball, DynamicAnimation.SCALE_Y, 1.0f);
                 }
                 //不设置无效果
                 animationProperty_01.setMinimumVisibleChange(DynamicAnimation.MIN_VISIBLE_CHANGE_SCALE);
                 animationProperty_02.setMinimumVisibleChange(DynamicAnimation.MIN_VISIBLE_CHANGE_SCALE);
 
                 break;
-            case R.id.cb_transition:
-                animationProperty_01 = new SpringAnimation(iv_basketball, new FloatPropertyCompat<ImageView>("trnsitionY") {
-                    @Override
-                    public float getValue(ImageView object) {
-                        return object.getTranslationY();
-                    }
-
-                    @Override
-                    public void setValue(ImageView object, float value) {
-                        object.setTranslationY(value);
-                    }
-                });
-                //设置Z轴无效果，不知道是不是使用方法不对
+            case R.id.cb_translation://平移
+                animationProperty_01 = new SpringAnimation(iv_basketball, DynamicAnimation.TRANSLATION_Y);
+                //设置Z轴无效果
                 if (isChecked) {
                     animationProperty_01.setSpring(new SpringForce(iv_basketball.getTranslationY() - 300));
                 } else {
@@ -129,18 +100,8 @@ public class SpringAnimationDialog implements FunctionDialogInterface, CompoundB
                 }
                 animationProperty_01.setMinimumVisibleChange(DynamicAnimation.MIN_VISIBLE_CHANGE_PIXELS);
                 break;
-            case R.id.cb_rotate:
-                animationProperty_01 = new SpringAnimation(iv_basketball, new FloatPropertyCompat<ImageView>("rotationY") {
-                    @Override
-                    public float getValue(ImageView object) {
-                        return object.getRotationY();
-                    }
-
-                    @Override
-                    public void setValue(ImageView object, float value) {
-                        object.setRotationY(value);
-                    }
-                });
+            case R.id.cb_rotate://旋转
+                animationProperty_01 = new SpringAnimation(iv_basketball, DynamicAnimation.ROTATION_Y);
                 if (isChecked) {
                     animationProperty_01.setSpring(new SpringForce(360));
                 } else {
@@ -148,19 +109,9 @@ public class SpringAnimationDialog implements FunctionDialogInterface, CompoundB
                 }
                 animationProperty_01.setMinimumVisibleChange(DynamicAnimation.MIN_VISIBLE_CHANGE_ROTATION_DEGREES);
                 break;
-            case R.id.cb_alpha:
+            case R.id.cb_alpha://淡入淡出
 
-                animationProperty_01 = new SpringAnimation(iv_basketball, new FloatPropertyCompat<ImageView>("alpha") {
-                    @Override
-                    public float getValue(ImageView object) {
-                        return object.getAlpha();
-                    }
-
-                    @Override
-                    public void setValue(ImageView object, float value) {
-                        object.setAlpha(value);
-                    }
-                });
+                animationProperty_01 = new SpringAnimation(iv_basketball, DynamicAnimation.ALPHA);
 
                 if (isChecked) {
                     animationProperty_01.setSpring(new SpringForce(0f));

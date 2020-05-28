@@ -22,6 +22,7 @@ import com.example.developerandroidx.ui.android.animation.dialog.LayoutTransitio
 import com.example.developerandroidx.ui.android.animation.dialog.PathInterpolatorDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ScaleViewToViewDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.SpringAnimationDialog;
+import com.example.developerandroidx.ui.android.animation.dialog.SpringInterpolatorDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
@@ -159,38 +160,43 @@ public class AnimationActivity extends BaseActivity {
     private void showExtendDialog() {
 
         String[] items = new String[]{"ValueAnimator for object", "AnimatedStateListDrawable", "Flip card", "Circular reveal", "PathInterpolator", "Fling"
-                , "SpringAnimation", "ObjectAnimation with SpringInterpolator", "Scale view to view", "LayoutTransition", "物理原理动画", "布局更新动画", "布局过渡动画"};
+                , "SpringAnimation", "SpringAnimation with interpolator", "Scale view to view", "LayoutTransition", "物理原理动画", "布局更新动画", "布局过渡动画"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
                 switch (text) {
-                    case "ValueAnimator for object":
+                    case "ValueAnimator for object"://作用与对象的属性动画
                         new ValueAnimatorDialog().show(context);
                         break;
-                    case "AnimatedStateListDrawable":
+                    case "AnimatedStateListDrawable"://视图控件状态切换动画，原理是使用帧动画填充状态间的过渡
                         //文档： https://developer.android.google.cn/guide/topics/graphics/prop-animation
                         new AnimatedStateListDrawableDialog().show(context);
                         break;
-                    case "Flip card":
+                    case "Flip card"://卡片反转动画
                         new FlipCardDialog().show(context);
                         break;
-                    case "Circular reveal":
+                    case "Circular reveal"://圆形揭露动画
                         new CircularRevealDialog().show(context);
                         break;
-                    case "PathInterpolator":
+                    case "PathInterpolator"://按照曲线运动的动画，原理是定义一个椭圆形，定义视图在椭圆形上开始的点，并移动多少角度
                         new PathInterpolatorDialog().show(context);
                         break;
-                    case "Fling":
+                    case "Fling"://抛掷动画，模拟物理原理，可以设置摩擦力
                         new FlingAnimationDialog().show(context);
                         break;
-                    case "Scale view to view":
+                    case "Scale view to view"://视图之间的缩放转换，如，点击小图放大浏览
                         new ScaleViewToViewDialog().show(context);
                         break;
                     case "LayoutTransition":
+                        //视图内容改变时的动画，如在LinearLayout添加或删除view会有动画效果，
+                        // 父控件只需设置即可：android:animateLayoutChanges="true"
                         new LayoutTransitionDialog().show(context);
                         break;
-                    case "SpringAnimation":
+                    case "SpringAnimation"://模拟物理弹簧效果，可设置setDampingRatio()弹簧阻尼，和设置setStiffness()弹簧刚度
                         new SpringAnimationDialog().show(context);
+                        break;
+                    case "SpringAnimation with interpolator"://使用插值器实现弹簧动画效果
+                        new SpringInterpolatorDialog().show(context);
                         break;
                 }
             }

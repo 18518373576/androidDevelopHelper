@@ -37,7 +37,7 @@
             android:text="Scale" />
 
         <CheckBox
-            android:id="@+id/cb_transition"
+            android:id="@+id/cb_translation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

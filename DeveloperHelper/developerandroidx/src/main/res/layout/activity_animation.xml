@@ -92,7 +92,7 @@
             android:id="@+id/btn_translate_animator"
             style="@style/CommonButtonStyle"
             android:layout_below="@+id/tv_animator"
-            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@+id/btn_shake"
             android:layout_marginTop="@dimen/dp20"
             android:text="Translate" />
 

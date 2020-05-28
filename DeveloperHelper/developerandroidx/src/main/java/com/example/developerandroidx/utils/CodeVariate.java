@@ -31,7 +31,9 @@ public class CodeVariate {
                 "\n系统设置点击水波纹效果：\n" +
                 "android:background=\"?android:attr/selectableItemBackground\"\n" +
                 "android:background=\"?android:attr/selectableItemBackgroundBorderless\"\n" +
-                "可设置为foreground前景色和background背景色";
+                "可设置为foreground前景色和background背景色\n" +
+                "\n2020/05/28\n" +
+                "Interpolator(插值器)，根据流失的时间因子计算得到属性因子";
     }
 
     //widget/actionBar
