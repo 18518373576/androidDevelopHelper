@@ -13,7 +13,7 @@ import java.util.List;
 public class ArithmeticViewModel extends BaseViewModel<List<String>> {
 
     @Override
-    public List<String> initData() {
+    protected List<String> initData() {
         List<String> list = new ArrayList<>();
         list.add("冒泡排序");
         list.add("选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序");

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.java.arithmetic.ArithmeticActivity;
+import com.example.developerandroidx.ui.java.dataStructure.DataStructureActivity;
 import com.example.developerandroidx.ui.java.operator.OperatorActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
@@ -46,7 +47,7 @@ public class JavaViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Annotatio注解", R.mipmap.icon_annotation, ""));
         functionList.add(new FunctionItemBean("反射", R.mipmap.icon_reflect, ""));
         functionList.add(new FunctionItemBean("设计模式", R.mipmap.icon_develop_model, ""));
-        functionList.add(new FunctionItemBean("数据结构", R.mipmap.icon_data_structure, ""));
+        functionList.add(new FunctionItemBean("数据结构", R.mipmap.icon_data_structure, RouteUtil.getDestination(DataStructureActivity.class)));
         functionList.add(new FunctionItemBean("算法", R.mipmap.icon_algorithm, RouteUtil.getDestination(ArithmeticActivity.class)));
 
         return functionList;

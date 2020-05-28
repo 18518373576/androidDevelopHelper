@@ -12,14 +12,14 @@ import androidx.lifecycle.ViewModel;
  * 适用于数据类型单一的ViewModel
  */
 public abstract class BaseViewModel<T> extends ViewModel {
-    public MutableLiveData<T> myData;
+    private MutableLiveData<T> myData;
 
     public BaseViewModel() {
         myData = new MutableLiveData<T>();
         myData.setValue(initData());
     }
 
-    public abstract T initData();
+    protected abstract T initData();
 
     public LiveData<T> getData() {
         return myData;

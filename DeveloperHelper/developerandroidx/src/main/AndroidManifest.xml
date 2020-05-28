@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".ui.AboutActivity"></activity>
+        <activity android:name=".ui.java.dataStructure.DataStructureActivity"></activity>
+        <activity android:name=".ui.AboutActivity" />
 
         <receiver
             android:name=".ui.android.broadcastReceiver.AppBroadcastReceiver"

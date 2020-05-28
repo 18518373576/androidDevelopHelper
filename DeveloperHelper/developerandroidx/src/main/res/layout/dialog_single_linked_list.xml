@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView8"
+        style="@style/commonTitleText"
+        android:text="单向链表"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.291">
+
+        <LinearLayout
+            android:id="@+id/ll_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp10" />
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp5"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/bg_circle_gray_color"
+            android:clickable="true"
+            android:gravity="center"
+            android:stateListAnimator="@drawable/selector_btn_animator"
+            android:text="增"
+            android:textColor="@color/textColorBlack" />
+
+        <TextView
+            android:id="@+id/tv_remove"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/bg_circle_gray_color"
+            android:clickable="true"
+            android:gravity="center"
+            android:stateListAnimator="@drawable/selector_btn_animator"
+            android:text="删"
+            android:textColor="@color/textColorBlack" />
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/bg_circle_gray_color"
+            android:clickable="true"
+            android:gravity="center"
+            android:stateListAnimator="@drawable/selector_btn_animator"
+            android:text="改"
+            android:textColor="@color/textColorBlack" />
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/bg_circle_gray_color"
+            android:clickable="true"
+            android:gravity="center"
+            android:stateListAnimator="@drawable/selector_btn_animator"
+            android:text="查"
+            android:textColor="@color/textColorBlack" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
