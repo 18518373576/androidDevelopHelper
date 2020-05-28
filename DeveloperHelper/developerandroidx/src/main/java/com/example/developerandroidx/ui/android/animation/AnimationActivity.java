@@ -21,6 +21,7 @@ import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.LayoutTransitionDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.PathInterpolatorDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ScaleViewToViewDialog;
+import com.example.developerandroidx.ui.android.animation.dialog.SpringAnimationDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
@@ -157,8 +158,8 @@ public class AnimationActivity extends BaseActivity {
      */
     private void showExtendDialog() {
 
-        String[] items = new String[]{"ValueAnimator for object", "AnimatedStateListDrawable", "Flip card", "Circular reveal", "PathInterpolator", "Fling",
-                "Scale view to view", "LayoutTransition", "物理原理动画", "布局更新动画", "布局过渡动画"};
+        String[] items = new String[]{"ValueAnimator for object", "AnimatedStateListDrawable", "Flip card", "Circular reveal", "PathInterpolator", "Fling"
+                , "SpringAnimation", "ObjectAnimation with SpringInterpolator", "Scale view to view", "LayoutTransition", "物理原理动画", "布局更新动画", "布局过渡动画"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
@@ -187,6 +188,9 @@ public class AnimationActivity extends BaseActivity {
                         break;
                     case "LayoutTransition":
                         new LayoutTransitionDialog().show(context);
+                        break;
+                    case "SpringAnimation":
+                        new SpringAnimationDialog().show(context);
                         break;
                 }
             }
