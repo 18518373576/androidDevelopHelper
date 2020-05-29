@@ -30,12 +30,12 @@ public class WidgetViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.icon_recycler, ""));
         functionList.add(new FunctionItemBean("CardView", R.mipmap.icon_card_view, ""));
         functionList.add(new FunctionItemBean("WebView", R.mipmap.icon_web_view, RouteUtil.getDestination(WebViewActivity.class)));
-        functionList.add(new FunctionItemBean("CalendarView", R.mipmap.icon_web_view, ""));
-        functionList.add(new FunctionItemBean("Custom Toast", R.mipmap.icon_web_view, ""));
-        functionList.add(new FunctionItemBean("Snackbar", R.mipmap.icon_web_view, ""));
-        functionList.add(new FunctionItemBean("Jsoup", R.mipmap.icon_web_view, ""));
-        functionList.add(new FunctionItemBean("Mathematical Curve", R.mipmap.icon_web_view, ""));
-        functionList.add(new FunctionItemBean("Navigation", R.mipmap.icon_web_view, RouteUtil.getDestination(NavigationViewActivity.class)));
+        functionList.add(new FunctionItemBean("CalendarView", R.mipmap.icon_calendar, ""));
+        functionList.add(new FunctionItemBean("Custom Toast", R.mipmap.icon_toast, ""));
+//        functionList.add(new FunctionItemBean("Snackbar", R.mipmap.icon_web_view, ""));
+        functionList.add(new FunctionItemBean("Jsoup", R.mipmap.icon_html, ""));
+        functionList.add(new FunctionItemBean("Mathematical Curve", R.mipmap.icon_curve, ""));
+        functionList.add(new FunctionItemBean("Navigation", R.mipmap.icon_navigation, RouteUtil.getDestination(NavigationViewActivity.class)));
 
         return functionList;
     }
