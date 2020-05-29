@@ -21,6 +21,7 @@ import com.example.developerandroidx.ui.android.animation.dialog.FlipCardDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.LayoutTransitionDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.PathInterpolatorDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ScaleViewToViewDialog;
+import com.example.developerandroidx.ui.android.animation.dialog.SceneTranSitionDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.SpringAnimationDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.SpringInterpolatorDialog;
 import com.example.developerandroidx.ui.android.animation.dialog.ValueAnimatorDialog;
@@ -160,7 +161,7 @@ public class AnimationActivity extends BaseActivity {
     private void showExtendDialog() {
 
         String[] items = new String[]{"ValueAnimator for object", "AnimatedStateListDrawable", "Flip card", "Circular reveal", "PathInterpolator", "Fling"
-                , "SpringAnimation", "SpringAnimation with interpolator", "Scale view to view", "LayoutTransition", "物理原理动画", "布局更新动画", "布局过渡动画"};
+                , "SpringAnimation", "SpringAnimation with interpolator", "Scale view to view", "LayoutTransition", "Scene transition"};
         DialogUtils.getInstance().showBottomMenu(context, "动画扩展", items, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
@@ -197,6 +198,9 @@ public class AnimationActivity extends BaseActivity {
                         break;
                     case "SpringAnimation with interpolator"://使用插值器实现弹簧动画效果
                         new SpringInterpolatorDialog().show(context);
+                        break;
+                    case "Scene transition"://场景切换动画
+                        new SceneTranSitionDialog().show(context);
                         break;
                 }
             }
