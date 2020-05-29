@@ -1,10 +1,9 @@
-package com.example.developerandroidx.view.node;
+package com.example.developerandroidx.view.linkedList.nodeView;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.utils.PixelTransformForAppUtil;

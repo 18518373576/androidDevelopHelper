@@ -11,22 +11,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <HorizontalScrollView
+    <com.example.developerandroidx.view.linkedList.LinkedListView
+        android:id="@+id/llv_linked_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.291">
-
-        <LinearLayout
-            android:id="@+id/ll_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp10" />
-    </HorizontalScrollView>
+        app:layout_constraintVertical_bias="0.291" />
 
     <LinearLayout
         android:layout_width="match_parent"
