@@ -11,7 +11,20 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <FrameLayout
+        android:id="@+id/fl_root_scene"
+        android:layout_width="@dimen/dp300"
+        android:layout_height="@dimen/dp300"
+        app:layout_constraintBottom_toTopOf="@+id/iv_switch_to"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+        <include layout="@layout/scene_layout_1" />
+    </FrameLayout>
+
     <ImageView
+        android:id="@+id/iv_switch_to"
         android:layout_width="@dimen/dp50"
         android:layout_height="@dimen/dp50"
         android:layout_marginBottom="@dimen/dp20"
