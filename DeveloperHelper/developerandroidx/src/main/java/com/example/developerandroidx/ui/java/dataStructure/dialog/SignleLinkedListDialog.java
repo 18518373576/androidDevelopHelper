@@ -70,6 +70,7 @@ public class SignleLinkedListDialog implements FunctionDialogInterface, View.OnC
             case R.id.tv_search:
                 //获取表头数据
                 try {
+                    llv_linked_list.getNode(0);
                     App.showNotify("获得表头数据：" + singleLinkedList.get(0));
                 } catch (Exception e) {
                     e.printStackTrace();

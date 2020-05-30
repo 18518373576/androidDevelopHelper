@@ -94,6 +94,7 @@ public class LinkedListView extends HorizontalScrollView {
         if (index > ll_content.getChildCount() || index < 0) {
             throw new RuntimeException("index不能viewGroup的Child数量");
         }
+        ((NodeView) ll_content.getChildAt(index)).setBackgroundResource(R.drawable.bg_circle_main_color);
         return Integer.parseInt(((NodeView) ll_content.getChildAt(index)).getText().toString());
     }
 

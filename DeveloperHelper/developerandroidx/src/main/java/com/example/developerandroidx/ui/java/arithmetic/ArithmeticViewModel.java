@@ -16,13 +16,14 @@ public class ArithmeticViewModel extends BaseViewModel<List<String>> {
     protected List<String> initData() {
         List<String> list = new ArrayList<>();
         list.add("冒泡排序");
-        list.add("选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序选择排序");
-        list.add("插入排序插入排序插入排序插入排序插入排序插入排序插入排序插入排序插入排序插入排序插入排序插入排序");
+        list.add("选择排序");
+        list.add("插入排序");
         list.add("希尔排序");
         list.add("归并排序");
         list.add("堆排序");
         list.add("快速排序");
         list.add("树排序");
+        list.add("找到链表的倒数第n个节点");
         return list;
     }
 }

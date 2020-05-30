@@ -13,6 +13,7 @@ import com.example.developerandroidx.adapter.ArithmeticRcvAdapter;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.ui.java.arithmetic.dialog.BubbleSortDialog;
+import com.example.developerandroidx.ui.java.arithmetic.dialog.GetNodeDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,9 @@ public class ArithmeticActivity extends BaseActivity implements BaseRcvAdapter.O
 
             case "冒泡排序":
                 new BubbleSortDialog().show(context);
+                break;
+            case "找到链表的倒数第n个节点":
+                new GetNodeDialog().show(context);
                 break;
         }
 

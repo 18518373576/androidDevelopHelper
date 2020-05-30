@@ -109,7 +109,7 @@ public class SingleLinkedList<T> implements DataStructureInterface<T> {
 
     @Override
     public void set(int index, T value) {
-        if(size == 0){
+        if (size == 0) {
             return;
         }
         //限定index的范围
@@ -178,5 +178,26 @@ public class SingleLinkedList<T> implements DataStructureInterface<T> {
             headNode = null;
             headNode = node;
         }
+    }
+
+
+    /**
+     * 获取倒数第n个节点的数据
+     *
+     * @param n 倒数第n
+     * @return 节点数据
+     */
+    public T getTheLast_N(int n) {
+        LinkedListNode answerNode = headNode;//最终要找的节点
+        LinkedListNode tempNode = headNode;//遍历链表使用
+        int i = 0;
+        while (tempNode.getNextNode() != null) {
+            if (i > n - 1) {
+                answerNode = answerNode.getNextNode();
+            }
+            tempNode = tempNode.getNextNode();
+            i++;
+        }
+        return answerNode.getData();
     }
 }
