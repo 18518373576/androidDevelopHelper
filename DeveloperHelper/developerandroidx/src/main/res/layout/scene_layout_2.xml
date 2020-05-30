@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/iv_red"
-        android:layout_width="@dimen/dp50"
-        android:layout_height="@dimen/dp50"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp80"
         android:layout_margin="@dimen/dp20"
         android:src="@drawable/bg_circle_red_color"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/iv_gray"
-        android:layout_width="@dimen/dp50"
-        android:layout_height="@dimen/dp50"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp80"
         android:layout_margin="@dimen/dp20"
         android:src="@drawable/bg_circle_gray_color"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,8 +28,8 @@
 
     <ImageView
         android:id="@+id/iv_blue"
-        android:layout_width="@dimen/dp50"
-        android:layout_height="@dimen/dp50"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp80"
         android:layout_margin="@dimen/dp20"
         android:src="@drawable/bg_circle_main_color"
         app:layout_constraintBottom_toBottomOf="parent"

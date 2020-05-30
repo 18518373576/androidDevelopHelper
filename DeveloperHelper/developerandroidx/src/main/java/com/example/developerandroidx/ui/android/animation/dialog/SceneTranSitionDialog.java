@@ -6,9 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.transition.ChangeBounds;
-import androidx.transition.Fade;
 import androidx.transition.Scene;
-import androidx.transition.Slide;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
 
