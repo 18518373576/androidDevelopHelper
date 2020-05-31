@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".ui.java.dataStructure.DataStructureActivity"></activity>
+        <activity android:name=".ui.android.fragment.FragmentActivity"></activity>
+        <activity android:name=".ui.java.dataStructure.DataStructureActivity" />
         <activity android:name=".ui.AboutActivity" />
 
         <receiver
@@ -181,6 +182,7 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
+            android:alwaysRetainTaskState="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">

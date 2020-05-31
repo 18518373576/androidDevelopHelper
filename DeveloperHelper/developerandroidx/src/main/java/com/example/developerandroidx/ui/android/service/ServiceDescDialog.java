@@ -2,6 +2,7 @@ package com.example.developerandroidx.ui.android.service;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.projectInterface.FunctionDialogInterface;
@@ -18,10 +19,11 @@ public class ServiceDescDialog implements FunctionDialogInterface {
 
     @Override
     public void show(Context context) {
-        DialogUtils.getInstance().showFullScreenDialog(context, R.layout.dialog_service_desc, new DialogUtils.OnFullScreenDialogBindView() {
+
+        DialogUtils.getInstance().showEsvDialog(context, new DialogUtils.OnEsvDialogBindView() {
             @Override
-            public void onBind(FullScreenDialog dialog, View rootView) {
-                ExtensibleScrollView esv_content = rootView.findViewById(R.id.esv_content);
+            public void onBind(FullScreenDialog dialog, TextView title, ExtensibleScrollView esv_content) {
+                title.setText("Service概述");
                 esv_content.addText("Service 是一种可在后台执行长时间运行操作而不提供界面的应用组件。服务可由其他应用组件启动，而且即使用户切换到其他应用，服务仍将在后台继续运行。此外，组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
                 esv_content.addImage(R.mipmap.service_lifecycle, 350);
                 esv_content.addText("前台服务", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
@@ -53,7 +55,6 @@ public class ServiceDescDialog implements FunctionDialogInterface {
                 esv_content.addText("2.工作请求依序运行。如果某个操作在 IntentService 中运行，并且您向其发送了另一个请求，则该请求会等待第一个操作完成。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
                 esv_content.addText("3.在 IntentService 上运行的操作无法中断。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
                 esv_content.addText("但在大多数情况下，执行简单后台操作的首选方式是 IntentService。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
-
             }
         });
     }

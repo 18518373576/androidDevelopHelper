@@ -2,9 +2,12 @@ package com.example.developerandroidx.utils;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.developerandroidx.R;
+import com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView;
 import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.util.DialogSettings;
@@ -47,6 +50,28 @@ public class DialogUtils {
             public void onBind(FullScreenDialog dialog, View rootView) {
                 if (onFullScreenDialogBindView != null)
                     onFullScreenDialogBindView.onBind(dialog, rootView);
+            }
+        });
+    }
+
+    public interface OnEsvDialogBindView {
+        void onBind(FullScreenDialog dialog, TextView title, ExtensibleScrollView esv_content);
+    }
+
+    /**
+     * 展示扩展scrollView的dialog
+     *
+     * @param context
+     * @param onEsvDialogBindView
+     */
+    public void showEsvDialog(Context context, OnEsvDialogBindView onEsvDialogBindView) {
+
+        FullScreenDialog.show((AppCompatActivity) context, R.layout.dialog_esv, new FullScreenDialog.OnBindView() {
+            @Override
+            public void onBind(FullScreenDialog dialog, View rootView) {
+                TextView tv_title = rootView.findViewById(R.id.tv_title);
+                ExtensibleScrollView esv_content = rootView.findViewById(R.id.esv_content);
+                onEsvDialogBindView.onBind(dialog, tv_title, esv_content);
             }
         });
     }

@@ -1,10 +1,13 @@
 package com.example.developerandroidx.ui.android.activity;
 
 import android.content.Context;
-import android.view.View;
+import android.content.Intent;
+import android.widget.TextView;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.projectInterface.FunctionDialogInterface;
+import com.example.developerandroidx.ui.widget.webView.TechnologyWebviewActivity;
+import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView;
 import com.kongzue.dialog.v3.FullScreenDialog;
@@ -18,11 +21,12 @@ public class ActivityAnalysisDescDialog implements FunctionDialogInterface {
 
     @Override
     public void show(Context context) {
-        DialogUtils.getInstance().showFullScreenDialog(context, R.layout.dialog_activity_lifecycle, new DialogUtils.OnFullScreenDialogBindView() {
+        DialogUtils.getInstance().showEsvDialog(context, new DialogUtils.OnEsvDialogBindView() {
+
             @Override
-            public void onBind(FullScreenDialog dialog, View rootView) {
-                ExtensibleScrollView esv_content = rootView.findViewById(R.id.esv_content);
-//                        esv_content.addText("",ExtensibleScrollView.InsertTextType.TITLE_2,R.color.textColorBlack);
+            public void onBind(FullScreenDialog dialog, TextView title, ExtensibleScrollView esv_content) {
+                title.setText("Activity概述");
+
                 esv_content.addText("Activity的概念", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
                 esv_content.addText("Activity 类是 Android 应用的关键组件，而 Activity 的启动和组合方式则是该平台应用模型的基本组成部分。在编程范式中，应用是通过 main() 方法启动的，而 Android 系统与此不同，它会调用与其生命周期特定阶段相对应的特定回调方法来启动 Activity 实例中的代码。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
                 esv_content.addText("Activity 提供窗口供应用在其中绘制界面。此窗口通常会填满屏幕，但也可能比屏幕小，并浮动在其他窗口上面。通常，一个 Activity 实现应用中的一个屏幕。例如，应用中的一个 Activity 实现“偏好设置”屏幕，而另一个 Activity 实现“选择照片”屏幕。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
@@ -54,6 +58,14 @@ public class ActivityAnalysisDescDialog implements FunctionDialogInterface {
 
                 esv_content.addText("onDestroy()", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
                 esv_content.addText("系统会在销毁 Activity 之前调用此回调。此回调是 Activity 接收的最后一个回调。通常，实现 onDestroy() 是为了确保在销毁 Activity 或包含该 Activity 的进程时释放该 Activity 的所有资源。", ExtensibleScrollView.InsertTextType.BODY, R.color.textColor);
+                esv_content.addText("任务和返回栈", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
+                esv_content.addBodyWithIntent("了解任务和返回堆栈", R.color.colorMain,
+                        new Intent(context, TechnologyWebviewActivity.class).
+                                putExtra(Constant.IntentParams.INTENT_PARAM, "https://developer.android.google.cn/guide/components/activities/tasks-and-back-stack"));
+                esv_content.addText("进程和应用生命周期", ExtensibleScrollView.InsertTextType.TITLE_2, R.color.textColorBlack);
+                esv_content.addBodyWithIntent("了解进程和应用生命周期", R.color.colorMain,
+                        new Intent(context, TechnologyWebviewActivity.class).
+                                putExtra(Constant.IntentParams.INTENT_PARAM, "https://developer.android.google.cn/guide/components/activities/process-lifecycle"));
             }
         });
     }

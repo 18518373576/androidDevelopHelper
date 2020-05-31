@@ -11,6 +11,7 @@ import com.example.developerandroidx.ui.android.animation.AnimationActivity;
 import com.example.developerandroidx.ui.android.architecture.ArchitectureIndexActivity;
 import com.example.developerandroidx.ui.android.broadcastReceiver.BroadcastReceiverActivity;
 import com.example.developerandroidx.ui.android.dialog.DialogIndexActivity;
+import com.example.developerandroidx.ui.android.fragment.FragmentActivity;
 import com.example.developerandroidx.ui.android.service.ServiceActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
@@ -35,7 +36,7 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Service", R.mipmap.icon_service, RouteUtil.getDestination(ServiceActivity.class)));
         functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, RouteUtil.getDestination(BroadcastReceiverActivity.class)));
         functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
-        functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, ""));
+        functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, RouteUtil.getDestination(FragmentActivity.class)));
         functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));
         functionList.add(new FunctionItemBean("Notification", R.mipmap.icon_notification, ""));
         functionList.add(new FunctionItemBean("Touch event", R.mipmap.icon_touch_event, ""));
