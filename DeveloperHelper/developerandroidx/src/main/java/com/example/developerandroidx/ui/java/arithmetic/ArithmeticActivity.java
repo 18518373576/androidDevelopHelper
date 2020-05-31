@@ -14,6 +14,7 @@ import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.ui.java.arithmetic.dialog.BubbleSortDialog;
 import com.example.developerandroidx.ui.java.arithmetic.dialog.GetNodeDialog;
+import com.example.developerandroidx.ui.java.arithmetic.dialog.ReversalLinkedListDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,9 @@ public class ArithmeticActivity extends BaseActivity implements BaseRcvAdapter.O
                 break;
             case "找到链表的倒数第n个节点":
                 new GetNodeDialog().show(context);
+                break;
+            case "逆置单项链表":
+                new ReversalLinkedListDialog().show(context);
                 break;
         }
 

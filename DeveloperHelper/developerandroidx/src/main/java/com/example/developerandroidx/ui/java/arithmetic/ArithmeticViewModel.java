@@ -24,6 +24,7 @@ public class ArithmeticViewModel extends BaseViewModel<List<String>> {
         list.add("快速排序");
         list.add("树排序");
         list.add("找到链表的倒数第n个节点");
+        list.add("逆置单项链表");
         return list;
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView10"
+        style="@style/commonTitleText"
+        android:text="逆置链表"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.example.developerandroidx.view.linkedList.LinkedListView
+        android:id="@+id/llv_linked_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.297" />
+
+
+    <ImageView
+        android:id="@+id/iv_reveral"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_margin="@dimen/dp20"
+        android:background="@drawable/bg_circle_gray_color"
+        android:clickable="true"
+        android:elevation="@dimen/dp10"
+        android:padding="@dimen/dp15"
+        android:src="@mipmap/icon_reversal"
+        android:stateListAnimator="@drawable/selector_btn_animator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

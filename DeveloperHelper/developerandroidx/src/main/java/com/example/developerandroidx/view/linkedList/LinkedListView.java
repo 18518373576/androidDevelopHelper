@@ -8,6 +8,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.utils.AnimUtil;
 import com.example.developerandroidx.view.linkedList.nodeView.NodeView;
 
 /**
@@ -80,8 +81,12 @@ public class LinkedListView extends HorizontalScrollView {
         if (index > ll_content.getChildCount() || index < 0) {
             throw new RuntimeException("index不能viewGroup的Child数量");
         }
-        if (ll_content.getChildCount() > 0)
-            ((NodeView) ll_content.getChildAt(index)).setText(String.valueOf(data));
+        if (ll_content.getChildCount() > 0) {
+            NodeView currentNode = ((NodeView) ll_content.getChildAt(index));
+            currentNode.setBackgroundResource(R.drawable.bg_circle_main_color);
+            AnimUtil.getInstance().startScaleAnimator(currentNode, 300, 1f, 1.5f, 1f);
+            currentNode.setText(String.valueOf(data));
+        }
     }
 
     /**
@@ -94,8 +99,10 @@ public class LinkedListView extends HorizontalScrollView {
         if (index > ll_content.getChildCount() || index < 0) {
             throw new RuntimeException("index不能viewGroup的Child数量");
         }
-        ((NodeView) ll_content.getChildAt(index)).setBackgroundResource(R.drawable.bg_circle_main_color);
-        return Integer.parseInt(((NodeView) ll_content.getChildAt(index)).getText().toString());
+        NodeView currentNode = ((NodeView) ll_content.getChildAt(index));
+        currentNode.setBackgroundResource(R.drawable.bg_circle_main_color);
+        AnimUtil.getInstance().startScaleAnimator(currentNode, 300, 1f, 1.5f, 1f);
+        return Integer.parseInt(currentNode.getText().toString());
     }
 
     /**

@@ -55,6 +55,7 @@ public class SingleLinkedList<T> implements DataStructureInterface<T> {
         //如果链表是空的
         if (headNode == null) {
             headNode = new LinkedListNode(value);
+            return;
         }
         if (index == 0) { //在表头添加节点
             LinkedListNode node = new LinkedListNode(value);
@@ -192,12 +193,29 @@ public class SingleLinkedList<T> implements DataStructureInterface<T> {
         LinkedListNode tempNode = headNode;//遍历链表使用
         int i = 0;
         while (tempNode.getNextNode() != null) {
-            if (i > n - 1) {
+            if (i >= n - 1) {
                 answerNode = answerNode.getNextNode();
             }
             tempNode = tempNode.getNextNode();
             i++;
         }
         return answerNode.getData();
+    }
+
+    /**
+     * 逆置链表
+     */
+    public void reversalLinkedList() {
+
+        LinkedListNode temp = null;
+        LinkedListNode next = null;
+        while (headNode != null) {
+            next = headNode.getNextNode();
+            headNode.setNextNode(temp);
+            temp = headNode;
+            headNode = next;
+        }
+        headNode = temp;
+        temp = null;
     }
 }

@@ -1,5 +1,8 @@
 package com.example.developerandroidx.utils;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -111,5 +114,20 @@ public class AnimUtil {
         Animation animation = AnimationUtils.loadAnimation(App.context, R.anim.shake);
         animation.setInterpolator(new CycleInterpolator(3));
         return animation;
+    }
+
+    /**
+     * 缩放动画，animator
+     *
+     * @param target
+     * @param duration
+     * @param values
+     */
+    public void startScaleAnimator(View target, int duration, float... values) {
+        AnimatorSet animatorSet = new AnimatorSet();
+        ObjectAnimator animatorX = ObjectAnimator.ofFloat(target, "scaleX", values);
+        ObjectAnimator animatorY = ObjectAnimator.ofFloat(target, "scaleY", values);
+        animatorSet.playTogether(animatorX, animatorY);
+        animatorSet.start();
     }
 }

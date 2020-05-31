@@ -1,6 +1,7 @@
 package com.example.developerandroidx.ui.java.arithmetic.dialog;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,19 +21,19 @@ import java.util.stream.IntStream;
  * 参考:
  * 描述: 算法找到链表的第n个节点
  */
-public class GetNodeDialog implements FunctionDialogInterface, View.OnClickListener {
-    private ImageView iv_get;
+public class ReversalLinkedListDialog implements FunctionDialogInterface, View.OnClickListener {
+    private ImageView iv_reveral;
     private LinkedListView llv_linked_list;
     private SingleLinkedList<Integer> linkedList;
 
     @Override
     public void show(Context context) {
 
-        DialogUtils.getInstance().showFullScreenDialog(context, R.layout.dialog_get_node, new DialogUtils.OnFullScreenDialogBindView() {
+        DialogUtils.getInstance().showFullScreenDialog(context, R.layout.dialog_reversal_linked_list, new DialogUtils.OnFullScreenDialogBindView() {
             @Override
             public void onBind(FullScreenDialog dialog, View rootView) {
-                iv_get = rootView.findViewById(R.id.iv_get);
-                iv_get.setOnClickListener(GetNodeDialog.this);
+                iv_reveral = rootView.findViewById(R.id.iv_reveral);
+                iv_reveral.setOnClickListener(ReversalLinkedListDialog.this);
                 llv_linked_list = rootView.findViewById(R.id.llv_linked_list);
                 initLinkedList();
             }
@@ -47,7 +48,7 @@ public class GetNodeDialog implements FunctionDialogInterface, View.OnClickListe
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //IntStream使用：https://www.jianshu.com/p/461429a5edc9
 
-            IntStream.range(1, 100)
+            IntStream.range(1, 60)
                     .filter(value -> value % 6 == 0)
                     .forEach(value -> {
                         linkedList.add(0, value);
@@ -58,8 +59,33 @@ public class GetNodeDialog implements FunctionDialogInterface, View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        //获取倒数第三个节点的数据
-        llv_linked_list.getNode(linkedList.getSize() - 3);
-        App.showNotify("获取倒数第三个节点数据：" + linkedList.getTheLast_N(3));
+        //逆置链表
+        linkedList.reversalLinkedList();
+
+        new Task().execute();
+
+    }
+
+    private class Task extends AsyncTask<String, Integer, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            for (int i = 0; i < linkedList.getSize(); i++) {
+                try {
+                    publishProgress(i);
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            llv_linked_list.editNode(values[0], linkedList.get(values[0]));
+        }
     }
 }
