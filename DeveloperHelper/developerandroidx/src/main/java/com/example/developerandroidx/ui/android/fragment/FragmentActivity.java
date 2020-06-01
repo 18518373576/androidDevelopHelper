@@ -33,6 +33,8 @@ public class FragmentActivity extends BaseActivity implements TestTwoFragment.On
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         oneFragment = new TestOneFragment();
+        //控制一个fragment的实例是否保留，在activity重建的时候(例如横竖屏切换)
+        oneFragment.setRetainInstance(true);
         //通过接口通信，被依赖的activity实现接口
         twoFragment = new TestTwoFragment(this);
         transaction.add(R.id.fl_fragment_one, oneFragment);
