@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         nv_view.setNavigationPager(getSupportFragmentManager(), list);
         nv_view.setNavitionSelector(R.color.colorMain, R.color.textColor);
         nv_view.setOnNavigationChangListener(this);
-        nv_view.showNotify(2,10);
+        nv_view.showNotify(2, 10);
 
         //设置title
         setTitle(list.get(0).navigationName);
