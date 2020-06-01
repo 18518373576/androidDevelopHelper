@@ -1,4 +1,4 @@
-package com.example.developerandroidx.ui.android.fragment;
+package com.example.developerandroidx.ui.android.fragment.testFragment;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseFragment;
+import com.example.developerandroidx.ui.android.fragment.FragmentActivityViewModel;
 import com.example.developerandroidx.utils.AnimUtil;
 
 import butterknife.BindView;

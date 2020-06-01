@@ -5,7 +5,9 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 
 import com.example.developerandroidx.R;
 import com.kongzue.dialog.util.DialogSettings;
@@ -26,6 +28,25 @@ public class App extends Application {
         initDialog();
         //初始化通知
         initNotification();
+
+        setBadge(10);
+    }
+
+    /**
+     * 华为手机设备桌面通知角标
+     *
+     * @param num
+     */
+    public void setBadge(int num) {
+        try {
+            Bundle bunlde = new Bundle();
+            bunlde.putString("package", "com.example.developerandroidx"); // com.test.badge is your package name
+            bunlde.putString("class", "com.example.developerandroidx.ui.MainActivity"); // com.test. badge.MainActivity is your apk main activity
+            bunlde.putInt("badgenumber", num);
+            this.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", null, bunlde);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

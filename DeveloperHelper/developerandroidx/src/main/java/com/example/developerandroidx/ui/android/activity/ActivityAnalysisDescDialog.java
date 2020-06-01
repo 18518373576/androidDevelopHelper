@@ -66,6 +66,16 @@ public class ActivityAnalysisDescDialog implements FunctionDialogInterface {
                 esv_content.addBodyWithIntent("了解进程和应用生命周期", R.color.colorMain,
                         new Intent(context, TechnologyWebviewActivity.class).
                                 putExtra(Constant.IntentParams.INTENT_PARAM, "https://developer.android.google.cn/guide/components/activities/process-lifecycle"));
+                esv_content.addTitle_2("将用户转到其他应用");
+                esv_content.addBodyWithIntent("使用隐式Intent启动activity", R.color.colorMain,
+                        new Intent(context, TechnologyWebviewActivity.class).
+                                putExtra(Constant.IntentParams.INTENT_PARAM, "https://developer.android.google.cn/training/basics/intents/sending"));
+                esv_content.addTitle_2("多窗口支持");
+                esv_content.addBodyWithIntent("针对多窗口模式配置应用", R.color.colorMain,
+                        new Intent(context, TechnologyWebviewActivity.class).
+                                putExtra(Constant.IntentParams.INTENT_PARAM, "https://developer.android.google.cn/guide/topics/ui/multi-window"));
+
+
             }
         });
     }
