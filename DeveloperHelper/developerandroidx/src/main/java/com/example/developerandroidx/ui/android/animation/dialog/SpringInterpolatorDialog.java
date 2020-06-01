@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.projectInterface.FunctionDialogInterface;
 import com.example.developerandroidx.utils.DialogUtils;
-import com.example.developerandroidx.utils.LogUtils;
 import com.kongzue.dialog.v3.FullScreenDialog;
 
 /**

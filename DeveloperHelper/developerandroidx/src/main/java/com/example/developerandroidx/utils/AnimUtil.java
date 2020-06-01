@@ -124,10 +124,63 @@ public class AnimUtil {
      * @param values
      */
     public void startScaleAnimator(View target, int duration, float... values) {
+        startScaleAnimator(target, duration, null, values);
+    }
+
+    /**
+     * 缩放动画with插值器
+     *
+     * @param target
+     * @param duration
+     * @param interpolator
+     * @param values
+     */
+    public void startScaleAnimator(View target, int duration, Interpolator interpolator, float... values) {
         AnimatorSet animatorSet = new AnimatorSet();
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(target, "scaleX", values);
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(target, "scaleY", values);
         animatorSet.playTogether(animatorX, animatorY);
+        animatorSet.setDuration(duration);
+        if (interpolator != null) {
+            animatorSet.setInterpolator(interpolator);
+        }
         animatorSet.start();
+    }
+
+    /**
+     * 开启缩放动画with弹簧插值器
+     *
+     * @param target
+     * @param duration
+     * @param values
+     */
+    public void startSpringScaleAnimator(View target, int duration, float... values) {
+        startScaleAnimator(target, duration, new SpringInterpolator(0.3f), values);
+    }
+
+    /**
+     * 弹簧动画插值器
+     */
+    private class SpringInterpolator implements Interpolator {
+
+        private float factor;
+
+        /**
+         * 数值为0-1；数值越小回弹次数越多
+         *
+         * @param factor
+         */
+        public SpringInterpolator(float factor) {
+            this.factor = factor;
+        }
+
+        @Override
+        public float getInterpolation(float input) {
+            //factor = 0.4
+//        pow(2, -10 * x) * sin((x - factor / 4) * (2 * PI) / factor) + 1
+
+//            LogUtils.e("插值器input值：", (float) (Math.pow(2, -10 * input) * Math.sin((input - factor / 4) * (2 * Math.PI) / factor) + 1) + "");
+            return (float) (Math.pow(2, -10 * input) * Math.sin((input - factor / 4) * (2 * Math.PI) / factor) + 1);
+        }
     }
 }

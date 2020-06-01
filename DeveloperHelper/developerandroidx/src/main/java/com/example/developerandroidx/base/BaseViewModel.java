@@ -21,6 +21,10 @@ public abstract class BaseViewModel<T> extends ViewModel {
 
     protected abstract T initData();
 
+    public void setData(T data) {
+        myData.setValue(data);
+    }
+
     public LiveData<T> getData() {
         return myData;
     }
