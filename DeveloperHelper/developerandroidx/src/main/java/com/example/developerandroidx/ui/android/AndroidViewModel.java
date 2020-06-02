@@ -13,6 +13,7 @@ import com.example.developerandroidx.ui.android.broadcastReceiver.BroadcastRecei
 import com.example.developerandroidx.ui.android.dialog.DialogIndexActivity;
 import com.example.developerandroidx.ui.android.fragment.FragmentActivity;
 import com.example.developerandroidx.ui.android.service.ServiceActivity;
+import com.example.developerandroidx.ui.android.touchEvent.TouchEventActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
 import com.example.developerandroidx.utils.CodeVariate;
 import com.example.developerandroidx.utils.RouteUtil;
@@ -39,7 +40,7 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, RouteUtil.getDestination(FragmentActivity.class)));
         functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));
         functionList.add(new FunctionItemBean("Notification", R.mipmap.icon_notification, ""));
-        functionList.add(new FunctionItemBean("Touch event", R.mipmap.icon_touch_event, ""));
+        functionList.add(new FunctionItemBean("Touch event", R.mipmap.icon_touch_event, RouteUtil.getDestination(TouchEventActivity.class)));
         functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("NFC", R.mipmap.icon_nfc, ""));
         functionList.add(new FunctionItemBean("Camera", R.mipmap.icon_camera, ""));

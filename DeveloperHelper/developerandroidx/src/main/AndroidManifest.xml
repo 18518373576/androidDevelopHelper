@@ -3,14 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.developerandroidx">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--    开启前台服务权限-->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <!--    华为桌面角标权限-->
-    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE " />
-    <!--    相机权限，需要动态申请-->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!--    存储权限-->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 开启前台服务权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 华为桌面角标权限 -->
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE " /> <!-- 相机权限，需要动态申请 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 存储权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -23,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".ui.android.fragment.FragmentActivity"></activity>
+        <activity android:name=".ui.android.touchEvent.TouchEventActivity"></activity>
+        <activity android:name=".ui.android.fragment.FragmentActivity" />
         <activity android:name=".ui.java.dataStructure.DataStructureActivity" />
         <activity android:name=".ui.AboutActivity" />
 
