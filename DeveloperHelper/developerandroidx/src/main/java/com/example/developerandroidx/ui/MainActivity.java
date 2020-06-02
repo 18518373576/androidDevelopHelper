@@ -1,23 +1,32 @@
 package com.example.developerandroidx.ui;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.ui.android.AndroidFragment;
 import com.example.developerandroidx.ui.java.JavaFragment;
 import com.example.developerandroidx.ui.widget.WidgetFragment;
 import com.example.developerandroidx.utils.CodeVariate;
+import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.RouteUtil;
 import com.example.developerandroidx.view.navigationView.NavigationView;
 import com.example.developerandroidx.view.navigationView.bean.NavigationBean;
+import com.skateboard.zxinglib.CaptureActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -52,6 +61,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
      */
     @Override
     protected void initView() {
+        EventBus.getDefault().register(this);
         list = new ArrayList<>();
         list.add(new NavigationBean(new AndroidFragment(), "Android", R.mipmap.navigation_android));
         list.add(new NavigationBean(new JavaFragment(), "Java", R.mipmap.navigation_java));
@@ -120,6 +130,38 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     }
 
+    /**
+     * Subscribe 订阅
+     *
+     * @param message
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBusMsgComing(EventBusMessageBean message) {
+        switch (message.msgId) {
+            case Constant.EventBusMsgId.START_SCAN:
+                Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+                startActivityForResult(intent, 1001);
+                break;
+        }
+    }
+
+    /**
+     * startActivityForResult返回数据回调
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1001 && resultCode == CaptureActivity.RESULT_OK)
+        {
+            DialogUtils.getInstance().showMessageDialog(context, "扫码结果", data.getStringExtra(CaptureActivity.KEY_DATA));
+
+        }
+    }
+
     @OnClick({R.id.iv_right})
     public void click(View v) {
         String[] mainMenus = new String[]{"About", "Issues"};
@@ -141,9 +183,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public void onDestroy() {
         nv_view.release();
+        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 
+    /**
+     * 底部导航栏变化监听
+     *
+     * @param position 导航按钮索引
+     */
     @Override
     public void OnNavigationChanged(int position) {
         setTitle(list.get(position).navigationName);

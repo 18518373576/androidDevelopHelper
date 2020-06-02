@@ -1,5 +1,6 @@
 package com.example.developerandroidx.adapter;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -8,10 +9,15 @@ import androidx.annotation.NonNull;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseRcvHolder;
 import com.example.developerandroidx.base.BaseRcvAdapter;
+import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.android.notification.NotificationDialog;
+import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.RouteUtil;
+import com.skateboard.zxinglib.CaptureActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -36,6 +42,10 @@ public class FunctionRcvAdapter extends BaseRcvAdapter<FunctionItemBean> {
                         //不需要路由，展示弹框
                         case "Notification":
                             new NotificationDialog().show(v.getContext());
+                            break;
+                        case "扫码":
+                            //给MainActivity发消息，启动扫码界面
+                            EventBus.getDefault().post(new EventBusMessageBean(Constant.EventBusMsgId.START_SCAN, this.getClass().getName(), ""));
                             break;
                         default:
                             DialogUtils.getInstance().showTip(v.getContext(), "developing");

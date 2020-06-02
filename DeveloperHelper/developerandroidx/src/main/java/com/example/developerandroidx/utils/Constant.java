@@ -31,6 +31,7 @@ public class Constant {
         public static final int MSG_ID_01 = 1;
         public static final int MSG_ID_02 = 2;
         public static final int MSG_ID_03 = 3;
+        public static final int START_SCAN = 4;
     }
 
     public static class BroadcastAction {
