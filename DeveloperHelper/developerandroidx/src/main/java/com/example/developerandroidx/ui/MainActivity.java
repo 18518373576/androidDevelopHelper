@@ -1,6 +1,12 @@
 package com.example.developerandroidx.ui;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
@@ -24,6 +30,8 @@ import butterknife.OnClick;
  */
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationChangedListener {
 
+    //权限请求code
+    private static final int REQUEST_CODE = 100;
     @BindView(R.id.nv_view)
     NavigationView nv_view;
 
@@ -59,6 +67,56 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setTitle(list.get(0).navigationName);
         iv_back.setVisibility(View.GONE);
         iv_right.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        getPermission();
+    }
+
+    /**
+     * 获取用户权限
+     */
+    private void getPermission() {
+        String permissionStr = "";
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            permissionStr += Manifest.permission.CAMERA + "##";
+        }
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            permissionStr += Manifest.permission.WRITE_EXTERNAL_STORAGE + "##";
+        }
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            permissionStr += Manifest.permission.READ_EXTERNAL_STORAGE;
+        }
+        String[] permissions = permissionStr.split("##");
+        if (permissions.length != 0) {
+            //如果用户拒绝了权限,shouldShowRequestPermissionRationale返回true
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission_group.CAMERA)) {
+                ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
+            } else {//如果用户拒绝了权限，并勾选了不再询问
+                ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
+            }
+        }
+    }
+
+    /**
+     * 请求权限回调
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //如果用户拒绝了一些必须的权限可以在这里给予提示
+        switch (requestCode) {
+            case REQUEST_CODE:
+
+                break;
+        }
 
     }
 
