@@ -49,6 +49,9 @@ dependencies {
     //kongzue.dialog控件
     //github:https://github.com/kongzue/DialogV3
     implementation project(":dialog")
+    //使用以下链接整理的zXing扫码库
+    //https://github.com/skateboard1991/simplezxing
+    implementation project(":zxinglib")
     //eventbus
     //github:https://github.com/greenrobot/EventBus
     implementation 'org.greenrobot:eventbus:3.2.0'
