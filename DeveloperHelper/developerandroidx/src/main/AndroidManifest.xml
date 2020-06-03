@@ -19,10 +19,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".ui.android.touchEvent.TouchEventActivity"></activity>
-        <activity android:name=".ui.android.fragment.FragmentActivity" />
-        <activity android:name=".ui.java.dataStructure.DataStructureActivity" />
-        <activity android:name=".ui.AboutActivity" />
+        <activity
+            android:name=".ui.android.camera.CameraActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".ui.android.touchEvent.TouchEventActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".ui.android.fragment.FragmentActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".ui.java.dataStructure.DataStructureActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".ui.AboutActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <receiver
             android:name=".ui.android.broadcastReceiver.AppBroadcastReceiver"

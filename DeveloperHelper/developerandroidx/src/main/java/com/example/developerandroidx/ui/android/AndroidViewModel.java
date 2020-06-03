@@ -10,6 +10,7 @@ import com.example.developerandroidx.ui.android.activity.ActivityAnalysisActivit
 import com.example.developerandroidx.ui.android.animation.AnimationActivity;
 import com.example.developerandroidx.ui.android.architecture.ArchitectureIndexActivity;
 import com.example.developerandroidx.ui.android.broadcastReceiver.BroadcastReceiverActivity;
+import com.example.developerandroidx.ui.android.camera.CameraActivity;
 import com.example.developerandroidx.ui.android.dialog.DialogIndexActivity;
 import com.example.developerandroidx.ui.android.fragment.FragmentActivity;
 import com.example.developerandroidx.ui.android.service.ServiceActivity;
@@ -43,7 +44,7 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Touch event", R.mipmap.icon_touch_event, RouteUtil.getDestination(TouchEventActivity.class)));
         functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.icon_bluetooth, ""));
         functionList.add(new FunctionItemBean("NFC", R.mipmap.icon_nfc, ""));
-        functionList.add(new FunctionItemBean("Camera", R.mipmap.icon_camera, ""));
+        functionList.add(new FunctionItemBean("Camera", R.mipmap.icon_camera, RouteUtil.getDestination(CameraActivity.class)));
         functionList.add(new FunctionItemBean("Layout", R.mipmap.icon_constrain_layout, ""));
         functionList.add(new FunctionItemBean("Sqlite", R.mipmap.icon_sqlite, ""));
         functionList.add(new FunctionItemBean("数据请求", R.mipmap.icon_internet, ""));
