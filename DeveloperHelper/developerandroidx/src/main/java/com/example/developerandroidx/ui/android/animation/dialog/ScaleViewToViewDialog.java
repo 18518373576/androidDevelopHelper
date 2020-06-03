@@ -25,6 +25,8 @@ public class ScaleViewToViewDialog implements FunctionDialogInterface {
     private ImageView iv_to;
     private Property startProperty;
     private Property toProperty;
+    private FromLayoutListener fromLayoutListener;
+    private ToLayoutListener toLayoutListener;
 
     @Override
     public void show(Context context) {
@@ -33,9 +35,9 @@ public class ScaleViewToViewDialog implements FunctionDialogInterface {
             public void onBind(FullScreenDialog dialog, View rootView) {
                 iv_from = rootView.findViewById(R.id.iv_from);
                 iv_to = rootView.findViewById(R.id.iv_to);
-                FromLayoutListener fromLayoutListener = new FromLayoutListener();
+                fromLayoutListener = new FromLayoutListener();
                 iv_from.getViewTreeObserver().addOnGlobalLayoutListener(fromLayoutListener);
-                ToLayoutListener toLayoutListener = new ToLayoutListener();
+                toLayoutListener = new ToLayoutListener();
                 iv_to.getViewTreeObserver().addOnGlobalLayoutListener(toLayoutListener);
 
                 iv_from.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +63,7 @@ public class ScaleViewToViewDialog implements FunctionDialogInterface {
         @Override
         public void onGlobalLayout() {
             startProperty = new Property(iv_from.getX(), iv_from.getY(), iv_from.getWidth(), iv_from.getHeight());
+            iv_from.getViewTreeObserver().removeOnGlobalLayoutListener(fromLayoutListener);
         }
     }
 
@@ -69,6 +72,7 @@ public class ScaleViewToViewDialog implements FunctionDialogInterface {
         @Override
         public void onGlobalLayout() {
             toProperty = new Property(iv_to.getX(), iv_to.getY(), iv_to.getWidth(), iv_to.getHeight());
+            iv_to.getViewTreeObserver().removeOnGlobalLayoutListener(toLayoutListener);
         }
     }
 
@@ -100,6 +104,14 @@ public class ScaleViewToViewDialog implements FunctionDialogInterface {
                     compute(startValue.height, endValue.height, fraction));
         }
 
+        /**
+         * 根据进度计算当前属性值
+         *
+         * @param startValue
+         * @param endValue
+         * @param fraction
+         * @return
+         */
         private float compute(float startValue, float endValue, float fraction) {
             return startValue + (endValue - startValue) * fraction;
         }

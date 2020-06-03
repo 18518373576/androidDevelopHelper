@@ -1,7 +1,11 @@
 package com.example.developerandroidx.utils;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -10,9 +14,11 @@ import android.view.animation.CycleInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
+import com.example.developerandroidx.ui.android.animation.dialog.ScaleViewToViewDialog;
 
 /**
  * @作者： zjf 2020/5/12 16:42
@@ -176,11 +182,112 @@ public class AnimUtil {
 
         @Override
         public float getInterpolation(float input) {
-            //factor = 0.4
-//        pow(2, -10 * x) * sin((x - factor / 4) * (2 * PI) / factor) + 1
-
-//            LogUtils.e("插值器input值：", (float) (Math.pow(2, -10 * input) * Math.sin((input - factor / 4) * (2 * Math.PI) / factor) + 1) + "");
+            //插值器函数：pow(2, -10 * x) * sin((x - factor / 4) * (2 * PI) / factor) + 1
             return (float) (Math.pow(2, -10 * input) * Math.sin((input - factor / 4) * (2 * Math.PI) / factor) + 1);
+        }
+    }
+
+
+    /**
+     * 把一个view从当前位置缩放到另一个view的位{@link Property}{@link ScaleEvaLuator}
+     *
+     * @param iv_to
+     * @param startProperty
+     * @param toProperty
+     * @param isToBig
+     */
+    private void ScaleViewToView(ImageView iv_to, Property startProperty, Property toProperty, boolean isToBig) {
+
+        if (isToBig) {
+            iv_to.setX(startProperty.X);
+            iv_to.setY(startProperty.Y);
+            iv_to.getLayoutParams().width = (int) startProperty.width;
+            iv_to.getLayoutParams().height = (int) startProperty.height;
+            iv_to.requestLayout();
+
+            ValueAnimator valueAnimator = ValueAnimator.ofObject(new ScaleEvaLuator(), startProperty, toProperty);
+            valueAnimator.setDuration(300);
+            valueAnimator.setStartDelay(100);
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    Property property = (Property) animation.getAnimatedValue();
+                    iv_to.setVisibility(View.VISIBLE);
+                    iv_to.setX(property.X);
+                    iv_to.setY(property.Y);
+                    iv_to.getLayoutParams().width = (int) property.width;
+                    iv_to.getLayoutParams().height = (int) property.height;
+                    iv_to.requestLayout();
+                }
+            });
+            valueAnimator.start();
+        } else {
+            ValueAnimator valueAnimator = ValueAnimator.ofObject(new ScaleEvaLuator(), toProperty, startProperty);
+            valueAnimator.setDuration(300);
+            valueAnimator.setStartDelay(100);
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    Property property = (Property) animation.getAnimatedValue();
+                    iv_to.setX(property.X);
+                    iv_to.setY(property.Y);
+                    iv_to.getLayoutParams().width = (int) property.width;
+                    iv_to.getLayoutParams().height = (int) property.height;
+                    iv_to.requestLayout();
+                }
+            });
+            valueAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    iv_to.setVisibility(View.INVISIBLE);
+                }
+            });
+            valueAnimator.start();
+        }
+    }
+
+    /**
+     * 缩放的属性值
+     */
+    public class Property {
+        float X;
+        float Y;
+        float width;
+        float height;
+
+        public Property(float x, float y, float width, float height) {
+            X = x;
+            Y = y;
+            this.width = width;
+            this.height = height;
+        }
+    }
+
+    /**
+     * 设置估值器
+     */
+    private class ScaleEvaLuator implements TypeEvaluator<Property> {
+
+        @Override
+        public Property evaluate(float fraction, Property startValue, Property endValue) {
+
+            return new Property(compute(startValue.X, endValue.X, fraction),
+                    compute(startValue.Y, endValue.Y, fraction),
+                    compute(startValue.width, endValue.width, fraction),
+                    compute(startValue.height, endValue.height, fraction));
+        }
+
+        /**
+         * 根据进度计算当前属性值
+         *
+         * @param startValue
+         * @param endValue
+         * @param fraction
+         * @return
+         */
+        private float compute(float startValue, float endValue, float fraction) {
+            return startValue + (endValue - startValue) * fraction;
         }
     }
 }

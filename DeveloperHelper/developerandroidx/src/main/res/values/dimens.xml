@@ -45,6 +45,7 @@
     <dimen name="dp300">300dp</dimen>
     <dimen name="dp350">350dp</dimen>
     <dimen name="dp400">400dp</dimen>
+    <dimen name="dp420">420dp</dimen>
 
 
     <dimen name="sp1">1sp</dimen>
