@@ -6,7 +6,6 @@ import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 

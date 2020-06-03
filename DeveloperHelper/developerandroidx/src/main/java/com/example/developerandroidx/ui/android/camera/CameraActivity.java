@@ -206,7 +206,7 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
             //Glide使用：https://www.jianshu.com/p/791ee473a89b
             Glide.with(context).load(imagePath).override(iv_two.getWidth(), iv_two.getHeight()).centerCrop().into(iv_two);
             iv_two.setVisibility(View.VISIBLE);
-            //拿到图片点击放大
+            //拿到图片点击放大，这里使用了activity共享元素动画，同一个activity可以使用scene场景过渡，或者属性动画，这里不作实现
             iv_two.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
