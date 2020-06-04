@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.android.activity.transitionAnimation.TransitionToActivity;
+import com.example.developerandroidx.ui.android.service.service.TestIntentService;
 import com.example.developerandroidx.ui.widget.webView.TechnologyWebviewActivity;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
@@ -186,7 +187,6 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-
         imagePath = image.getAbsolutePath();
         LogUtils.e("图片创建：", imagePath);
         return image;
@@ -233,5 +233,12 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
                 }
             });
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        //开启IntentService清理照片缓存
+        TestIntentService.startActionClearPic(context);
+        super.onDestroy();
     }
 }

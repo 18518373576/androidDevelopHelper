@@ -3,12 +3,15 @@ package com.example.developerandroidx.ui.android.service.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.utils.Constant;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
 
 /**
  * 这是 Service 的子类，其使用工作线程逐一处理所有启动请求。如果您不要求服务同时处理多个请求，
@@ -27,6 +30,7 @@ public class TestIntentService extends IntentService {
 
     private static final String ACTION_FOO = "com.example.developerandroidx.ui.android.service.service.action.FOO";
     private static final String ACTION_BAZ = "com.example.developerandroidx.ui.android.service.service.action.BAZ";
+    private static final String ACTION_CLEAR_DATA = "com.example.developerandroidx.ui.android.service.service.action.CLEAR_DATA";
 
 
     public TestIntentService() {
@@ -43,6 +47,17 @@ public class TestIntentService extends IntentService {
     public static void startActionFoo(Context context, String param1, String param2) {
         Intent intent = new Intent(context, TestIntentService.class);
         intent.setAction(ACTION_FOO);
+        context.startService(intent);
+    }
+
+    /**
+     * 清除相机的照片缓存{@link com.example.developerandroidx.ui.android.camera.CameraActivity}
+     *
+     * @param context
+     */
+    public static void startActionClearPic(Context context) {
+        Intent intent = new Intent(context, TestIntentService.class);
+        intent.setAction(ACTION_CLEAR_DATA);
         context.startService(intent);
     }
 
@@ -66,7 +81,18 @@ public class TestIntentService extends IntentService {
                 handleActionFoo();
             } else if (ACTION_BAZ.equals(action)) {
                 handleActionBaz();
+            } else if (ACTION_CLEAR_DATA.equals(action)) {
+                handleActionClearPic();
             }
+        }
+    }
+
+    /**
+     * 清除相机照片缓存
+     */
+    private void handleActionClearPic() {
+        for (File file : getExternalFilesDir(Environment.DIRECTORY_PICTURES).listFiles()) {
+            file.delete();
         }
     }
 
