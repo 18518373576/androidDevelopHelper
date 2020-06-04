@@ -14,7 +14,7 @@
         android:id="@+id/iv_enlarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/dp420"
+        android:minHeight="@dimen/dp400"
         android:transitionName="sharedView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

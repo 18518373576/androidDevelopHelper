@@ -23,10 +23,12 @@ import com.bumptech.glide.Glide;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.ui.android.activity.transitionAnimation.TransitionToActivity;
+import com.example.developerandroidx.ui.widget.webView.TechnologyWebviewActivity;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.LogUtils;
 import com.example.developerandroidx.utils.PixelTransformForAppUtil;
+import com.example.developerandroidx.utils.RouteUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,13 +50,15 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
 
     private int llImageWidth = 0;
     private ImageView iv_first;
-    private ImageView iv_two;
-    private ImageView iv_three;
     //相机照片保存的位置
     private String imagePath;
-    //打开相机的request code
+    //打开相机的请求码
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    //打开图库请求码
+    private static final int REQUEST_IMAGE_GALLERY = 2;
     private Transition transition;
+    private LinearLayout.LayoutParams params;
+    private int margin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,7 +84,9 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initView() {
         super.initView();
-        setTitle("发一个朋友圈");
+        setTitle("发个朋友圈");
+        iv_right.setVisibility(View.VISIBLE);
+        iv_right.setOnClickListener(this);
 
         //获取ll_image的宽度，用于计算添加的ImageView的宽高
         ll_image.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -99,10 +105,9 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
     @SuppressLint("ResourceType")
     private void addView() {
         //margin值
-        int margin = PixelTransformForAppUtil.dip2px(10);
-
+        margin = PixelTransformForAppUtil.dip2px(10);
         //计算添加的imageView的宽高，宽高保持一致
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((llImageWidth - margin * 2) / 3, (llImageWidth - margin * 2) / 3);
+        params = new LinearLayout.LayoutParams((llImageWidth - margin * 2) / 3, (llImageWidth - margin * 2) / 3);
 
         //添加图片按钮
         iv_first = new ImageView(context);
@@ -114,23 +119,6 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
         iv_first.setId(1001);
         iv_first.setOnClickListener(this);
         ll_image.addView(iv_first, 0, params);
-
-        //添加的图片1
-        iv_two = new ImageView(context);
-        iv_two.setBackgroundColor(getResources().getColor(R.color.lightGrayColor));
-        params.leftMargin = margin;
-        params.rightMargin = margin;
-        ll_image.addView(iv_two, 0, params);
-
-        //添加图片2
-        iv_three = new ImageView(context);
-        iv_three.setBackgroundColor(getResources().getColor(R.color.lightGrayColor));
-        params.leftMargin = 0;
-        params.leftMargin = 0;
-        ll_image.addView(iv_three, 0, params);
-
-        iv_two.setVisibility(View.GONE);
-        iv_three.setVisibility(View.GONE);
 
     }
 
@@ -146,13 +134,25 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
                                 dispatchTakePictureIntent();
                                 break;
                             case "图库":
-
+                                chooseGalleryPicture();
                                 break;
                         }
                     }
                 });
                 break;
+            case R.id.iv_right:
+                RouteUtil.goTo(context, RouteUtil.getDestination(TechnologyWebviewActivity.class), "https://developer.android.google.cn/guide/topics/media/camera");
+                break;
         }
+    }
+
+    /**
+     * 选择图库图片
+     */
+    private void chooseGalleryPicture() {
+        Intent choosePicIntent = new Intent(Intent.ACTION_PICK);
+        choosePicIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(choosePicIntent, REQUEST_IMAGE_GALLERY);
     }
 
     /**
@@ -202,17 +202,34 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
+
+            Uri uri = null;
+            //都转换为uri
+            if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                //拍照结果返回，在打开相机界面的时候已经保存了完整的图片路径，把路径转换为uri
+                uri = Uri.fromFile(new File(imagePath));
+            } else if (requestCode == REQUEST_IMAGE_GALLERY) {
+                //从图库返回结果，图片的uri，转换为绝对路径
+                uri = data.getData();
+            }
+
+            //添加的图片
+            ImageView iv_add_view = new ImageView(context);
+            iv_add_view.setTag(uri);
+            params.rightMargin = margin;
+            ll_image.addView(iv_add_view, 0, params);
+
             //Glide使用：https://www.jianshu.com/p/791ee473a89b
-            Glide.with(context).load(imagePath).override(iv_two.getWidth(), iv_two.getHeight()).centerCrop().into(iv_two);
-            iv_two.setVisibility(View.VISIBLE);
+            Glide.with(context).load(uri).override(PixelTransformForAppUtil.getDiaplayWidth(), PixelTransformForAppUtil.getDiaplayWidth()).centerCrop().into(iv_add_view);
+            iv_add_view.setVisibility(View.VISIBLE);
             //拿到图片点击放大，这里使用了activity共享元素动画，同一个activity可以使用scene场景过渡，或者属性动画，这里不作实现
-            iv_two.setOnClickListener(new View.OnClickListener() {
+            iv_add_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, EnlargeToActivity.class);
-                    intent.putExtra(Constant.IntentParams.INTENT_PARAM, imagePath);
-                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(CameraActivity.this, iv_two, "sharedView").toBundle());
+                    intent.putExtra(Constant.IntentParams.INTENT_PARAM, (Uri) iv_add_view.getTag());
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(CameraActivity.this, iv_add_view, "sharedView").toBundle());
                 }
             });
         }

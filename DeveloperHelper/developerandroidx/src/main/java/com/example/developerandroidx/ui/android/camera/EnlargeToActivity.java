@@ -1,6 +1,7 @@
 package com.example.developerandroidx.ui.android.camera;
 
 import android.app.Instrumentation;
+import android.net.Uri;
 import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -51,8 +52,8 @@ public class EnlargeToActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        String imagePath = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
-        Glide.with(context).load(imagePath).override(PixelTransformForAppUtil.getDiaplayWidth(), PixelTransformForAppUtil.getDiaplayWidth()).centerCrop().into(iv_enlarge);
+        Uri imageUri = getIntent().getParcelableExtra(Constant.IntentParams.INTENT_PARAM);
+        Glide.with(context).load(imageUri).override(PixelTransformForAppUtil.getDiaplayWidth(), PixelTransformForAppUtil.getDiaplayWidth()).centerCrop().into(iv_enlarge);
     }
 
     @OnClick({R.id.iv_enlarge})
