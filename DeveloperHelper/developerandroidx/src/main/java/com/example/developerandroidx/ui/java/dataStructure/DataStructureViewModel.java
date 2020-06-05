@@ -13,10 +13,10 @@ import java.util.List;
 public class DataStructureViewModel extends BaseViewModel<List<String>> {
 
     @Override
-    protected List<String> initData(Object dataType) {
+    protected void initData(Object dataType) {
         List<String> list = new ArrayList<>();
         list.add("单向链表");
         list.add("双向链表");
-        return list;
+        setData(list);
     }
 }

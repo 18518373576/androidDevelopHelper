@@ -5,13 +5,13 @@ import com.example.developerandroidx.base.BaseViewModel;
 /**
  * Date: 2020/6/1 10:27
  * 参考:
- * 描述:
+ * 描述: Fragment之间共享数据
  */
 public class FragmentActivityViewModel extends BaseViewModel<String> {
 
     @Override
-    protected String initData(Object dataType) {
+    protected void initData(Object dataType) {
         String data = "测试使用ViewModel进行fragment间的通信";
-        return data;
+        setData(data);
     }
 }

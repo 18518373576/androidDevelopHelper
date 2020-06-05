@@ -1,8 +1,6 @@
 package com.example.developerandroidx.ui.java.operator;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.OperatorItemBean;
@@ -18,9 +16,9 @@ import java.util.List;
 public class OperatorViewModel extends BaseViewModel<List<OperatorItemBean>> {
 
     @Override
-    protected List<OperatorItemBean> initData(Object dataType) {
+    protected void initData(Object dataType) {
 
-        return initData();
+        setData(initData());
     }
 
     private List<OperatorItemBean> initData() {

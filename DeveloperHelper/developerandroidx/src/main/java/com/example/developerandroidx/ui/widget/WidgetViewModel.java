@@ -16,8 +16,8 @@ import java.util.List;
 public class WidgetViewModel extends BaseViewModel<List<FunctionItemBean>> {
 
     @Override
-    protected List<FunctionItemBean> initData(Object dataType) {
-        return initData();
+    protected void initData(Object dataType) {
+        setData(initData());
     }
 
     private List<FunctionItemBean> initData() {

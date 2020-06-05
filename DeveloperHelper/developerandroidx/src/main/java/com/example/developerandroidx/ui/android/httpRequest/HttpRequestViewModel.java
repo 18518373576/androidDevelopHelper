@@ -10,7 +10,7 @@ import com.example.developerandroidx.base.BaseViewModel;
 public class HttpRequestViewModel extends BaseViewModel<String> {
 
     @Override
-    protected String initData(Object dataType) {
+    protected void initData(Object dataType) {
         switch ((String) dataType) {
             case "OkHttp":
 
@@ -22,7 +22,6 @@ public class HttpRequestViewModel extends BaseViewModel<String> {
 
                 break;
         }
-        return (String) dataType;
+        setData((String) dataType);
     }
-
 }

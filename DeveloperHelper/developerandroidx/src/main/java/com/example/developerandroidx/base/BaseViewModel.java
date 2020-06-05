@@ -12,11 +12,8 @@ import androidx.lifecycle.ViewModel;
  * 适用于数据类型单一的ViewModel
  */
 public abstract class BaseViewModel<T> extends ViewModel {
-    private MutableLiveData<T> myData;
 
-    public BaseViewModel() {
-        myData = new MutableLiveData<T>();
-    }
+    private MutableLiveData<T> myData = new MutableLiveData<>();
 
     /**
      * 初始化数据
@@ -24,9 +21,10 @@ public abstract class BaseViewModel<T> extends ViewModel {
      * @param dataType 数据类型，根据此参数确认获取的数据
      *                 例：获取登录数据或者其他接口的数据
      *                 在getData(Object dataType)传入获取的数据类型即可
-     * @return
+     *                 <p>
+     *                 在initData方法里面务必实现setData(T data)方法
      */
-    protected abstract T initData(Object dataType);
+    protected abstract void initData(Object dataType);
 
     /**
      * 设置数据
@@ -46,7 +44,7 @@ public abstract class BaseViewModel<T> extends ViewModel {
      * @return 带有数据的LiveData
      */
     public LiveData<T> getData(Object dataType) {
-        myData.setValue(initData(dataType));
+        initData(dataType);
         return myData;
     }
 
@@ -56,7 +54,7 @@ public abstract class BaseViewModel<T> extends ViewModel {
      * @return
      */
     public LiveData<T> getData() {
-        myData.setValue(initData(null));
+        initData(null);
         return myData;
     }
 }

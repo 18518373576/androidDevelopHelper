@@ -13,7 +13,7 @@ import java.util.List;
 public class ArithmeticViewModel extends BaseViewModel<List<String>> {
 
     @Override
-    protected List<String> initData(Object dataType) {
+    protected void initData(Object dataType) {
         List<String> list = new ArrayList<>();
         list.add("冒泡排序");
         list.add("选择排序");
@@ -25,6 +25,6 @@ public class ArithmeticViewModel extends BaseViewModel<List<String>> {
         list.add("树排序");
         list.add("找到链表的倒数第n个节点");
         list.add("逆置单项链表");
-        return list;
+        setData(list);
     }
 }

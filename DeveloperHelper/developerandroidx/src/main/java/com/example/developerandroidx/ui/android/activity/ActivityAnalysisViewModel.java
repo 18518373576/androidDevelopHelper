@@ -14,8 +14,8 @@ public class ActivityAnalysisViewModel extends BaseViewModel<StringBuffer> {
     private StringBuffer buffer = new StringBuffer();
 
     @Override
-    protected StringBuffer initData(Object dataType) {
-        return buffer;
+    protected void initData(Object dataType) {
+        setData(buffer);
     }
 
     //activity生命周期变动，更新数据

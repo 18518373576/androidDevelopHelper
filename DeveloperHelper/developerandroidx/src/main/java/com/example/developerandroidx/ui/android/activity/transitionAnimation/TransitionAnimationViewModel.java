@@ -17,8 +17,8 @@ import java.util.List;
 public class TransitionAnimationViewModel extends BaseViewModel<List<TransitionAnimationItemBean>> {
 
     @Override
-    protected List<TransitionAnimationItemBean> initData(Object dataType) {
-        return initData();
+    protected void initData(Object dataType) {
+        setData(initData());
     }
 
     private List<TransitionAnimationItemBean> initData() {
