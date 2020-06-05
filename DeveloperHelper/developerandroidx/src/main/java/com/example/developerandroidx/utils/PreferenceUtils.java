@@ -25,7 +25,7 @@ public class PreferenceUtils {
         preferences = App.context.getSharedPreferences(Constant.PreferenceKeys.MY_PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
 
-    public static class PreferenceUtilsInstance {
+    private static class PreferenceUtilsInstance {
         public static final PreferenceUtils INSTANCE = new PreferenceUtils();
     }
 

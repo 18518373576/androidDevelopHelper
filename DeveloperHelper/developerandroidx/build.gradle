@@ -41,12 +41,14 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 
+    //https://github.com/google/gson
+    implementation 'com.google.code.gson:gson:2.8.6'
     //okhttp:https://square.github.io/okhttp/
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
-    //Glide图片处理库
+    //Glide图片处理库 https://github.com/bumptech/glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    //butterknife,控件注解
+    //butterknife,控件注解 https://github.com/JakeWharton/butterknife
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     //应用代码展示的library

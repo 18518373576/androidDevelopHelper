@@ -10,7 +10,7 @@ public class CodeVariate {
     private CodeVariate() {
     }
 
-    public static class CodeVariateInstance {
+    private static class CodeVariateInstance {
         public static final CodeVariate INSTANCE = new CodeVariate();
     }
 

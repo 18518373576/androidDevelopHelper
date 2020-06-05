@@ -1,14 +1,13 @@
 package com.example.developerandroidx.adapter;
 
-import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 
 import com.example.developerandroidx.R;
-import com.example.developerandroidx.base.BaseRcvHolder;
 import com.example.developerandroidx.base.BaseRcvAdapter;
+import com.example.developerandroidx.base.BaseRcvHolder;
 import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.android.httpRequest.dialog.HttpRequestLibraryDialog;
@@ -16,7 +15,6 @@ import com.example.developerandroidx.ui.android.notification.NotificationDialog;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
 import com.example.developerandroidx.utils.RouteUtil;
-import com.skateboard.zxinglib.CaptureActivity;
 
 import org.greenrobot.eventbus.EventBus;
 

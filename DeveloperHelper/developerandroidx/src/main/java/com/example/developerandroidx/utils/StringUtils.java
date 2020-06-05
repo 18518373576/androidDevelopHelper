@@ -12,7 +12,7 @@ public class StringUtils {
     private StringUtils() {
     }
 
-    public static class StringUtilsInstance {
+    private static class StringUtilsInstance {
         public static final StringUtils INSTANCE = new StringUtils();
     }
 
