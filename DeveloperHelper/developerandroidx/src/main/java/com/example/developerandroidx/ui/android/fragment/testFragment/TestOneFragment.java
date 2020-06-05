@@ -5,7 +5,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseFragment;
@@ -42,7 +41,7 @@ public class TestOneFragment extends BaseFragment {
     @Override
     protected void initData() {
         //获取ViewModel，使用of(getActivity())获取共享的viewModel
-        FragmentActivityViewModel viewModel = ViewModelProviders.of(getActivity()).get(FragmentActivityViewModel.class);
+        FragmentActivityViewModel viewModel = (FragmentActivityViewModel) getViewModel(getActivity(), FragmentActivityViewModel.class);
         //观察liveData如果设置内容为“执行动画”，则执行相应的操作
         viewModel.getData().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

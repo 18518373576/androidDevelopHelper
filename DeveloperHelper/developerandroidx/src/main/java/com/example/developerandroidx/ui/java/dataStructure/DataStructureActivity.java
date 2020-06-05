@@ -4,7 +4,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -42,7 +41,7 @@ public class DataStructureActivity extends BaseActivity implements BaseRcvAdapte
 
     @Override
     protected void initData() {
-        DataStructureViewModel viewModel = ViewModelProviders.of(this).get(DataStructureViewModel.class);
+        DataStructureViewModel viewModel = (DataStructureViewModel) getViewModel(this, DataStructureViewModel.class);
         viewModel.getData().observe(this, new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> strings) {

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.OperatorItemBean;
 
 import java.util.ArrayList;
@@ -12,34 +13,16 @@ import java.util.List;
 /**
  * Date: 2020/5/4 21:08
  * 参考:
- * 描述:
+ * 描述: 操作符数据
  */
-public class OperatorViewModel extends ViewModel {
+public class OperatorViewModel extends BaseViewModel<List<OperatorItemBean>> {
 
-    private MediatorLiveData<List<OperatorItemBean>> mList;
+    @Override
+    protected List<OperatorItemBean> initData(Object dataType) {
 
-    public OperatorViewModel() {
-        mList = new MediatorLiveData<>();
-
-        mList.setValue(initData());
+        return initData();
     }
 
-    /**
-     * 绑定activity生命周期
-     * 官方文档，viewModel不能持有关于生命周期的变量
-     */
-//    public void bindLifeCircle(LifecycleOwner lifecycleOwner) {
-//        this.lifecycleOwner = lifecycleOwner;
-//        this.lifecycleOwner.getLifecycle().addObserver(new LifecycleEventObserver() {
-//            @Override
-//            public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
-//                switch (event) {
-//                    case ON_START:
-//                        break;
-//                }
-//            }
-//        });
-//    }
     private List<OperatorItemBean> initData() {
         List<OperatorItemBean> operatorItemBeans = new ArrayList<>();
         operatorItemBeans.add(new OperatorItemBean("+", "(加法)将两个数相加", "算数操作符", true, false));
@@ -96,6 +79,6 @@ public class OperatorViewModel extends ViewModel {
     }
 
     public LiveData<List<OperatorItemBean>> getAdapterList() {
-        return mList;
+        return getData();
     }
 }

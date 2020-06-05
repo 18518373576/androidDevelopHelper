@@ -1,10 +1,9 @@
 package com.example.developerandroidx.ui.android;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.android.activity.ActivityAnalysisActivity;
 import com.example.developerandroidx.ui.android.animation.AnimationActivity;
@@ -22,14 +21,11 @@ import com.example.developerandroidx.utils.RouteUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AndroidViewModel extends ViewModel {
+public class AndroidViewModel extends BaseViewModel<List<FunctionItemBean>> {
 
-    private MutableLiveData<List<FunctionItemBean>> mList;
-    private final String TAG = "AndroidViewModel";
-
-    public AndroidViewModel() {
-        mList = new MutableLiveData<>();
-        mList.setValue(initData());
+    @Override
+    protected List<FunctionItemBean> initData(Object dataType) {
+        return initData();
     }
 
     private List<FunctionItemBean> initData() {
@@ -47,14 +43,13 @@ public class AndroidViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("Camera", R.mipmap.icon_camera, RouteUtil.getDestination(CameraActivity.class)));
         functionList.add(new FunctionItemBean("Layout", R.mipmap.icon_constrain_layout, ""));
         functionList.add(new FunctionItemBean("Sqlite", R.mipmap.icon_sqlite, ""));
-        functionList.add(new FunctionItemBean("数据请求", R.mipmap.icon_internet, ""));
+        functionList.add(new FunctionItemBean("HttpRequest", R.mipmap.icon_internet, ""));
         functionList.add(new FunctionItemBean("RXjava", R.mipmap.icon_rxjava, ""));
         functionList.add(new FunctionItemBean("Animation", R.mipmap.icon_animation, RouteUtil.getDestination(AnimationActivity.class)));
         functionList.add(new FunctionItemBean("JNI", R.mipmap.icon_jni, ""));
         functionList.add(new FunctionItemBean("扫码", R.mipmap.icon_scan, ""));
         functionList.add(new FunctionItemBean("架构", R.mipmap.icon_architecture, RouteUtil.getDestination(ArchitectureIndexActivity.class)));
         functionList.add(new FunctionItemBean("DataBinding", R.mipmap.icon_data_binding, ""));
-//        functionList.add(new FunctionItemBean("Butter Knife", R.mipmap.icon_butter_knife, ""));
         functionList.add(new FunctionItemBean("地图", R.mipmap.icon_map, ""));
         functionList.add(new FunctionItemBean("性能优化", R.mipmap.icon_performance_optimization,
                 RouteUtil.getDestination(CodeViewActivity.class), CodeVariate.getInstance().getCode_3()));
@@ -63,7 +58,7 @@ public class AndroidViewModel extends ViewModel {
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {
-        return mList;
+        return getData();
     }
 
 }

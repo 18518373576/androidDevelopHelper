@@ -1,6 +1,5 @@
 package com.example.developerandroidx.ui.widget;
 
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +29,7 @@ public class WidgetFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        viewModel = ViewModelProviders.of(this).get(WidgetViewModel.class);
+        viewModel = (WidgetViewModel) getViewModel(this, WidgetViewModel.class);
         viewModel.getAdapterList().observe(getViewLifecycleOwner(), functionList ->
                 rcv_widget.setAdapter(new FunctionRcvAdapter(functionList)));
     }

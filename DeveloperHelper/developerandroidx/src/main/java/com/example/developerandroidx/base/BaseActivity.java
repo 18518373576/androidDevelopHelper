@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.example.developerandroidx.R;
 
@@ -96,6 +99,18 @@ public abstract class BaseActivity extends AppCompatActivity {
             //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN设置全屏，顶栏展示图片的时候会用到
             //decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
+    }
+
+
+    /**
+     * 获取ViewModel
+     *
+     * @param owner      ViewModel库拥有者，可是是fragment或者activity
+     * @param modelClass 自己定义的viewModel类
+     * @return
+     */
+    public ViewModel getViewModel(ViewModelStoreOwner owner, Class modelClass) {
+        return new ViewModelProvider(owner).get(modelClass);
     }
 
     /**

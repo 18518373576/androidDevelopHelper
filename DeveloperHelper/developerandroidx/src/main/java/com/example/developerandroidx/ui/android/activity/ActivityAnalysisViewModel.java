@@ -1,33 +1,31 @@
 package com.example.developerandroidx.ui.android.activity;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.ViewModel;
+
+import com.example.developerandroidx.base.BaseViewModel;
 
 /**
  * Date: 2020/5/6 21:26
  * 参考:
- * 描述:
+ * 描述: 记录activity的生命周期
  */
-public class ActivityAnalysisViewModel extends ViewModel {
+public class ActivityAnalysisViewModel extends BaseViewModel<StringBuffer> {
 
-    private StringBuffer buffer;
-    private MediatorLiveData<StringBuffer> liveDataBuffer;
+    private StringBuffer buffer = new StringBuffer();
 
-    public ActivityAnalysisViewModel() {
-        buffer = new StringBuffer();
-        liveDataBuffer = new MediatorLiveData<>();
-        liveDataBuffer.setValue(buffer);
+    @Override
+    protected StringBuffer initData(Object dataType) {
+        return buffer;
     }
 
     //activity生命周期变动，更新数据
     public void onLifecyleChanged(String lyfecyleInfo) {
         buffer.append(lyfecyleInfo);
-        liveDataBuffer.setValue(buffer);
+        setData(buffer);
     }
 
     //获取生命周期变化数据
     public LiveData<StringBuffer> getLifecycleBuffer() {
-        return liveDataBuffer;
+        return getData();
     }
 }

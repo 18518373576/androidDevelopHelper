@@ -1,10 +1,9 @@
 package com.example.developerandroidx.ui.android.activity.transitionAnimation;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.TransitionAnimationItemBean;
 
 import java.util.ArrayList;
@@ -15,14 +14,11 @@ import java.util.List;
  * 参考:
  * 描述:
  */
-public class TransitionAnimationViewModel extends ViewModel {
+public class TransitionAnimationViewModel extends BaseViewModel<List<TransitionAnimationItemBean>> {
 
-    private MediatorLiveData<List<TransitionAnimationItemBean>> mList;
-
-    public TransitionAnimationViewModel() {
-
-        mList = new MediatorLiveData<>();
-        mList.setValue(initData());
+    @Override
+    protected List<TransitionAnimationItemBean> initData(Object dataType) {
+        return initData();
     }
 
     private List<TransitionAnimationItemBean> initData() {
@@ -43,6 +39,6 @@ public class TransitionAnimationViewModel extends ViewModel {
     }
 
     public LiveData<List<TransitionAnimationItemBean>> getAdapterList() {
-        return mList;
+        return getData();
     }
 }

@@ -16,16 +16,47 @@ public abstract class BaseViewModel<T> extends ViewModel {
 
     public BaseViewModel() {
         myData = new MutableLiveData<T>();
-        myData.setValue(initData());
     }
 
-    protected abstract T initData();
+    /**
+     * 初始化数据
+     *
+     * @param dataType 数据类型，根据此参数确认获取的数据
+     *                 例：获取登录数据或者其他接口的数据
+     *                 在getData(Object dataType)传入获取的数据类型即可
+     * @return
+     */
+    protected abstract T initData(Object dataType);
 
+    /**
+     * 设置数据
+     *
+     * @param data 要设置的数据
+     */
     public void setData(T data) {
         myData.setValue(data);
     }
 
+    /**
+     * 获取数据
+     *
+     * @param dataType 数据类型，根据此参数确认获取的数据
+     *                 例：获取登录数据或者其他接口的数据
+     *                 在getData(Object dataType)传入获取的数据类型即可
+     * @return 带有数据的LiveData
+     */
+    public LiveData<T> getData(Object dataType) {
+        myData.setValue(initData(dataType));
+        return myData;
+    }
+
+    /**
+     * 如果数据单一用此方法获取数据
+     *
+     * @return
+     */
     public LiveData<T> getData() {
+        myData.setValue(initData(null));
         return myData;
     }
 }

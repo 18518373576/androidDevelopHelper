@@ -1,10 +1,9 @@
 package com.example.developerandroidx.ui.java;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.java.arithmetic.ArithmeticActivity;
 import com.example.developerandroidx.ui.java.dataStructure.DataStructureActivity;
@@ -16,13 +15,11 @@ import com.example.developerandroidx.utils.RouteUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JavaViewModel extends ViewModel {
+public class JavaViewModel extends BaseViewModel<List<FunctionItemBean>> {
 
-    private MutableLiveData<List<FunctionItemBean>> mList;
-
-    public JavaViewModel() {
-        mList = new MutableLiveData<>();
-        mList.setValue(initData());
+    @Override
+    protected List<FunctionItemBean> initData(Object dataType) {
+        return initData();
     }
 
     private List<FunctionItemBean> initData() {
@@ -54,6 +51,6 @@ public class JavaViewModel extends ViewModel {
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {
-        return mList;
+        return getData();
     }
 }

@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.App;
@@ -71,7 +70,7 @@ public class ActivityAnalysisActivity extends BaseActivity {
     protected void initData() {
         super.initData();
         //因为切换横竖屏，activity会销毁重建，为了保存记录生命周期数据，使用不会随着activity生命周期销毁的LiveData来保存数据
-        viewModel = ViewModelProviders.of(this).get(ActivityAnalysisViewModel.class);
+        viewModel = (ActivityAnalysisViewModel) getViewModel(this, ActivityAnalysisViewModel.class);
         //观察LiveData数据变化，并把变化打印
         viewModel.getLifecycleBuffer().observe(this, new Observer<StringBuffer>() {
             @Override

@@ -4,7 +4,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -44,7 +43,7 @@ public class ArithmeticActivity extends BaseActivity implements BaseRcvAdapter.O
     @Override
     protected void initData() {
         super.initData();
-        ArithmeticViewModel viewModel = ViewModelProviders.of(this).get(ArithmeticViewModel.class);
+        ArithmeticViewModel viewModel = (ArithmeticViewModel) getViewModel(this, ArithmeticViewModel.class);
         viewModel.getData().observe(this, new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> strings) {

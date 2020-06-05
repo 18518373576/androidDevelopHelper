@@ -11,7 +11,6 @@ import android.view.Window;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,7 +79,7 @@ public class TransitionAnimationActivity extends BaseActivity implements BaseRcv
     @Override
     protected void initData() {
         super.initData();
-        TransitionAnimationViewModel viewModel = ViewModelProviders.of(this).get(TransitionAnimationViewModel.class);
+        TransitionAnimationViewModel viewModel = (TransitionAnimationViewModel) getViewModel(this, TransitionAnimationViewModel.class);
 
         viewModel.getAdapterList().observe(this, new Observer<List<TransitionAnimationItemBean>>() {
             @Override

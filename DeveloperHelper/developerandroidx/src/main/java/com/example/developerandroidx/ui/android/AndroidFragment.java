@@ -1,6 +1,5 @@
 package com.example.developerandroidx.ui.android;
 
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,9 +31,8 @@ public class AndroidFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        //把viewModel绑定到fragment
-        viewModel = ViewModelProviders.of(this).get(AndroidViewModel.class);
 
+        viewModel = (AndroidViewModel) getViewModel(this, AndroidViewModel.class);
 
         //观察数据的变化
         //使用lambda表达式，java写法如下作为参考

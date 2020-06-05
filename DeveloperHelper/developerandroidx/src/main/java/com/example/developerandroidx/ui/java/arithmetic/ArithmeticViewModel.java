@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * Date: 2020/5/27 11:48
  * 参考:
- * 描述:
+ * 描述: 算法列表数据
  */
 public class ArithmeticViewModel extends BaseViewModel<List<String>> {
 
     @Override
-    protected List<String> initData() {
+    protected List<String> initData(Object dataType) {
         List<String> list = new ArrayList<>();
         list.add("冒泡排序");
         list.add("选择排序");

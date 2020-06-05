@@ -2,8 +2,6 @@ package com.example.developerandroidx.ui.android.fragment.testFragment;
 
 import android.view.View;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseFragment;
 import com.example.developerandroidx.ui.android.fragment.FragmentActivityViewModel;
@@ -42,7 +40,7 @@ public class TestTwoFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-        viewModel = ViewModelProviders.of(getActivity()).get(FragmentActivityViewModel.class);
+        viewModel = (FragmentActivityViewModel) getViewModel(getActivity(), FragmentActivityViewModel.class);
 
     }
 

@@ -1,10 +1,9 @@
 package com.example.developerandroidx.ui.widget;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.widget.actionBar.ActionBarActivity;
 import com.example.developerandroidx.ui.widget.navigationView.NavigationViewActivity;
@@ -14,13 +13,11 @@ import com.example.developerandroidx.utils.RouteUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WidgetViewModel extends ViewModel {
+public class WidgetViewModel extends BaseViewModel<List<FunctionItemBean>> {
 
-    private MutableLiveData<List<FunctionItemBean>> mList;
-
-    public WidgetViewModel() {
-        mList = new MutableLiveData<>();
-        mList.setValue(initData());
+    @Override
+    protected List<FunctionItemBean> initData(Object dataType) {
+        return initData();
     }
 
     private List<FunctionItemBean> initData() {
@@ -32,7 +29,6 @@ public class WidgetViewModel extends ViewModel {
         functionList.add(new FunctionItemBean("WebView", R.mipmap.icon_web_view, RouteUtil.getDestination(WebViewActivity.class)));
         functionList.add(new FunctionItemBean("CalendarView", R.mipmap.icon_calendar, ""));
         functionList.add(new FunctionItemBean("Custom Toast", R.mipmap.icon_toast, ""));
-//        functionList.add(new FunctionItemBean("Snackbar", R.mipmap.icon_web_view, ""));
         functionList.add(new FunctionItemBean("Jsoup", R.mipmap.icon_html, ""));
         functionList.add(new FunctionItemBean("Mathematical Curve", R.mipmap.icon_curve, ""));
         functionList.add(new FunctionItemBean("Navigation", R.mipmap.icon_navigation, RouteUtil.getDestination(NavigationViewActivity.class)));
@@ -41,6 +37,6 @@ public class WidgetViewModel extends ViewModel {
     }
 
     public LiveData<List<FunctionItemBean>> getAdapterList() {
-        return mList;
+        return getData();
     }
 }

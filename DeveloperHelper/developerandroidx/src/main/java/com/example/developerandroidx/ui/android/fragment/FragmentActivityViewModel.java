@@ -8,8 +8,9 @@ import com.example.developerandroidx.base.BaseViewModel;
  * 描述:
  */
 public class FragmentActivityViewModel extends BaseViewModel<String> {
+
     @Override
-    protected String initData() {
+    protected String initData(Object dataType) {
         String data = "测试使用ViewModel进行fragment间的通信";
         return data;
     }

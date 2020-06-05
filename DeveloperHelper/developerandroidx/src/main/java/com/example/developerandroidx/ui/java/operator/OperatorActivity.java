@@ -5,7 +5,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -77,7 +76,7 @@ public class OperatorActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        OperatorViewModel viewModel = ViewModelProviders.of(this).get(OperatorViewModel.class);
+        OperatorViewModel viewModel = (OperatorViewModel) getViewModel(this, OperatorViewModel.class);
 //        viewModel.bindLifeCircle(this);
         viewModel.getAdapterList().observe(this, new Observer<List<OperatorItemBean>>() {
             @Override

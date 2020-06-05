@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -32,12 +34,14 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /**
-     * 弹出吐司
+     * 获取ViewModel
      *
-     * @param showMsg
+     * @param owner      ViewModel库拥有者，可是是fragment或者activity
+     * @param modelClass 自己定义的viewModel类
+     * @return
      */
-    protected void showToast(String showMsg) {
-        Toast.makeText(context, showMsg, Toast.LENGTH_LONG).show();
+    public ViewModel getViewModel(ViewModelStoreOwner owner, Class modelClass) {
+        return new ViewModelProvider(owner).get(modelClass);
     }
 
     /**
