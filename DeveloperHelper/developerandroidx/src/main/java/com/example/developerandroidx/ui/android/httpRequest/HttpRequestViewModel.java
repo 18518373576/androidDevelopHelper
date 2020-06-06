@@ -6,7 +6,7 @@ import com.example.developerandroidx.base.BaseModel;
 import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.BlogListBean;
 import com.example.developerandroidx.utils.Api;
-import com.example.developerandroidx.utils.HttpRequestUtil;
+import com.example.developerandroidx.utils.httpRequest.HttpRequestUtil;
 import com.google.gson.Gson;
 
 /**
@@ -35,8 +35,7 @@ public class HttpRequestViewModel extends BaseViewModel<BaseModel> {
      * 使用OkHttp请求数据
      */
     private void requestByOkHttp() {
-        HttpRequestUtil.getInstance().requestByOkHttp(HttpRequestUtil.RequestType.GET,
-                Api.BLOG_LIST,
+        HttpRequestUtil.getInstance().requestByOkHttpGet(Api.BLOG_LIST,
                 new HttpRequestUtil.OkHttpCallBack() {
                     @Override
                     public void onFail(String msg) {

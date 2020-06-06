@@ -28,7 +28,7 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        esv_content.addBodyWithIntent("项目GitHub", R.color.colorMain,
+        esv_content.addBodyWithIntent("DevelopHelper", R.color.colorMain,
                 new Intent(context, TechnologyWebviewActivity.class).putExtra(Constant.IntentParams.INTENT_PARAM, "https://github.com/18518373576/androidDevelopHelper"));
         esv_content.addLine(R.color.lightGrayColor);
         esv_content.addBodyWithIntent("图标库：https://www.iconfont.cn", R.color.colorMain,
@@ -45,5 +45,8 @@ public class AboutActivity extends BaseActivity {
         esv_content.addLine(R.color.lightGrayColor);
         esv_content.addBodyWithIntent("eventbus", R.color.colorMain,
                 new Intent(context, TechnologyWebviewActivity.class).putExtra(Constant.IntentParams.INTENT_PARAM, "https://github.com/greenrobot/EventBus"));
+        esv_content.addLine(R.color.lightGrayColor);
+        esv_content.addBodyWithIntent("BaseRecyclerViewAdapterHelper", R.color.colorMain,
+                new Intent(context, TechnologyWebviewActivity.class).putExtra(Constant.IntentParams.INTENT_PARAM, "https://github.com/CymChad/BaseRecyclerViewAdapterHelper"));
     }
 }

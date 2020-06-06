@@ -1,2 +1,2 @@
-include ':developerandroidx', ':codeview',':dialog',':zxinglib'
+include ':developerandroidx', ':codeview',':dialog',':zxinglib',"rcvAdapterHelper"
 rootProject.name='DeveloperHelper'

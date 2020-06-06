@@ -41,6 +41,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 
+    //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation project(":rcvAdapterHelper")
     //https://github.com/google/gson
     implementation 'com.google.code.gson:gson:2.8.6'
     //okhttp:https://square.github.io/okhttp/

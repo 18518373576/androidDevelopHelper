@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/codeview" />
             <option value="$PROJECT_DIR$/developerandroidx" />
             <option value="$PROJECT_DIR$/dialog" />
+            <option value="$PROJECT_DIR$/rcvAdapterHelper" />
             <option value="$PROJECT_DIR$/zxinglib" />
           </set>
         </option>

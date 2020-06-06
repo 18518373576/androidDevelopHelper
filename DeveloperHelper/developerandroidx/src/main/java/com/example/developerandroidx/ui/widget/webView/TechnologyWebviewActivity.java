@@ -48,7 +48,9 @@ public class TechnologyWebviewActivity extends BaseActivity {
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);
-                lv_loading.loadingFail(wv_web, R.mipmap.icon_404);
+                if (!request.getUrl().toString().contains("github")) {
+                    lv_loading.loadingFail(wv_web, R.mipmap.icon_404);
+                }
             }
         });
         WebSettings webSettings = wv_web.getSettings();
@@ -57,9 +59,11 @@ public class TechnologyWebviewActivity extends BaseActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                pb_progress.setProgress(newProgress);
-                if (newProgress == 100) {
-                    pb_progress.setVisibility(View.GONE);
+                if (pb_progress != null) {
+                    pb_progress.setProgress(newProgress);
+                    if (newProgress == 100) {
+                        pb_progress.setVisibility(View.GONE);
+                    }
                 }
             }
         });

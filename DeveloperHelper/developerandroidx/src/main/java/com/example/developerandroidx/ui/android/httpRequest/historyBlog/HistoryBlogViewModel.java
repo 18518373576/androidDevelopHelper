@@ -6,7 +6,7 @@ import com.example.developerandroidx.base.BaseModel;
 import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.HistoryBlogBean;
 import com.example.developerandroidx.utils.Api;
-import com.example.developerandroidx.utils.HttpRequestUtil;
+import com.example.developerandroidx.utils.httpRequest.HttpRequestUtil;
 import com.google.gson.Gson;
 
 /**
@@ -32,7 +32,7 @@ public class HistoryBlogViewModel extends BaseViewModel<BaseModel> {
     }
 
     private void requestByOkHttp(String id) {
-        HttpRequestUtil.getInstance().requestByOkHttp(HttpRequestUtil.RequestType.GET, Api.getBlogHistory(id), new HttpRequestUtil.OkHttpCallBack() {
+        HttpRequestUtil.getInstance().requestByOkHttpGet(Api.getBlogHistory(id), new HttpRequestUtil.OkHttpCallBack() {
             @Override
             public void onFail(String msg) {
                 setData(null);
