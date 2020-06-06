@@ -17,6 +17,7 @@ import com.example.developerandroidx.ui.android.httpRequest.historyBlog.HistoryB
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.PreferenceUtils;
 import com.example.developerandroidx.utils.RouteUtil;
+import com.example.developerandroidx.view.loadingView.LoadingView;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,8 @@ public class HttpRequestActivity extends BaseActivity implements BaseRcvAdapter.
 
     @BindView(R.id.rcv_blog)
     RecyclerView rcv_blog;
+    @BindView(R.id.lv_loading)
+    LoadingView lv_loading;
 
     private String requestLibrary;
     private HttpRequestViewModel viewModel;
@@ -61,10 +64,15 @@ public class HttpRequestActivity extends BaseActivity implements BaseRcvAdapter.
         viewModel.getData(requestLibrary).observe(this, new Observer<BaseModel>() {
             @Override
             public void onChanged(BaseModel baseModel) {
-                BlogListBean blogListBean = (BlogListBean) baseModel;
-                adapter.notifyDataChanged(blogListBean.data);
-                if (rcv_blog.getVisibility() == View.INVISIBLE) {
-                    showView();
+                //数据错误
+                if (baseModel == null) {
+                    lv_loading.loadingFail(rcv_blog, R.mipmap.icon_404);
+                } else {
+                    BlogListBean blogListBean = (BlogListBean) baseModel;
+                    adapter.notifyDataChanged(blogListBean.data);
+                    if (rcv_blog.getVisibility() == View.INVISIBLE) {
+                        showView();
+                    }
                 }
             }
         });
