@@ -18,8 +18,8 @@ public class Api {
      * @param blogId 公众号ID
      * @return url
      */
-    public static String getBlogHistory(String blogId) {
+    public static String getBlogHistory(String blogId, String page) {
         //https://wanandroid.com/wxarticle/list/408/1/json
-        return BASE_URL + "wxarticle/list/" + blogId + "/1/json";
+        return BASE_URL + "wxarticle/list/" + blogId + "/" + page + "/json";
     }
 }

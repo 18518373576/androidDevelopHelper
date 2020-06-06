@@ -20,7 +20,7 @@ public class HistoryBlogViewModel extends BaseViewModel<BaseModel> {
 
         switch (param[0]) {
             case "OkHttp":
-                requestByOkHttp(param[1]);
+                requestByOkHttp(param[1], param[2]);
                 break;
             case "Volley":
 
@@ -31,8 +31,8 @@ public class HistoryBlogViewModel extends BaseViewModel<BaseModel> {
         }
     }
 
-    private void requestByOkHttp(String id) {
-        HttpRequestUtil.getInstance().requestByOkHttpGet(Api.getBlogHistory(id), new HttpRequestUtil.OkHttpCallBack() {
+    private void requestByOkHttp(String id, String page) {
+        HttpRequestUtil.getInstance().requestByOkHttpGet(Api.getBlogHistory(id, page), new HttpRequestUtil.OkHttpCallBack() {
             @Override
             public void onFail(String msg) {
                 setData(null);
