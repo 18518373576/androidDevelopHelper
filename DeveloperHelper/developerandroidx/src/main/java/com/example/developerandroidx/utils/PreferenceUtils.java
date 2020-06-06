@@ -38,7 +38,7 @@ public class PreferenceUtils {
      *
      * @param value
      */
-    public void setBooleanValue(String key, boolean value) {
+    public void putBooleanValue(String key, boolean value) {
         preferences.edit().putBoolean(key, value).apply();
     }
 
@@ -48,5 +48,25 @@ public class PreferenceUtils {
      */
     public boolean getBooleanValue(String key) {
         return preferences.getBoolean(key, false);
+    }
+
+    /**
+     * 存储字符串
+     *
+     * @param key
+     * @param value
+     */
+    public void putStringValue(String key, String value) {
+        preferences.edit().putString(key, value).apply();
+    }
+
+    /**
+     * 获取存储的字符串
+     *
+     * @param key
+     * @return
+     */
+    public String getStringalue(String key) {
+        return preferences.getString(key, "");
     }
 }

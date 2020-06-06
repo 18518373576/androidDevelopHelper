@@ -220,7 +220,7 @@ public class NotificationDialog {
     private PendingIntent pendingIntent;
 
     private void showCustomNotification(Context context) {
-        PreferenceUtils.getInstance().setBooleanValue(Constant.PreferenceKeys.IS_PALYING, false);
+        PreferenceUtils.getInstance().putBooleanValue(Constant.PreferenceKeys.IS_PALYING, false);
         //使用上下文注册一个广播,用于接收自定义view的事件
         registerBroadcastReceiver(context);
         //自定义通知栏的小图
@@ -290,7 +290,7 @@ public class NotificationDialog {
                                 } else {
                                     notificationLayout.setImageViewResource(R.id.iv_play_stop, R.mipmap.icon_play);
                                 }
-                                PreferenceUtils.getInstance().setBooleanValue(Constant.PreferenceKeys.IS_PALYING, isPlaying);
+                                PreferenceUtils.getInstance().putBooleanValue(Constant.PreferenceKeys.IS_PALYING, isPlaying);
                                 notificationManager.notify(104, customNotification);
                                 break;
                         }

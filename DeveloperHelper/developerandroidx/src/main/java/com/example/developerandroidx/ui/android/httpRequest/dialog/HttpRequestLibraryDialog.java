@@ -4,7 +4,9 @@ import android.content.Context;
 
 import com.example.developerandroidx.projectInterface.FunctionDialogInterface;
 import com.example.developerandroidx.ui.android.httpRequest.HttpRequestActivity;
+import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
+import com.example.developerandroidx.utils.PreferenceUtils;
 import com.example.developerandroidx.utils.RouteUtil;
 
 /**
@@ -19,7 +21,8 @@ public class HttpRequestLibraryDialog implements FunctionDialogInterface {
         DialogUtils.getInstance().showBottomMenu(context, new String[]{"OkHttp", "Volley", "Retrofit"}, new DialogUtils.OnItemClickListener() {
             @Override
             public void onClick(String text, int index) {
-                RouteUtil.goTo(context, RouteUtil.getDestination(HttpRequestActivity.class), text);
+                PreferenceUtils.getInstance().putStringValue(Constant.PreferenceKeys.HTTP_REQUEST_LIBRARY, text);
+                RouteUtil.goTo(context, RouteUtil.getDestination(HttpRequestActivity.class));
             }
         });
     }

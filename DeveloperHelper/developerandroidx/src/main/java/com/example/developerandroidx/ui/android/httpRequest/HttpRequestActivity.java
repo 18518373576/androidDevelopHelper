@@ -12,6 +12,7 @@ import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.base.BaseModel;
 import com.example.developerandroidx.model.BlogListBean;
 import com.example.developerandroidx.utils.Constant;
+import com.example.developerandroidx.utils.PreferenceUtils;
 
 import java.util.ArrayList;
 
@@ -48,9 +49,9 @@ public class HttpRequestActivity extends BaseActivity {
         super.initData();
         /**
          * {@link com.example.developerandroidx.ui.android.httpRequest.dialog.HttpRequestLibraryDialog}
+         *  请求使用的库 "OkHttp", "Volley", "Retrofit"
          */
-        requestLibrary = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
-        //"OkHttp", "Volley", "Retrofit"
+        requestLibrary = PreferenceUtils.getInstance().getStringalue(Constant.PreferenceKeys.HTTP_REQUEST_LIBRARY);
         viewModel = (HttpRequestViewModel) getViewModel(this, HttpRequestViewModel.class);
         viewModel.getData(requestLibrary).observe(this, new Observer<BaseModel>() {
             @Override

@@ -15,6 +15,7 @@ public class Constant {
     public static class PreferenceKeys {
         public static final String MY_PREFERENCE_NAME = "MY_PREFERENCE_NAME";
         public static final String IS_PALYING = "PreferenceKey_01";
+        public static final String HTTP_REQUEST_LIBRARY = "PreferenceKey_02";
     }
 
     /**
