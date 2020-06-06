@@ -1,5 +1,7 @@
 package com.example.developerandroidx.ui.android.httpRequest;
 
+import androidx.annotation.Nullable;
+
 import com.example.developerandroidx.base.BaseModel;
 import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.BlogListBean;
@@ -15,8 +17,8 @@ import com.google.gson.Gson;
 public class HttpRequestViewModel extends BaseViewModel<BaseModel> {
 
     @Override
-    protected void initData(Object dataType) {
-        switch ((String) dataType) {
+    protected void initData(@Nullable String... param) {
+        switch (param[0]) {
             case "OkHttp":
                 requestByOkHttp();
                 break;
@@ -27,7 +29,6 @@ public class HttpRequestViewModel extends BaseViewModel<BaseModel> {
 
                 break;
         }
-
     }
 
     /**

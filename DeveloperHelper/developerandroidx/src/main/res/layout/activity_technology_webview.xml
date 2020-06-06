@@ -7,6 +7,7 @@
     tools:context=".ui.widget.webView.TechnologyWebviewActivity">
 
     <include
+        android:id="@+id/include7"
         layout="@layout/title_bar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -16,4 +17,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/titleBarHeigt" />
+
+    <ImageView
+        android:id="@+id/iv_404"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="@dimen/dp100"
+        android:src="@mipmap/icon_404"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include7" />
 </androidx.constraintlayout.widget.ConstraintLayout>

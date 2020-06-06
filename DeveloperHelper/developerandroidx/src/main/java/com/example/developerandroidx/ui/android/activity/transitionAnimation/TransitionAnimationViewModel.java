@@ -1,5 +1,6 @@
 package com.example.developerandroidx.ui.android.activity.transitionAnimation;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import com.example.developerandroidx.R;
@@ -17,7 +18,7 @@ import java.util.List;
 public class TransitionAnimationViewModel extends BaseViewModel<List<TransitionAnimationItemBean>> {
 
     @Override
-    protected void initData(Object dataType) {
+    protected void initData(@Nullable String... param) {
         setData(initData());
     }
 
@@ -41,4 +42,5 @@ public class TransitionAnimationViewModel extends BaseViewModel<List<TransitionA
     public LiveData<List<TransitionAnimationItemBean>> getAdapterList() {
         return getData();
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.developerandroidx.ui.android.activity;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import com.example.developerandroidx.base.BaseViewModel;
@@ -14,7 +15,7 @@ public class ActivityAnalysisViewModel extends BaseViewModel<StringBuffer> {
     private StringBuffer buffer = new StringBuffer();
 
     @Override
-    protected void initData(Object dataType) {
+    protected void initData(@Nullable String... param) {
         setData(buffer);
     }
 
@@ -28,4 +29,5 @@ public class ActivityAnalysisViewModel extends BaseViewModel<StringBuffer> {
     public LiveData<StringBuffer> getLifecycleBuffer() {
         return getData();
     }
+
 }

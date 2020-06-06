@@ -1,5 +1,6 @@
 package com.example.developerandroidx.ui.widget;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import com.example.developerandroidx.R;
@@ -15,8 +16,9 @@ import java.util.List;
 
 public class WidgetViewModel extends BaseViewModel<List<FunctionItemBean>> {
 
+
     @Override
-    protected void initData(Object dataType) {
+    protected void initData(@Nullable String... param) {
         setData(initData());
     }
 

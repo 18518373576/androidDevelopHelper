@@ -1,5 +1,7 @@
 package com.example.developerandroidx.ui.android.fragment;
 
+import androidx.annotation.Nullable;
+
 import com.example.developerandroidx.base.BaseViewModel;
 
 /**
@@ -10,7 +12,7 @@ import com.example.developerandroidx.base.BaseViewModel;
 public class FragmentActivityViewModel extends BaseViewModel<String> {
 
     @Override
-    protected void initData(Object dataType) {
+    protected void initData(@Nullable String... param) {
         String data = "测试使用ViewModel进行fragment间的通信";
         setData(data);
     }

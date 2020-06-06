@@ -1,5 +1,7 @@
 package com.example.developerandroidx.ui.java.dataStructure;
 
+import androidx.annotation.Nullable;
+
 import com.example.developerandroidx.base.BaseViewModel;
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ import java.util.List;
 public class DataStructureViewModel extends BaseViewModel<List<String>> {
 
     @Override
-    protected void initData(Object dataType) {
+    protected void initData(@Nullable String... param) {
         List<String> list = new ArrayList<>();
         list.add("单向链表");
         list.add("双向链表");

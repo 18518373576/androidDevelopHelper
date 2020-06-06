@@ -1,5 +1,6 @@
 package com.example.developerandroidx.ui.java.operator;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import com.example.developerandroidx.base.BaseViewModel;
@@ -16,8 +17,7 @@ import java.util.List;
 public class OperatorViewModel extends BaseViewModel<List<OperatorItemBean>> {
 
     @Override
-    protected void initData(Object dataType) {
-
+    protected void initData(@Nullable String... param) {
         setData(initData());
     }
 

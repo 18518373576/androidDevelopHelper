@@ -1,5 +1,6 @@
 package com.example.developerandroidx.base;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -18,13 +19,10 @@ public abstract class BaseViewModel<T> extends ViewModel {
     /**
      * 初始化数据
      *
-     * @param dataType 数据类型，根据此参数确认获取的数据
-     *                 例：获取登录数据或者其他接口的数据
-     *                 在getData(Object dataType)传入获取的数据类型即可
-     *                 <p>
-     *                 在initData方法里面务必实现setData(T data)方法
+     * @param param 数据类型，根据此参数确认获取的数据，和访问接口的参数
+     *              在initData方法里面务必实现setData(T data)方法
      */
-    protected abstract void initData(Object dataType);
+    protected abstract void initData(@Nullable String... param);
 
     /**
      * 设置数据
@@ -38,13 +36,13 @@ public abstract class BaseViewModel<T> extends ViewModel {
     /**
      * 获取数据
      *
-     * @param dataType 数据类型，根据此参数确认获取的数据
-     *                 例：获取登录数据或者其他接口的数据
-     *                 在getData(Object dataType)传入获取的数据类型即可
+     * @param param 数据类型，根据此参数确认获取的数据
+     *              例：登录界面有多个接口请求，首个参数串接口类型，后面的传需要的参数即可
+     *              在getData(Object dataType)传入获取的数据类型即可
      * @return 带有数据的LiveData
      */
-    public LiveData<T> getData(Object dataType) {
-        initData(dataType);
+    public LiveData<T> getData(String... param) {
+        initData(param);
         return myData;
     }
 

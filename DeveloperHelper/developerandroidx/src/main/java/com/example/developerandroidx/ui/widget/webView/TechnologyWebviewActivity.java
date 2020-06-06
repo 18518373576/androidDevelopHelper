@@ -1,12 +1,16 @@
 package com.example.developerandroidx.ui.widget.webView;
 
+import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.base.App;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.DialogUtils;
@@ -19,6 +23,8 @@ public class TechnologyWebviewActivity extends BaseActivity {
 
     @BindView(R.id.wv_web)
     WebView wv_web;
+    @BindView(R.id.iv_404)
+    ImageView iv_404;
 
     @Override
     protected int bindLayout() {
@@ -36,6 +42,13 @@ public class TechnologyWebviewActivity extends BaseActivity {
                 String url = request.getUrl().toString();
                 //重定向URL请求，返回true表示拦截此url，返回false表示不拦截此url。
                 return false;
+            }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                wv_web.setVisibility(View.GONE);
+                iv_404.setVisibility(View.VISIBLE);
             }
         });
         WebSettings webSettings = wv_web.getSettings();

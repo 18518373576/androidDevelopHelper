@@ -10,7 +10,6 @@
         android:id="@+id/tv_blog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:gravity="center_vertical"
         android:padding="@dimen/dp20"
         android:stateListAnimator="@drawable/selector_btn_animator"
