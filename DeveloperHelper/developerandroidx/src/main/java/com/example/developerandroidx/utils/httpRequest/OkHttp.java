@@ -28,9 +28,9 @@ public class OkHttp {
 
     private OkHttp() {
         client = new OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(Constant.Internet.CONNECT_TIME_OUT_SECOND, TimeUnit.SECONDS)
+                .readTimeout(Constant.Internet.CONNECT_TIME_OUT_SECOND, TimeUnit.SECONDS)
+                .writeTimeout(Constant.Internet.CONNECT_TIME_OUT_SECOND, TimeUnit.SECONDS)
                 .build();
     }
 
@@ -88,13 +88,13 @@ public class OkHttp {
      * get请求
      */
     public void get(String url, RequestHandler handler) {
-        Request request = new Request.Builder().url(url).build();
+        Request request = new Request.Builder().url(url).get().build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 Message message = new Message();
                 message.what = Constant.Internet.FAIL;
-                message.obj = e.toString();
+                message.obj = e.getMessage();
                 handler.sendMessage(message);
             }
 
@@ -109,7 +109,6 @@ public class OkHttp {
                     message.obj = e.toString();
                     e.printStackTrace();
                 }
-
                 handler.sendMessage(message);
             }
         });

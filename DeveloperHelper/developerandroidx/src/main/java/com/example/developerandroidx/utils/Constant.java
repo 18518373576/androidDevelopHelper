@@ -22,6 +22,8 @@ public class Constant {
      * 网络请求相关
      */
     public static class Internet {
+        public static final int CONNECT_TIME_OUT_SECOND = 10;
+        public static final int CONNECT_TIME_OUT_MILLISECOND = 10000;
         public static final int SUC = 200;
         public static final int FAIL = 404;
     }

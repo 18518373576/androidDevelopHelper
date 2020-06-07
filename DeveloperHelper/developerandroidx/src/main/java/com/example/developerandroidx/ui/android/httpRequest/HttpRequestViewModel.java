@@ -8,6 +8,7 @@ import com.example.developerandroidx.model.BlogListBean;
 import com.example.developerandroidx.utils.Api;
 import com.example.developerandroidx.utils.httpRequest.HttpRequestUtil;
 import com.example.developerandroidx.utils.httpRequest.RequestCallBack;
+import com.example.developerandroidx.utils.httpRequest.RequestLibrary;
 import com.google.gson.Gson;
 
 /**
@@ -21,10 +22,10 @@ public class HttpRequestViewModel extends BaseViewModel<BaseModel> {
     protected void initData(@Nullable String... param) {
         switch (param[0]) {
             case "OkHttp":
-                requestByOkHttp();
+                request(RequestLibrary.OK_HTTP);
                 break;
             case "Volley":
-
+                request(RequestLibrary.VOLLEY);
                 break;
             case "Retrofit":
 
@@ -35,8 +36,8 @@ public class HttpRequestViewModel extends BaseViewModel<BaseModel> {
     /**
      * 使用OkHttp请求数据
      */
-    private void requestByOkHttp() {
-        HttpRequestUtil.getInstance().requestByOkHttpGet(Api.BLOG_LIST,
+    private void request(RequestLibrary library) {
+        HttpRequestUtil.getInstance().get(library, Api.BLOG_LIST,
                 new RequestCallBack() {
                     @Override
                     public void onFail(String msg) {

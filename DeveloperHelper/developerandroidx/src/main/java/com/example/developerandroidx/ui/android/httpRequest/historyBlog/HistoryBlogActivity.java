@@ -32,7 +32,6 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
 
     private BlogHistoryRcvAdapter adapter;
     private int page = 1;
-    private int pageSize = 20;
     private HistoryBlogViewModel viewModel;
     private String requestLibrary;
     private String id;
@@ -115,6 +114,7 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
                 return;
             }
             adapter.setList(historyBlogBean.data.datas);
+            int pageSize = 20;
             if (historyBlogBean.data.datas.size() < pageSize) {
                 //方法必须在 adapter.setList(之后调用)
                 adapter.getLoadMoreModule().loadMoreEnd();

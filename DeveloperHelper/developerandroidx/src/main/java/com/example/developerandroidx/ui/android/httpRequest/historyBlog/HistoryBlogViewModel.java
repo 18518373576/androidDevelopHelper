@@ -8,6 +8,7 @@ import com.example.developerandroidx.model.HistoryBlogBean;
 import com.example.developerandroidx.utils.Api;
 import com.example.developerandroidx.utils.httpRequest.HttpRequestUtil;
 import com.example.developerandroidx.utils.httpRequest.RequestCallBack;
+import com.example.developerandroidx.utils.httpRequest.RequestLibrary;
 import com.google.gson.Gson;
 
 /**
@@ -21,10 +22,10 @@ public class HistoryBlogViewModel extends BaseViewModel<BaseModel> {
 
         switch (param[0]) {
             case "OkHttp":
-                requestByOkHttp(param[1], param[2]);
+                request(RequestLibrary.OK_HTTP, param[1], param[2]);
                 break;
             case "Volley":
-
+                request(RequestLibrary.VOLLEY, param[1], param[2]);
                 break;
             case "Retrofit":
 
@@ -32,8 +33,8 @@ public class HistoryBlogViewModel extends BaseViewModel<BaseModel> {
         }
     }
 
-    private void requestByOkHttp(String id, String page) {
-        HttpRequestUtil.getInstance().requestByOkHttpGet(Api.getBlogHistory(id, page),
+    private void request(RequestLibrary library, String id, String page) {
+        HttpRequestUtil.getInstance().get(library, Api.getBlogHistory(id, page),
                 new RequestCallBack() {
                     @Override
                     public void onFail(String msg) {
