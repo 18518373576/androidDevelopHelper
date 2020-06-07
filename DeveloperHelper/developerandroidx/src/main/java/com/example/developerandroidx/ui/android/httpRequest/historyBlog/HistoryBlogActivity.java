@@ -19,6 +19,7 @@ import com.example.developerandroidx.ui.widget.webView.TechnologyWebviewActivity
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.PreferenceUtils;
 import com.example.developerandroidx.utils.RouteUtil;
+import com.example.developerandroidx.view.loadingView.LoadingView;
 
 import butterknife.BindView;
 
@@ -26,8 +27,10 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
 
     @BindView(R.id.rcv_blog_history)
     RecyclerView rcv_blog_history;
-    private BlogHistoryRcvAdapter adapter;
+    @BindView(R.id.lv_loading)
+    LoadingView lv_loading;
 
+    private BlogHistoryRcvAdapter adapter;
     private int page = 1;
     private int pageSize = 20;
     private HistoryBlogViewModel viewModel;
@@ -106,6 +109,11 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
     public void onChanged(BaseModel baseModel) {
         HistoryBlogBean historyBlogBean = (HistoryBlogBean) baseModel;
         if (page == 1) {
+            //数据错误
+            if (historyBlogBean == null) {
+                lv_loading.loadingFail(rcv_blog_history, R.mipmap.icon_404);
+                return;
+            }
             adapter.setList(historyBlogBean.data.datas);
             if (historyBlogBean.data.datas.size() < pageSize) {
                 //方法必须在 adapter.setList(之后调用)
@@ -115,6 +123,9 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
                 showView();
             }
         } else {
+            if (historyBlogBean == null) {
+                return;
+            }
             if (page == historyBlogBean.data.pageCount) {
                 adapter.getLoadMoreModule().loadMoreEnd();
             } else {

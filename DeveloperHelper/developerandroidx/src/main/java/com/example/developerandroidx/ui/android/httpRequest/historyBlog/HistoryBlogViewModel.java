@@ -7,6 +7,7 @@ import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.HistoryBlogBean;
 import com.example.developerandroidx.utils.Api;
 import com.example.developerandroidx.utils.httpRequest.HttpRequestUtil;
+import com.example.developerandroidx.utils.httpRequest.RequestCallBack;
 import com.google.gson.Gson;
 
 /**
@@ -32,22 +33,23 @@ public class HistoryBlogViewModel extends BaseViewModel<BaseModel> {
     }
 
     private void requestByOkHttp(String id, String page) {
-        HttpRequestUtil.getInstance().requestByOkHttpGet(Api.getBlogHistory(id, page), new HttpRequestUtil.OkHttpCallBack() {
-            @Override
-            public void onFail(String msg) {
-                setData(null);
-            }
+        HttpRequestUtil.getInstance().requestByOkHttpGet(Api.getBlogHistory(id, page),
+                new RequestCallBack() {
+                    @Override
+                    public void onFail(String msg) {
+                        setData(null);
+                    }
 
-            @Override
-            public void onSuc(String result) {
-                try {
-                    HistoryBlogBean historyBlogBean = new Gson().fromJson(result, HistoryBlogBean.class);
-                    setData(historyBlogBean);
-                } catch (Exception e) {
-                    setData(null);
-                    e.printStackTrace();
-                }
-            }
-        });
+                    @Override
+                    public void onSuc(String result) {
+                        try {
+                            HistoryBlogBean historyBlogBean = new Gson().fromJson(result, HistoryBlogBean.class);
+                            setData(historyBlogBean);
+                        } catch (Exception e) {
+                            setData(null);
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 }

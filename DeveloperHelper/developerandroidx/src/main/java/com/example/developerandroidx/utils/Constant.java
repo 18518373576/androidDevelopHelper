@@ -19,6 +19,14 @@ public class Constant {
     }
 
     /**
+     * 网络请求相关
+     */
+    public static class Internet {
+        public static final int SUC = 200;
+        public static final int FAIL = 404;
+    }
+
+    /**
      * intent参数
      */
     public static class IntentParams {

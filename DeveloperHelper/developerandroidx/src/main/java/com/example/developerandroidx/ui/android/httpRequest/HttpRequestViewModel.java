@@ -7,6 +7,7 @@ import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.BlogListBean;
 import com.example.developerandroidx.utils.Api;
 import com.example.developerandroidx.utils.httpRequest.HttpRequestUtil;
+import com.example.developerandroidx.utils.httpRequest.RequestCallBack;
 import com.google.gson.Gson;
 
 /**
@@ -36,7 +37,7 @@ public class HttpRequestViewModel extends BaseViewModel<BaseModel> {
      */
     private void requestByOkHttp() {
         HttpRequestUtil.getInstance().requestByOkHttpGet(Api.BLOG_LIST,
-                new HttpRequestUtil.OkHttpCallBack() {
+                new RequestCallBack() {
                     @Override
                     public void onFail(String msg) {
                         setData(null);
