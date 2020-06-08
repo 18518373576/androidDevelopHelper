@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import com.example.developerandroidx.base.BaseModel;
 import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.BlogListBean;
-import com.example.developerandroidx.utils.Api;
+import com.example.developerandroidx.utils.api.Api;
 import com.example.developerandroidx.utils.httpRequest.HttpRequestUtil;
 import com.example.developerandroidx.utils.httpRequest.RequestCallBack;
 import com.example.developerandroidx.utils.httpRequest.RequestLibrary;
@@ -28,7 +28,7 @@ public class HttpRequestViewModel extends BaseViewModel<BaseModel> {
                 request(RequestLibrary.VOLLEY);
                 break;
             case "Retrofit":
-
+                request(RequestLibrary.RETROFIT);
                 break;
         }
     }

@@ -1,5 +1,7 @@
 package com.example.developerandroidx.utils.httpRequest;
 
+import com.example.developerandroidx.utils.api.Api;
+
 import java.util.Map;
 
 /**
@@ -33,13 +35,13 @@ public class HttpRequestUtil {
     public void get(RequestLibrary library, String url, RequestCallBack callBack) {
         switch (library) {
             case OK_HTTP:
-                requestByOkHttpGet(url, callBack);
+                requestByOkHttpGet(Api.BASE_URL + url, callBack);
                 break;
             case VOLLEY:
-                requestByVolleyGet(url, callBack);
+                requestByVolleyGet(Api.BASE_URL + url, callBack);
                 break;
             case RETROFIT:
-
+                requestByRetrofitGet(url, callBack);
                 break;
         }
     }
@@ -55,13 +57,13 @@ public class HttpRequestUtil {
     public void post(RequestLibrary library, String url, Map<String, String> params, RequestCallBack callBack) {
         switch (library) {
             case OK_HTTP:
-                requestByOkHttpPost(url, params, callBack);
+                requestByOkHttpPost(Api.BASE_URL + url, params, callBack);
                 break;
             case VOLLEY:
-                requestByVolleyPost(url, params, callBack);
+                requestByVolleyPost(Api.BASE_URL + url, params, callBack);
                 break;
             case RETROFIT:
-
+                requestByRetrofitPost(url, params, callBack);
                 break;
         }
     }
@@ -72,7 +74,7 @@ public class HttpRequestUtil {
      */
     public void requestByOkHttpPost(String url, Map<String, String> params, RequestCallBack callBack) {
         handler.setCallBack(callBack);
-        OkHttp.getInstance().post(url, params, handler);
+        RequestByOkHttp.getInstance().post(url, params, handler);
     }
 
     /**
@@ -81,23 +83,48 @@ public class HttpRequestUtil {
      */
     public void requestByOkHttpGet(String url, RequestCallBack callBack) {
         handler.setCallBack(callBack);
-        OkHttp.getInstance().get(url, handler);
+        RequestByOkHttp.getInstance().get(url, handler);
     }
 
     /**
+     * 使用volley请求数据
+     *
      * @param url      请求的url
      * @param params   请求的参数
      * @param callBack 请求结果回调
      */
     public void requestByVolleyPost(String url, Map<String, String> params, RequestCallBack callBack) {
-        VolleyRequest.getInstance().post(url, params, callBack);
+        RequestByVolley.getInstance().post(url, params, callBack);
     }
 
     /**
+     * 使用volley请求数据
+     *
      * @param url      请求的url
      * @param callBack 请求结果回调
      */
     public void requestByVolleyGet(String url, RequestCallBack callBack) {
-        VolleyRequest.getInstance().get(url, callBack);
+        RequestByVolley.getInstance().get(url, callBack);
+    }
+
+    /**
+     * 使用retrofit请求数据
+     *
+     * @param url
+     * @param callBack
+     */
+    public void requestByRetrofitGet(String url, RequestCallBack callBack) {
+        RequestByRetrofit.getInstance().get(url, callBack);
+    }
+
+    /**
+     * 使用retrofit请求数据
+     *
+     * @param url
+     * @param params
+     * @param callBack
+     */
+    public void requestByRetrofitPost(String url, Map<String, String> params, RequestCallBack callBack) {
+        RequestByRetrofit.getInstance().post(url, params, callBack);
     }
 }

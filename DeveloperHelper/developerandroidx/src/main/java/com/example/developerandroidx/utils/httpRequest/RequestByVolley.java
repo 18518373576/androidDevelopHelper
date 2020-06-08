@@ -1,12 +1,8 @@
 package com.example.developerandroidx.utils.httpRequest;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.developerandroidx.base.App;
@@ -20,19 +16,19 @@ import java.util.Map;
  * 参考：
  * 描述：使用volley请求网络
  */
-public class VolleyRequest {
+public class RequestByVolley {
     private RequestQueue queue;
 
-    private VolleyRequest() {
+    private RequestByVolley() {
         queue = Volley.newRequestQueue(App.context);
     }
 
-    private static class VolleyInterface {
-        public static final VolleyRequest INTERFACE = new VolleyRequest();
+    private static class VolleyInstance {
+        public static final RequestByVolley INTERFACE = new RequestByVolley();
     }
 
-    public static VolleyRequest getInstance() {
-        return VolleyInterface.INTERFACE;
+    public static RequestByVolley getInstance() {
+        return VolleyInstance.INTERFACE;
     }
 
     /**
@@ -45,11 +41,11 @@ public class VolleyRequest {
     public void post(String url, Map<String, String> params, RequestCallBack callBack) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
-                    LogUtils.e("数据访问成功", response);
+                    LogUtils.e("数据访问成功", url + ":" + response);
                     callBack.onSuc(response);
                 },
                 error -> {
-                    LogUtils.e("数据访问失败", error.getMessage());
+                    LogUtils.e("数据访问失败", url + ":" + error.getMessage());
                     callBack.onFail(error.getMessage());
                 }) {
             @Override
@@ -71,11 +67,11 @@ public class VolleyRequest {
     public void get(String url, RequestCallBack callBack) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
-                    LogUtils.e("数据访问成功", response);
+                    LogUtils.e("数据访问成功", url + ":" + response);
                     callBack.onSuc(response);
                 },
                 error -> {
-                    LogUtils.e("数据访问失败", error.getMessage());
+                    LogUtils.e("数据访问失败", url + ":" + error.getMessage());
                     callBack.onFail(error.getMessage());
                 });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(

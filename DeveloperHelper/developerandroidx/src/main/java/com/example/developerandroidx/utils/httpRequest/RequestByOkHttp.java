@@ -23,10 +23,10 @@ import okhttp3.Response;
  * 参考：
  * 描述：使用OkHttp获取数据
  */
-public class OkHttp {
+public class RequestByOkHttp {
     private OkHttpClient client;
 
-    private OkHttp() {
+    private RequestByOkHttp() {
         client = new OkHttpClient.Builder()
                 .connectTimeout(Constant.Internet.CONNECT_TIME_OUT_SECOND, TimeUnit.SECONDS)
                 .readTimeout(Constant.Internet.CONNECT_TIME_OUT_SECOND, TimeUnit.SECONDS)
@@ -35,10 +35,10 @@ public class OkHttp {
     }
 
     private static class OkHttpInstance {
-        public static final OkHttp INSTANCE = new OkHttp();
+        public static final RequestByOkHttp INSTANCE = new RequestByOkHttp();
     }
 
-    public static OkHttp getInstance() {
+    public static RequestByOkHttp getInstance() {
         return OkHttpInstance.INSTANCE;
     }
 

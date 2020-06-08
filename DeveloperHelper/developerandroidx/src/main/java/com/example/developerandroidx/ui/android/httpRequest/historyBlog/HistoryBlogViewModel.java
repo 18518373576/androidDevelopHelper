@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import com.example.developerandroidx.base.BaseModel;
 import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.HistoryBlogBean;
-import com.example.developerandroidx.utils.Api;
+import com.example.developerandroidx.utils.api.Api;
 import com.example.developerandroidx.utils.httpRequest.HttpRequestUtil;
 import com.example.developerandroidx.utils.httpRequest.RequestCallBack;
 import com.example.developerandroidx.utils.httpRequest.RequestLibrary;
@@ -28,7 +28,7 @@ public class HistoryBlogViewModel extends BaseViewModel<BaseModel> {
                 request(RequestLibrary.VOLLEY, param[1], param[2]);
                 break;
             case "Retrofit":
-
+                request(RequestLibrary.RETROFIT, param[1], param[2]);
                 break;
         }
     }

@@ -1,4 +1,4 @@
-package com.example.developerandroidx.utils;
+package com.example.developerandroidx.utils.api;
 
 /**
  * 作者： zjf 2020/6/5 2:57 PM
@@ -6,11 +6,11 @@ package com.example.developerandroidx.utils;
  * 描述：接口
  */
 public class Api {
-    private static final String BASE_URL = "https://www.wanandroid.com/";
+    public static final String BASE_URL = "https://www.wanandroid.com/";
     /**
      * 获取公众号列表
      */
-    public static String BLOG_LIST = BASE_URL + "wxarticle/chapters/json";
+    public static String BLOG_LIST = "wxarticle/chapters/json";
 
     /**
      * 获取公众号历史文章
@@ -20,6 +20,6 @@ public class Api {
      */
     public static String getBlogHistory(String blogId, String page) {
         //https://wanandroid.com/wxarticle/list/408/1/json
-        return BASE_URL + "wxarticle/list/" + blogId + "/" + page + "/json";
+        return "wxarticle/list/" + blogId + "/" + page + "/json";
     }
 }
