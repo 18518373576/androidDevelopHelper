@@ -13,6 +13,7 @@ import com.example.developerandroidx.ui.android.broadcastReceiver.BroadcastRecei
 import com.example.developerandroidx.ui.android.camera.CameraActivity;
 import com.example.developerandroidx.ui.android.dialog.DialogIndexActivity;
 import com.example.developerandroidx.ui.android.fragment.FragmentActivity;
+import com.example.developerandroidx.ui.android.rxJava.RxJavaSampleActivity;
 import com.example.developerandroidx.ui.android.service.ServiceActivity;
 import com.example.developerandroidx.ui.android.touchEvent.TouchEventActivity;
 import com.example.developerandroidx.ui.widget.codeView.CodeViewActivity;
@@ -45,7 +46,7 @@ public class AndroidViewModel extends BaseViewModel<List<FunctionItemBean>> {
         functionList.add(new FunctionItemBean("Layout", R.mipmap.icon_constrain_layout, ""));
         functionList.add(new FunctionItemBean("Sqlite", R.mipmap.icon_sqlite, ""));
         functionList.add(new FunctionItemBean("HttpRequest", R.mipmap.icon_internet, ""));
-        functionList.add(new FunctionItemBean("RXjava", R.mipmap.icon_rxjava, ""));
+        functionList.add(new FunctionItemBean("RxJava", R.mipmap.icon_rxjava, RouteUtil.getDestination(RxJavaSampleActivity.class)));
         functionList.add(new FunctionItemBean("Animation", R.mipmap.icon_animation, RouteUtil.getDestination(AnimationActivity.class)));
         functionList.add(new FunctionItemBean("JNI", R.mipmap.icon_jni, ""));
         functionList.add(new FunctionItemBean("扫码", R.mipmap.icon_scan, ""));
