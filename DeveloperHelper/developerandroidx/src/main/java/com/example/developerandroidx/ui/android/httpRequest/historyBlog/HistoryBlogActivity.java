@@ -19,7 +19,7 @@ import com.example.developerandroidx.ui.widget.webView.TechnologyWebviewActivity
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.PreferenceUtils;
 import com.example.developerandroidx.utils.RouteUtil;
-import com.example.developerandroidx.view.loadingView.LoadingView;
+import com.example.developerandroidx.view.loadingView.LoadingPage;
 
 import butterknife.BindView;
 
@@ -28,7 +28,7 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
     @BindView(R.id.rcv_blog_history)
     RecyclerView rcv_blog_history;
     @BindView(R.id.lv_loading)
-    LoadingView lv_loading;
+    LoadingPage lv_loading;
 
     private BlogHistoryRcvAdapter adapter;
     private int page = 1;

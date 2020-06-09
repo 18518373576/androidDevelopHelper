@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.Constant;
-import com.example.developerandroidx.view.loadingView.LoadingView;
+import com.example.developerandroidx.view.loadingView.LoadingPage;
 
 import butterknife.BindView;
 
@@ -23,7 +23,7 @@ public class TechnologyWebviewActivity extends BaseActivity {
     @BindView(R.id.wv_web)
     WebView wv_web;
     @BindView(R.id.lv_loading)
-    LoadingView lv_loading;
+    LoadingPage lv_loading;
     @BindView(R.id.pb_progress)
     ProgressBar pb_progress;
 

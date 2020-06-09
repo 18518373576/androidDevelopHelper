@@ -26,7 +26,7 @@
         android:progressDrawable="@drawable/progress_drawable"
         app:layout_constraintTop_toBottomOf="@+id/include7" />
 
-    <com.example.developerandroidx.view.loadingView.LoadingView
+    <com.example.developerandroidx.view.loadingView.LoadingPage
         android:id="@+id/lv_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

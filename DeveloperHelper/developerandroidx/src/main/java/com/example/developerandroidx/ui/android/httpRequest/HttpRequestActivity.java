@@ -17,7 +17,7 @@ import com.example.developerandroidx.ui.android.httpRequest.historyBlog.HistoryB
 import com.example.developerandroidx.utils.Constant;
 import com.example.developerandroidx.utils.PreferenceUtils;
 import com.example.developerandroidx.utils.RouteUtil;
-import com.example.developerandroidx.view.loadingView.LoadingView;
+import com.example.developerandroidx.view.loadingView.LoadingPage;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class HttpRequestActivity extends BaseActivity implements BaseRcvAdapter.
     @BindView(R.id.rcv_blog)
     RecyclerView rcv_blog;
     @BindView(R.id.lv_loading)
-    LoadingView lv_loading;
+    LoadingPage lv_loading;
 
     private String requestLibrary;
     private HttpRequestViewModel viewModel;

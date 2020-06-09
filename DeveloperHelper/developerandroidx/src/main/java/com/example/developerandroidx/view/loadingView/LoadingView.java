@@ -1,29 +1,31 @@
 package com.example.developerandroidx.view.loadingView;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.example.developerandroidx.utils.PixelTransformForAppUtil;
 
 /**
  * 作者： zjf 2020/6/6 3:14 PM
  * 参考：
- * 描述：页面加载页面，目标提供功能
- * onLoading()正在加载，显示加载动画
- * loadingSuc()加载成功，隐藏LoadingView展示内容View
- * loadingFail()加载失败，展示加载失败提醒
- * noData()无数据
+ * 描述：加载动画
  */
-public class LoadingView extends RelativeLayout {
+public class LoadingView extends View {
     private Context context;
+    private int size;
+    private int paintColor;
+    private Paint mPaint;
+
+    private final int LINE_COUNT = 12;//画的线的数量
+    private final int LINE_ANGLE = 360 / LINE_COUNT;//线旋转的角度
 
     public LoadingView(Context context) {
-        super(context);
-        initView(context);
+        this(context, null);
     }
 
     public LoadingView(Context context, AttributeSet attrs) {
@@ -31,30 +33,86 @@ public class LoadingView extends RelativeLayout {
         initView(context);
     }
 
-    public LoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView(context);
-    }
-
     private void initView(Context context) {
         this.context = context;
-        this.setVisibility(GONE);
-        this.setBackgroundColor(Color.rgb(255, 255, 255));
+        //设置默认大小和颜色
+        size = PixelTransformForAppUtil.dip2px(100);
+        paintColor = Color.RED;
+        initPaint();
     }
 
     /**
-     * 加载失败
-     *
-     * @param contentView 内容展示的view，失败后隐藏
-     * @imageId 加载失败展示的图片ID
+     * 初始化画笔
      */
-    public void loadingFail(View contentView, int imageId) {
-        contentView.setVisibility(GONE);
-        this.setVisibility(VISIBLE);
-        ImageView loadingFailImage = new ImageView(context);
-        loadingFailImage.setImageResource(imageId);
-        LayoutParams params = new LayoutParams(PixelTransformForAppUtil.dip2px(100), PixelTransformForAppUtil.dip2px(100));
-        params.addRule(CENTER_IN_PARENT);
-        this.addView(loadingFailImage, params);
+    private void initPaint() {
+        mPaint = new Paint();
+        mPaint.setColor(paintColor);
+        //抗锯齿
+        mPaint.setAntiAlias(true);
+        //设置圆形画笔
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+    }
+
+    /**
+     * 设置loadingView大小,使用dp设置
+     *
+     * @param dpSize
+     */
+    public void setSize(int dpSize) {
+        this.size = PixelTransformForAppUtil.dip2px(dpSize);
+        //改变大小
+        requestLayout();
+    }
+
+    /**
+     * 设置颜色
+     *
+     * @param color 颜色值
+     */
+    public void setColor(int color) {
+        paintColor = color;
+        mPaint.setColor(color);
+        invalidate();
+    }
+
+    /**
+     * 绘制view大小
+     *
+     * @param widthMeasureSpec
+     * @param heightMeasureSpec
+     */
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        setMeasuredDimension(size, size);
+    }
+
+    /**
+     * 绘制自定义view
+     *
+     * @param canvas
+     */
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+//        int saveCount
+//        canvas.drawColor(Color.BLUE);
+        drawLoading(canvas);
+    }
+
+    private void drawLoading(Canvas canvas) {
+        int width = size / 12, height = size / 6;
+        mPaint.setStrokeWidth(width);
+        canvas.translate(size / 2, size / 2);
+
+        for (int i = 0; i < LINE_COUNT; i++) {
+            canvas.rotate(LINE_ANGLE);
+            mPaint.setAlpha((int) (255f * (i + 1) / LINE_COUNT));
+            canvas.translate(0, -size / 2 + width / 2);
+            canvas.drawLine(0, 0, 0, height, mPaint);
+//            canvas.drawRect(new Rect(0, 0, size, size), mPaint);
+
+            canvas.translate(0, size / 2 - width / 2);
+        }
+
     }
 }
