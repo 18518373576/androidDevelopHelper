@@ -135,6 +135,20 @@ public class DialogUtils {
     }
 
     /**
+     * 展示消息对话框
+     *
+     * @param context
+     * @param msg
+     */
+    public void showMessageDialog(Context context, String msg) {
+        MessageDialog.build((AppCompatActivity) context)
+                .setTitle("提示")
+                .setMessage(msg)
+                .setStyle(DialogSettings.STYLE.STYLE_IOS)
+                .show();
+    }
+
+    /**
      * 展示loading框
      *
      * @param context
