@@ -22,6 +22,7 @@ import com.kongzue.dialog.util.BaseDialog;
 import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.util.TextInfo;
 import com.kongzue.dialog.util.view.BlurView;
+import com.kongzue.dialog.util.view.LoadingView;
 import com.kongzue.dialog.util.view.ProgressView;
 
 import java.lang.ref.WeakReference;
@@ -59,7 +60,7 @@ public class TipDialog extends BaseDialog {
     private RelativeLayout boxBody;
     private RelativeLayout boxBlur;
     private RelativeLayout boxProgress;
-    private ProgressView progress;
+    private LoadingView progress;
     private RelativeLayout boxTip;
     private TextView txtInfo;
 
@@ -267,7 +268,7 @@ public class TipDialog extends BaseDialog {
                     bkgResId = R.drawable.rect_light;
                     int darkColor = Color.rgb(0, 0, 0);
                     blurFrontColor = Color.argb(blurAlpha, 255, 255, 255);
-                    progress.setup(R.color.black);
+                    progress.setColor(Color.BLACK);
                     txtInfo.setTextColor(darkColor);
                     if (type != null) {
                         boxProgress.setVisibility(View.GONE);
@@ -295,7 +296,7 @@ public class TipDialog extends BaseDialog {
                     bkgResId = R.drawable.rect_dark;
                     int lightColor = Color.rgb(255, 255, 255);
                     blurFrontColor = Color.argb(blurAlpha, 0, 0, 0);
-                    progress.setup(R.color.white);
+                    progress.setColor(Color.WHITE);
                     txtInfo.setTextColor(lightColor);
                     if (type != null) {
                         boxProgress.setVisibility(View.GONE);

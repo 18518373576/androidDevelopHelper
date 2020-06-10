@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">DevelopHelper</string>
+    <string name="app_name" translatable="false">&#060;D/H></string>
     <!--    <string name="title_home">Home</string>-->
     <!--    <string name="title_dashboard">Dashboard</string>-->
     <!--    <string name="title_notifications">Notifications</string>-->
-    <string name="android">Android</string>
-    <string name="java">Java</string>
-    <string name="widget">Widget</string>
-    <string name="code">code</string>
-    <string name="operator">操作符</string>
+    <string name="android" translatable="false">Android</string>
+    <string name="java" translatable="false">Java</string>
+    <string name="widget" translatable="false">Widget</string>
+    <string name="code" translatable="false">code</string>
+    <string name="operator" translatable="false">操作符</string>
 </resources>
