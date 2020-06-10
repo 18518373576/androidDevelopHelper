@@ -15,13 +15,16 @@ import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.utils.DialogUtils;
 
 import java.nio.Buffer;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.BiConsumer;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -215,6 +218,64 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
                             @Override
                             public void accept(String s) throws Exception {
                                 DialogUtils.getInstance().showTip(context, s);
+                            }
+                        });
+                break;
+            case 10:
+                //将先发送数据的Observable的最后一个数据，与后发送数据的Observable中的每一个数据组合，最终基于组合后的数据发送结果
+                Observable.combineLatest(Observable.just(1, 2, 3), Observable.intervalRange(1, 5, 0, 1, TimeUnit.SECONDS), (integer, aLong) -> integer + aLong)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<Long>() {
+                            @Override
+                            public void accept(Long aLong) throws Exception {
+                                DialogUtils.getInstance().showTip(context, String.valueOf(aLong));
+                            }
+                        });
+                break;
+            case 11:
+                buffer = new StringBuffer();
+                //把被观察者发送的事件合并为一个事件发送
+                Observable.just(1, 2, 3, 4).reduce((integer, integer2) -> {
+                    buffer.append(integer + "*" + integer2 + "=" + integer * integer2 + "\n");
+                    return integer * integer2;
+                }).subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        buffer.append("最终结果:" + integer);
+                        DialogUtils.getInstance().showMessageDialog(context, buffer.toString());
+                    }
+                });
+                break;
+            case 12:
+                //把Observable发送的数据组合到一个数据结构里面
+                Observable.just(1, 2, 3, 4, 5).collect(() -> new ArrayList<>(), (BiConsumer<List<Integer>, Integer>) (integers, integer) -> integers.add(integer))
+                        .subscribe(new Consumer<ArrayList<Integer>>() {
+                            @Override
+                            public void accept(ArrayList<Integer> integers) throws Exception {
+                                DialogUtils.getInstance().showTip(context, "集合的size:" + integers.size());
+                            }
+                        });
+                break;
+            case 13:
+                buffer = new StringBuffer();
+                buffer.append(" ");
+                //在被观察者发送事件之前追加数据
+                Observable.just(4, 5, 6).startWith(Observable.just(1, 2, 3))
+                        .subscribe(new Consumer<Integer>() {
+                            @Override
+                            public void accept(Integer integer) throws Exception {
+                                buffer.append(integer + " ");
+                            }
+                        });
+                DialogUtils.getInstance().showMessageDialog(context, buffer.toString());
+                break;
+            case 14:
+                Observable.just(1, 2, 3).count()
+                        .subscribe(new Consumer<Long>() {
+                            @Override
+                            public void accept(Long aLong) throws Exception {
+                                DialogUtils.getInstance().showTip(context, "count:" + aLong);
                             }
                         });
                 break;
