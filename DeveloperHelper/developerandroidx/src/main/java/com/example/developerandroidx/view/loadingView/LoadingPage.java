@@ -44,20 +44,35 @@ public class LoadingPage extends RelativeLayout {
      * @imageId 加载失败展示的图片ID
      */
     public void loadingFail(View contentView, int imageId) {
+        this.removeAllViews();
         contentView.setVisibility(GONE);
         this.setVisibility(VISIBLE);
         ImageView loadingFailImage = new ImageView(context);
         loadingFailImage.setImageResource(imageId);
         LayoutParams params = new LayoutParams(PixelTransformForAppUtil.dip2px(100), PixelTransformForAppUtil.dip2px(100));
         params.addRule(CENTER_IN_PARENT);
+        this.addView(loadingFailImage, params);
+    }
+
+    public void onLoading(View contentView) {
+        this.removeAllViews();
+        contentView.setVisibility(GONE);
+        this.setVisibility(VISIBLE);
+        LayoutParams params = new LayoutParams(PixelTransformForAppUtil.dip2px(100), PixelTransformForAppUtil.dip2px(100));
+        params.addRule(CENTER_IN_PARENT);
         this.addView(new LoadingView(context), params);
     }
 
-    public void onLoading() {
+    public void loadingSuc(View contentView) {
+        if (contentView.getVisibility() == VISIBLE) {
+            return;
+        }
+        contentView.setAlpha(0);
+        contentView.setVisibility(View.VISIBLE);
+        contentView.animate().alpha(1f).setDuration(500);
 
-    }
-
-    public void loadingSuc() {
+        this.setVisibility(GONE);
+        this.removeAllViews();
     }
 
     public void noData() {

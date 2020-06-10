@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.developerandroidx" >
+    package="com.example.developerandroidx">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 开启前台服务权限 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 华为桌面角标权限 -->
@@ -18,9 +18,8 @@
         android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppThemeNoActionBar" >
-        <activity android:name=".ui.android.rxJava.RxJavaSampleActivity" >
-        </activity>
+        android:theme="@style/AppThemeNoActionBar">
+        <activity android:name=".ui.android.rxJava.RxJavaSampleActivity"></activity>
         <activity android:name=".ui.android.httpRequest.historyBlog.HistoryBlogActivity" />
         <activity
             android:name=".ui.android.httpRequest.HttpRequestActivity"
@@ -35,7 +34,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.developerandroidx"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
@@ -65,7 +64,7 @@
         <receiver
             android:name=".ui.android.broadcastReceiver.AppBroadcastReceiver"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
 
             <!-- <intent-filter> -->
             <!-- 必须在activity动态申请此广播，清单文件申请无效 -->
@@ -138,7 +137,7 @@
             android:name=".ui.android.activity.actionIntent.ActionIntentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/DialogActivityTheme"
-            tools:ignore="LockedOrientationActivity" >
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="com.example.developerandroidx.ActionIntentActivity" />
 
@@ -199,7 +198,7 @@
             android:name=".ui.widget.codeView.CodeViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CodeViewAppTheme"
-            tools:ignore="LockedOrientationActivity" >
+            tools:ignore="LockedOrientationActivity">
 
             <!-- 问题描述:切换屏幕为横屏时刘海区域会出现黑边 -->
             <!-- 解决方案:添加以下meta属性,并在theme里面设置windowBackground为界面颜色即可,适用于华为手机,其他品牌未测试 -->
@@ -219,7 +218,9 @@
         <activity
             android:name=".ui.android.activity.ActivityAnalysisActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" >
+            tools:ignore="LockedOrientationActivity">
+            <!-- 问题描述:切换屏幕为横屏时刘海区域会出现黑边 -->
+            <!-- 解决方案:添加以下meta属性,并在theme里面设置windowBackground为界面颜色即可,适用于华为手机,其他品牌未测试 -->
             <meta-data
                 android:name="android.notch_support"
                 android:value="true" />
@@ -229,7 +230,7 @@
             android:alwaysRetainTaskState="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" >
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

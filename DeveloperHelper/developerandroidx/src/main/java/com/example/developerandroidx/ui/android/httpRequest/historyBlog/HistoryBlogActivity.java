@@ -61,6 +61,8 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
         id = getIntent().getStringExtra(Constant.IntentParams.INTENT_PARAM);
         requestLibrary = PreferenceUtils.getInstance().getStringalue(Constant.PreferenceKeys.HTTP_REQUEST_LIBRARY);
         viewModel = (HistoryBlogViewModel) getViewModel(this, HistoryBlogViewModel.class);
+
+        lv_loading.onLoading(rcv_blog_history);
         loadData();
     }
 
@@ -69,12 +71,6 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
      */
     private void loadData() {
         viewModel.getData(requestLibrary, id, String.valueOf(page)).observe(this, this);
-    }
-
-    private void showView() {
-        rcv_blog_history.setAlpha(0);
-        rcv_blog_history.setVisibility(View.VISIBLE);
-        rcv_blog_history.animate().alpha(1f).setDuration(500);
     }
 
     /**
@@ -119,9 +115,7 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
                 //方法必须在 adapter.setList(之后调用)
                 adapter.getLoadMoreModule().loadMoreEnd();
             }
-            if (rcv_blog_history.getVisibility() == View.INVISIBLE) {
-                showView();
-            }
+            lv_loading.loadingSuc(rcv_blog_history);
         } else {
             if (historyBlogBean == null) {
                 return;

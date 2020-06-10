@@ -55,6 +55,7 @@ public class HttpRequestActivity extends BaseActivity implements BaseRcvAdapter.
     @Override
     protected void initData() {
         super.initData();
+        lv_loading.onLoading(rcv_blog);
         /**
          * {@link com.example.developerandroidx.ui.android.httpRequest.dialog.HttpRequestLibraryDialog}
          *  请求使用的库 "OkHttp", "Volley", "Retrofit"
@@ -68,24 +69,14 @@ public class HttpRequestActivity extends BaseActivity implements BaseRcvAdapter.
                 if (baseModel == null) {
                     lv_loading.loadingFail(rcv_blog, R.mipmap.icon_404);
                 } else {
+
                     BlogListBean blogListBean = (BlogListBean) baseModel;
                     adapter.notifyDataChanged(blogListBean.data);
-                    if (rcv_blog.getVisibility() == View.INVISIBLE) {
-                        showView();
-                    }
+
+                    lv_loading.loadingSuc(rcv_blog);
                 }
             }
         });
-    }
-
-    /**
-     * 加载数据过后展示列表
-     * 目前网络比较快，加载少量数据，为了更好的体验使用动画过渡，不使用loading框
-     */
-    private void showView() {
-        rcv_blog.setAlpha(0);
-        rcv_blog.setVisibility(View.VISIBLE);
-        rcv_blog.animate().alpha(1f).setDuration(500);
     }
 
     /**
