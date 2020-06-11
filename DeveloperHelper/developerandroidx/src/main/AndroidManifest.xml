@@ -18,8 +18,9 @@
         android:resizeableActivity="true"
         android:roundIcon="@mipmap/icon_lancher"
         android:supportsRtl="true"
-        android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".ui.android.rxJava.RxJavaSampleActivity"></activity>
+        android:theme="@style/AppThemeNoActionBar"
+        tools:targetApi="n">
+        <activity android:name=".ui.android.rxJava.RxJavaSampleActivity"/>
         <activity android:name=".ui.android.httpRequest.historyBlog.HistoryBlogActivity" />
         <activity
             android:name=".ui.android.httpRequest.HttpRequestActivity"
@@ -175,14 +176,6 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.android.dialog.KongZueDialogActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".ui.android.architecture.ArchitectureIndexActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".ui.android.dialog.DialogIndexActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity

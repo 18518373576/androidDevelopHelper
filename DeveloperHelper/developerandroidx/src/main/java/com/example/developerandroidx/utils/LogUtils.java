@@ -14,4 +14,10 @@ public class LogUtils {
             Log.e(TAG, log);
         }
     }
+
+    public static void d(String TAG, String log) {
+        if (Constant.isDebug) {
+            Log.d(TAG, log);
+        }
+    }
 }

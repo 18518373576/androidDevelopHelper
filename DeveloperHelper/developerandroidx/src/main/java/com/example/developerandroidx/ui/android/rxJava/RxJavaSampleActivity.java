@@ -12,23 +12,28 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.adapter.quickAdapter.RxJavaSampleRcvAdapter;
 import com.example.developerandroidx.base.BaseActivity;
+import com.example.developerandroidx.model.BlogListBean;
+import com.example.developerandroidx.ui.android.rxJava.smaple.RxJavaSmaple;
 import com.example.developerandroidx.utils.DialogUtils;
+import com.example.developerandroidx.utils.LogUtils;
+import com.example.developerandroidx.utils.api.Api;
+import com.example.developerandroidx.utils.api.RxJavaApi;
+import com.example.developerandroidx.utils.enumPkg.TipType;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiConsumer;
-import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * 作者： zjf 2020/6/8 2:13 PM
@@ -42,6 +47,9 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
     private RxJavaSampleRcvAdapter adapter;
     private RxJavaSampleViewModel viewModel;
     private String currentList = "操作符";//当前展示的列表
+
+    private String TAG = "RxJava";
+    private RxJavaSmaple smaple;
 
     @Override
     protected int bindLayout() {
@@ -75,6 +83,7 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
                 adapter.setList(strings);
             }
         });
+        smaple = new RxJavaSmaple(context);
     }
 
     private StringBuffer buffer;
@@ -92,7 +101,16 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
     }
 
     private void showSample(int position) {
-
+        switch (position) {
+            case 0:
+                //无条件轮询请求网络,轮询3次，间隔2秒
+                smaple.getBlogList_1();
+                break;
+            case 1:
+                //有条件轮询
+                smaple.getBlogList_2();
+                break;
+        }
     }
 
     private void showOperator(int position) {
@@ -205,7 +223,7 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
                         .subscribe(new Consumer<Long>() {
                             @Override
                             public void accept(Long aLong) throws Exception {
-                                DialogUtils.getInstance().showTip(context, aLong + "");
+                                DialogUtils.getInstance().showWarningTip(context, aLong + "");
                             }
                         });
                 break;
@@ -217,7 +235,7 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
                         .subscribe(new Consumer<String>() {
                             @Override
                             public void accept(String s) throws Exception {
-                                DialogUtils.getInstance().showTip(context, s);
+                                DialogUtils.getInstance().showWarningTip(context, s);
                             }
                         });
                 break;
@@ -229,7 +247,7 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
                         .subscribe(new Consumer<Long>() {
                             @Override
                             public void accept(Long aLong) throws Exception {
-                                DialogUtils.getInstance().showTip(context, String.valueOf(aLong));
+                                DialogUtils.getInstance().showWarningTip(context, String.valueOf(aLong));
                             }
                         });
                 break;
@@ -253,7 +271,7 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
                         .subscribe(new Consumer<ArrayList<Integer>>() {
                             @Override
                             public void accept(ArrayList<Integer> integers) throws Exception {
-                                DialogUtils.getInstance().showTip(context, "集合的size:" + integers.size());
+                                DialogUtils.getInstance().showWarningTip(context, "集合的size:" + integers.size());
                             }
                         });
                 break;
@@ -275,7 +293,7 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
                         .subscribe(new Consumer<Long>() {
                             @Override
                             public void accept(Long aLong) throws Exception {
-                                DialogUtils.getInstance().showTip(context, "count:" + aLong);
+                                DialogUtils.getInstance().showWarningTip(context, "count:" + aLong);
                             }
                         });
                 break;

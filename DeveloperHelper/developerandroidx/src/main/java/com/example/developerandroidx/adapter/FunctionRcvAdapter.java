@@ -10,6 +10,8 @@ import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.base.BaseRcvHolder;
 import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.model.FunctionItemBean;
+import com.example.developerandroidx.ui.android.architecture.index.ArchitectureIndexDialog;
+import com.example.developerandroidx.ui.android.dialog.indexDialog.IndexDialog;
 import com.example.developerandroidx.ui.android.httpRequest.dialog.HttpRequestLibraryDialog;
 import com.example.developerandroidx.ui.android.notification.NotificationDialog;
 import com.example.developerandroidx.utils.Constant;
@@ -57,8 +59,14 @@ public class FunctionRcvAdapter extends BaseRcvAdapter<FunctionItemBean> {
                         case "HttpRequest":
                             new HttpRequestLibraryDialog().show(v.getContext());
                             break;
+                        case "Dialog":
+                            new IndexDialog().show(v.getContext());
+                            break;
+                        case "架构":
+                            new ArchitectureIndexDialog().show(v.getContext());
+                            break;
                         default:
-                            DialogUtils.getInstance().showTip(v.getContext(), "developing");
+                            DialogUtils.getInstance().showWarningTip(v.getContext(), "developing");
                             break;
                     }
                 }

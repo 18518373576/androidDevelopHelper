@@ -8,10 +8,8 @@ import com.example.developerandroidx.base.BaseViewModel;
 import com.example.developerandroidx.model.FunctionItemBean;
 import com.example.developerandroidx.ui.android.activity.ActivityAnalysisActivity;
 import com.example.developerandroidx.ui.android.animation.AnimationActivity;
-import com.example.developerandroidx.ui.android.architecture.ArchitectureIndexActivity;
 import com.example.developerandroidx.ui.android.broadcastReceiver.BroadcastReceiverActivity;
 import com.example.developerandroidx.ui.android.camera.CameraActivity;
-import com.example.developerandroidx.ui.android.dialog.DialogIndexActivity;
 import com.example.developerandroidx.ui.android.fragment.FragmentActivity;
 import com.example.developerandroidx.ui.android.rxJava.RxJavaSampleActivity;
 import com.example.developerandroidx.ui.android.service.ServiceActivity;
@@ -37,7 +35,7 @@ public class AndroidViewModel extends BaseViewModel<List<FunctionItemBean>> {
         functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, RouteUtil.getDestination(BroadcastReceiverActivity.class)));
         functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
         functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, RouteUtil.getDestination(FragmentActivity.class)));
-        functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_dialog, RouteUtil.getDestination(DialogIndexActivity.class)));
+        functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_dialog, ""));
         functionList.add(new FunctionItemBean("Notification", R.mipmap.icon_notification, ""));
         functionList.add(new FunctionItemBean("Touch event", R.mipmap.icon_touch_event, RouteUtil.getDestination(TouchEventActivity.class)));
         functionList.add(new FunctionItemBean("Bluetooth", R.mipmap.icon_bluetooth, ""));
@@ -50,7 +48,7 @@ public class AndroidViewModel extends BaseViewModel<List<FunctionItemBean>> {
         functionList.add(new FunctionItemBean("Animation", R.mipmap.icon_animation, RouteUtil.getDestination(AnimationActivity.class)));
         functionList.add(new FunctionItemBean("JNI", R.mipmap.icon_jni, ""));
         functionList.add(new FunctionItemBean("扫码", R.mipmap.icon_scan, ""));
-        functionList.add(new FunctionItemBean("架构", R.mipmap.icon_architecture, RouteUtil.getDestination(ArchitectureIndexActivity.class)));
+        functionList.add(new FunctionItemBean("架构", R.mipmap.icon_architecture, ""));
         functionList.add(new FunctionItemBean("DataBinding", R.mipmap.icon_data_binding, ""));
         functionList.add(new FunctionItemBean("地图", R.mipmap.icon_map, ""));
         functionList.add(new FunctionItemBean("性能优化", R.mipmap.icon_performance_optimization,

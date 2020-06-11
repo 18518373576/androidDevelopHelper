@@ -7,8 +7,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.developerandroidx.R;
+import com.example.developerandroidx.utils.enumPkg.TipType;
 import com.example.developerandroidx.view.ExtensibleScrollView.ExtensibleScrollView;
-import com.kongzue.dialog.interfaces.OnDismissListener;
 import com.kongzue.dialog.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialog.util.DialogSettings;
 import com.kongzue.dialog.v3.BottomMenu;
@@ -16,9 +16,6 @@ import com.kongzue.dialog.v3.FullScreenDialog;
 import com.kongzue.dialog.v3.MessageDialog;
 import com.kongzue.dialog.v3.TipDialog;
 import com.kongzue.dialog.v3.WaitDialog;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * @作者： zjf 2020/5/15 9:17
@@ -86,8 +83,22 @@ public class DialogUtils {
      *
      * @param context
      */
-    public void showTip(Context context, String msg) {
-        TipDialog.show((AppCompatActivity) context, msg, TipDialog.TYPE.WARNING);
+    public void showWarningTip(Context context, String msg) {
+        showTip(context, TipType.WARNING, msg);
+    }
+
+    public void showTip(Context context, TipType tipType, String msg) {
+        switch (tipType) {
+            case SUC:
+                TipDialog.show((AppCompatActivity) context, msg, TipDialog.TYPE.SUCCESS);
+                break;
+            case ERR:
+                TipDialog.show((AppCompatActivity) context, msg, TipDialog.TYPE.ERROR);
+                break;
+            case WARNING:
+                TipDialog.show((AppCompatActivity) context, msg, TipDialog.TYPE.WARNING);
+                break;
+        }
     }
 
     /**
