@@ -110,6 +110,18 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
                 //有条件轮询
                 smaple.getBlogList_2();
                 break;
+            case 2:
+                //嵌套请求,根据获取的Id再去请求历史记录
+                smaple.getBlogList_3();
+                break;
+            case 3:
+                //合并多个请求结果
+                smaple.getBlogList_4();
+                break;
+            case 4:
+                //请求失败后,尝试切换IP继续请求
+                smaple.getBlogList_5();
+                break;
         }
     }
 

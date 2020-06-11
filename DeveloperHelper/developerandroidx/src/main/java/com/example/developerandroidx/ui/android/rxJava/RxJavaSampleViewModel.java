@@ -38,8 +38,11 @@ public class RxJavaSampleViewModel extends BaseViewModel<List<String>> {
                 list.add("15.统计被观察者发送事件的数量\n\nObservable.just(1, 2, 3)\n      .count()");
                 break;
             case "实际应用":
-                list.add("(无条件)网络请求轮询(3次)");
+                list.add("(无条件)网络请求轮询");
                 list.add("(有条件)网络请求轮询");
+                list.add("嵌套网络请求,首个接口请求成功后接着请求第二个");
+                list.add("合并多个请求的请求结果");
+                list.add("请求失败后,尝试切换IP继续访问");
                 break;
 
         }
