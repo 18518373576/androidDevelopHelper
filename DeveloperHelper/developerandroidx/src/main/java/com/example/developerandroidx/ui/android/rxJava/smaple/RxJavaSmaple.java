@@ -15,6 +15,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -246,7 +248,31 @@ public class RxJavaSmaple {
     /**
      * 请求失败后,切换ip重新请求
      */
+    @SuppressLint("CheckResult")
     public void getBlogList_5() {
+        Observable<BlogListBean> errObservable = Observable
+                .create(new ObservableOnSubscribe<BlogListBean>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<BlogListBean> emitter) throws Exception {
+                        DialogUtils.getInstance().showTip(context, TipType.ERR, "错误,继续请求");
+                        emitter.onComplete();
+                    }
+                })
+                .subscribeOn(Schedulers.io());
+        Observable<BlogListBean> sucObservable = rxJavaApi.getBlogList()
+                .subscribeOn(Schedulers.io())
+                .delay(2, TimeUnit.SECONDS);
 
+        Observable
+                .concat(errObservable, sucObservable)
+                .observeOn(AndroidSchedulers.mainThread())
+                //以此发送事件,直到遇到无错误发生的事件,流程终止
+                .firstElement()
+                .subscribe(new Consumer<BlogListBean>() {
+                    @Override
+                    public void accept(BlogListBean blogListBean) throws Exception {
+                        DialogUtils.getInstance().showTip(context, TipType.SUC, String.valueOf(blogListBean.data.size()));
+                    }
+                });
     }
 }
