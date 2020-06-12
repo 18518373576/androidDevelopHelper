@@ -122,6 +122,10 @@ public class RxJavaSampleActivity extends BaseActivity implements OnItemClickLis
                 //请求失败后,尝试切换IP继续请求
                 smaple.getBlogList_5();
                 break;
+            case 5:
+                //请求失败后,重新请求
+                smaple.getBlogList_6();
+                break;
         }
     }
 

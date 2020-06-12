@@ -1,6 +1,5 @@
 package com.example.developerandroidx.ui.android.rxJava.smaple;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.example.developerandroidx.model.BlogListBean;
@@ -171,7 +170,6 @@ public class RxJavaSmaple {
     /**
      * 嵌套网络请求
      */
-    @SuppressLint("CheckResult")
     public void getBlogList_3() {
         Observable<BlogListBean> observable1 = rxJavaApi.getBlogList();
 
@@ -192,11 +190,26 @@ public class RxJavaSmaple {
                                 .observeOn(AndroidSchedulers.mainThread());
                     }
                 })
-                .subscribe(new Consumer<HistoryBlogBean>() {
+                .subscribe(new Observer<HistoryBlogBean>() {
                     @Override
-                    public void accept(HistoryBlogBean historyBlogBean) throws Exception {
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(HistoryBlogBean historyBlogBean) {
                         //获取第二个接口的结果
                         DialogUtils.getInstance().showTip(context, TipType.SUC, "根据ID获取列表:" + historyBlogBean.data.datas.size());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        DialogUtils.getInstance().showTip(context, TipType.ERR, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
 
@@ -205,7 +218,6 @@ public class RxJavaSmaple {
     /**
      * 合并多个请求的请求结果
      */
-    @SuppressLint("CheckResult")
     public void getBlogList_4() {
         //结合getBlogList_3的例子实现,历史文章第一页和第二页的数据合并
         Observable<BlogListBean> observable1 = rxJavaApi.getBlogList();
@@ -236,11 +248,26 @@ public class RxJavaSmaple {
                                 .observeOn(AndroidSchedulers.mainThread());
                     }
                 })
-                .subscribe(new Consumer<HistoryBlogBean>() {
+                .subscribe(new Observer<HistoryBlogBean>() {
                     @Override
-                    public void accept(HistoryBlogBean historyBlogBean) throws Exception {
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(HistoryBlogBean historyBlogBean) {
                         //获取合并请求结果
                         DialogUtils.getInstance().showTip(context, TipType.SUC, "根据ID获取列表:" + historyBlogBean.data.datas.size());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        DialogUtils.getInstance().showTip(context, TipType.ERR, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }
@@ -248,14 +275,16 @@ public class RxJavaSmaple {
     /**
      * 请求失败后,切换ip重新请求
      */
-    @SuppressLint("CheckResult")
     public void getBlogList_5() {
+
+        /**
+         * 模拟一下请求失败
+         */
         Observable<BlogListBean> errObservable = Observable
                 .create(new ObservableOnSubscribe<BlogListBean>() {
                     @Override
                     public void subscribe(ObservableEmitter<BlogListBean> emitter) throws Exception {
-                        DialogUtils.getInstance().showTip(context, TipType.ERR, "错误,继续请求");
-                        emitter.onComplete();
+                        emitter.onError(new Throwable("错误,继续请求"));
                     }
                 })
                 .subscribeOn(Schedulers.io());
@@ -263,15 +292,83 @@ public class RxJavaSmaple {
                 .subscribeOn(Schedulers.io())
                 .delay(2, TimeUnit.SECONDS);
 
-        Observable
-                .concat(errObservable, sucObservable)
+        errObservable
                 .observeOn(AndroidSchedulers.mainThread())
-                //以此发送事件,直到遇到无错误发生的事件,流程终止
-                .firstElement()
-                .subscribe(new Consumer<BlogListBean>() {
+                .subscribe(new Observer<BlogListBean>() {
                     @Override
-                    public void accept(BlogListBean blogListBean) throws Exception {
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BlogListBean blogListBean) {
                         DialogUtils.getInstance().showTip(context, TipType.SUC, String.valueOf(blogListBean.data.size()));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        DialogUtils.getInstance().showTip(context, TipType.ERR, e.getMessage());
+                        //没想到合适的操作符,只能在这里嵌套使用了
+                        sucObservable
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Observer<BlogListBean>() {
+                                    @Override
+                                    public void onSubscribe(Disposable d) {
+
+                                    }
+
+                                    @Override
+                                    public void onNext(BlogListBean blogListBean) {
+                                        DialogUtils.getInstance().showTip(context, TipType.SUC, String.valueOf(blogListBean.data.size()));
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        DialogUtils.getInstance().showTip(context, TipType.ERR, e.getMessage());
+                                    }
+
+                                    @Override
+                                    public void onComplete() {
+
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    /**
+     * 请求失败重新请求
+     */
+    public void getBlogList_6() {
+        DialogUtils.getInstance().showLoadingDialog(context, "正在加载...");
+        rxJavaApi.getBlogList()
+                .delay(2, TimeUnit.SECONDS)
+                .retry(3)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BlogListBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BlogListBean blogListBean) {
+                        DialogUtils.getInstance().showTip(context, TipType.SUC, "获取数据:" + blogListBean.data.size());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        DialogUtils.getInstance().showTip(context, TipType.ERR, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
                     }
                 });
     }

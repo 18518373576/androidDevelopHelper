@@ -88,17 +88,22 @@ public class DialogUtils {
     }
 
     public void showTip(Context context, TipType tipType, String msg) {
+        //默认为成功提示框
+        TipDialog.TYPE type = TipDialog.TYPE.SUCCESS;
         switch (tipType) {
-            case SUC:
-                TipDialog.show((AppCompatActivity) context, msg, TipDialog.TYPE.SUCCESS);
-                break;
             case ERR:
-                TipDialog.show((AppCompatActivity) context, msg, TipDialog.TYPE.ERROR);
+                type = TipDialog.TYPE.ERROR;
                 break;
             case WARNING:
-                TipDialog.show((AppCompatActivity) context, msg, TipDialog.TYPE.WARNING);
+                type = TipDialog.TYPE.WARNING;
                 break;
         }
+
+        TipDialog.build((AppCompatActivity) context)
+                .setTipTime(2000)
+                .setMessage(msg)
+                .setTip(type)
+                .show();
     }
 
     /**

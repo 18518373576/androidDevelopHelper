@@ -43,6 +43,7 @@ public class RxJavaSampleViewModel extends BaseViewModel<List<String>> {
                 list.add("嵌套网络请求,首个接口请求成功后接着请求第二个");
                 list.add("合并多个请求的请求结果");
                 list.add("请求失败后,尝试切换IP继续访问");
+                list.add("请求失败后,尝试重新请求");
                 break;
 
         }
