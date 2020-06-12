@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar"
         tools:targetApi="n">
-        <activity android:name=".ui.android.rxJava.RxJavaSampleActivity"/>
+        <activity android:name=".ui.widget.mathematicalCurve.MathematicalCurveActivity"></activity>
+        <activity android:name=".ui.android.rxJava.RxJavaSampleActivity" />
         <activity android:name=".ui.android.httpRequest.historyBlog.HistoryBlogActivity" />
         <activity
             android:name=".ui.android.httpRequest.HttpRequestActivity"
@@ -212,6 +213,7 @@
             android:name=".ui.android.activity.ActivityAnalysisActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
+
             <!-- 问题描述:切换屏幕为横屏时刘海区域会出现黑边 -->
             <!-- 解决方案:添加以下meta属性,并在theme里面设置windowBackground为界面颜色即可,适用于华为手机,其他品牌未测试 -->
             <meta-data
