@@ -26,6 +26,15 @@ public class Constant {
         public static final int CONNECT_TIME_OUT_MILLISECOND = 10000;
         public static final int SUC = 200;
         public static final int FAIL = 404;
+
+        /**
+         * 这几个参数主要为了判断,屏幕切换后是否需要重新加载数据
+         * 定义了网络请求的操作类型
+         * FIRST_LOAD,屏幕切换后不需要重新加载
+         */
+        public static final String FIRST_LOAD = "FIRST_LOAD";
+        public static final String LOAD_MORE = "LOAD_MORE";
+        public static final String REFRESH = "REFRESH";
     }
 
     /**

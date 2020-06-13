@@ -63,14 +63,14 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
         viewModel = (HistoryBlogViewModel) getViewModel(this, HistoryBlogViewModel.class);
 
         lv_loading.onLoading(rcv_blog_history);
-        loadData();
+        loadData(Constant.Internet.FIRST_LOAD);
     }
 
     /**
      * 加载数据
      */
-    private void loadData() {
-        viewModel.getData(requestLibrary, id, String.valueOf(page)).observe(this, this);
+    private void loadData(String loadType) {
+        viewModel.getData(requestLibrary, loadType, id, String.valueOf(page)).observe(this, this);
     }
 
     /**
@@ -92,7 +92,7 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
      */
     @Override
     public void onLoadMore() {
-        loadData();
+        loadData(Constant.Internet.LOAD_MORE);
     }
 
     /**
@@ -128,6 +128,7 @@ public class HistoryBlogActivity extends BaseActivity implements OnItemClickList
             }
             adapter.addData(historyBlogBean.data.datas);
         }
+        page = historyBlogBean.data.curPage;
         page++;
     }
 }

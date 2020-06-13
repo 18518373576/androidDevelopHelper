@@ -20,9 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar"
         tools:targetApi="n">
-        <activity android:name=".ui.widget.mathematicalCurve.MathematicalCurveActivity"></activity>
+        <activity android:name=".ui.widget.mathematicalCurve.MathematicalCurveActivity" />
         <activity android:name=".ui.android.rxJava.RxJavaSampleActivity" />
-        <activity android:name=".ui.android.httpRequest.historyBlog.HistoryBlogActivity" />
+        <activity android:name=".ui.android.httpRequest.historyBlog.HistoryBlogActivity">
+            <meta-data
+                android:name="android.notch_support"
+                android:value="true" />
+        </activity>
         <activity
             android:name=".ui.android.httpRequest.HttpRequestActivity"
             android:screenOrientation="portrait"
