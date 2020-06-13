@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.example.developerandroidx.utils.LogUtils;
 import com.example.developerandroidx.utils.PixelTransformForAppUtil;
 
 import java.util.List;
@@ -41,6 +42,13 @@ public class CurveView extends View {
     private float endX;
     private float endY;
 
+    //要描绘的点的取值范围
+    private float pointNumRangeX;
+    private float pointNumRangeY;
+
+    //坐标轴x和y的取值范围
+    private String rangeText;
+
     //原点
     private float originX;
     private float originY;
@@ -59,10 +67,11 @@ public class CurveView extends View {
         width = PixelTransformForAppUtil.getDiaplayWidth();
         height = width;
         interval = width / 20f;
-        startX = interval;
-        startY = interval;
-        endX = width - interval;
-        endY = height - interval;
+
+        startX = 0;
+        startY = 0;
+        endX = width;
+        endY = height;
 
         originX = width / 2f;
         originY = height / 2f;
@@ -77,9 +86,10 @@ public class CurveView extends View {
         formPaint.setAntiAlias(true);
 
         linePaint = new Paint();
-        linePaint.setColor(Color.RED);
+        linePaint.setColor(Color.rgb(255, 114, 86));
         linePaint.setStrokeWidth(5);
         linePaint.setAntiAlias(true);
+        linePaint.setStrokeCap(Paint.Cap.ROUND);
 
         textPaint = new Paint();
         textPaint.setColor(Color.DKGRAY);
@@ -96,18 +106,20 @@ public class CurveView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         formPaint.setColor(Color.rgb(229, 229, 229));
+        //画表格
         for (int i = 1; i < 20; i++) {
             if (i == 10) {
+                //画坐标轴
                 continue;
             }
             canvas.drawLine(0, interval * i, width, interval * i, formPaint);
             canvas.drawLine(interval * i, 0, interval * i, height, formPaint);
         }
+        //坐标轴颜色加粗
         formPaint.setColor(Color.LTGRAY);
         canvas.drawLine(0, interval * 10, width, interval * 10, formPaint);
         canvas.drawLine(interval * 10, 0, interval * 10, height, formPaint);
 
-        canvas.drawText("X: -100~100  Y: -100~100", 30, 30, textPaint);
         drawLinkPoints(canvas);
     }
 
@@ -117,18 +129,36 @@ public class CurveView extends View {
      * @param canvas
      */
     private void drawLinkPoints(Canvas canvas) {
-//        if (points == null || points.size() == 0) {
-//            return;
-//        }
-//        for (Point point : points) {
-//
-//        }
-        canvas.drawLine(originX, originY, endX, startY, linePaint);
+        if (points == null || points.size() == 0) {
+            return;
+        }
+        canvas.drawText(rangeText, 30, 30, textPaint);
 
+        for (Point point : points) {
+            //开始的x轴和结束的x轴
+            float sx = originX + (point.getX() / pointNumRangeX) * (endX - startX);
+            float ex = sx;
+            //开始的y轴和结束的y轴
+            float sy = originY;
+            float ey = originY - (point.getY() / pointNumRangeY) * (endY - startY);
+            canvas.drawLine(sx, sy, ex, ey, linePaint);
+//            LogUtils.d("连接各个点", sx + "#" + ex + "#" + sy + "#" + ey + "\n");
+        }
     }
 
-    public void setPoints(List<Point> points) {
+    /**
+     * 坐标轴描述
+     *
+     * @param points         坐标轴的各个点
+     * @param pointNumRangeX x轴取值范围 也就是最大值和最小值得差
+     * @param pointNumRangeY y轴取值范围
+     * @param rangeText      取值范围文字描述
+     */
+    public void setPoints(List<Point> points, float pointNumRangeX, float pointNumRangeY, String rangeText) {
         this.points = points;
+        this.pointNumRangeX = pointNumRangeX;
+        this.pointNumRangeY = pointNumRangeY;
+        this.rangeText = rangeText;
         invalidate();
     }
 }

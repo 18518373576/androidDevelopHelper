@@ -9,6 +9,7 @@
     <include layout="@layout/title_bar" />
 
     <com.example.developerandroidx.view.curve.CurveView
+        android:id="@+id/cv_curve"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
