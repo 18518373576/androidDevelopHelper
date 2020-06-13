@@ -23,13 +23,18 @@ import java.util.List;
 
 public class AndroidViewModel extends BaseViewModel<List<FunctionItemBean>> {
 
+    private ArrayList<FunctionItemBean> functionList;
+
     @Override
     protected void initData(@Nullable String... param) {
-        setData(initData());
+        //无数据的时候,设置数据,有数据的时候直接取数据,不再进行设置
+        //主要作用就是屏幕切换保存数据,无屏幕切换可忽略此判断
+        if (functionList == null)
+            setData(initData());
     }
 
     private List<FunctionItemBean> initData() {
-        List<FunctionItemBean> functionList = new ArrayList<>();
+        functionList = new ArrayList<>();
         functionList.add(new FunctionItemBean("Activity", R.mipmap.icon_activity, RouteUtil.getDestination(ActivityAnalysisActivity.class)));
         functionList.add(new FunctionItemBean("Service", R.mipmap.icon_service, RouteUtil.getDestination(ServiceActivity.class)));
         functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, RouteUtil.getDestination(BroadcastReceiverActivity.class)));

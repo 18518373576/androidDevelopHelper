@@ -17,14 +17,18 @@ import java.util.List;
 
 public class WidgetViewModel extends BaseViewModel<List<FunctionItemBean>> {
 
+    private List<FunctionItemBean> functionList;
 
     @Override
     protected void initData(@Nullable String... param) {
-        setData(initData());
+        //无数据的时候,设置数据,有数据的时候直接取数据,不再进行设置
+        //主要作用就是屏幕切换保存数据,无屏幕切换可忽略此判断
+        if (functionList == null)
+            setData(initData());
     }
 
     private List<FunctionItemBean> initData() {
-        List<FunctionItemBean> functionList = new ArrayList<>();
+        functionList = new ArrayList<>();
         functionList.add(new FunctionItemBean("ActionBar", R.mipmap.icon_action, RouteUtil.getDestination(ActionBarActivity.class)));
         functionList.add(new FunctionItemBean("ToolBar", R.mipmap.icon_tool_bar, ""));
         functionList.add(new FunctionItemBean("RecyclerView", R.mipmap.icon_recycler, ""));

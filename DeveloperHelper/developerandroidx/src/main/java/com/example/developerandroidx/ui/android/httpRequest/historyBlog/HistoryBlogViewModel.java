@@ -20,17 +20,12 @@ import com.google.gson.Gson;
 public class HistoryBlogViewModel extends BaseViewModel<BaseModel> {
 
     private HistoryBlogBean historyBlogBean;
+    private String loadingType;
 
 
     @Override
     protected void initData(@Nullable String... param) {
-
-        String loadingType = param[1];
-        //主要为了防止屏幕方向切换后,数据重复加载
-        if (loadingType.equals(Constant.Internet.FIRST_LOAD) && historyBlogBean != null) {
-            setData(historyBlogBean);
-            return;
-        }
+        loadingType = param[1];
         switch (param[0]) {
             case "OkHttp":
                 request(RequestLibrary.OK_HTTP, param[2], param[3]);
@@ -45,6 +40,14 @@ public class HistoryBlogViewModel extends BaseViewModel<BaseModel> {
     }
 
     private void request(RequestLibrary library, String id, String page) {
+
+        //主要为了防止屏幕方向切换后,数据重复加载
+        //FIRST_LOAD即代表Activity执行onCreate方法时第一次获取数据,屏幕切换的话
+        //还会走onCreate方法,此时已获取过数据,即拿出数据,不再请求网络
+        if (loadingType.equals(Constant.Internet.FIRST_LOAD) && historyBlogBean != null) {
+            setData(historyBlogBean);
+            return;
+        }
         HttpRequestUtil.getInstance().get(library, Api.getBlogHistory(id, page),
                 new RequestCallBack() {
                     @Override
