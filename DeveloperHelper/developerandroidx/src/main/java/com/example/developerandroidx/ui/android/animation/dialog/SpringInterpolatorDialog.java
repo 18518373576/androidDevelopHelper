@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.projectInterface.FunctionDialogInterface;
 import com.example.developerandroidx.utils.DialogUtils;
+import com.example.developerandroidx.utils.LogUtils;
 import com.kongzue.dialog.v3.FullScreenDialog;
 
 /**
@@ -99,9 +100,7 @@ public class SpringInterpolatorDialog implements FunctionDialogInterface, Compou
         private float factor;
 
         /**
-         * 数值为0-1；数值越小回弹次数越多
-         *
-         * @param factor
+         * @param factor 数值为0-1；数值越小回弹次数越多
          */
         public SpringInterpolator(float factor) {
             this.factor = factor;
@@ -112,7 +111,7 @@ public class SpringInterpolatorDialog implements FunctionDialogInterface, Compou
             //factor = 0.4
 //        pow(2, -10 * x) * sin((x - factor / 4) * (2 * PI) / factor) + 1
 
-//            LogUtils.e("插值器input值：", (float) (Math.pow(2, -10 * input) * Math.sin((input - factor / 4) * (2 * Math.PI) / factor) + 1) + "");
+//            LogUtils.e("插值器input值：", input + "#" + (float) (Math.pow(2, -10 * input) * Math.sin((input - factor / 4) * (2 * Math.PI) / factor) + 1) + "");
             return (float) (Math.pow(2, -10 * input) * Math.sin((input - factor / 4) * (2 * Math.PI) / factor) + 1);
         }
     }

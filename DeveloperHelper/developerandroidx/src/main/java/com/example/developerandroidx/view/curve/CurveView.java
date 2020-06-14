@@ -1,11 +1,13 @@
 package com.example.developerandroidx.view.curve;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
 import androidx.annotation.Nullable;
 
@@ -19,7 +21,7 @@ import java.util.List;
  * 参考：
  * 描述：拿到一个二维曲线公式,画出曲线,如:X=Y
  */
-public class CurveView extends View {
+public class CurveView extends View implements ValueAnimator.AnimatorUpdateListener {
 
     private Context context;
     private int width;
@@ -33,7 +35,7 @@ public class CurveView extends View {
     private Paint textPaint;
 
     private List<Point> points;
-    //网格每天线的间隔
+    //网格每条线的间隔
     private float interval;
 
     //实际能画线的画布大小
@@ -52,6 +54,11 @@ public class CurveView extends View {
     //原点
     private float originX;
     private float originY;
+
+    private ValueAnimator animator;
+    private float progress = 0;
+
+    private boolean isDrawPoint = false;
 
     public CurveView(Context context) {
         this(context, null);
@@ -139,15 +146,64 @@ public class CurveView extends View {
             float sx = originX + (point.getX() / pointNumRangeX) * (endX - startX);
             float ex = sx;
             //开始的y轴和结束的y轴
-            float sy = originY;
-            float ey = originY - (point.getY() / pointNumRangeY) * (endY - startY);
+            float sy;
+            float ey = originY - ((point.getY() / pointNumRangeY) * (endY - startY)) * progress;
+            if (isDrawPoint) {
+                //画点
+                sy = ey;
+            } else {
+                //默认从原点画线
+                sy = originY;
+            }
             canvas.drawLine(sx, sy, ex, ey, linePaint);
 //            LogUtils.d("连接各个点", sx + "#" + ex + "#" + sy + "#" + ey + "\n");
         }
     }
 
+    private void startAnimator() {
+        if (animator == null) {
+            animator = ValueAnimator.ofFloat(0, 1);
+            animator.setDuration(1000);
+            animator.setInterpolator(new LinearInterpolator());
+            //添加属性变动监听
+            animator.addUpdateListener(this);
+        }
+        animator.start();
+    }
+
     /**
-     * 坐标轴描述
+     * 停止动画
+     */
+    private void stopAnimator() {
+        if (animator != null) {
+            animator.removeUpdateListener(this);
+            animator.removeAllUpdateListeners();
+            animator.cancel();
+            animator = null;
+        }
+    }
+
+    /**
+     * 监听属性动画的属性变化
+     *
+     * @param animation
+     */
+    @Override
+    public void onAnimationUpdate(ValueAnimator animation) {
+        progress = (float) animation.getAnimatedValue();
+//        LogUtils.e("onAnimationUpdate", progress + "\n");
+        invalidate();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+//        LogUtils.e("onDetachedFromWindow", "onDetachedFromWindow\n");
+        stopAnimator();
+    }
+
+    /**
+     * 坐标轴描述,默认画线
      *
      * @param points         坐标轴的各个点
      * @param pointNumRangeX x轴取值范围 也就是最大值和最小值得差
@@ -155,10 +211,29 @@ public class CurveView extends View {
      * @param rangeText      取值范围文字描述
      */
     public void setPoints(List<Point> points, float pointNumRangeX, float pointNumRangeY, String rangeText) {
+        isDrawPoint = false;
         this.points = points;
         this.pointNumRangeX = pointNumRangeX;
         this.pointNumRangeY = pointNumRangeY;
         this.rangeText = rangeText;
-        invalidate();
+        startAnimator();
+    }
+
+    /**
+     * 坐标轴描述,默认画线
+     *
+     * @param points         坐标轴的各个点
+     * @param pointNumRangeX x轴取值范围 也就是最大值和最小值得差
+     * @param pointNumRangeY y轴取值范围
+     * @param rangeText      取值范围文字描述
+     * @param isDrawPoint    主要为了满足一些特殊的方程,比如心形方程,画线会有重叠的情况
+     */
+    public void setPoints(List<Point> points, float pointNumRangeX, float pointNumRangeY, String rangeText, boolean isDrawPoint) {
+        this.isDrawPoint = isDrawPoint;
+        this.points = points;
+        this.pointNumRangeX = pointNumRangeX;
+        this.pointNumRangeY = pointNumRangeY;
+        this.rangeText = rangeText;
+        startAnimator();
     }
 }

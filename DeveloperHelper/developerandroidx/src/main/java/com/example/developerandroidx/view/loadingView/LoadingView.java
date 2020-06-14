@@ -153,7 +153,7 @@ public class LoadingView extends View implements ValueAnimator.AnimatorUpdateLis
         if (animator == null) {
             animator = ValueAnimator.ofInt(0, LINE_COUNT);
             animator.addUpdateListener(this);
-            animator.setDuration(1000);
+            animator.setDuration(800);
             animator.setRepeatMode(ValueAnimator.RESTART);
             animator.setRepeatCount(ValueAnimator.INFINITE);
             animator.setInterpolator(new LinearInterpolator());

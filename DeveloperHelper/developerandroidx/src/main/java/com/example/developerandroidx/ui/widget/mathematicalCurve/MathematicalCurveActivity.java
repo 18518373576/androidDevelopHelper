@@ -32,10 +32,12 @@ public class MathematicalCurveActivity extends BaseActivity {
     protected void initData() {
         super.initData();
         getter = new PointsGetter();
-        mathematicals = new String[]{"Y=X", "Y=X²", "Y=sin(X)", "Y=cos(X)", "Y=tan(X)", "Y=cot(X)"};
+        //Y = pow(2, -10 * x) * sin((x - factor / 4) * (2 * PI) / factor) + 1
+        mathematicals = new String[]{"Y=X", "Y=X²", "Y=sin(X)", "Y=cos(X)", "Y=tan(X)", "Y=cot(X)",
+                "波动曲线", "爱心方程"};
         //默认展示Y=X
         setTitle(mathematicals[0]);
-        cv_curve.setPoints(getter.getPoints(mathematicals[0]), 40f, 40f, "X:-20~20  Y:-20~20");
+        cv_curve.setPoints(getter.getPoints(mathematicals[0]), 80f, 80f, "X:-20~20  Y:-20~20");
 
     }
 
@@ -46,20 +48,24 @@ public class MathematicalCurveActivity extends BaseActivity {
                 setTitle(text);
                 switch (index) {
                     case 0:
-                        cv_curve.setPoints(getter.getPoints(text), 40f, 40f, "X:-20~20  Y:-20~20");
+                        cv_curve.setPoints(getter.getPoints(text), 80f, 80f, "X:-40~40  Y:-40~40");
                         break;
                     case 1:
-                        cv_curve.setPoints(getter.getPoints(text), 40f, 800f, "X:-20~20  Y:-400~400");
+                        cv_curve.setPoints(getter.getPoints(text), 80f, 3200f, "X:-40~40  Y:-1600~1600");
                         break;
                     case 2:
                     case 3:
                         cv_curve.setPoints(getter.getPoints(text), 720f, 10f, "X:-360°~360°  Y:-5~5");
                         break;
                     case 4:
-                        cv_curve.setPoints(getter.getPoints(text), 180, 10f, "X:-90°~90°  Y:-5~5");
-                        break;
                     case 5:
-                        cv_curve.setPoints(getter.getPoints(text), 360, 10f, "X:-180°~180°  Y:-5~5");
+                        cv_curve.setPoints(getter.getPoints(text), 360, 20f, "X:-180°~180°  Y:-10~10");
+                        break;
+                    case 6:
+                        cv_curve.setPoints(getter.getPoints(text), 2f, 4f, "X:-1~1  Y:-2~2");
+                        break;
+                    case 7:
+                        cv_curve.setPoints(getter.getPoints(text), 4f, 4f, "X:-2~2  Y:-2~2", true);
                         break;
                 }
             }
