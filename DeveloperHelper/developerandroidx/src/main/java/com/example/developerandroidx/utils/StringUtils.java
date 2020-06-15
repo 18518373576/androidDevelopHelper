@@ -30,4 +30,8 @@ public class StringUtils {
         SimpleDateFormat format = new SimpleDateFormat("yyMMdd HH:mm:ss SSS");
         return format.format(new Date());
     }
+
+    public String getFormatTime(long time, String format) {
+        return new SimpleDateFormat(format).format(time);
+    }
 }

@@ -55,7 +55,7 @@ public class ContentProviderActivity extends BaseActivity {
     }
 
     @OnClick({R.id.btn_inner_store, R.id.btn_External_specific_store, R.id.btn_External_public_store
-            , R.id.btn_show_video})
+            , R.id.btn_show_video, R.id.btn_show_pics})
     public void click(View v) {
         tv_desc.setText("");
         switch (v.getId()) {
@@ -75,6 +75,59 @@ public class ContentProviderActivity extends BaseActivity {
             case R.id.btn_show_video:
                 function_04();
                 break;
+            //获取照片
+            case R.id.btn_show_pics:
+                function_05();
+                break;
+
+        }
+    }
+
+    private void function_05() {
+        List<Media> mediaList = new ArrayList<>();
+        //要查询的Images数据的列
+        String[] projection = new String[]{
+                MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.DISPLAY_NAME,
+                MediaStore.Images.Media.DATE_TAKEN,
+                MediaStore.Images.Media.SIZE
+        };
+        //查询条件,这里根据照片大小
+        String selection = MediaStore.Images.Media.SIZE + " >= ?";
+        //过滤条件的值,这里是过滤掉大小小于1M的照片
+        String[] selectionArgs = new String[]{String.valueOf("1024")};
+        //根据拍摄时间进行排序,降序排序
+        String sortOrder = MediaStore.Images.Media.DATE_TAKEN + " DESC";
+
+        //try (){ }语句,会在执行完自动执行继承Closeable类的close方法
+        try (Cursor cursor = getApplicationContext().getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                selection,
+                selectionArgs,
+                sortOrder
+        )) {
+            if (cursor != null) {
+                //获取各个字段所在的获取到的数据列中的位置
+                int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+                int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
+                int dateTakenColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_TAKEN);
+                int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE);
+
+                while (cursor.moveToNext()) {
+                    long id = cursor.getLong(idColumn);
+                    String name = cursor.getString(nameColumn);
+                    long dateTaken = cursor.getLong(dateTakenColumn);
+                    int size = cursor.getInt(sizeColumn);
+
+                    //获取照片文件的URI
+                    Uri contentUri = ContentUris.withAppendedId(
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+
+                    mediaList.add(new Media(contentUri, name, dateTaken, size, Media.MediaType.PIC));
+                }
+                new MediaListDialog(mediaList).show(context);
+            }
         }
     }
 

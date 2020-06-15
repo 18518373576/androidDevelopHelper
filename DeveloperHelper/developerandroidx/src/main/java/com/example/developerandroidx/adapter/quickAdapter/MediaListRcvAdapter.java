@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.ui.android.contentProvider.provider.Media;
 import com.example.developerandroidx.utils.PixelTransformForAppUtil;
+import com.example.developerandroidx.utils.StringUtils;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -32,7 +33,16 @@ public class MediaListRcvAdapter extends BaseQuickAdapter<Media, BaseViewHolder>
     protected void convert(@NotNull BaseViewHolder holder, Media item) {
         holder.setText(R.id.tv_name, "名称:" + item.getName());
         holder.setText(R.id.tv_size, "大小:" + item.getSize());
-        holder.setText(R.id.tv_duration, "时长:" + item.getDuration());
+        switch (item.getMediaType()) {
+            case PIC:
+                holder.setText(R.id.tv_duration, "时间:" +
+                        StringUtils.getInstance().getFormatTime(item.getDuration(), "yy-MM-dd HH:mm:ss"));
+                break;
+            default:
+                holder.setText(R.id.tv_duration, "时长:" + item.getDuration());
+                break;
+        }
+
         Glide
                 .with(getContext())
                 .load(item.getUri())

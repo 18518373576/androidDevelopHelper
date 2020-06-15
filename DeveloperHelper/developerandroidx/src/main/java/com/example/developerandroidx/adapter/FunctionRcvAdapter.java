@@ -10,7 +10,7 @@ import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.base.BaseRcvHolder;
 import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.model.FunctionItemBean;
-import com.example.developerandroidx.ui.android.architecture.index.ArchitectureIndexDialog;
+import com.example.developerandroidx.ui.android.architecture.ArchitectureIndexDialog;
 import com.example.developerandroidx.ui.android.dialog.indexDialog.IndexDialog;
 import com.example.developerandroidx.ui.android.httpRequest.dialog.HttpRequestLibraryDialog;
 import com.example.developerandroidx.ui.android.notification.NotificationDialog;

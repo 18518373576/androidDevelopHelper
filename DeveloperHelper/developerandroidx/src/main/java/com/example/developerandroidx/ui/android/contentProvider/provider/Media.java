@@ -15,7 +15,7 @@ public class Media {
 
     private final Uri uri;
     private final String name;
-    private final int duration;
+    private final long duration;
     private final int size;
 
     public MediaType getMediaType() {
@@ -36,7 +36,7 @@ public class Media {
         return name;
     }
 
-    public int getDuration() {
+    public long getDuration() {
         return duration;
     }
 
@@ -44,7 +44,7 @@ public class Media {
         return size;
     }
 
-    public Media(Uri uri, String name, int duration, int size, MediaType mediaType) {
+    public Media(Uri uri, String name, long duration, int size, MediaType mediaType) {
         this.uri = uri;
         this.name = name;
         this.duration = duration;

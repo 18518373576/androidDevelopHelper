@@ -1,4 +1,4 @@
-package com.example.developerandroidx.ui.android.architecture.index;
+package com.example.developerandroidx.ui.android.architecture;
 
 import android.content.Context;
 
