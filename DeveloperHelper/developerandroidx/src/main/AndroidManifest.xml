@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar"
         tools:targetApi="n">
+        <activity android:name=".ui.android.contentProvider.ContentProviderActivity"></activity>
         <activity android:name=".ui.widget.mathematicalCurve.MathematicalCurveActivity" />
         <activity android:name=".ui.android.rxJava.RxJavaSampleActivity" />
         <activity android:name=".ui.android.httpRequest.historyBlog.HistoryBlogActivity">

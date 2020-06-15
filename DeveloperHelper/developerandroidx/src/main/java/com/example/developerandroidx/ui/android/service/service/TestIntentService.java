@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.developerandroidx.model.EventBusMessageBean;
 import com.example.developerandroidx.utils.Constant;
+import com.example.developerandroidx.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -91,8 +92,14 @@ public class TestIntentService extends IntentService {
      * 清除相机照片缓存
      */
     private void handleActionClearPic() {
-        for (File file : getExternalFilesDir(Environment.DIRECTORY_PICTURES).listFiles()) {
-            file.delete();
+
+        try {
+            for (File file : getExternalFilesDir(Environment.DIRECTORY_PICTURES).listFiles()) {
+                LogUtils.e("保存路径", file.getAbsolutePath());
+                file.delete();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

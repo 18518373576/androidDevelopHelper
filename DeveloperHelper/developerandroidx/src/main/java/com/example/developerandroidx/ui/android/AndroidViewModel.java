@@ -10,6 +10,7 @@ import com.example.developerandroidx.ui.android.activity.ActivityAnalysisActivit
 import com.example.developerandroidx.ui.android.animation.AnimationActivity;
 import com.example.developerandroidx.ui.android.broadcastReceiver.BroadcastReceiverActivity;
 import com.example.developerandroidx.ui.android.camera.CameraActivity;
+import com.example.developerandroidx.ui.android.contentProvider.ContentProviderActivity;
 import com.example.developerandroidx.ui.android.fragment.FragmentActivity;
 import com.example.developerandroidx.ui.android.rxJava.RxJavaSampleActivity;
 import com.example.developerandroidx.ui.android.service.ServiceActivity;
@@ -27,7 +28,7 @@ public class AndroidViewModel extends BaseViewModel<List<FunctionItemBean>> {
 
     @Override
     protected void initData(@Nullable String... param) {
-        //无数据的时候,设置数据,有数据的时候直接取数据,不再进行设置
+        //functionList无数据的时候,设置数据,有数据的时候直接取数据,不再进行设置
         //主要作用就是屏幕切换保存数据,无屏幕切换可忽略此判断
         if (functionList == null)
             setData(initData());
@@ -38,7 +39,7 @@ public class AndroidViewModel extends BaseViewModel<List<FunctionItemBean>> {
         functionList.add(new FunctionItemBean("Activity", R.mipmap.icon_activity, RouteUtil.getDestination(ActivityAnalysisActivity.class)));
         functionList.add(new FunctionItemBean("Service", R.mipmap.icon_service, RouteUtil.getDestination(ServiceActivity.class)));
         functionList.add(new FunctionItemBean("Broadcast Receiver", R.mipmap.icon_broadcast_receiver, RouteUtil.getDestination(BroadcastReceiverActivity.class)));
-        functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, ""));
+        functionList.add(new FunctionItemBean("Content Provider", R.mipmap.icon_content_provider, RouteUtil.getDestination(ContentProviderActivity.class)));
         functionList.add(new FunctionItemBean("Fragment", R.mipmap.icon_fragment, RouteUtil.getDestination(FragmentActivity.class)));
         functionList.add(new FunctionItemBean("Dialog", R.mipmap.icon_dialog, ""));
         functionList.add(new FunctionItemBean("Notification", R.mipmap.icon_notification, ""));

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.android.contentProvider.ContentProviderActivity">
+
+    <include
+        android:id="@+id/include9"
+        layout="@layout/title_bar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp150"
+        android:layout_margin="@dimen/dp10"
+        android:background="@drawable/bg_dark_white"
+        android:padding="@dimen/dp10"
+        app:layout_constraintTop_toBottomOf="@+id/include9"
+        tools:layout_editor_absoluteX="10dp">
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="@dimen/dp3"
+            android:textColor="@color/textColorBlack"
+            android:textSize="@dimen/sp14"
+            android:textStyle="bold" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_01"
+        style="@style/commonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp10"
+        android:text="获取存储路径"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+    <Button
+        android:id="@+id/btn_inner_store"
+        style="@style/CommonButtonStyle"
+        android:layout_width="@dimen/dp100"
+        android:text="内部存储"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_01" />
+
+    <Button
+        android:id="@+id/btn_External_specific_store"
+        style="@style/CommonButtonStyle"
+        android:layout_width="@dimen/dp100"
+        android:layout_marginRight="@dimen/dp10"
+        android:text="外部私有存储"
+        app:layout_constraintEnd_toStartOf="@+id/btn_inner_store"
+
+        app:layout_constraintTop_toTopOf="@id/btn_inner_store" />
+
+    <Button
+        android:id="@+id/btn_External_public_store"
+        style="@style/CommonButtonStyle"
+        android:layout_width="@dimen/dp100"
+        android:layout_marginLeft="@dimen/dp10"
+        android:text="外部公共存储"
+        app:layout_constraintStart_toEndOf="@+id/btn_inner_store"
+        app:layout_constraintTop_toTopOf="@id/btn_inner_store" />
+
+    <TextView
+        android:id="@+id/tv_02"
+        style="@style/commonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp10"
+        android:text="获取系统应用的content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_inner_store" />
+
+    <Button
+        android:id="@+id/btn_show_pics"
+        style="@style/CommonButtonStyle"
+        android:layout_width="@dimen/dp100"
+        android:text="展示照片"
+        app:layout_constraintStart_toStartOf="@+id/btn_External_specific_store"
+        app:layout_constraintTop_toBottomOf="@+id/tv_02" />
+
+    <Button
+        android:id="@+id/btn_show_music"
+        style="@style/CommonButtonStyle"
+        android:layout_width="@dimen/dp100"
+        android:text="展示音乐"
+        app:layout_constraintStart_toStartOf="@+id/btn_inner_store"
+        app:layout_constraintTop_toBottomOf="@+id/tv_02" />
+
+    <Button
+        android:id="@+id/btn_show_video"
+        style="@style/CommonButtonStyle"
+        android:layout_width="@dimen/dp100"
+        android:text="展示视频"
+        app:layout_constraintStart_toStartOf="@+id/btn_External_public_store"
+        app:layout_constraintTop_toBottomOf="@+id/tv_02" />
+</androidx.constraintlayout.widget.ConstraintLayout>

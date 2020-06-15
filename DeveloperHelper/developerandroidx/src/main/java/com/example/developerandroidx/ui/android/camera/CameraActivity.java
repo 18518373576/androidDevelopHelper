@@ -208,9 +208,10 @@ public class CameraActivity extends BaseActivity implements View.OnClickListener
             //都转换为uri
             if (requestCode == REQUEST_IMAGE_CAPTURE) {
                 //拍照结果返回，在打开相机界面的时候已经保存了完整的图片路径，把路径转换为uri
+                //file:///storage/emulated/0/Android/data/com.example.developerandroidx/files/Pictures/JPEG_20200615_135412_8637409846958515960.jpg
                 uri = Uri.fromFile(new File(imagePath));
             } else if (requestCode == REQUEST_IMAGE_GALLERY) {
-                //从图库返回结果，图片的uri，转换为绝对路径
+                //从图库返回结果，图片的uri
                 uri = data.getData();
             }
 
