@@ -11,6 +11,7 @@ import com.example.developerandroidx.R;
 import com.example.developerandroidx.adapter.ArithmeticRcvAdapter;
 import com.example.developerandroidx.base.BaseActivity;
 import com.example.developerandroidx.base.BaseRcvAdapter;
+import com.example.developerandroidx.model.ArithMeticModel;
 import com.example.developerandroidx.ui.java.arithmetic.dialog.BubbleSortDialog;
 import com.example.developerandroidx.ui.java.arithmetic.dialog.GetNodeDialog;
 import com.example.developerandroidx.ui.java.arithmetic.dialog.ReversalLinkedListDialog;
@@ -35,7 +36,7 @@ public class ArithmeticActivity extends BaseActivity implements BaseRcvAdapter.O
     protected void initView() {
         setTitle("算法");
         rcv_arithmetic.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        adapter = new ArithmeticRcvAdapter(new ArrayList<String>());
+        adapter = new ArithmeticRcvAdapter(new ArrayList<>());
         rcv_arithmetic.setAdapter(adapter);
         adapter.setOnItemClickListener(this);
     }
@@ -44,25 +45,25 @@ public class ArithmeticActivity extends BaseActivity implements BaseRcvAdapter.O
     protected void initData() {
         super.initData();
         ArithmeticViewModel viewModel = (ArithmeticViewModel) getViewModel(this, ArithmeticViewModel.class);
-        viewModel.getData().observe(this, new Observer<List<String>>() {
+        viewModel.getData().observe(this, new Observer<List<ArithMeticModel>>() {
             @Override
-            public void onChanged(List<String> strings) {
-                adapter.notifyDataChanged(strings);
+            public void onChanged(List<ArithMeticModel> meticModels) {
+                adapter.notifyDataChanged(meticModels);
             }
         });
     }
 
     @Override
     public void onItemClick(@NonNull View v, int viewType, @NonNull Object data, int position) {
-        switch ((String) data) {
+        switch (position) {
 
-            case "冒泡排序":
+            case 0:
                 new BubbleSortDialog().show(context);
                 break;
-            case "找到链表的倒数第n个节点":
+            case 8:
                 new GetNodeDialog().show(context);
                 break;
-            case "逆置单项链表":
+            case 9:
                 new ReversalLinkedListDialog().show(context);
                 break;
         }

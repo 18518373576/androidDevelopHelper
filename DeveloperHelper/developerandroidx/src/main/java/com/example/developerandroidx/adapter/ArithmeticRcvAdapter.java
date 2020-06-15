@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseRcvAdapter;
 import com.example.developerandroidx.base.BaseRcvHolder;
+import com.example.developerandroidx.model.ArithMeticModel;
 
 import java.util.List;
 
@@ -15,13 +16,13 @@ import java.util.List;
  * 参考:
  * 描述:
  */
-public class ArithmeticRcvAdapter extends BaseRcvAdapter<String> {
+public class ArithmeticRcvAdapter extends BaseRcvAdapter<ArithMeticModel> {
     /**
      * 构造方法，初始化数据
      *
      * @param mList
      */
-    public ArithmeticRcvAdapter(List<String> mList) {
+    public ArithmeticRcvAdapter(List<ArithMeticModel> mList) {
         super(mList);
     }
 
@@ -32,7 +33,7 @@ public class ArithmeticRcvAdapter extends BaseRcvAdapter<String> {
 
     @NonNull
     @Override
-    protected BaseRcvHolder<String> bindHolder(@NonNull View v, int viewType) {
+    protected BaseRcvHolder<ArithMeticModel> bindHolder(@NonNull View v, int viewType) {
         return new ArithmeticRcvHolder(v);
     }
 }

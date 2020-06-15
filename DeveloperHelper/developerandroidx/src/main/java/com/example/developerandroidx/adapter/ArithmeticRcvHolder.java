@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.example.developerandroidx.R;
 import com.example.developerandroidx.base.BaseRcvHolder;
+import com.example.developerandroidx.model.ArithMeticModel;
 
 import butterknife.BindView;
 
@@ -15,10 +16,12 @@ import butterknife.BindView;
  * 参考:
  * 描述:
  */
-public class ArithmeticRcvHolder extends BaseRcvHolder<String> {
+public class ArithmeticRcvHolder extends BaseRcvHolder<ArithMeticModel> {
 
     @BindView(R.id.tv_arithmetic)
     TextView tv_arithmetic;
+    @BindView(R.id.tv_title)
+    TextView tv_title;
 
     /**
      * 构造方法，执行初始化操作
@@ -30,7 +33,8 @@ public class ArithmeticRcvHolder extends BaseRcvHolder<String> {
     }
 
     @Override
-    protected void setData(@NonNull String data, int position) {
-        tv_arithmetic.setText(data);
+    protected void setData(@NonNull ArithMeticModel data, int position) {
+        tv_arithmetic.setText(data.desc);
+        tv_title.setText(data.title);
     }
 }
