@@ -34,7 +34,7 @@ public class MathematicalCurveActivity extends BaseActivity {
         getter = new PointsGetter();
         //Y = pow(2, -10 * x) * sin((x - factor / 4) * (2 * PI) / factor) + 1
         mathematicals = new String[]{"Y=X", "Y=X²", "Y=sin(X)", "Y=cos(X)", "Y=tan(X)", "Y=cot(X)",
-                "波动曲线", "爱心方程"};
+                "波动曲线", "心形方程"};
         //默认展示Y=X
         setTitle(mathematicals[0]);
         cv_curve.setPoints(getter.getPoints(mathematicals[0]), 80f, 80f, "X:-20~20  Y:-20~20");

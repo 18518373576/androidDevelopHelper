@@ -51,7 +51,7 @@ public class PointsGetter {
                 //实现弹簧动画的插值器方程
                 getPoints_07();
                 break;
-            case "爱心方程":
+            case "心形方程":
                 getPoints_08();
                 break;
         }

@@ -95,7 +95,7 @@ public class ContentProviderActivity extends BaseActivity {
         //查询条件,这里根据照片大小
         String selection = MediaStore.Images.Media.SIZE + " >= ?";
         //过滤条件的值,这里是过滤掉大小小于1M的照片
-        String[] selectionArgs = new String[]{String.valueOf("1024")};
+        String[] selectionArgs = new String[]{String.valueOf(1024 * 1024)};
         //根据拍摄时间进行排序,降序排序
         String sortOrder = MediaStore.Images.Media.DATE_TAKEN + " DESC";
 

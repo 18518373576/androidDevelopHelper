@@ -32,14 +32,14 @@ public class MediaListRcvAdapter extends BaseQuickAdapter<Media, BaseViewHolder>
     @Override
     protected void convert(@NotNull BaseViewHolder holder, Media item) {
         holder.setText(R.id.tv_name, "名称:" + item.getName());
-        holder.setText(R.id.tv_size, "大小:" + item.getSize());
+        holder.setText(R.id.tv_size, "大小:" + item.getSize() / (1024f * 1024f) + "M");
         switch (item.getMediaType()) {
             case PIC:
                 holder.setText(R.id.tv_duration, "时间:" +
                         StringUtils.getInstance().getFormatTime(item.getDuration(), "yy-MM-dd HH:mm:ss"));
                 break;
             default:
-                holder.setText(R.id.tv_duration, "时长:" + item.getDuration());
+                holder.setText(R.id.tv_duration, "时长:" + item.getDuration() / 1000f + "秒");
                 break;
         }
 
