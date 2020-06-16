@@ -89,7 +89,7 @@
         android:id="@+id/btn_show_music"
         style="@style/CommonButtonStyle"
         android:layout_width="@dimen/dp100"
-        android:text="展示音乐"
+        android:text="展示音频"
         app:layout_constraintStart_toStartOf="@+id/btn_inner_store"
         app:layout_constraintTop_toBottomOf="@+id/tv_02" />
 

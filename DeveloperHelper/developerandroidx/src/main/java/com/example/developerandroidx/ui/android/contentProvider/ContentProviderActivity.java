@@ -55,7 +55,7 @@ public class ContentProviderActivity extends BaseActivity {
     }
 
     @OnClick({R.id.btn_inner_store, R.id.btn_External_specific_store, R.id.btn_External_public_store
-            , R.id.btn_show_video, R.id.btn_show_pics})
+            , R.id.btn_show_video, R.id.btn_show_pics, R.id.btn_show_music})
     public void click(View v) {
         tv_desc.setText("");
         switch (v.getId()) {
@@ -79,8 +79,16 @@ public class ContentProviderActivity extends BaseActivity {
             case R.id.btn_show_pics:
                 function_05();
                 break;
+            //展示音频
+            case R.id.btn_show_music:
+                function_06();
+                break;
 
         }
+    }
+
+    private void function_06() {
+
     }
 
     private void function_05() {
